@@ -50,9 +50,7 @@ object Record {
     val values = methods.filter(methodPredicate)
     values.foldLeft[Tree](q"RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
   }
-
 }
-
 
 class RecordOps[R <: Record](r: R) {
 

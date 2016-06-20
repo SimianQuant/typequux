@@ -94,4 +94,31 @@ class RecordSpec extends BaseSpec {
 
     assert(r1 != r1.##)
   }
+
+  it should "be obtainable from a class" in {
+    class Demo1(a: Int) {
+      val b = a.toString
+    }
+
+    class Demo2(val a: String, b: Int) {
+      def c: Int = 42
+    }
+
+    case class Demo3(a: String, b: Long)
+
+    import Record._
+
+    val r1 = class2Record(new Demo1(42))
+    val r2 = class2Record(new Demo2("me", 42))
+    val r3 = class2Record(Demo3("oogachaka", 42L))
+
+    illTyped { """r1("a")""" }
+    illTyped { """r2("b")""" }
+    illTyped { """r2("c")""" }
+
+    assert(r1("b") == "42")
+    assert(r2("a") == "me")
+    assert(r3("a") == "oogachaka")
+    assert(r3("b") == 42L)
+  }
 }
