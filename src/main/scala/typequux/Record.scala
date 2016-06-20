@@ -17,6 +17,8 @@ package typequux
 
 import constraint._
 import language.implicitConversions
+import language.experimental.macros
+import reflect.macros.whitebox.Context
 
 sealed trait Record
 
@@ -36,7 +38,21 @@ case object RNil extends Record
 
 object Record {
   implicit def record2Ops[R <: Record](r: R): RecordOps[R] = new RecordOps(r)
+
+  def class2Record[T](x: T): Any = macro class2RecordImpl[T]
+
+  def class2RecordImpl[T: c.WeakTypeTag](c: Context)(x: c.Expr[T]): c.Tree = {
+    import c.universe._
+    val theType = implicitly[c.WeakTypeTag[T]].tpe
+    val symbolPredicate: Symbol => Boolean = x => x.isPublic && x.isMethod
+    val methods = theType.members.filter(symbolPredicate).map(_.asMethod)
+    val methodPredicate: MethodSymbol => Boolean = x => x.isVal || x.isGetter || x.isCaseAccessor
+    val values = methods.filter(methodPredicate)
+    values.foldLeft[Tree](q"RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
+  }
+
 }
+
 
 class RecordOps[R <: Record](r: R) {
 
