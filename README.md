@@ -12,9 +12,9 @@ implementations of several typelevel programming primitives. As such, it represe
 
 Currently supported primitives are:
 
-1. Church encodings of booleans [source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Bool.scala) [examples](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/BoolSpec.scala)
-2. Peano numbers [source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Nat.scala) [examples](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/NatSpec.scala)
-3. Dense numbers (like peano numbers but **much** faster) [source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Dense.scala) [examples](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSpec.scala)
+1. [Church encodings of booleans](https://github.com/harshad-deo/typequux/wiki/Usage-of-Church-Booleans)
+2. [Peano numbers](https://github.com/harshad-deo/typequux/wiki/Usage-of-Peano-Numbers)
+3. [Dense numbers](https://github.com/harshad-deo/typequux/wiki/Usage-of-Dense-Numbers) (like peano numbers but **much** faster)
 4. Type-Sets of dense numbers [source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/DenseSet.scala) [examples-1](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSetSpec.scala) [examples-2](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSetLiteralSpec.scala)
 5. Type-Maps of dense numbers [source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/DenseMap.scala) [examples](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseMapSpec.scala)
 6. Natural Transformations [source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Transform.scala) [examples](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/TransformSpec.scala)
