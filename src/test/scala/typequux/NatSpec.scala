@@ -224,14 +224,18 @@ class NatSpec extends BaseSpec {
   class ExpZero[A]
   implicit def toExpZero[A <: Nat](implicit ev0: ^[A, _0] =:= _1): ExpZero[A] = new ExpZero[A]
 
+  class ExpIdentity[A]
+  implicit def toExpIdentity[A <: Nat](implicit ev0: ^[A, _1] =:= A): ExpIdentity[A] = new ExpIdentity[A]
+
   class ExpOne[A]
-  implicit def toExpOne[A <: Nat](implicit ev0: ^[A, _1] =:= A): ExpOne[A] = new ExpOne[A]
+  implicit def toExpOne[A <: Nat](implicit ev0: ^[_1, A] =:= _1): ExpOne[A] = new ExpOne[A]
 
   def unaryLaws[A <: Nat](
       implicit ev0: AdditiveIdentity[A],
       ev1: MultiplicativeIdentity[A],
       ev2: ExpZero[A],
-      ev3: ExpOne[A]
+      ev3: ExpIdentity[A],
+      ev4: ExpOne[A]
   ) = true
   unaryLaws[_0]
   unaryLaws[_1]
