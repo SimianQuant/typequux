@@ -488,8 +488,8 @@ class DenseSpec extends BaseSpec {
   class ExpZero[A]
   implicit def toExpZero[A <: Dense](implicit ev: ^[A, _0] =:= _1): ExpZero[A] = new ExpZero[A]
 
-  class ExpOne[A]
-  implicit def toExpOne[A <: Dense](implicit ev: ^[A, _1] =:= A): ExpOne[A] = new ExpOne[A]
+  class ExpIdentity[A]
+  implicit def toExpIdentity[A <: Dense](implicit ev: ^[A, _1] =:= A): ExpIdentity[A] = new ExpIdentity[A]
 
   class LeftShift[A]
   implicit def toLeftShift[A <: Dense](implicit ev: A#ShiftL =:= *[A, _2]): LeftShift[A] = new LeftShift[A]
@@ -499,12 +499,15 @@ class DenseSpec extends BaseSpec {
       implicit ev: Xor[===[A, *[_2, A#ShiftR]], ===[A, *[_2, A#ShiftR] + _1]] =:= True): RightShift[A] =
     new RightShift[A]
 
+  class ExpOne[A]
+  implicit def toExpOne[A <: Dense](implicit ev: ^[_1, A] =:= _1): ExpOne[A] = new ExpOne[A]
+
   def unaryLaws[A <: Dense](implicit ev0: AdditiveIdentity[A],
                             ev1: MultiplicativeIdentity[A],
                             ev2: DecrementOfIncrement[A],
                             ev3: RightShiftOfLeftShift[A],
                             ev4: ExpZero[A],
-                            ev5: ExpOne[A],
+                            ev5: ExpIdentity[A],
                             ev6: LeftShift[A],
                             ev7: RightShift[A]) = true
   unaryLaws[_0]
