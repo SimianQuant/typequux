@@ -9,13 +9,7 @@ coverageEnabled := true
 
 lazy val compilecheck = taskKey[Unit]("compile and then scalastyle")
 
-compilecheck in Compile := Def.sequential(compile in Compile, (scalastyle in Compile).toTask(""), 
-  (scapegoat in Compile)).value
-
-scapegoatVersion := "1.1.0"
-
-scapegoatDisabledInspections := Seq("UnusedMethodParameter", "LooksLikeInterpolatedString", "NullParameter", 
-  "TraversableHead", "AvoidOperatorOverload", "MaxParameters")
+compilecheck in Compile := Def.sequential(compile in Compile, (scalastyle in Compile).toTask("")).value
 
 wartremoverErrors ++= {
   import Wart._
@@ -23,7 +17,10 @@ wartremoverErrors ++= {
     OptionPartial, Product, Return, Serializable, TryPartial)
 }
 
+lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
+
 libraryDependencies ++= Seq(
+  scalaReflect.value,
   "org.scalatest" %% "scalatest" % "2.2.6" % "test",
   "com.chuusai" %% "shapeless" % "2.3.1" % "test"
 )

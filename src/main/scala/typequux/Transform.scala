@@ -15,12 +15,10 @@
   */
 package typequux
 
-import java.lang.SuppressWarnings
 import language.{higherKinds, implicitConversions}
 
 // scalastyle:off class.names
 
-@SuppressWarnings(Array("ClassNames")) // for scapegoat
 trait ~>[-F[_], +G[_]] {
   def apply[A](a: F[A]): G[A]
   def andThen[H[_]](f: G ~> H): F ~> H = new (F ~> H) {
@@ -33,7 +31,6 @@ trait ~>[-F[_], +G[_]] {
 
 // scalastyle:off object.name
 
-@SuppressWarnings(Array("ObjectNames")) // for scapegoat
 object ~> {
   import typequux._
 
