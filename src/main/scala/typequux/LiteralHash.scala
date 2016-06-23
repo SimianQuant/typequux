@@ -18,7 +18,8 @@ package typequux
 import annotation.tailrec
 import language.experimental.macros
 import language.implicitConversions
-import reflect.macros.whitebox.Context
+import macrocompat.bundle
+import reflect.macros.whitebox
 
 /**
   * Typelevel representation of a compile time constant literal
@@ -86,7 +87,8 @@ object LiteralHash {
   * Macro bundle that can be used by the typeclasses subsequently
   *
   */
-class LiteralHashBuilderImpl(val c: Context) {
+@bundle
+class LiteralHashBuilderImpl(val c: whitebox.Context) {
   import c.universe._
 
   /**
@@ -99,8 +101,8 @@ class LiteralHashBuilderImpl(val c: Context) {
       s"Supplied $typeOfExp expression is not a compile time constant. Please consider providing either a literal or a final val"
   )
 
-  def forUnit(x: c.Expr[Unit]): c.Tree = {
-    x.tree match {
+  def forUnit(x: Tree): Tree = {
+    x match {
       case q"${ y: Unit }" =>
         q"""
         new LiteralHash[Unit]{
@@ -113,8 +115,8 @@ class LiteralHashBuilderImpl(val c: Context) {
     }
   }
 
-  def forBoolean(x: c.Expr[Boolean]): c.Tree = {
-    x.tree match {
+  def forBoolean(x: Tree): Tree = {
+    x match {
       case q"${ y: Boolean }" =>
         val valueHash = if (y) tq"Dense._1" else tq"Dense._0"
         q"""
@@ -128,15 +130,15 @@ class LiteralHashBuilderImpl(val c: Context) {
     }
   }
 
-  def forByte(x: c.Expr[Byte]): c.Tree = {
-    x.tree match {
+  def forByte(x: Tree): Tree = {
+    x match {
       case q"${ y: Byte }" => resolveByte(y)
       case _ => abortHere("byte")
     }
   }
 
-  def forInt2Byte(x: c.Expr[Int]): c.Tree = {
-    x.tree match {
+  def forInt2Byte(x: Tree): Tree = {
+    x match {
       case q"${ y: Int }" =>
         if (y > Byte.MaxValue) {
           c.abort(c.enclosingPosition, "Supplied integer literal is too large to be converted to a byte")
@@ -149,7 +151,7 @@ class LiteralHashBuilderImpl(val c: Context) {
     }
   }
 
-  private[this] def resolveByte(y: Byte): c.Tree = {
+  private[this] def resolveByte(y: Byte): Tree = {
     val valueHash = fromBinary(toBinary(y & 127))
     val typeHash = if (y < 0) tq"LiteralHash.NegativeByteTypeHash" else tq"LiteralHash.PositiveByteTypeHash"
     q"""
@@ -161,15 +163,15 @@ class LiteralHashBuilderImpl(val c: Context) {
     """
   }
 
-  def forShort(x: c.Expr[Short]): c.Tree = {
-    x.tree match {
+  def forShort(x: Tree): Tree = {
+    x match {
       case q"${ y: Short }" => resolveShort(y)
       case _ => abortHere("short")
     }
   }
 
-  def forInt2Short(x: c.Expr[Int]): c.Tree = {
-    x.tree match {
+  def forInt2Short(x: Tree): Tree = {
+    x match {
       case q"${ y: Int }" =>
         if (y > Short.MaxValue) {
           c.abort(c.enclosingPosition, "Supplied integer literal is too large to be converted to a short")
@@ -182,7 +184,7 @@ class LiteralHashBuilderImpl(val c: Context) {
     }
   }
 
-  private[this] def resolveShort(y: Short): c.Tree = {
+  private[this] def resolveShort(y: Short): Tree = {
     val valueHash = fromBinary(toBinary(y & 32767))
     val typeHash = if (y < 0) tq"LiteralHash.NegativeShortTypeHash" else tq"LiteralHash.PositiveShortTypeHash"
     q"""
@@ -194,8 +196,8 @@ class LiteralHashBuilderImpl(val c: Context) {
     """
   }
 
-  def forChar(x: c.Expr[Char]): c.Tree = {
-    def resolve(y: Char): c.Tree = {
+  def forChar(x: Tree): Tree = {
+    def resolve(y: Char): Tree = {
       val valueHash = fromBinary(toBinary(char2Long(y)))
       q"""
       new LiteralHash[Char]{
@@ -205,13 +207,13 @@ class LiteralHashBuilderImpl(val c: Context) {
       }
       """
     }
-    x.tree match {
+    x match {
       case q"${ y: Char }" => resolve(y)
       case _ => abortHere("character")
     }
   }
 
-  def forInt(x: c.Expr[Int]): c.Tree = {
+  def forInt(x: Tree): Tree = {
     def resolve(y: Int): c.Tree = {
       val valueHash = fromBinary(toBinary(y & Int.MaxValue))
       val typeHash = if (y < 0) tq"LiteralHash.NegativeIntegerTypeHash" else tq"LiteralHash.PositiveIntegerTypeHash"
@@ -223,13 +225,13 @@ class LiteralHashBuilderImpl(val c: Context) {
       }
       """
     }
-    x.tree match {
+    x match {
       case q"${ y: Int }" => resolve(y)
       case _ => abortHere("integer")
     }
   }
 
-  def forLong(x: c.Expr[Long]): c.Tree = {
+  def forLong(x: Tree): Tree = {
     def resolve(y: Long): c.Tree = {
       val typeHash = if (y < 0) tq"LiteralHash.NegativeLongTypeHash" else tq"LiteralHash.PositiveLongTypeHash"
       val valueHash = fromBinary(toBinary(y & Long.MaxValue))
@@ -241,14 +243,14 @@ class LiteralHashBuilderImpl(val c: Context) {
       }
       """
     }
-    x.tree match {
+    x match {
       case q"${ y: Long }" => resolve(y)
       case _ => abortHere("long")
     }
   }
 
-  def forFloat(x: c.Expr[Float]): c.Tree = {
-    def resolve(y: Float): c.Tree = {
+  def forFloat(x: Tree): Tree = {
+    def resolve(y: Float): Tree = {
       val intRep = java.lang.Float.floatToRawIntBits(y)
       val typeHash =
         if (intRep < 0) tq"LiteralHash.NegativeEncodedFloatTypeHash" else tq"LiteralHash.PositiveEncodedFloatTypeHash"
@@ -261,14 +263,14 @@ class LiteralHashBuilderImpl(val c: Context) {
       }
       """
     }
-    x.tree match {
+    x match {
       case q"${ y: Float }" => resolve(y)
       case _ => abortHere("float")
     }
   }
 
-  def forDouble(x: c.Expr[Double]): c.Tree = {
-    def resolve(y: Double): c.Tree = {
+  def forDouble(x: Tree): Tree = {
+    def resolve(y: Double): Tree = {
       val longRep = java.lang.Double.doubleToRawLongBits(y)
       val typeHash =
         if (longRep < 0) {
@@ -285,7 +287,7 @@ class LiteralHashBuilderImpl(val c: Context) {
       }
       """
     }
-    x.tree match {
+    x match {
       case q"${ y: Double }" => resolve(y)
       case _ => abortHere("double")
     }
@@ -294,8 +296,8 @@ class LiteralHashBuilderImpl(val c: Context) {
   /**
     * type hash for strings is _16
     */
-  def forString(x: c.Expr[String]): c.Tree = {
-    def resolve(y: String): c.Tree = {
+  def forString(x: Tree): Tree = {
+    def resolve(y: String): Tree = {
       val longRep = y map char2Long
       val binRep = toBinary(longRep: _*)
       val valueHash = fromBinary(binRep)
@@ -307,7 +309,7 @@ class LiteralHashBuilderImpl(val c: Context) {
       }
       """
     }
-    x.tree match {
+    x match {
       case q"${ y: String }" => resolve(y)
       case _ => abortHere("string")
     }

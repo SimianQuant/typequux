@@ -1,5 +1,7 @@
 scalaVersion := "2.11.8"
 
+crossScalaVersions := Seq("2.10.6")
+
 name := "typequux"
 organization := "typefoo"
 version := "0.1"
@@ -11,32 +13,37 @@ lazy val compilecheck = taskKey[Unit]("compile and then scalastyle")
 
 compilecheck in Compile := Def.sequential(compile in Compile, (scalastyle in Compile).toTask("")).value
 
-wartremoverErrors ++= {
-  import Wart._
-  Seq(Any2StringAdd, AsInstanceOf, EitherProjectionPartial, Enumeration,  IsInstanceOf, ListOps, Option2Iterable, 
-    OptionPartial, Product, Return, Serializable, TryPartial)
-}
-
 lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
+
+import Defaults._
 
 libraryDependencies ++= Seq(
   scalaReflect.value,
+  "org.typelevel" %% "macro-compat" % "1.1.1",
+  "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided",
+  compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
   "org.scalatest" %% "scalatest" % "2.2.6" % "test",
   "com.chuusai" %% "shapeless" % "2.3.1" % "test"
 )
+
+wartremoverErrors ++= {
+  import Wart._
+  Seq(Any2StringAdd, EitherProjectionPartial, Enumeration,  IsInstanceOf, ListOps, Option2Iterable, 
+    OptionPartial, Product, Return, Serializable, TryPartial)
+}
 
 scalacOptions ++= Seq(
   "-deprecation",
   "-unchecked",
   "-explaintypes",
-  "-Ywarn-unused-import",
+//  "-Ywarn-unused-import",
   "-encoding", "UTF-8",
   "-feature",
   "-Xlog-reflective-calls",
   "-Ywarn-dead-code",
   "-Ywarn-inaccessible",
-  "-Ywarn-infer-any",
-  "-Ywarn-unused",
+//  "-Ywarn-infer-any",
+//  "-Ywarn-unused",
   "-Ywarn-value-discard",
   "-Xlint",
   "-Ywarn-nullary-override",
