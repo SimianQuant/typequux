@@ -15,7 +15,11 @@
   */
 package typequux
 
+import annotation.tailrec
 import Dense._
+import language.experimental.macros
+import macrocompat.bundle
+import reflect.macros.whitebox.Context
 
 final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
 
@@ -111,132 +115,54 @@ object SizedVector {
     }
   }
 
-  def apply[T](a: T): SizedVector[_1, T] = new SizedVector[_1, T](Vector(a))
+  def apply[T](inp: T*): Any = macro SizedVectorBuilder.build[T]
 
-  def apply[T](a: T, b: T): SizedVector[_2, T] = new SizedVector[_2, T](Vector(a, b))
+}
 
-  def apply[T](a: T, b: T, c: T): SizedVector[_3, T] = new SizedVector[_3, T](Vector(a, b, c))
+@bundle
+class SizedVectorBuilder(val c: Context) {
+  import c.universe._
+  def build[T: c.WeakTypeTag](inp: Tree*): Tree = {
+    val vh = fromBinary(toBinary(inp.length))
+    val lh = q"""
+    new LiteralHash[Int]{
+      override type TypeHash = LiteralHash.PositiveIntegerTypeHash
+      override type ValueHash = $vh
+      override val value = ${inp.length}
+    }
+    """
+    q"""SizedVector.from($lh, Vector(${inp :_ *})).fold(???)(identity)"""
+  }
 
-  def apply[T](a: T, b: T, c: T, d: T): SizedVector[_4, T] = new SizedVector[_4, T](Vector(a, b, c, d))
+  private[this] def toBinary(z: Int): List[Boolean] = {
+    val maxIter = 31
+    val  places = if (z == 0) {0 
+      } else {
+        @tailrec
+        def go(cmp: Long, pl: Int): Int = {
+          if (pl == maxIter) {
+            maxIter
+          } else {
+            val nextCmp = cmp << 1
+            if (nextCmp > z) pl else go(nextCmp, pl + 1)
+          }
+        }
+        go(1, 1)
+      }
+    @tailrec
+    def doConvert(itr: Int, v: Int, acc: List[Boolean]): List[Boolean] = {
+      if (itr == 0) {
+        acc
+      } else {
+        val dg = (v & 1) == 1
+        doConvert(itr - 1, v >>> 1, dg :: acc)
+      }
+    }
+    doConvert(places, z, List[Boolean]())
+  }
 
-  def apply[T](a: T, b: T, c: T, d: T, e: T): SizedVector[_5, T] = new SizedVector[_5, T](Vector(a, b, c, d, e))
+  private[this] def fromBinary(binRep: List[Boolean]): c.Tree = {
+    binRep.foldLeft[Tree](tq"DNil")((acc, v) => if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
+  }
 
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T): SizedVector[_6, T] =
-    new SizedVector[_6, T](Vector(a, b, c, d, e, f))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T): SizedVector[_7, T] =
-    new SizedVector[_7, T](Vector(a, b, c, d, e, f, g))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T): SizedVector[_8, T] =
-    new SizedVector[_8, T](Vector(a, b, c, d, e, f, g, h))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T): SizedVector[_9, T] =
-    new SizedVector[_9, T](Vector(a, b, c, d, e, f, g, h, i))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T): SizedVector[_10, T] =
-    new SizedVector[_10, T](Vector(a, b, c, d, e, f, g, h, i, j))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T): SizedVector[_11, T] =
-    new SizedVector[_11, T](Vector(a, b, c, d, e, f, g, h, i, j, k))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T): SizedVector[_12, T] =
-    new SizedVector[_12, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T): SizedVector[_13, T] =
-    new SizedVector[_13, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m))
-
-  def apply[T](
-      a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T, n: T): SizedVector[_14, T] =
-    new SizedVector[_14, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n))
-
-  def apply[T](
-      a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T, n: T, o: T): SizedVector[_15, T] =
-    new SizedVector[_15, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T, n: T, o: T, p: T)
-    : SizedVector[_16, T] =
-    new SizedVector[_16, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p))
-
-  def apply[T](a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T, n: T, o: T, p: T, q: T)
-    : SizedVector[_17, T] =
-    new SizedVector[_17, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q))
-
-  def apply[T](
-      a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T, n: T, o: T, p: T, q: T, r: T)
-    : SizedVector[_18, T] =
-    new SizedVector[_18, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r))
-
-  def apply[T](
-      a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T, k: T, l: T, m: T, n: T, o: T, p: T, q: T, r: T, s: T)
-    : SizedVector[_19, T] =
-    new SizedVector[_19, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s))
-
-  def apply[T](a: T,
-               b: T,
-               c: T,
-               d: T,
-               e: T,
-               f: T,
-               g: T,
-               h: T,
-               i: T,
-               j: T,
-               k: T,
-               l: T,
-               m: T,
-               n: T,
-               o: T,
-               p: T,
-               q: T,
-               r: T,
-               s: T,
-               t: T): SizedVector[_20, T] =
-    new SizedVector[_20, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t))
-
-  def apply[T](a: T,
-               b: T,
-               c: T,
-               d: T,
-               e: T,
-               f: T,
-               g: T,
-               h: T,
-               i: T,
-               j: T,
-               k: T,
-               l: T,
-               m: T,
-               n: T,
-               o: T,
-               p: T,
-               q: T,
-               r: T,
-               s: T,
-               t: T,
-               u: T): SizedVector[_21, T] =
-    new SizedVector[_21, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u))
-
-  def apply[T](a: T,
-               b: T,
-               c: T,
-               d: T,
-               e: T,
-               f: T,
-               g: T,
-               h: T,
-               i: T,
-               j: T,
-               k: T,
-               l: T,
-               m: T,
-               n: T,
-               o: T,
-               p: T,
-               q: T,
-               r: T,
-               s: T,
-               t: T,
-               u: T,
-               v: T): SizedVector[_22, T] =
-    new SizedVector[_22, T](Vector(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v))
 }
