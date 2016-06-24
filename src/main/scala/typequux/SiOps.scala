@@ -16,17 +16,17 @@
 package typequux.constraint
 
 import typequux._
-import typequux._
 
-trait RecordSizeConstraint[R, L <: Dense]
+class SiOps[S](val s: S) {
 
-object RecordSizeConstraint {
+  def apply[T](lh: LiteralHash[String])(implicit ev: SIAtConstraint[lh.ValueHash, S, T]): T = ev(s)
 
-  import Dense._
+  def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIUpdatedConstraint[lh.ValueHash, S, U, R]): R =
+    ev(s, u)
 
-  implicit object RNilLengthConstraint extends RecordSizeConstraint[RNil, _0]
+  def add[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIAddConstraint[lh.ValueHash, S, U, R]): R =
+    ev(s, u, lh.value)
 
-  implicit def nonEmptyLengthConstraint[MP <: DenseMap, HL <: HList, L <: Dense](
-      implicit ev: LengthConstraint[HL, L]): RecordSizeConstraint[NonEmptyRecord[MP, HL], L] =
-    new RecordSizeConstraint[NonEmptyRecord[MP, HL], L] {}
+  def size[L <: Dense](implicit ev0: SISizeConstraint[S, L], ev1: DenseRep[L]): Int =
+    ev1.v.toInt
 }

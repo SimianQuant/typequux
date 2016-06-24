@@ -29,7 +29,8 @@ final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](priva
 
   override def equals(other: Any): Boolean = (this.## == other.##) && {
     other match {
-      case that: NonEmptyRecord[_, HL] => (this eq that) || (backing == that.backing)
+      case that: NonEmptyRecord[_, HL] =>
+        (this eq that) || (backing == that.backing)
       case _ => false
     }
   }
@@ -38,7 +39,7 @@ final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](priva
 case object RNil extends Record
 
 object Record {
-  implicit def record2Ops[R <: Record](r: R): RecordOps[R] = new RecordOps(r)
+  implicit def record2Ops[R <: Record](r: R): SiOps[R] = new SiOps(r)
 
   def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
 }
@@ -55,16 +56,4 @@ class Class2RecordBuilder(val c: Context) {
     val values = methods.filter(methodPredicate)
     values.foldLeft[Tree](q"RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
   }
-}
-
-class RecordOps[R <: Record](r: R) {
-
-  def apply[A](s: LiteralHash[String])(implicit ev: RecordAtConstraint[s.ValueHash, R, A]): A = ev(r)
-
-  def updated[U, RN](s: LiteralHash[String], u: U)(implicit ev: RecordUpdatedConstraint[s.ValueHash, R, U, RN]): RN =
-    ev(r, u)
-
-  def add[U, RN](s: LiteralHash[String], u: U)(implicit ev: RecordAddConstraint[s.ValueHash, R, U, RN]): RN = ev(r, u)
-
-  def size[L <: Dense](implicit ev0: RecordSizeConstraint[R, L], ev1: DenseRep[L]): Int = ev1.v.toInt
 }

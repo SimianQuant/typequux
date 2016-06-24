@@ -41,4 +41,22 @@ object SIAddConstraint {
         new NonEmptySI[MP#Add[N, MP#Size], U](s.backing :+ u, s.keys :+ k)
       }
     }
+
+  implicit def rNilAddConstraint[N <: Dense, U]
+    : SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] =
+    new SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] {
+      override def apply(r: RNil, u: U, k: String) = {
+        new NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil](u :+: HNil)
+      }
+    }
+
+  implicit def rNonEmptyAddConstraint[N <: Dense, MP <: DenseMap, HL <: HList, U, L <: Dense](
+      implicit ev0: SISizeConstraint[NonEmptyRecord[MP, HL], L], ev1: False =:= MP#Contains[N])
+    : SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] =
+    new SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] {
+      override def apply(r: NonEmptyRecord[MP, HL], u: U, k: String) = {
+        val hln = u :+: r.backing
+        new NonEmptyRecord[MP#Add[N, L], U :+: HL](hln)
+      }
+    }
 }

@@ -28,4 +28,10 @@ object SISizeConstraint {
 
   implicit def nonEmptySiSizeConstraint[MP <: DenseMap, T]: SISizeConstraint[NonEmptySI[MP, T], MP#Size] =
     new SISizeConstraint[NonEmptySI[MP, T], MP#Size] {}
+
+  implicit object RNilLengthConstraint extends SISizeConstraint[RNil, _0]
+
+  implicit def nonEmptyLengthConstraint[MP <: DenseMap, HL <: HList, L <: Dense](
+      implicit ev: LengthConstraint[HL, L]): SISizeConstraint[NonEmptyRecord[MP, HL], L] =
+    new SISizeConstraint[NonEmptyRecord[MP, HL], L] {}
 }

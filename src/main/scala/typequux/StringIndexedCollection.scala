@@ -41,21 +41,11 @@ final class NonEmptySI[MP <: DenseMap, +T] private[typequux](
 object SINil extends StringIndexedCollection[Nothing]
 
 object StringIndexedCollection {
-
-  implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SIOps[T, S] = new SIOps[T, S](s)
+  implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SICollectionOps[S] =
+    new SICollectionOps[S](s)
 }
 
-class SIOps[T, S](val s: S)(implicit ev: S <:< StringIndexedCollection[T]) {
-
-  def apply[A](lh: LiteralHash[String])(implicit ev: SIAtConstraint[lh.ValueHash, S, T]): T = ev(s)
-
-  def updated[U >: T, R](lh: LiteralHash[String], u: U)(implicit ev: SIUpdatedConstraint[lh.ValueHash, S, U, R]): R =
-    ev(s, u)
-
-  def add[U >: T, R](lh: LiteralHash[String], u: U)(implicit ev: SIAddConstraint[lh.ValueHash, S, U, R]): R =
-    ev(s, u, lh.value)
+class SICollectionOps[S](s: S) extends SiOps[S](s) {
 
   def toMap[R](implicit ev: SIMapConstraint[S, R]): R = ev(s)
-
-  def size[L <: Dense](implicit ev0: SISizeConstraint[S, L], ev1: DenseRep[L]): Int = ev1.v.toInt
 }
