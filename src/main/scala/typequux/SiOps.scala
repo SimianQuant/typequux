@@ -29,4 +29,6 @@ class SiOps[S](val s: S) {
 
   def size[L <: Dense](implicit ev0: LengthConstraint[S, L], ev1: DenseRep[L]): Int =
     ev1.v.toInt
+
+  def toMap[R](implicit ev: ToMapConstraint[S, R]): R = ev(s)
 }

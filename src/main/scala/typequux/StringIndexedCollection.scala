@@ -44,8 +44,7 @@ object SINil extends StringIndexedCollection[Nothing]
 
 object StringIndexedCollection {
 
-  implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SICollectionOps[S] =
-    new SICollectionOps[S](s)
+  implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SiOps[S] = new SiOps[S](s)
 
   implicit def siNIlAddConstraint[N <: Dense, U]
     : SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] =
@@ -84,9 +83,15 @@ object StringIndexedCollection {
       override def apply(s: NonEmptySI[MP, T], u: U) =
         new NonEmptySI[MP, U](s.backing.updated(ev2.v.toInt, u), s.keys)
     }
-}
 
-class SICollectionOps[S](s: S) extends SiOps[S](s) {
+  implicit object SINilMapConstraint extends ToMapConstraint[SINil, Map[String, Nothing]] {
+    override def apply(s: SINil): Map[String, Nothing] = Map.empty
+  }
 
-  def toMap[R](implicit ev: SIMapConstraint[S, R]): R = ev(s)
+  implicit def nonEmptyToMapConstraint[MP <: DenseMap, T]: ToMapConstraint[NonEmptySI[MP, T], Map[String, T]] =
+    new ToMapConstraint[NonEmptySI[MP, T], Map[String, T]] {
+      override def apply(s: NonEmptySI[MP, T]) = {
+        (s.keys zip s.backing).toMap
+      }
+    }
 }

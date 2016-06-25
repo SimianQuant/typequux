@@ -25,17 +25,21 @@ import Dense._
 
 sealed trait Record
 
-final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](private[typequux] val backing: HL)
+final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](
+    private[typequux] val backing: HL, private[typequux] val keys: List[String])(
+    implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
     extends Record {
-  override def hashCode: Int = backing.##
+  override def hashCode: Int = asMap.##
 
   override def equals(other: Any): Boolean = (this.## == other.##) && {
     other match {
       case that: NonEmptyRecord[_, HL] =>
-        (this eq that) || (backing == that.backing)
+        (this eq that) || (asMap == that.asMap)
       case _ => false
     }
   }
+
+  private def asMap: Map[String, Any] = this.toMap
 }
 
 case object RNil extends Record
@@ -46,21 +50,24 @@ object Record {
 
   def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
 
-  implicit def rNilAddConstraint[N <: Dense, U]
+  implicit def rNilAddConstraint[N <: Dense, U](
+      implicit ev: ToMapConstraint[NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil], Map[String, Any]])
     : SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] =
     new SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] {
       override def apply(r: RNil, u: U, k: String) = {
-        new NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil](u :+: HNil)
+        new NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil](u :+: HNil, k :: Nil)
       }
     }
 
   implicit def rNonEmptyAddConstraint[N <: Dense, MP <: DenseMap, HL <: HList, U, L <: Dense](
-      implicit ev0: LengthConstraint[HL, L], ev1: False =:= MP#Contains[N])
+      implicit ev0: LengthConstraint[HL, L],
+      ev1: False =:= MP#Contains[N],
+      ev2: ToMapConstraint[NonEmptyRecord[MP#Add[N, L], U :+: HL], Map[String, Any]])
     : SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] =
     new SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] {
       override def apply(r: NonEmptyRecord[MP, HL], u: U, k: String) = {
         val hln = u :+: r.backing
-        new NonEmptyRecord[MP#Add[N, L], U :+: HL](hln)
+        new NonEmptyRecord[MP#Add[N, L], U :+: HL](hln, k :: r.keys)
       }
     }
 
@@ -80,16 +87,31 @@ object Record {
       implicit ev: LengthConstraint[HL, L]): LengthConstraint[NonEmptyRecord[MP, HL], L] =
     new LengthConstraint[NonEmptyRecord[MP, HL], L] {}
 
-  implicit def nonEmptyRecordConstraint[N <: Dense, MP <: DenseMap, HL <: HList, L <: Dense, D, HR <: HList, U](
+  implicit def nonEmptyRecordUpdatedConstraint[N <: Dense, MP <: DenseMap, HL <: HList, L <: Dense, D, HR <: HList, U](
       implicit ev0: True =:= MP#Contains[N],
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
-      ev4: UpdatedConstraint[D, HL, U, HR]): UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] =
+      ev4: UpdatedConstraint[D, HL, U, HR],
+      ev5: ToMapConstraint[NonEmptyRecord[MP, HR], Map[String, Any]])
+    : UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] =
     new UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] {
       override def apply(r: NonEmptyRecord[MP, HL], u: U) = {
         val newBacking = ev4(r.backing, u)
-        new NonEmptyRecord[MP, HR](newBacking)
+        new NonEmptyRecord[MP, HR](newBacking, r.keys)
+      }
+    }
+
+  implicit object RNilToMapConstraint extends ToMapConstraint[RNil, Map[String, Nothing]] {
+    override def apply(r: RNil) = Map.empty[String, Nothing]
+  }
+
+  implicit def record2MapBuilder[MP <: DenseMap, HL <: HList, R](
+      implicit ev: ToListConstraint[HL, R]): ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] =
+    new ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] {
+      override def apply(r: NonEmptyRecord[MP, HL]) = {
+        val ls = ev(r.backing)
+        (r.keys zip ls).toMap
       }
     }
 }

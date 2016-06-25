@@ -15,23 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-trait SIMapConstraint[S, R] {
+trait ToMapConstraint[S, +R] {
   def apply(s: S): R
-}
-
-object SIMapConstraint {
-
-  implicit object SINilMapConstraint extends SIMapConstraint[SINil, Map[String, Nothing]] {
-    override def apply(s: SINil): Map[String, Nothing] = Map.empty
-  }
-
-  implicit def nonEmptySIMapConstraint[MP <: DenseMap, T]: SIMapConstraint[NonEmptySI[MP, T], Map[String, T]] =
-    new SIMapConstraint[NonEmptySI[MP, T], Map[String, T]] {
-      override def apply(s: NonEmptySI[MP, T]) = {
-        (s.keys zip s.backing).toMap
-      }
-    }
 }

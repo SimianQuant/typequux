@@ -66,9 +66,9 @@ class RecordSpec extends BaseSpec {
   }
 
   it should "have the correct hashcode" in {
-    val h1 = "unicorn" :+: 42L :+: List(1, 2, 3) :+: HNil
-    val h2 = Some("one wants you") :+: "unicorn" :+: 42L :+: List(1, 2, 3) :+: HNil
-    val h3 = "unicorn" :+: 42L :+: Some(List(1, 2, 3)) :+: HNil
+    val h1: Map[String, Any] = Map("v" -> "unicorn", "p" -> 42L, "a" -> List(1, 2, 3))
+    val h2: Map[String, Any] = Map("x" -> Some("one wants you"), "v" -> "unicorn", "p" -> 42L, "a" -> List(1, 2, 3))
+    val h3: Map[String, Any] = Map("v" -> "unicorn", "p" -> 42L, "a" -> Some(List(1, 2, 3)))
 
     assert(r1.## == h1.##)
     assert(r2.## == h2.##)
@@ -120,5 +120,16 @@ class RecordSpec extends BaseSpec {
     assert(r2("a") == "me")
     assert(r3("a") == "oogachaka")
     assert(r3("b") == 42L)
+  }
+
+  it should "convert to map properly" in {
+    val m1: Map[String, Any] = Map("a" -> List(1, 2, 3), "p" -> 42L, "v" -> "unicorn")
+    val m2: Map[String, Any] = Map("a" -> List(1, 2, 3), "p" -> 42L, "v" -> "unicorn", "x" -> Some("one wants you"))
+    val m3: Map[String, Any] = Map("a" -> Some(List(1, 2, 3)), "p" -> 42L, "v" -> "unicorn")
+
+    assert(r1.toMap == m1)
+    assert(r2.toMap == m2)
+    assert(r3.toMap == m3)
+    assert(RNil.toMap == Map.empty[String, Nothing])
   }
 }
