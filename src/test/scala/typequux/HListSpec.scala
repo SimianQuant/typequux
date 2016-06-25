@@ -411,5 +411,6 @@ class HListSpec extends BaseSpec {
     assert(hl1.toList == List(1, true, "foo"))
     assert(hl2.toList == List(List(1, 2, 3), List(true, false)))
     assert(hl3.toList == List("oogachaka", Set(1, 2, 3)))
+    assert(HNil.toList == Nil)
   }
 }

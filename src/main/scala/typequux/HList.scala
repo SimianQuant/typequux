@@ -432,6 +432,10 @@ object HList {
     new ListBuilderConstraint[H :+: TL, T] {
       override def apply(hl: H :+: TL): List[T] = hl.head :: ev1(hl.tail)
     }
+
+  implicit object HNilToList extends ToListConstraint[HNil, List[Nothing]]{
+    override def apply(h: HNil) = Nil
+  }
 }
 
 /**
