@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to get an element from an object that supports sequential indexing, like [[HList]] and Tuples. 
+  * By convention, the index is 0-based and from the right or the end.
+  *
+  * @tparam N Type of the index
+  * @tparam HL Type of the object from which the element is retrieved
+  * @tparam A Type of the result
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait AtRightConstraint[N, HL, A] {
   def apply(hl: HL): A
 }

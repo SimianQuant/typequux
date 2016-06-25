@@ -433,7 +433,7 @@ object HList {
       override def apply(hl: H :+: TL): List[T] = hl.head :: ev1(hl.tail)
     }
 
-  implicit object HNilToList extends ToListConstraint[HNil, List[Nothing]]{
+  implicit object HNilToList extends ToListConstraint[HNil, List[Nothing]] {
     override def apply(h: HNil) = Nil
   }
 }

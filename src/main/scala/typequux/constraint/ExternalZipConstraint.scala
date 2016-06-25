@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
-trait ExternalZipConstraint[-A, -B, +Result] {
-  def apply(a: A, b: B): Result
+/** Typeclass to zip the elements of two objects, as opposed to zipping all the elements of one object, which 
+  * is done by the [[InternalZipConstraint]] typeclass.
+  *
+  * @tparam A Type of the first object to be zipped
+  * @tparam B Type of the second object to be zipped
+  * @tparam R Type of the result of zipping
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
+trait ExternalZipConstraint[-A, -B, +R] {
+  def apply(a: A, b: B): R
 }

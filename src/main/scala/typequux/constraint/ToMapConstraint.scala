@@ -15,6 +15,14 @@
   */
 package typequux.constraint
 
+/** Typeclass to convert an object, such as a [[Record]] or a [[StringIndexedCollection]] to a map.
+  *
+  * @tparam S Type of the object being converted
+  * @tparam R Type of the resultant map
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ToMapConstraint[S, +R] {
   def apply(s: S): R
 }

@@ -16,8 +16,13 @@
 package typequux.constraint
 
 /**
-  * Typeclass to append two objects, usually product datatypes like tuples and hlists
+  * Typeclass to append two objects.
   *
+  * @tparam A type of object in the front
+  * @tparam B type of object in the rear
+  * @tparam R type of the result
+  *
+  * @author Harshad Deo
   * @since 0.1
   */
 trait AppendConstraint[A, B, R] {

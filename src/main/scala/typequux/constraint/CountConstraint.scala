@@ -15,10 +15,24 @@
   */
 package typequux.constraint
 
+/** Typeclass to count the number of elements satisfying a given predicate, given that each element of the object 
+  * can be converted implicitly to a common class C. Default implementation is provided in the companion object.
+  *
+  * @tparam T Type of the object on which the count operation is applied, like a [[HList]] or a Tuple
+  * @tparam C Common type to which the elements of T can be converted
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait CountConstraint[T, C] {
   def apply(t: T, f: C => Boolean): Int
 }
 
+/** Companion object for the [[CountConstraint]] trait. Contains a default implementation based on the [[ForeachConstraint]]
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object CountConstraint {
 
   implicit def buildCountConstraint[T, C](implicit ev: ForeachConstraint[T, C]): CountConstraint[T, C] =

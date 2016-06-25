@@ -32,7 +32,7 @@ wartremoverErrors ++= {
     OptionPartial, Product, Return, Serializable, TryPartial)
 }
 
-scalacOptions ++= Seq(
+scalacOptions in (Compile,doc) ++= Seq(
   "-deprecation",
   "-unchecked",
   "-explaintypes",
@@ -49,6 +49,9 @@ scalacOptions ++= Seq(
   "-Ywarn-nullary-override",
   "-Ywarn-nullary-unit",
   "-Xfuture",
+  "-author",
+  "-groups", 
+  "-implicits",
   "-P:linter:disable:UnusedParameter"
 )
 

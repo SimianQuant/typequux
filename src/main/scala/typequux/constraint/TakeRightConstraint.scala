@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to take a type-indexed number of elements from the right of a sequentially indexed object, like 
+  * a [[HList]] or a tuple. By convention, indexes are 0-based.
+  *
+  * @tparam N Type index of the elements to be dropped
+  * @tparam HL Type of the object from which the elements are to be dropped
+  * @tparam R Type of the result
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait TakeRightConstraint[N, HL, R] {
   def apply(hl: HL): R
 }

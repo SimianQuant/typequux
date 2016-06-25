@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to insert an element at a specified type-index. By convention, indices are 0-based from the left (beginning).
+  *
+  * @tparam N Index at which the element is to be inserted
+  * @tparam HL Type of the object in which the insertion is taking place
+  * @tparam T Type of the object being inserted
+  * @tparam R Type of the result
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait InsertConstraint[N, HL, T, R] {
   def apply(hl: HL, t: T): R
 }

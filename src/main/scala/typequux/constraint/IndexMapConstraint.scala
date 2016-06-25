@@ -15,6 +15,18 @@
   */
 package typequux.constraint
 
+/** Typeclass to map an object at a type-index, conceptually similar to a map.
+  * By convention, indices are 0-based from the left (beginning).
+  *
+  * @tparam N Index at which insertion happens
+  * @tparam HL Type of the object on which the operation is applied
+  * @tparam A Type of the object at index specified by N
+  * @tparam T Type of the result of applying the mapping function 
+  * @tparam R Type of the resulting object
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait IndexMapConstraint[N, HL, A, T, R] {
   def apply(hl: HL, f: A => T): R
 }

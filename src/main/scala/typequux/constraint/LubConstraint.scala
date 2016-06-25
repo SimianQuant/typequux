@@ -15,4 +15,12 @@
   */
 package typequux.constraint
 
+/** Marker trait for the Lease Uppper Bound Type for all elements of an object. 
+  *
+  * @tparam I Type of the object
+  * @tparam R Lease Upper Bound
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait LubConstraint[I, R]

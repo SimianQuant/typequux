@@ -15,6 +15,15 @@
   */
 package typequux.constraint
 
+/** Typeclass to unzip the elements of an object into two object, for example an [[HList]] of Tuple2s into two HLists. 
+  * 
+  * @tparam H Type of the input object
+  * @tparam R1 Type of the first object obtained by unzipping
+  * @tparam R2 type of the second object obtained by unzippint
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ExternalUnzipConstraint[-H, +R1, +R2] {
   def apply(h: H): (R1, R2)
 }

@@ -15,6 +15,18 @@
   */
 package typequux.constraint
 
+/** Typeclass to map an object at a type-index and then "flatten" the result, conceptually similar to a flatmap
+  * By convention, indices are 0-based from the right (end).
+  *
+  * @tparam N Index at which insertion happens
+  * @tparam HL Type of the object on which the operation is applied
+  * @tparam At Type of the object at index specified by N
+  * @tparam T Type of the result of applying the mapping function 
+  * @tparam R Type of the resulting object
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait IndexFlatMapRightConstraint[N, HL, At, T, R] {
   def apply(hl: HL, f: At => T): R
 }

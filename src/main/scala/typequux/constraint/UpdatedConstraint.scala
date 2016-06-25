@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to update an element at a given type index. By convention, indices are 0-based and begin at the left.
+  *
+  * @tparam N Type index at which to update
+  * @tparam HL Type of the object to update
+  * @tparam A Type of the new object at the position
+  * @tparam R Type of the resultant object
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait UpdatedConstraint[N, HL, A, R] {
   def apply(hl: HL, a: A): R
 }

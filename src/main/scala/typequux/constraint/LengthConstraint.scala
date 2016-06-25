@@ -18,7 +18,10 @@ package typequux.constraint
 import typequux._
 
 /**
-  * Marker trait for typelevel length
+  * Marker trait for typelevel length.
+  *
+  * @tparam HL Type of the object for which the length is being computed
+  * @tparam L Length
   *
   * @author Harshad Deo
   * @since 0.1

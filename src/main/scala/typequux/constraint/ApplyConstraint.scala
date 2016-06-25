@@ -15,11 +15,13 @@
   */
 package typequux.constraint
 
-/** Typeclass for function application 
+/** Typeclass for function application.
   *
-  * @tparam F Function 
-  * @tparam In Input
-  * @tparam Out Output
+  * @tparam F Type of the Function 
+  * @tparam In Type of the Input
+  * @tparam Out Type Output
+  *
+  * @author Harshad Deo
   * @since 0.1
   */
 trait ApplyConstraint[F, In, Out] {

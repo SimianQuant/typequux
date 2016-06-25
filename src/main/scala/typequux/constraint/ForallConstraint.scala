@@ -17,10 +17,24 @@ package typequux.constraint
 
 import util.control.Breaks._
 
+/** Typeclass to check whether a given predicate holds for all elements of an object, given that each element of
+  * the object can be implicitly converted to a type C. Default implementation is provided in the companion object.
+  *
+  * @tparam T Type of the object on which the operation is being applied
+  * @tparam C Common class to which all elements of the object can be converted
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ForallConstraint[T, C] {
   def apply(t: T, f: C => Boolean): Boolean
 }
 
+/** Companion object for the [[ForallConstraint]] trait. Contains a default implementation based on the [[ForeachConstraint]]
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object ForallConstraint {
 
   implicit def buildForallConstraint[T, C](implicit ev: ForeachConstraint[T, C]): ForallConstraint[T, C] =

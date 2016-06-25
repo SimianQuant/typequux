@@ -18,6 +18,16 @@ package typequux.constraint
 import language.higherKinds
 import typequux._
 
+/** Typeclass to apply a natural transformation to an object.
+  * 
+  * @tparam INP Type of the input
+  * @tparam OP Type of the output
+  * @tparam M Input of the transformation
+  * @tparam N Output of the transformation
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait TransformConstraint[-INP, +OP, +M[_], -N[_]] {
   def apply(f: M ~> N, t: INP): OP
 }

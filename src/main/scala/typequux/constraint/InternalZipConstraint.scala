@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to zip all the elements of an object together, equivalent to an arbitrary-arity zip. 
+  *
+  * @tparam Z Type of the object on which the operation is applied
+  * @tparam F Downconverted type of Z, for details, see [DownTransformConstraint]
+  * @tparam T The element type of the resulting object
+  * @tparam V The type of the resulting object
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait InternalZipConstraint[Z, F, T, V] {
   def apply(z: Z, f: F => T): V
 }

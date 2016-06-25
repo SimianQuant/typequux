@@ -17,10 +17,24 @@ package typequux.constraint
 
 import util.control.Breaks._
 
+/** Typeclass to check if an element satisfies a given predicate given that each element of the object can be 
+  * implicitly converted to a type C. Default implementation is provided in the companion object.
+  *
+  * @tparam T Type of the object on which the exists operation is applied, like a hlist or a tuple
+  * @tparam C Common type to which all elements of T can be converted
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ExistsConstraint[T, C] {
   def apply(t: T, f: C => Boolean): Boolean
 }
 
+/** Companion object for [[ExistsConstraint]]. Contains a default implementation based on the [[ForeachConstraint]]
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object ExistsConstraint {
 
   implicit def buildExistsConstraint[T, C](implicit ev: ForeachConstraint[T, C]): ExistsConstraint[T, C] =

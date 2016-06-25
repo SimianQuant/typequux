@@ -15,6 +15,15 @@
   */
 package typequux.constraint
 
+/** Typeclass to add an element at the head of an object.
+  *
+  * @tparam T Type of the head
+  * @tparam U Type of the object to which the consing is done
+  * @tparam R Type of the result
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ConsConstraint[T, U, R] {
   def apply(t: T, u: U): R
 }

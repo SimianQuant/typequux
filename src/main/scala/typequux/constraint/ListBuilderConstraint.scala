@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to convert an object to a list. Differs from [[ToListConstraint]] in that in practice, the lower bound
+  * will be constrained by another typeclass. To implicitly obtain a typeclass with the LB constrained, see 
+  * [[ToListConstraint]].
+  *
+  * @tparam T Type of the object being converted
+  * @tparam LB Element type of the resulting list
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ListBuilderConstraint[T, LB] {
   def apply(t: T): List[LB]
 }

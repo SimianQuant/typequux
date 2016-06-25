@@ -15,6 +15,14 @@
   */
 package typequux.constraint
 
+/** Typeclass to reverse a sequentially indexed object, like a [[HList]] or a tuple. 
+  *
+  * @tparam A Type of the object being reversed
+  * @tparam R Type of the reversed object
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ReverseConstraint[A, R] {
   def apply(a: A): R
 }

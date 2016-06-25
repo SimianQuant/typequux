@@ -13,9 +13,9 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux.constraint
+package typequux
 
-import typequux._
+import constraint._
 
 class SiOps[S](val s: S) {
 

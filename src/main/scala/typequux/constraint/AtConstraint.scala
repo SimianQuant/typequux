@@ -15,6 +15,16 @@
   */
 package typequux.constraint
 
+/** Typeclass to get an element given an index. For sequentially indexed objects like [[HList]] and Tuples, 
+  * index is, by convention, 0-based from the beginning.
+  *
+  * @tparam N Type of the Index
+  * @tparam HL Type of the object from which the element is retrieved
+  * @tparam At Type of the result
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait AtConstraint[N, HL, At] {
   def apply(hl: HL): At
 }

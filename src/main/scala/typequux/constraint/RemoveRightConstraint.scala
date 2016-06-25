@@ -15,6 +15,15 @@
   */
 package typequux.constraint
 
+/** Typeclass to remove an element at a specified type-index. By convention, indices are 0-based from the right (end).
+  *
+  * @tparam N Index at which the element is to be inserted
+  * @tparam HL Type of the object in which the insertion is taking place
+  * @tparam R Type of the result
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait RemoveRightConstraint[N, HL, R] {
   def apply(hl: HL): R
 }

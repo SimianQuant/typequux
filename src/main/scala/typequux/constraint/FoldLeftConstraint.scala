@@ -15,10 +15,25 @@
   */
 package typequux.constraint
 
+/** Typeclass to implement a fold-left style on an object, given that all elements of the object can be implicitly
+  * converted to a type C. Default implementation is provided in the companion object. 
+  *
+  * @tparam T Type of the object on which the fold left operation is applied
+  * @tparam Z Type of the result of the left fold
+  * @tparam C Common class to which all elements of T can be converted
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait FoldLeftConstraint[T, Z, C] {
   def apply(t: T, z: Z, f: (Z, C) => Z): Z
 }
 
+/** Companion object for the [[FoldLeftConstraint]] trait. Contains a default implementation based on the [[ForeachConstraint]]
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object FoldLeftConstraint {
 
   implicit def buildFoldLeftConstraint[T, Z, C](implicit ev: ForeachConstraint[T, C]): FoldLeftConstraint[T, Z, C] =

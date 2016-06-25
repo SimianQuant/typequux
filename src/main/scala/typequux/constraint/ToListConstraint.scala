@@ -15,10 +15,26 @@
   */
 package typequux.constraint
 
+/** Typeclass to convert an object into a list, default implementation is provided in the companion object. Differs
+  * from [[ListBuilderConstraint]] in that this is typically not built using structural induction, rather uses
+  * [[LubConstraint]] to fix a lower bound and a [[ListBuilderConstraint]] to do the conversion given the lower bound.
+  *
+  * @tparam T Type of the object being constructed
+  * @tparam R Element type of resultant list
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ToListConstraint[T, R] {
   def apply(t: T): List[R]
 }
 
+/** Companion object for [[ToListConstraint]]. Contains default implementation in terms of [[LubConstraint]] and 
+  * [[ListBuilderConstraint]].
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object ToListConstraint {
 
   implicit def buildToListConstraint[T, R](

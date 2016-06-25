@@ -19,6 +19,19 @@ import language.higherKinds
 import typequux._
 import typequux._
 
+/** Typeclass to remove all elementa of an object from their context, for example converting.
+  * 
+  * List[Int] :+: List[String] :+: HNil to Int :+: String :+: HNil. 
+  *
+  * Is a dangerous operation and should be used with caution and the appropriate guards.
+  * 
+  * @tparam INP Type of the object whose elements are to be downtransformed
+  * @tparam OP Type of the resulting object
+  * @tparam M Type of the context
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait DownTransformConstraint[-INP, +OP, +M[_]] {
   def apply(f: M ~> Id, t: INP): OP
 }
