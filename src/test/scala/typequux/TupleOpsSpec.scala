@@ -303,4 +303,14 @@ class TupleOpsSpec extends BaseSpec {
     assert(uz1 == t1)
     assert(uz2 == ((99, 3.14, None)))
   }
+
+  it should "convert to list correctly" in {
+    val tp1 = (1, true, "foo")
+    val tp2 = (List(1, 2, 3), List(true, false))
+    val tp3 = ("oogachaka", Set(1, 2, 3))
+
+    assert(tp1.toList == List(1, true, "foo"))
+    assert(tp2.toList == List(List(1, 2, 3), List(true, false)))
+    assert(tp3.toList == List("oogachaka", Set(1, 2, 3)))
+  }
 }

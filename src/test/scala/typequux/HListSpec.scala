@@ -402,4 +402,14 @@ class HListSpec extends BaseSpec {
     val s = 1 :+: true :+: "foo" :+: HNil
     assert(s.toString == "1 :+: true :+: foo :+: HNil")
   }
+
+  it should "convert to list correctly" in {
+    val hl1 = 1 :+: true :+: "foo" :+: HNil
+    val hl2 = List(1, 2, 3) :+: List(true, false) :+: HNil
+    val hl3 = "oogachaka" :+: Set(1, 2, 3) :+: HNil
+
+    assert(hl1.toList == List(1, true, "foo"))
+    assert(hl2.toList == List(List(1, 2, 3), List(true, false)))
+    assert(hl3.toList == List("oogachaka", Set(1, 2, 3)))
+  }
 }

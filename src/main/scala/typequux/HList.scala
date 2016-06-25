@@ -20,6 +20,9 @@ import language.{higherKinds, implicitConversions}
 import typequux._
 import constraint._
 import Dense._
+import language.experimental.macros
+import reflect.macros.whitebox.Context
+import macrocompat.bundle
 
 sealed trait HList
 case class HCons[+H, +T <: HList](head: H, tail: T) extends HList {
@@ -416,6 +419,19 @@ object HList {
         ev3(before, a :+: after)
       }
     }
+
+  implicit def buildLubConstraint[HL <: HList, R]: LubConstraint[HL, R] = macro HListMacroImpl.toList[HL, R]
+
+  implicit def buildToListConstraintOne[H, T](implicit ev: H <:< T): ListBuilderConstraint[H :+: HNil, T] =
+    new ListBuilderConstraint[H :+: HNil, T] {
+      override def apply(hl: H :+: HNil): List[T] = List(hl.head)
+    }
+
+  implicit def buildToListConsConstraint[H, T, TL <: HList](
+      implicit ev0: H <:< T, ev1: ListBuilderConstraint[TL, T]): ListBuilderConstraint[H :+: TL, T] =
+    new ListBuilderConstraint[H :+: TL, T] {
+      override def apply(hl: H :+: TL): List[T] = hl.head :: ev1(hl.tail)
+    }
 }
 
 /**
@@ -432,6 +448,22 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
   def :++:[A, R](a: A)(implicit ev: AppendConstraint[A, B, R]): R = ev(a, b) // scalastyle:ignore
 
   def t[S]: Tip[S, B] = new Tip(b)
+}
+
+@bundle
+class HListMacroImpl(val c: Context) {
+  import c.universe._
+  def toList[HL: c.WeakTypeTag, R]: Tree = {
+    val tp = implicitly[c.WeakTypeTag[HL]].tpe
+
+    def allTypes(xs: List[Type]): List[Type] = xs match {
+      case a :: b :: Nil => a :: allTypes(b.typeArgs)
+      case _ => Nil
+    }
+    val lt = allTypes(tp.typeArgs)
+    val lb = lub(lt)
+    q"new constraint.LubConstraint[$tp, $lb]{}"
+  }
 }
 
 sealed trait Indexer[HL, Before, At, After] {

@@ -401,4 +401,10 @@ object TupleOps {
       ev2(hla)
     }
   }
+
+  implicit def buildToListConstraint[Z, HL, R](
+      implicit ev0: Tuple2HListConverter[Z, HL], ev1: ToListConstraint[HL, R]): ToListConstraint[Z, R] =
+    new ToListConstraint[Z, R] {
+      override def apply(z: Z): List[R] = ev1(ev0(z))
+    }
 }

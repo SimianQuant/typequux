@@ -95,4 +95,6 @@ class ArityIndexOps[Z](z: Z) {
   def count[C](f: C => Boolean)(implicit ev: CountConstraint[Z, C]): Int = ev(z, f)
 
   def foldLeft[ZT, C](zero: ZT)(f: (ZT, C) => ZT)(implicit ev: FoldLeftConstraint[Z, ZT, C]): ZT = ev(z, zero, f)
+
+  def toList[R](implicit ev: ToListConstraint[Z, R]): List[R] = ev(z)
 }
