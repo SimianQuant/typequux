@@ -69,8 +69,8 @@ object Record {
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
-      ev4: PIndexer[D, HL, _, A, _]): SIAtConstraint[N, NonEmptyRecord[MP, HL], A] =
-    new SIAtConstraint[N, NonEmptyRecord[MP, HL], A] {
+      ev4: PIndexer[D, HL, _, A, _]): AtConstraint[N, NonEmptyRecord[MP, HL], A] =
+    new AtConstraint[N, NonEmptyRecord[MP, HL], A] {
       override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)._2
     }
 
@@ -85,9 +85,8 @@ object Record {
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
-      ev4: UpdatedConstraint[D, HL, U, HR])
-    : SIUpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] =
-    new SIUpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] {
+      ev4: UpdatedConstraint[D, HL, U, HR]): UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] =
+    new UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] {
       override def apply(r: NonEmptyRecord[MP, HL], u: U) = {
         val newBacking = ev4(r.backing, u)
         new NonEmptyRecord[MP, HR](newBacking)

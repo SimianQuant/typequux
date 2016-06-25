@@ -19,9 +19,9 @@ import typequux._
 
 class SiOps[S](val s: S) {
 
-  def apply[T](lh: LiteralHash[String])(implicit ev: SIAtConstraint[lh.ValueHash, S, T]): T = ev(s)
+  def apply[T](lh: LiteralHash[String])(implicit ev: AtConstraint[lh.ValueHash, S, T]): T = ev(s)
 
-  def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIUpdatedConstraint[lh.ValueHash, S, U, R]): R =
+  def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: UpdatedConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u)
 
   def add[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIAddConstraint[lh.ValueHash, S, U, R]): R =
