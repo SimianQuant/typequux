@@ -15,29 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
-sealed trait AtRightConstraint[N, HL, A] {
+trait AtRightConstraint[N, HL, A] {
   def apply(hl: HL): A
-}
-
-object AtRightConstraint {
-
-  import Dense._
-
-  implicit def hlAtRightConstraint[L <: Dense, HL <: HList, N <: Dense, A, D](
-      implicit ev0: LengthConstraint[HL, L],
-      ev1: DenseDiff[L, N + _1, D],
-      ev2: PIndexer[D, HL, _, A, _]): AtRightConstraint[N, HL, A] = new AtRightConstraint[N, HL, A] {
-    override def apply(hl: HL) = ev2(hl)._2
-  }
-
-  implicit def tpAtRightConstraint[N <: Dense, T, A, HL <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL], ev1: AtRightConstraint[N, HL, A]): AtRightConstraint[N, T, A] =
-    new AtRightConstraint[N, T, A] {
-      override def apply(t: T) = {
-        val hl = ev0(t)
-        ev1(hl)
-      }
-    }
 }

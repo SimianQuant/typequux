@@ -15,37 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
-sealed trait IndexFlatMapConstraint[N, HL, At, T, R] {
+trait IndexFlatMapConstraint[N, HL, At, T, R] {
   def apply(hl: HL, f: At => T): R
-}
-
-object IndexFlatMapConstraint {
-
-  implicit def hlIndexFlatMapConstraint[
-      N, HL <: HList, At, T <: HList, R <: HList, Before <: HList, After <: HList, R0 <: HList](
-      implicit ev0: PIndexer[N, HL, Before, At, After],
-      ev1: AppendConstraint[T, After, R0],
-      ev2: AppendConstraint[Before, R0, R]): IndexFlatMapConstraint[N, HL, At, T, R] =
-    new IndexFlatMapConstraint[N, HL, At, T, R] {
-      override def apply(hl: HL, f: At => T) = {
-        val (before, at, after) = ev0(hl)
-        val r0 = ev1(f(at), after)
-        ev2(before, r0)
-      }
-    }
-
-  implicit def tpIndexFlatMapConstraint[N, Z, A, T, R, HL <: HList, HLM <: HList, HLF <: HList](
-      implicit ev0: Tuple2HListConverter[Z, HL],
-      ev1: Tuple2HListConverter[T, HLF],
-      ev2: IndexFlatMapConstraint[N, HL, A, HLF, HLM],
-      ev3: HList2TupleConverter[R, HLM]): IndexFlatMapConstraint[N, Z, A, T, R] =
-    new IndexFlatMapConstraint[N, Z, A, T, R] {
-      override def apply(z: Z, f: A => T) = {
-        val hl = ev0(z)
-        val hlm = ev2(hl, f andThen ev1.apply)
-        ev3(hlm)
-      }
-    }
 }

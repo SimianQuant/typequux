@@ -15,37 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-sealed trait InsertMConstraint[N, HL, T, R] {
+trait InsertMConstraint[N, HL, T, R] {
   def apply(hl: HL, t: T): R
-}
-
-object InsertMConstraint {
-
-  implicit def hlInserMConstraint[
-      N, HL <: HList, T <: HList, R <: HList, R0 <: HList, Before <: HList, At, After <: HList](
-      implicit ev0: PIndexer[N, HL, Before, At, After],
-      ev1: AppendConstraint[T, At :+: After, R0],
-      ev2: AppendConstraint[Before, R0, R]): InsertMConstraint[N, HL, T, R] = new InsertMConstraint[N, HL, T, R] {
-    override def apply(hl: HL, t: T) = {
-      val (before, at, after) = ev0(hl)
-      val r0 = ev1(t, at :+: after)
-      ev2(before, r0)
-    }
-  }
-
-  implicit def tpInsertMConstraint[N, Z, T, R, HL <: HList, HLA <: HList, HLI <: HList](
-      implicit ev0: Tuple2HListConverter[Z, HL],
-      ev1: Tuple2HListConverter[T, HLI],
-      ev2: InsertMConstraint[N, HL, HLI, HLA],
-      ev3: HList2TupleConverter[R, HLA]): InsertMConstraint[N, Z, T, R] = new InsertMConstraint[N, Z, T, R] {
-    override def apply(z: Z, t: T) = {
-      val hl = ev0(z)
-      val hli = ev1(t)
-      val hla = ev2(hl, hli)
-      ev3(hla)
-    }
-  }
 }

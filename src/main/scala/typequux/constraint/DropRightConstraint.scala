@@ -15,29 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
-sealed trait DropRightConstraint[N, HL, R] {
+trait DropRightConstraint[N, HL, R] {
   def apply(hl: HL): R
-}
-
-object DropRightConstraint {
-
-  implicit def hlDropRightConstraint[N, HL <: HList, R <: HList, L <: Dense, D](
-      implicit ev0: LengthConstraint[HL, L],
-      ev1: DenseDiff[L, N, D],
-      ev2: PIndexer[D, HL, R, _, _]): DropRightConstraint[N, HL, R] = new DropRightConstraint[N, HL, R] {
-    override def apply(hl: HL) = ev2(hl)._1
-  }
-
-  implicit def tpDropRightConstraint[N, T, U, HL <: HList, HLD <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: DropRightConstraint[N, HL, HLD],
-      ev2: HList2TupleConverter[U, HLD]): DropRightConstraint[N, T, U] = new DropRightConstraint[N, T, U] {
-    override def apply(t: T) = {
-      val hl = ev0(t)
-      val hld = ev1(hl)
-      ev2(hld)
-    }
-  }
 }

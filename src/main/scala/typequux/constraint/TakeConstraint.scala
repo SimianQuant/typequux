@@ -15,28 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
-sealed trait TakeConstraint[N, HL, R] {
+trait TakeConstraint[N, HL, R] {
   def apply(hl: HL): R
-}
-
-object TakeConstraint {
-
-  implicit def hlTakeConstraint[N, HL <: HList, R <: HList](
-      implicit ev: PIndexer[N, HL, R, _, _]): TakeConstraint[N, HL, R] =
-    new TakeConstraint[N, HL, R] {
-      override def apply(hl: HL) = ev(hl)._1
-    }
-
-  implicit def tpTakeConstraint[N, T, U, HL <: HList, HLT <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: TakeConstraint[N, HL, HLT],
-      ev2: HList2TupleConverter[U, HLT]): TakeConstraint[N, T, U] = new TakeConstraint[N, T, U] {
-    override def apply(t: T) = {
-      val hl = ev0(t)
-      val hlt = ev1(hl)
-      ev2(hlt)
-    }
-  }
 }

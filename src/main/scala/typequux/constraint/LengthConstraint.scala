@@ -16,7 +16,6 @@
 package typequux.constraint
 
 import typequux._
-import typequux._
 
 /**
   * Marker trait for typelevel length
@@ -24,18 +23,4 @@ import typequux._
   * @author Harshad Deo
   * @since 0.1
   */
-sealed class LengthConstraint[HL, L <: Dense]
-
-object LengthConstraint {
-
-  import Dense._
-
-  implicit object HNilLength extends LengthConstraint[HNil, _0]
-
-  implicit def hConsLength[H, T <: HList, L <: Dense](
-      implicit ev: LengthConstraint[T, L]): LengthConstraint[H :+: T, L + _1] = new LengthConstraint[H :+: T, L + _1]
-
-  implicit def tpLengthConstraint[Z, HL <: HList, L <: Dense](
-      implicit ev0: Tuple2HListConverter[Z, HL], ev1: LengthConstraint[HL, L]): LengthConstraint[Z, L] =
-    new LengthConstraint[Z, L]
-}
+trait LengthConstraint[HL, L <: Dense]

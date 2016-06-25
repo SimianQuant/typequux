@@ -15,39 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-sealed trait InsertRightConstraint[N, HL, T, R] {
+trait InsertRightConstraint[N, HL, T, R] {
   def apply(hl: HL, t: T): R
-}
-
-object InsertRightConstraint {
-
-  import Dense._
-
-  implicit def hlInsertRightConstraint[
-      N <: Dense, HL <: HList, T, R <: HList, L <: Dense, D, Before <: HList, At, After <: HList](
-      implicit ev0: LengthConstraint[HL, L],
-      ev1: DenseDiff[L, N + _1, D],
-      ev2: PIndexer[D, HL, Before, At, After],
-      ev3: AppendConstraint[Before, At :+: T :+: After, R]): InsertRightConstraint[N, HL, T, R] =
-    new InsertRightConstraint[N, HL, T, R] {
-      override def apply(hl: HL, t: T) = {
-        val (before, at, after) = ev2(hl)
-        ev3(before, at :+: t :+: after)
-      }
-    }
-
-  implicit def tpInsertRightConstraint[N, T, A, R, HL <: HList, HLA <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: InsertRightConstraint[N, HL, A, HLA],
-      ev2: HList2TupleConverter[R, HLA]): InsertRightConstraint[N, T, A, R] =
-    new InsertRightConstraint[N, T, A, R] {
-      override def apply(t: T, a: A) = {
-        val hl = ev0(t)
-        val hla = ev1(hl, a)
-        ev2(hla)
-      }
-    }
 }

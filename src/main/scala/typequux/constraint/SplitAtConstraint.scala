@@ -15,33 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
 trait SplitAtConstraint[N, HL, L, R] {
   def apply(hl: HL): (L, R)
-}
-
-object SplitAtConstraint {
-
-  implicit def hlSplitAtConstraint[N, HL <: HList, Before <: HList, At, After <: HList](
-      implicit ev: PIndexer[N, HL, Before, At, After]): SplitAtConstraint[N, HL, Before, At :+: After] =
-    new SplitAtConstraint[N, HL, Before, At :+: After] {
-      override def apply(hl: HL) = {
-        val (before, at, after) = ev(hl)
-        (before, at :+: after)
-      }
-    }
-
-  implicit def tpSplitAtConstraint[N, T, L, R, HL <: HList, HLL <: HList, HLR <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: SplitAtConstraint[N, HL, HLL, HLR],
-      ev2: HList2TupleConverter[L, HLL],
-      ev3: HList2TupleConverter[R, HLR]): SplitAtConstraint[N, T, L, R] = new SplitAtConstraint[N, T, L, R] {
-    override def apply(t: T) = {
-      val hl = ev0(t)
-      val (l, r) = ev1(hl)
-      (ev2(l), ev3(r))
-    }
-  }
 }

@@ -16,7 +16,9 @@
 package typequux
 
 import constraint._
+import Dense._
 import language.implicitConversions
+import typequux._
 
 sealed trait StringIndexedCollection[+T]
 
@@ -41,8 +43,47 @@ final class NonEmptySI[MP <: DenseMap, +T] private[typequux](
 object SINil extends StringIndexedCollection[Nothing]
 
 object StringIndexedCollection {
+
   implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SICollectionOps[S] =
     new SICollectionOps[S](s)
+
+  implicit def siNIlAddConstraint[N <: Dense, U]
+    : SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] =
+    new SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] {
+      override def apply(s: SINil, u: U, k: String) = {
+        new NonEmptySI[EmptyDenseMap#Add[N, _0], U](Vector(u), Vector(k))
+      }
+    }
+
+  implicit def nonEmptySIAddConstraint[N <: Dense, MP <: DenseMap, T, U >: T](implicit ev0: False =:= MP#Contains[N])
+    : SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] =
+    new SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] {
+      override def apply(s: NonEmptySI[MP, T], u: U, k: String) = {
+        new NonEmptySI[MP#Add[N, MP#Size], U](s.backing :+ u, s.keys :+ k)
+      }
+    }
+
+  implicit def buildSiAtConstraint[MP <: DenseMap, T, N <: Dense](
+      implicit ev0: True =:= MP#Contains[N],
+      ev1: MP#Get[N] <:< Dense,
+      ev2: DenseRep[MP#Get[N]]): SIAtConstraint[N, NonEmptySI[MP, T], T] =
+    new SIAtConstraint[N, NonEmptySI[MP, T], T] {
+      override def apply(s: NonEmptySI[MP, T]) = s.backing(ev2.v.toInt)
+    }
+
+  case object SINilSizeConstraint extends LengthConstraint[SINil, _0]
+
+  implicit def nonEmptySiSizeConstraint[MP <: DenseMap, T]: LengthConstraint[NonEmptySI[MP, T], MP#Size] =
+    new LengthConstraint[NonEmptySI[MP, T], MP#Size] {}
+
+  implicit def buildSIUpdatedConstraint[N <: Dense, T, U >: T, MP <: DenseMap](
+      implicit ev0: True =:= MP#Contains[N],
+      ev1: MP#Get[N] <:< Dense,
+      ev2: DenseRep[MP#Get[N]]): SIUpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] =
+    new SIUpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] {
+      override def apply(s: NonEmptySI[MP, T], u: U) =
+        new NonEmptySI[MP, U](s.backing.updated(ev2.v.toInt, u), s.keys)
+    }
 }
 
 class SICollectionOps[S](s: S) extends SiOps[S](s) {

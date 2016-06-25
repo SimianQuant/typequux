@@ -15,33 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-sealed trait InsertConstraint[N, HL, T, R] {
+trait InsertConstraint[N, HL, T, R] {
   def apply(hl: HL, t: T): R
-}
-
-object InsertConstraint {
-
-  implicit def hlInsertConstraint[N, HL <: HList, T, R <: HList, Before <: HList, At, After <: HList](
-      implicit ev0: PIndexer[N, HL, Before, At, After],
-      ev1: AppendConstraint[Before, T :+: At :+: After, R]): InsertConstraint[N, HL, T, R] =
-    new InsertConstraint[N, HL, T, R] {
-      override def apply(hl: HL, t: T) = {
-        val (before, at, after) = ev0(hl)
-        ev1(before, t :+: at :+: after)
-      }
-    }
-
-  implicit def tpInsertConstraint[N, T, A, R, HL <: HList, HLA <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: InsertConstraint[N, HL, A, HLA],
-      ev2: HList2TupleConverter[R, HLA]): InsertConstraint[N, T, A, R] = new InsertConstraint[N, T, A, R] {
-    override def apply(t: T, a: A) = {
-      val hl = ev0(t)
-      val hla = ev1(hl, a)
-      ev2(hla)
-    }
-  }
 }

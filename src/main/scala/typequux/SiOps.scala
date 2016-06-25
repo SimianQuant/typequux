@@ -27,6 +27,6 @@ class SiOps[S](val s: S) {
   def add[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIAddConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u, lh.value)
 
-  def size[L <: Dense](implicit ev0: SISizeConstraint[S, L], ev1: DenseRep[L]): Int =
+  def size[L <: Dense](implicit ev0: LengthConstraint[S, L], ev1: DenseRep[L]): Int =
     ev1.v.toInt
 }

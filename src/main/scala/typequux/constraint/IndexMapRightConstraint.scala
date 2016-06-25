@@ -15,39 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-sealed trait IndexMapRightConstraint[N, HL, At, T, R] {
+trait IndexMapRightConstraint[N, HL, At, T, R] {
   def apply(hl: HL, f: At => T): R
-}
-
-object IndexMapRightConstraint {
-
-  import Dense._
-
-  implicit def hlIndexMapRightConstraint[
-      N <: Dense, HL <: HList, At, T, R <: HList, L <: Dense, D, Before <: HList, After <: HList](
-      implicit ev0: LengthConstraint[HL, L],
-      ev1: DenseDiff[L, N + _1, D],
-      ev2: PIndexer[D, HL, Before, At, After],
-      ev3: AppendConstraint[Before, T :+: After, R]): IndexMapRightConstraint[N, HL, At, T, R] =
-    new IndexMapRightConstraint[N, HL, At, T, R] {
-      override def apply(hl: HL, f: At => T) = {
-        val (before, at, after) = ev2(hl)
-        ev3(before, f(at) :+: after)
-      }
-    }
-
-  implicit def tpIndedMapRightConstraint[N, Z, A, T, R, HL <: HList, HLM <: HList](
-      implicit ev0: Tuple2HListConverter[Z, HL],
-      ev1: IndexMapRightConstraint[N, HL, A, T, HLM],
-      ev2: HList2TupleConverter[R, HLM]): IndexMapRightConstraint[N, Z, A, T, R] =
-    new IndexMapRightConstraint[N, Z, A, T, R] {
-      override def apply(z: Z, f: A => T) = {
-        val hl = ev0(z)
-        val hlm = ev1(hl, f)
-        ev2(hlm)
-      }
-    }
 }

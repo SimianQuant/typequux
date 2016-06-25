@@ -15,25 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
-sealed trait AtConstraint[N, HL, At] {
+trait AtConstraint[N, HL, At] {
   def apply(hl: HL): At
-}
-
-object AtConstraint {
-
-  implicit def hlAtConstraint[N, HL <: HList, At](implicit ev: PIndexer[N, HL, _, At, _]): AtConstraint[N, HL, At] =
-    new AtConstraint[N, HL, At] {
-      override def apply(hl: HL) = ev(hl)._2
-    }
-
-  implicit def tpActConstraint[N, T, A, HL <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL], ev1: AtConstraint[N, HL, A]): AtConstraint[N, T, A] =
-    new AtConstraint[N, T, A] {
-      override def apply(t: T) = {
-        val hl = ev0(t)
-        ev1(hl)
-      }
-    }
 }

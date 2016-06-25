@@ -15,31 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
-sealed trait RemoveConstraint[N, HL, R] {
+trait RemoveConstraint[N, HL, R] {
   def apply(hl: HL): R
-}
-
-object RemoveConstraint {
-
-  implicit def hlRemoveConstraint[N, HL <: HList, R <: HList, Before <: HList, After <: HList](
-      implicit ev0: PIndexer[N, HL, Before, _, After],
-      ev1: AppendConstraint[Before, After, R]): RemoveConstraint[N, HL, R] = new RemoveConstraint[N, HL, R] {
-    override def apply(hl: HL) = {
-      val (before, _, after) = ev0(hl)
-      ev1(before, after)
-    }
-  }
-
-  implicit def tpRemoveConstraint[N, T, R, HL <: HList, HLR <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: RemoveConstraint[N, HL, HLR],
-      ev2: HList2TupleConverter[R, HLR]): RemoveConstraint[N, T, R] = new RemoveConstraint[N, T, R] {
-    override def apply(t: T) = {
-      val hl = ev0(t)
-      val hlr = ev1(hl)
-      ev2(hlr)
-    }
-  }
 }

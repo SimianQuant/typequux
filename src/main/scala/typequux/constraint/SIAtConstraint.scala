@@ -15,29 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-
 trait SIAtConstraint[N, S, T] {
   def apply(s: S): T
-}
-
-object SIAtConstraint {
-
-  implicit def buildSiAtConstraint[MP <: DenseMap, T, N <: Dense](
-      implicit ev0: True =:= MP#Contains[N],
-      ev1: MP#Get[N] <:< Dense,
-      ev2: DenseRep[MP#Get[N]]): SIAtConstraint[N, NonEmptySI[MP, T], T] =
-    new SIAtConstraint[N, NonEmptySI[MP, T], T] {
-      override def apply(s: NonEmptySI[MP, T]) = s.backing(ev2.v.toInt)
-    }
-
-  implicit def nonEmptyAtConstraint[MP <: DenseMap, HL <: HList, N <: Dense, L <: Dense, D, A](
-      implicit ev0: True =:= MP#Contains[N],
-      ev1: MP#Get[N] <:< Dense,
-      ev2: LengthConstraint[HL, L],
-      ev3: DenseDiff[L#Dec, MP#Get[N], D],
-      ev4: PIndexer[D, HL, _, A, _]): SIAtConstraint[N, NonEmptyRecord[MP, HL], A] =
-    new SIAtConstraint[N, NonEmptyRecord[MP, HL], A] {
-      override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)._2
-    }
 }

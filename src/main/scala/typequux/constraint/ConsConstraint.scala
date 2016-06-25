@@ -15,21 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-sealed trait ConsConstraint[T, U, R] {
+trait ConsConstraint[T, U, R] {
   def apply(t: T, u: U): R
-}
-
-object ConsConstraint {
-
-  implicit def buildConsConstraint[T, U, R, HL <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL], ev1: HList2TupleConverter[R, U :+: HL]): ConsConstraint[T, U, R] =
-    new ConsConstraint[T, U, R] {
-      override def apply(t: T, u: U) = {
-        val hl = ev0(t)
-        ev1(u :+: hl)
-      }
-    }
 }

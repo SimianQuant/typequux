@@ -15,33 +15,6 @@
   */
 package typequux.constraint
 
-import typequux._
-import typequux._
-
-sealed trait UpdatedConstraint[N, HL, A, R] {
+trait UpdatedConstraint[N, HL, A, R] {
   def apply(hl: HL, a: A): R
-}
-
-object UpdatedConstraint {
-
-  implicit def hlUpdatedConstraint[N, HL <: HList, A, R, Before <: HList, _, After <: HList](
-      implicit ev0: PIndexer[N, HL, Before, _, After],
-      ev1: AppendConstraint[Before, A :+: After, R]): UpdatedConstraint[N, HL, A, R] =
-    new UpdatedConstraint[N, HL, A, R] {
-      override def apply(hl: HL, a: A) = {
-        val (before, _, after) = ev0(hl)
-        ev1(before, a :+: after)
-      }
-    }
-
-  implicit def tpUpdatedConstraint[N, T, A, R, HL <: HList, HLR <: HList](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: UpdatedConstraint[N, HL, A, HLR],
-      ev2: HList2TupleConverter[R, HLR]): UpdatedConstraint[N, T, A, R] = new UpdatedConstraint[N, T, A, R] {
-    override def apply(t: T, a: A) = {
-      val hl = ev0(t)
-      val hla = ev1(hl, a)
-      ev2(hla)
-    }
-  }
 }
