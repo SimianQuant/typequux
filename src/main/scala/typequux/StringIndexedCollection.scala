@@ -22,27 +22,27 @@ import typequux._
 
 sealed trait StringIndexedCollection[+T]
 
-final class NonEmptySI[MP <: DenseMap, +T] private[typequux](
-    private[typequux] val backing: Vector[T], private[typequux] val keys: Vector[String])
-    extends StringIndexedCollection[T] {
-  override def hashCode: Int = this.toMap.##
+object StringIndexedCollection {
 
-  override def equals(other: Any): Boolean = (other.## == this.##) && {
-    other match {
-      case that: NonEmptySI[_, _] => (this eq that) || this.toMap == that.toMap
-      case _ => false
+  final class NonEmptySI[MP <: DenseMap, +T] private[typequux](
+      private[typequux] val backing: Vector[T], private[typequux] val keys: Vector[String])
+      extends StringIndexedCollection[T] {
+    override def hashCode: Int = this.toMap.##
+
+    override def equals(other: Any): Boolean = (other.## == this.##) && {
+      other match {
+        case that: NonEmptySI[_, _] => (this eq that) || this.toMap == that.toMap
+        case _ => false
+      }
+    }
+
+    override def toString: String = {
+      val kvs = (keys zip backing) map (kv => s"${kv._1} -> ${kv._2}")
+      s"StringIndexedCollection${kvs.mkString("(", ", ", ")")}"
     }
   }
 
-  override def toString: String = {
-    val kvs = (keys zip backing) map (kv => s"${kv._1} -> ${kv._2}")
-    s"StringIndexedCollection${kvs.mkString("(", ", ", ")")}"
-  }
-}
-
-object SINil extends StringIndexedCollection[Nothing]
-
-object StringIndexedCollection {
+  object SINil extends StringIndexedCollection[Nothing]
 
   implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SiOps[S] = new SiOps[S](s)
 

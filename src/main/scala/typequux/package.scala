@@ -36,7 +36,8 @@ package object typequux {
   type RNil = Record.RNil.type
   val RNil = Record.RNil
 
-  type SINil = SINil.type
+  type SINil = StringIndexedCollection.SINil.type
+  val SINil = StringIndexedCollection.SINil
 
   type Id[X] = X
   val :+: = HList.HCons // for pattern matching
