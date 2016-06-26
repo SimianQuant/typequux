@@ -17,6 +17,11 @@ package typequux
 
 import language.higherKinds
 
+/** Set of dense numbers implemented as a binary tree
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 sealed trait DenseSet {
   type Contains [X <: Dense] <: Bool
   type Include [X <: Dense] <: DenseSet
@@ -25,6 +30,11 @@ sealed trait DenseSet {
   type Size <: Dense
 }
 
+/** Companion object for [[DenseSet]]. Contains aliases for the type constructors that make usage more pleasant
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object DenseSet {
   import Bool._
   import Dense._
@@ -35,6 +45,11 @@ object DenseSet {
   type Eq[A <: DenseSet, B <: DenseSet] = &&[A#Size === B#Size, Union[A, B]#Size === B#Size]
 }
 
+/** Empty set, base case for constructing all dense sets
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait EmptyDenseSet extends DenseSet {
   override type Contains[X <: Dense] = False
   override type Include[X <: Dense] = NonEmptyDenseSet[X, EmptyDenseSet, EmptyDenseSet]
@@ -43,6 +58,15 @@ trait EmptyDenseSet extends DenseSet {
   override type Size = Dense._0
 }
 
+/** Non empty set of dense numbers, implemented as a binary tree
+  *
+  * @tparam V Type at the node
+  * @tparam L DenseSet in which all values are less than V
+  * @tparam R DenseSet in which all values are greater than V
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait NonEmptyDenseSet[V <: Dense, L <: DenseSet, R <: DenseSet] extends DenseSet {
   import Dense._
   override type Contains[X <: Dense] = X#Compare[V]#Match[L#Contains[X], True, R#Contains[X], Bool]

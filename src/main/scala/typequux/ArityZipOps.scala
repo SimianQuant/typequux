@@ -17,9 +17,26 @@ package typequux
 
 import constraint._
 
+/** Provided arbitrary arity zips for supported types
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 class ArityZipOps[Z, F](z: Z)(implicit ev: DownTransformConstraint[Z, F, Traversable]) {
 
+  /** Zip and apply a transformation on the result
+    * 
+    * @group Transformation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def zipwith[T, V](f: F => T)(implicit ev: InternalZipConstraint[Z, F, T, V]): V = ev(z, f)
 
+  /** Arbitrary arity zipped
+    * 
+    * @group Transformation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def azipped[V](implicit ev: InternalZipConstraint[Z, F, F, V]): V = zipwith(identity)
 }

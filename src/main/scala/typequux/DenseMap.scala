@@ -17,6 +17,11 @@ package typequux
 
 import language.higherKinds
 
+/** Typelevel map in which the keys are dense numbers. Implemented a binary tree. 
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 sealed trait DenseMap {
   type Contains [K <: Dense] <: Bool
   type Add [K <: Dense, V] <: DenseMap
@@ -27,6 +32,11 @@ sealed trait DenseMap {
   type Size <: Dense
 }
 
+/** Companion object for [[DenseMap]]. Contains aliases for the type constructors which makes usage more pleasant 
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object DenseMap {
   type Contains[M <: DenseMap, K <: Dense] = M#Contains[K]
   type Remove[M <: DenseMap, K <: Dense] = M#Remove[K]
@@ -34,6 +44,11 @@ object DenseMap {
   type Union[M <: DenseMap, N <: DenseMap] = M#Union[N]
 }
 
+/** Empty Map, base case for constructing all maps
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait EmptyDenseMap extends DenseMap {
   override type Contains[K <: Dense] = False
   override type Add[K <: Dense, V] = NonEmptyDenseMap[K, V, EmptyDenseMap, EmptyDenseMap]
@@ -44,6 +59,16 @@ trait EmptyDenseMap extends DenseMap {
   override type Size = Dense._0
 }
 
+/** Non empty typelevel map, implemented as a binary tree. 
+  *
+  * @tparam KT Type of the key
+  * @tparam VT Value associated with KT
+  * @tparam L DenseMap in which all keys are less than KT
+  * @tparam R DenseMap in which all keys are greater than KT
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait NonEmptyDenseMap[KT <: Dense, VT, L <: DenseMap, R <: DenseMap] extends DenseMap {
   import Dense._
   override type Contains[K <: Dense] = K#Compare[KT]#Match[L#Contains[K], True, R#Contains[K], Bool]

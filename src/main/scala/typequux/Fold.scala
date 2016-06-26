@@ -17,6 +17,11 @@ package typequux
 
 import language.higherKinds
 
+/** Typeclass for typelevel fold
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait Fold[-Elem, Value] {
   type Apply [E <: Elem, Acc <: Value] <: Value
   def apply[N <: Elem, Acc <: Value](n: N, acc: Acc): Apply[N, Acc]

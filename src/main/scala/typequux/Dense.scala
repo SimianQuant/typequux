@@ -20,6 +20,7 @@ import language.higherKinds
 /**
   * Typelevel representation of dense numbers, stored as a heterogenous list of digits
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 sealed trait Dense {
@@ -50,9 +51,10 @@ sealed trait Dense {
   protected type CompareC [B <: Dense, Carry <: Comparison] <: Comparison
 }
 
-/** Non-zero dense number. 
+/** Non-zero dense number. The digit is the least significant bit
   *
-  * the digit is the least significant bit
+  * @author Harshad Deo
+  * @since 0.1
   */
 trait DCons[d <: Dense.Digit, T <: Dense] extends Dense {
 
@@ -84,6 +86,9 @@ trait DCons[d <: Dense.Digit, T <: Dense] extends Dense {
 }
 
 /** Dense Zero
+  *
+  * @author Harshad Deo
+  * @since 0.1
   */
 trait DNil extends Dense {
 
@@ -139,20 +144,36 @@ trait DNil extends Dense {
   *
   * 13. Total Order
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 object Dense {
 
+  /** Represents a digit in the dense encoding of a natural number
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   sealed trait Digit {
     type Match [IfOne <: Up, IfZero <: Up, Up] <: Up
     type Compare [D <: Digit] <: Comparison
   }
 
+  /** Represents a 0 in the dense encoding of a natural number
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   trait D0 extends Digit {
     override type Match[IfOne <: Up, IfZero <: Up, Up] = IfZero
     override type Compare[D <: Digit] = D#Match[LT, EQ, Comparison]
   }
 
+  /** Represents a 1 in the dense encoding of a natural number
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   trait D1 extends Digit {
     override type Match[IfOne <: Up, IfZero <: Up, Up] = IfOne
     override type Compare[D <: Digit] = D#Match[EQ, GT, Comparison]
@@ -201,8 +222,18 @@ object Dense {
   def toLong[D <: Dense](implicit dr: DenseRep[D]): Long = dr.v
 }
 
+/** Builda a value level representation of a dense type.
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 class DenseRep[D](val v: Long)(implicit ev: D <:< Dense)
 
+/** Contains implicit definitions to build the value level representation of a dense type
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object DenseRep {
 
   import Dense._
@@ -216,10 +247,16 @@ object DenseRep {
   *
   * Takes linear time (compared to log time for addition), therefore its usage should be limited
   * 
+  * @author Harshad Deo
   * @since 0.1
   */
 sealed trait DenseDiff[M, S, D]
 
+/** Contains implicit definitions to implement typelevel subtraction
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object DenseDiff {
   import Dense._
   implicit def dsr0[M <: Dense]: DenseDiff[M, _0, M] = new DenseDiff[M, _0, M] {}

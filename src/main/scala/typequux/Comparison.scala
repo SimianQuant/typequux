@@ -19,6 +19,7 @@ import language.higherKinds
 
 /** Type representing the result of a comparison
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 sealed trait Comparison {
@@ -33,6 +34,7 @@ sealed trait Comparison {
 
 /** Typelevel representation of a type being "less" than another, as per some ordering
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 trait LT extends Comparison {
@@ -41,6 +43,7 @@ trait LT extends Comparison {
 
 /** Typelevel representation of a type being "more" than another, as per some ordering
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 trait GT extends Comparison {
@@ -49,6 +52,7 @@ trait GT extends Comparison {
 
 /** Typelevel representation of a type being equal to another, as per some ordering
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 trait EQ extends Comparison {
@@ -57,6 +61,7 @@ trait EQ extends Comparison {
 
 /** Implements method to obtain a value level representation of a typelevel comparator 
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 object Comparison {
@@ -65,12 +70,14 @@ object Comparison {
 
 /** String representation of a type level comparison result
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 sealed class ComparisonRep[C <: Comparison](val v: String)
 
 /** Contains implicits for building a value-level representaton of a type level boolean
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 object ComparisonRep {

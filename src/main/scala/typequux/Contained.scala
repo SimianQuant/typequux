@@ -15,27 +15,39 @@
   */
 package typequux
 
-/**
-  * Expresses that a type a member of the supplied set
+/** Expresses that a type a member of the supplied set
+  *
+  * @author Harshad Deo
+  * @since 0.1
   */
 final class Contained[A, HL <: HList]
 
-/*
- * Expresses that a type is not a member of the supplied set
- */
+/** Expresses that a type is not a member of the supplied set
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 final class NotContained[A, HL <: HList]
 
-/**
-  * Expresses that a type is a subtype of the supplied set
+/** Expresses that a type is a subtype of the supplied set
+  * 
+  * @author Harshad Deo
+  * @since 0.1
   */
 final class SubType[A, HL <: HList]
 
-/**
-  * Expresses that a type is not a subtype of the supplied set
+/** Expresses that a type is not a subtype of the supplied set
+  *
+  * @author Harshad Deo
+  * @since 0.1
   */
 final class NotSubType[A, HL <: HList]
 
-/** Implicits to generate a contained marker */
+/** Implicits to generate a contained marker 
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object Contained {
   import typequux._
   implicit def inHead[A, H, T <: HList](implicit ev0: A =:= H, ev1: NotContained[A, T]): Contained[A, H :+: T] =
@@ -44,7 +56,11 @@ object Contained {
     new Contained[A, H :+: T]
 }
 
-/** Implicits to generate a not-contained marker */
+/** Implicits to generate a not-contained marker 
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object NotContained {
   import typequux._
   implicit def nilDoesNotContain[A]: NotContained[A, HNil] = new NotContained[A, HNil]
@@ -54,7 +70,11 @@ object NotContained {
       implicit ev0: A =:= H, ev1: NotContained[A, T]): NotContained[A, H :+: T] = new NotContained[A, H :+: T]
 }
 
-/** Implicits to generate a subtype marker */
+/** Implicits to generate a subtype marker 
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object SubType {
   import typequux._
   implicit def subtyped[A, H, T <: HList](implicit ev0: A <:< H, ev1: NotSubType[A, T]): SubType[A, H :+: T] =
@@ -63,7 +83,11 @@ object SubType {
     new SubType[A, H :+: T]
 }
 
-/** Implicits to generate a not-subtype marker */
+/** Implicits to generate a not-subtype marker 
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object NotSubType {
   import typequux._
   implicit def nilDoesNotSubtype[A]: NotSubType[A, HNil] = new NotSubType[A, HNil]

@@ -17,28 +17,37 @@ package typequux
 
 import language.higherKinds
 
-/**
-  * Church encodings of booleans.
+/** Church encodings of booleans.
   *
   * Can be understood as an alias for a type constructor that chooses between one of two alternative types. Is primarily
   * used to enforce the invariants of more complex type-level operations
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 sealed trait Bool {
   type If [T <: Up, F <: Up, Up] <: Up
 }
 
+/** Typelevel representation of a predicate being true
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait True extends Bool {
   override type If[T <: Up, F <: Up, Up] = T
 }
 
+/** Typelevel representation of a predicate being False
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait False extends Bool {
   override type If[T <: Up, F <: Up, Up] = F
 }
 
-/**
-  * Implements type constructors for common operations on type level booleans and a method to obtain the value level
+/**   Implements type constructors for common operations on type level booleans and a method to obtain the value level
   * representation of typelevel booleans.
   *
   * The operations can be shown to satisfy:
@@ -81,6 +90,7 @@ trait False extends Bool {
   *
   * 19. De Morgan 2: ||[Not[A], Not[B]] =:= Not[A && B]
   * 
+  * @author Harshad Deo
   * @since 0.1
   */
 object Bool {
@@ -154,6 +164,7 @@ sealed class BoolRep[+B <: Bool](val v: Boolean)
 
 /** Provides implicits for converting typelevel booleans to value level booleans
   *
+  * @author Harshad Deo
   * @since 0.1
   */
 object BoolRep {
