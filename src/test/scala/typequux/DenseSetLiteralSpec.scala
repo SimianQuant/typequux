@@ -15,6 +15,8 @@
   */
 package typequux
 
+import Dense.DenseRep
+
 class DenseSetLiteralSpec extends BaseSpec {
 
   class Witness[T <: DenseSet]

@@ -23,6 +23,8 @@ package object typequux {
   type EQ = Comparison.EQ.type
   type GT = Comparison.GT.type
 
+  type DNil = Dense.DNil.type
+
   type :+:[H, T <: HList] = HCons[H, T]
 
   type HNil = HNil.type

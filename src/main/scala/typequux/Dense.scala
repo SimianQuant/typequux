@@ -52,68 +52,6 @@ sealed trait Dense {
   protected type CompareC [B <: Dense, Carry <: Comparison] <: Comparison
 }
 
-/** Non-zero dense number. The digit is the least significant bit
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait DCons[d <: Dense.Digit, T <: Dense] extends Dense {
-
-  import Dense._
-
-  override type digit = d
-  override type tail = T
-
-  override type Inc = d#Match[D0 :: T#Inc, D1 :: T, Dense]
-  override type Dec = d#Match[T#Match[D0 :: T, DNil, Dense], D1 :: T#Dec, Dense]
-  override type Add[b <: Dense] = b#Match[AddNz[b], d :: T, Dense]
-  override type Sq = *[d :: T, d :: T]
-
-  override type ShiftR = tail
-  override type ShiftL = D0 :: DCons[d, T]
-
-  override type Match[NonZero <: Up, IfZero <: Up, Up] = NonZero
-
-  protected type AddNz[b <: Dense] = d#Match[Add1[b], b#digit :: tail#Add[b#tail], Dense]
-  protected type Add1[b <: Dense] = b#digit#Match[D0 :: tail#Add[b#tail]#Inc, d :: tail#Add[b#tail], Dense]
-  protected type NewCarry[prev <: Comparison, od <: Digit] = d#Compare[od]#Match[LT, prev, GT, Comparison]
-  override protected type Karatsuba[x <: Dense, res <: Dense] =
-    tail#Karatsuba[x#ShiftL, digit#Match[x + res, res, Dense]]
-  override protected type ExpHelper[arg <: Dense, res <: Dense] =
-    tail#ExpHelper[arg#Sq, digit#Match[*[res, arg], res, Dense]]
-  override protected type CompareC[B <: Dense, Carry <: Comparison] =
-    B#Match[tail#CompareC[B#tail, NewCarry[Carry, B#digit]], GT, Comparison]
-  override protected type Len = _1 + tail#Len
-}
-
-/** Dense Zero
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait DNil extends Dense {
-
-  import Dense._
-
-  override type tail = Nothing
-  override type digit = Nothing
-
-  override type Inc = D1 :: DNil
-  override type Dec = Nothing
-  override type Add[b <: Dense] = b
-  override type Sq = _0
-
-  override type ShiftR = DNil
-  override type ShiftL = DNil
-
-  override type Match[NonZero <: Up, IfZero <: Up, Up] = IfZero
-
-  override protected type Karatsuba[x <: Dense, res <: Dense] = res
-  override protected type ExpHelper[arg <: Dense, res <: Dense] = res
-  override protected type CompareC[B <: Dense, Carry <: Comparison] = B#Match[LT, Carry, Comparison]
-  override protected type Len = _0
-}
-
 /** Container for digits of a dense number. Implements common operations on typelevel dense numbers and a method to 
   * obtain a valuelevel representation of typelevel dense numbers.
   *
@@ -180,6 +118,64 @@ object Dense {
     override type Compare[D <: Digit] = D#Match[EQ, GT, Comparison]
   }
 
+  /** Non-zero dense number. The digit is the least significant bit
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  trait DCons[d <: Dense.Digit, T <: Dense] extends Dense {
+
+    override type digit = d
+    override type tail = T
+
+    override type Inc = d#Match[D0 :: T#Inc, D1 :: T, Dense]
+    override type Dec = d#Match[T#Match[D0 :: T, DNil, Dense], D1 :: T#Dec, Dense]
+    override type Add[b <: Dense] = b#Match[AddNz[b], d :: T, Dense]
+    override type Sq = *[d :: T, d :: T]
+
+    override type ShiftR = tail
+    override type ShiftL = D0 :: DCons[d, T]
+
+    override type Match[NonZero <: Up, IfZero <: Up, Up] = NonZero
+
+    protected type AddNz[b <: Dense] = d#Match[Add1[b], b#digit :: tail#Add[b#tail], Dense]
+    protected type Add1[b <: Dense] = b#digit#Match[D0 :: tail#Add[b#tail]#Inc, d :: tail#Add[b#tail], Dense]
+    protected type NewCarry[prev <: Comparison, od <: Digit] = d#Compare[od]#Match[LT, prev, GT, Comparison]
+    override protected type Karatsuba[x <: Dense, res <: Dense] =
+      tail#Karatsuba[x#ShiftL, digit#Match[x + res, res, Dense]]
+    override protected type ExpHelper[arg <: Dense, res <: Dense] =
+      tail#ExpHelper[arg#Sq, digit#Match[*[res, arg], res, Dense]]
+    override protected type CompareC[B <: Dense, Carry <: Comparison] =
+      B#Match[tail#CompareC[B#tail, NewCarry[Carry, B#digit]], GT, Comparison]
+    override protected type Len = _1 + tail#Len
+  }
+
+  /** Dense Zero
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object DNil extends Dense {
+
+    override type tail = Nothing
+    override type digit = Nothing
+
+    override type Inc = D1 :: DNil
+    override type Dec = Nothing
+    override type Add[b <: Dense] = b
+    override type Sq = _0
+
+    override type ShiftR = DNil
+    override type ShiftL = DNil
+
+    override type Match[NonZero <: Up, IfZero <: Up, Up] = IfZero
+
+    override protected type Karatsuba[x <: Dense, res <: Dense] = res
+    override protected type ExpHelper[arg <: Dense, res <: Dense] = res
+    override protected type CompareC[B <: Dense, Carry <: Comparison] = B#Match[LT, Carry, Comparison]
+    override protected type Len = _0
+  }
+
   type ::[H <: Digit, T <: Dense] = DCons[H, T]
 
   type +[A <: Dense, B <: Dense] = A#Add[B]
@@ -220,28 +216,26 @@ object Dense {
   type _21 = D1 :: D0 :: D1 :: D0 :: D1 :: DNil
   type _22 = D0 :: D1 :: D1 :: D0 :: D1 :: DNil
 
+  /** Builda a value level representation of a dense type.
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  class DenseRep[D](val v: Long)(implicit ev: D <:< Dense)
+
+  /** Contains implicit definitions to build the value level representation of a dense type
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object DenseRep {
+
+    implicit object DNil2Rep extends DenseRep[DNil](0)
+    implicit def dCons02Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D0 :: T] = new DenseRep(tr.v << 1)
+    implicit def dCons22Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D1 :: T] = new DenseRep((tr.v << 1) | 1)
+  }
+
   def toLong[D <: Dense](implicit dr: DenseRep[D]): Long = dr.v
-}
-
-/** Builda a value level representation of a dense type.
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-class DenseRep[D](val v: Long)(implicit ev: D <:< Dense)
-
-/** Contains implicit definitions to build the value level representation of a dense type
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-object DenseRep {
-
-  import Dense._
-
-  implicit object DNil2Rep extends DenseRep[DNil](0)
-  implicit def dCons02Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D0 :: T] = new DenseRep(tr.v << 1)
-  implicit def dCons22Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D1 :: T] = new DenseRep((tr.v << 1) | 1)
 }
 
 /** Typelevel subtraction of dense numbers.

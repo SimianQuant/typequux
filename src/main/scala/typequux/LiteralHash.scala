@@ -20,6 +20,7 @@ import language.experimental.macros
 import language.implicitConversions
 import macrocompat.bundle
 import reflect.macros.whitebox
+import typequux._
 
 /**
   * Typelevel representation of a compile time constant literal
@@ -350,6 +351,7 @@ class LiteralHashBuilderImpl(val c: whitebox.Context) {
   }
 
   private[this] def fromBinary[T: c.WeakTypeTag](binRep: List[Boolean]): c.Tree = {
-    binRep.foldLeft[Tree](tq"DNil")((acc, v) => if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
+    binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) =>
+          if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
   }
 }

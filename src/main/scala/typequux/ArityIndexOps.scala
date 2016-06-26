@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import Dense.DenseRep
 import typequux._
 
 /** Provides scala collection like operations on objects with an arbitrary arity. 
