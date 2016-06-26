@@ -63,7 +63,6 @@ object DenseSet {
     * @since 0.1
     */
   trait NonEmptyDenseSet[V <: Dense, L <: DenseSet, R <: DenseSet] extends DenseSet {
-    import Dense._
     override type Contains[X <: Dense] = X#Compare[V]#Match[L#Contains[X], True, R#Contains[X], Bool]
     override type Include[X <: Dense] = X#Compare[V]#Match[NonEmptyDenseSet[V, L#Include[X], R],
                                                            NonEmptyDenseSet[V, L, R],

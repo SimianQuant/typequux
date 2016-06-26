@@ -18,8 +18,8 @@ package typequux
 import collection.generic.CanBuildFrom
 import Dense._
 import HList.Zipper._
-import language.{higherKinds, implicitConversions}
 import language.experimental.macros
+import language.{higherKinds, implicitConversions}
 import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
@@ -1183,7 +1183,7 @@ object HList {
     * @since 0.1
     */
   implicit object HNilToList extends ToListConstraint[HNil, List[Nothing]] {
-    override def apply(h: HNil) = Nil
+    override def apply(h: HNil): List[Nothing] = Nil
   }
 }
 
@@ -1194,6 +1194,7 @@ object HList {
   * @since 0.1
   */
 class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
+
   /**
     * @group Basic
     * @author Harshad Deo

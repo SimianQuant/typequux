@@ -117,7 +117,7 @@ object Record {
     }
 
   implicit object RNilToMapConstraint extends ToMapConstraint[RNil, Map[String, Nothing]] {
-    override def apply(r: RNil) = Map.empty[String, Nothing]
+    override def apply(r: RNil): Map[String, Nothing] = Map.empty[String, Nothing]
   }
 
   implicit def record2MapBuilder[MP <: DenseMap, HL <: HList, R](
