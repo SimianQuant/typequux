@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import typequux._
 
 /** Typelevel map in which the keys are dense numbers. Implemented a binary tree. 
   *

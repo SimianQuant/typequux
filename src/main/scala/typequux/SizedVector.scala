@@ -20,6 +20,7 @@ import Dense._
 import language.experimental.macros
 import macrocompat.bundle
 import reflect.macros.whitebox.Context
+import typequux._
 
 final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
 

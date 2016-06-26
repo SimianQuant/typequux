@@ -16,6 +16,7 @@
 package typequux
 
 import shapeless.test.illTyped
+import typequux._
 
 /**
   * Specification for Dense numbers

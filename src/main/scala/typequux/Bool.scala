@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import typequux._
 
 /** Church encodings of booleans.
   *
@@ -27,24 +28,6 @@ import language.higherKinds
   */
 sealed trait Bool {
   type If [T <: Up, F <: Up, Up] <: Up
-}
-
-/** Typelevel representation of a predicate being true
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait True extends Bool {
-  override type If[T <: Up, F <: Up, Up] = T
-}
-
-/** Typelevel representation of a predicate being False
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait False extends Bool {
-  override type If[T <: Up, F <: Up, Up] = F
 }
 
 /**   Implements type constructors for common operations on type level booleans and a method to obtain the value level
@@ -149,25 +132,43 @@ object Bool {
     */
   type Eqv[A <: Bool, B <: Bool] = A#If[B, Not[B], Bool]
 
+  /** Typelevel representation of a predicate being true
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object True extends Bool {
+    override type If[T <: Up, F <: Up, Up] = T
+  }
+
+  /** Typelevel representation of a predicate being False
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object False extends Bool {
+    override type If[T <: Up, F <: Up, Up] = F
+  }
+
+  /**
+    * Provides a value for a type level boolean
+    *
+    * @since 0.1
+    */
+  sealed class BoolRep[+B <: Bool](val v: Boolean)
+
+  /** Provides implicits for converting typelevel booleans to value level booleans
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object BoolRep {
+    implicit object TrueRep extends BoolRep[True](true)
+    implicit object FalseRep extends BoolRep[False](false)
+  }
+
   /**
     * Method to convert a typelevel boolean to its value representation
     */
   def toBoolean[B <: Bool](implicit ev: BoolRep[B]): Boolean = ev.v
-}
-
-/**
-  * Provides a value for a type level boolean
-  *
-  * @since 0.1
-  */
-sealed class BoolRep[+B <: Bool](val v: Boolean)
-
-/** Provides implicits for converting typelevel booleans to value level booleans
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-object BoolRep {
-  implicit object TrueRep extends BoolRep[True](true)
-  implicit object FalseRep extends BoolRep[False](false)
 }

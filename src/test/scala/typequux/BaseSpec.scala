@@ -16,6 +16,7 @@
 package typequux
 
 import org.scalatest.FlatSpec
+import typequux._
 
 /**
   * Set of common utility methods used in the rest of the tests

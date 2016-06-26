@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import typequux._
 
 /** Type representing the result of a comparison
   *

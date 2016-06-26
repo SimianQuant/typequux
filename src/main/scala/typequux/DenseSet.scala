@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import typequux._
 
 /** Set of dense numbers implemented as a binary tree
   *

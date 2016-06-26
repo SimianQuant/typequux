@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import typequux._
 
 /**
   * Peano natural numbers

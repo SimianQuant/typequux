@@ -16,6 +16,7 @@
 package typequux
 
 import language.higherKinds
+import typequux._
 
 /**
   * Typelevel representation of dense numbers, stored as a heterogenous list of digits

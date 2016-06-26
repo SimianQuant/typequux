@@ -16,10 +16,15 @@
 package typequux
 
 package object typequux {
+  type True = Bool.True.type
+  type False = Bool.False.type
+
   type :+:[H, T <: HList] = HCons[H, T]
+  
   type HNil = HNil.type
   type RNil = RNil.type
   type SINil = SINil.type
+  
   type Id[X] = X
   val :+: = HCons // for pattern matching
 }
