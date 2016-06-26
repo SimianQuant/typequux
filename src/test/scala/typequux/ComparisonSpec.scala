@@ -17,6 +17,7 @@ package typequux
 
 import Comparison._
 import shapeless.test.illTyped
+import typequux._
 
 /**
   * Specification for typelevel comparison

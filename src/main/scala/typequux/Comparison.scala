@@ -33,59 +33,60 @@ sealed trait Comparison {
   type le = Match[True, True, False, Bool]
 }
 
-/** Typelevel representation of a type being "less" than another, as per some ordering
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait LT extends Comparison {
-  override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfLt
-}
-
-/** Typelevel representation of a type being "more" than another, as per some ordering
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait GT extends Comparison {
-  override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfGt
-}
-
-/** Typelevel representation of a type being equal to another, as per some ordering
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-trait EQ extends Comparison {
-  override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfEq
-}
-
 /** Implements method to obtain a value level representation of a typelevel comparator 
   *
   * @author Harshad Deo
   * @since 0.1
   */
 object Comparison {
+
+  /** Typelevel representation of a type being "less" than another, as per some ordering
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object LT extends Comparison {
+    override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfLt
+  }
+
+  /** Typelevel representation of a type being "more" than another, as per some ordering
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object GT extends Comparison {
+    override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfGt
+  }
+
+  /** Typelevel representation of a type being equal to another, as per some ordering
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object EQ extends Comparison {
+    override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfEq
+  }
+
+  /** String representation of a type level comparison result
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  sealed class ComparisonRep[C <: Comparison](val v: String)
+
+  /** Contains implicits for building a value-level representaton of a type level boolean
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  object ComparisonRep {
+
+    implicit object EqComparisonRep extends ComparisonRep[EQ]("eq")
+
+    implicit object GtComparisonRep extends ComparisonRep[GT]("gt")
+
+    implicit object LtComparisonRep extends ComparisonRep[LT]("lt")
+  }
+
   def show[C <: Comparison](implicit ev: ComparisonRep[C]): String = ev.v
-}
-
-/** String representation of a type level comparison result
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-sealed class ComparisonRep[C <: Comparison](val v: String)
-
-/** Contains implicits for building a value-level representaton of a type level boolean
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-object ComparisonRep {
-
-  implicit object EqComparisonRep extends ComparisonRep[EQ]("eq")
-
-  implicit object GtComparisonRep extends ComparisonRep[GT]("gt")
-
-  implicit object LtComparisonRep extends ComparisonRep[LT]("lt")
 }
