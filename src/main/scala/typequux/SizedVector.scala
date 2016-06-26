@@ -118,52 +118,53 @@ object SizedVector {
 
   def apply[T](inp: T*): Any = macro SizedVectorBuilder.build[T]
 
-}
-
-@bundle
-class SizedVectorBuilder(val c: Context) {
-  import c.universe._
-  def build[T: c.WeakTypeTag](inp: Tree*): Tree = {
-    val vh = fromBinary(toBinary(inp.length))
-    val lh = q"""
-    new LiteralHash[Int]{
-      override type TypeHash = LiteralHash.PositiveIntegerTypeHash
-      override type ValueHash = $vh
-      override val value = ${inp.length}
+  @bundle
+  class SizedVectorBuilder(val c: Context) {
+    import c.universe._
+    def build[T: c.WeakTypeTag](inp: Tree*): Tree = {
+      val vh = fromBinary(toBinary(inp.length))
+      val lh = q"""
+      new LiteralHash[Int]{
+        override type TypeHash = LiteralHash.PositiveIntegerTypeHash
+        override type ValueHash = $vh
+        override val value = ${inp.length}
+      }
+      """
+      q"""SizedVector.from($lh, Vector(${inp :_ *})).fold(???)(identity)"""
     }
-    """
-    q"""SizedVector.from($lh, Vector(${inp :_ *})).fold(???)(identity)"""
-  }
 
-  private[this] def toBinary(z: Int): List[Boolean] = {
-    val maxIter = 31
-    val  places = if (z == 0) {0 
-      } else {
-        @tailrec
-        def go(cmp: Long, pl: Int): Int = {
-          if (pl == maxIter) {
-            maxIter
-          } else {
-            val nextCmp = cmp << 1
-            if (nextCmp > z) pl else go(nextCmp, pl + 1)
+    private[this] def toBinary(z: Int): List[Boolean] = {
+      val maxIter = 31
+      val  places = if (z == 0) {0 
+        } else {
+          @tailrec
+          def go(cmp: Long, pl: Int): Int = {
+            if (pl == maxIter) {
+              maxIter
+            } else {
+              val nextCmp = cmp << 1
+              if (nextCmp > z) pl else go(nextCmp, pl + 1)
+            }
           }
+          go(1, 1)
         }
-        go(1, 1)
+      @tailrec
+      def doConvert(itr: Int, v: Int, acc: List[Boolean]): List[Boolean] = {
+        if (itr == 0) {
+          acc
+        } else {
+          val dg = (v & 1) == 1
+          doConvert(itr - 1, v >>> 1, dg :: acc)
+        }
       }
-    @tailrec
-    def doConvert(itr: Int, v: Int, acc: List[Boolean]): List[Boolean] = {
-      if (itr == 0) {
-        acc
-      } else {
-        val dg = (v & 1) == 1
-        doConvert(itr - 1, v >>> 1, dg :: acc)
-      }
+      doConvert(places, z, List[Boolean]())
     }
-    doConvert(places, z, List[Boolean]())
-  }
 
-  private[this] def fromBinary(binRep: List[Boolean]): c.Tree = {
-    binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) => if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
+    private[this] def fromBinary(binRep: List[Boolean]): c.Tree = {
+      binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) => if (v) tq"Dense.::[Dense.D1, $acc]" else 
+        tq"Dense.::[Dense.D0, $acc]")
+    }
+
   }
 
 }
