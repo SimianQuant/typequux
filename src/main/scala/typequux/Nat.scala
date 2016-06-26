@@ -16,15 +16,13 @@
 package typequux
 
 import language.higherKinds
+import Nat._
 import typequux._
 
 /**
   * Peano natural numbers
   */
 sealed trait Nat {
-
-  import Nat._
-
   type Match [NonZero[N <: Nat] <: Up, IfZero <: Up, Up] <: Up
   type Compare [N <: Nat] <: Comparison
   type FoldR [Init <: Type, Type, F <: Fold[Nat, Type]] <: Type

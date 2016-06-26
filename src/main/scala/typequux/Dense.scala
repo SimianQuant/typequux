@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Dense._
 import language.higherKinds
 import typequux._
 
@@ -26,7 +27,6 @@ import typequux._
   */
 sealed trait Dense {
 
-  import Dense._
 
   type digit <: Digit
   type tail <: Dense

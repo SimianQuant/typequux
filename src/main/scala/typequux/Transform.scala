@@ -16,6 +16,7 @@
 package typequux
 
 import language.{higherKinds, implicitConversions}
+import typequux._
 
 // scalastyle:off class.names
 
@@ -32,7 +33,6 @@ trait ~>[-F[_], +G[_]] {
 // scalastyle:off object.name
 
 object ~> {
-  import typequux._
 
   trait Const[A] {
     type Apply[B] = A

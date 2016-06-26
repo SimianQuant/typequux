@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Dense._
 import language.higherKinds
 import typequux._
 
@@ -66,7 +67,6 @@ object DenseMap {
     * @since 0.1
     */
   trait NonEmptyDenseMap[KT <: Dense, VT, L <: DenseMap, R <: DenseMap] extends DenseMap {
-    import Dense._
     override type Contains[K <: Dense] = K#Compare[KT]#Match[L#Contains[K], True, R#Contains[K], Bool]
     override type Add[K <: Dense, V] = K#Compare[KT]#Match[NonEmptyDenseMap[KT, VT, L#Add[K, V], R],
                                                            NonEmptyDenseMap[KT, V, L, R],
