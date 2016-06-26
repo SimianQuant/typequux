@@ -111,8 +111,6 @@ trait NatDiff[M <: Nat, S <: Nat, D <: Nat]
 
 object NatDiff {
 
-  import Nat._
-
   implicit def natDiff0[M <: Nat]: NatDiff[M, Nat0, M] = new NatDiff[M, Nat0, M] {}
   implicit def natDiffSucc[MP <: Nat, SP <: Nat, D <: Nat](
       implicit ev: NatDiff[MP, SP, D]): NatDiff[Succ[MP], Succ[SP], D] =

@@ -16,12 +16,12 @@
 package typequux
 
 import constraint._
-import language.implicitConversions
+import Dense._
 import language.experimental.macros
+import language.implicitConversions
 import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
-import Dense._
 
 sealed trait Record
 
@@ -41,7 +41,7 @@ object Record {
       }
     }
 
-    private def asMap: Map[String, Any] = this.toMap
+    private[Record] def asMap: Map[String, Any] = this.toMap
   }
 
   case object RNil extends Record

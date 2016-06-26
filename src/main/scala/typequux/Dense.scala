@@ -27,7 +27,6 @@ import typequux._
   */
 sealed trait Dense {
 
-
   type digit <: Digit
   type tail <: Dense
 
@@ -253,7 +252,6 @@ sealed trait DenseDiff[M, S, D]
   * @since 0.1
   */
 object DenseDiff {
-  import Dense._
   implicit def dsr0[M <: Dense]: DenseDiff[M, _0, M] = new DenseDiff[M, _0, M] {}
   implicit def dsrN[M <: Dense, S <: Dense, DP <: Dense](
       implicit ev: DenseDiff[M#Dec, S#Dec, DP], ev1: True =:= >[S, _0]): DenseDiff[M, S, DP] =

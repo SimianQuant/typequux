@@ -15,8 +15,8 @@
   */
 package typequux
 
-import language.higherKinds
 import Dense.DenseRep
+import language.higherKinds
 import typequux._
 import constraint._
 

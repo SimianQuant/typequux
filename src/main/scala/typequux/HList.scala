@@ -16,14 +16,14 @@
 package typequux
 
 import collection.generic.CanBuildFrom
+import Dense._
+import HList.Zipper._
 import language.{higherKinds, implicitConversions}
+import language.experimental.macros
+import macrocompat.bundle
+import reflect.macros.whitebox.Context
 import typequux._
 import constraint._
-import Dense._
-import language.experimental.macros
-import reflect.macros.whitebox.Context
-import macrocompat.bundle
-import HList.Zipper._
 
 /** Heterogenous Lists, i.e. linear sequences in which each element can have a different type
   * 
@@ -72,7 +72,6 @@ object HList {
       val tr3: DownTransformConstraint[THL, FHL, Traversable],
       val evn: NotContained[M[_], Stream[_] :+: HNil],
       val evfa: ForeachConstraint[THL, Traversable[_]]) {
-    import Zipper._
 
     /**
       * T -> Element type of the resulting traversable
@@ -1195,8 +1194,6 @@ object HList {
   * @since 0.1
   */
 class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
-  import HList.Tip
-
   /**
     * @group Basic
     * @author Harshad Deo
@@ -1218,5 +1215,5 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def t[S]: Tip[S, B] = new Tip(b)
+  def t[S]: HList.Tip[S, B] = new HList.Tip(b)
 }
