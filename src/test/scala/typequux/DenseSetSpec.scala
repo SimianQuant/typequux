@@ -21,7 +21,6 @@ import typequux._
 
 class DenseSetSpec extends BaseSpec {
 
-  
   /********************* Unit Tests **************************/
   type A = EmptyDenseSet
   type B = EmptyDenseSet
