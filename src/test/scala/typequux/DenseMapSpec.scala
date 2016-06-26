@@ -15,6 +15,8 @@
   */
 package typequux
 
+import typequux._
+
 class DenseMapSpec extends BaseSpec {
 
   import Dense._
