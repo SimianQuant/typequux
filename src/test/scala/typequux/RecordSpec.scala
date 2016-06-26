@@ -16,6 +16,7 @@
 package typequux
 
 import shapeless.test.illTyped
+import typequux._
 
 class RecordSpec extends BaseSpec {
 

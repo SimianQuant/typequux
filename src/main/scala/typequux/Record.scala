@@ -25,28 +25,42 @@ import Dense._
 
 sealed trait Record
 
-final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](
-    private[typequux] val backing: HL, private[typequux] val keys: List[String])(
-    implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
-    extends Record {
-  override def hashCode: Int = asMap.##
-
-  override def equals(other: Any): Boolean = (this.## == other.##) && {
-    other match {
-      case that: NonEmptyRecord[_, HL] =>
-        (this eq that) || (asMap == that.asMap)
-      case _ => false
-    }
-  }
-
-  private def asMap: Map[String, Any] = this.toMap
-}
-
-case object RNil extends Record
-
 object Record {
 
+  final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](
+      private[typequux] val backing: HL, private[typequux] val keys: List[String])(
+      implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
+      extends Record {
+    override def hashCode: Int = asMap.##
+
+    override def equals(other: Any): Boolean = (this.## == other.##) && {
+      other match {
+        case that: NonEmptyRecord[_, HL] =>
+          (this eq that) || (asMap == that.asMap)
+        case _ => false
+      }
+    }
+
+    private def asMap: Map[String, Any] = this.toMap
+  }
+
+  case object RNil extends Record
+
   implicit def record2Ops[R <: Record](r: R): SiOps[R] = new SiOps(r)
+
+  @bundle
+  class Class2RecordBuilder(val c: Context) {
+    import c.universe._
+
+    def class2RecordImpl[T: c.WeakTypeTag](x: Tree): Tree = {
+      val theType = implicitly[c.WeakTypeTag[T]].tpe
+      val symbolPredicate: Symbol => Boolean = x => x.isPublic && x.isMethod
+      val methods = theType.members.filter(symbolPredicate).map(_.asMethod)
+      val methodPredicate: MethodSymbol => Boolean = x => x.isVal || x.isGetter || x.isCaseAccessor
+      val values = methods.filter(methodPredicate)
+      values.foldLeft[Tree](q"RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
+    }
+  }
 
   def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
 
@@ -114,18 +128,4 @@ object Record {
         (r.keys zip ls).toMap
       }
     }
-}
-
-@bundle
-class Class2RecordBuilder(val c: Context) {
-  import c.universe._
-
-  def class2RecordImpl[T: c.WeakTypeTag](x: Tree): Tree = {
-    val theType = implicitly[c.WeakTypeTag[T]].tpe
-    val symbolPredicate: Symbol => Boolean = x => x.isPublic && x.isMethod
-    val methods = theType.members.filter(symbolPredicate).map(_.asMethod)
-    val methodPredicate: MethodSymbol => Boolean = x => x.isVal || x.isGetter || x.isCaseAccessor
-    val values = methods.filter(methodPredicate)
-    values.foldLeft[Tree](q"RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
-  }
 }

@@ -33,7 +33,9 @@ package object typequux {
   type HNil = HList.HNil.type
   val HNil = HList.HNil
 
-  type RNil = RNil.type
+  type RNil = Record.RNil.type
+  val RNil = Record.RNil
+
   type SINil = SINil.type
 
   type Id[X] = X
