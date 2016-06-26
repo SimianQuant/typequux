@@ -28,12 +28,14 @@ package object typequux {
   type EmptyDenseMap = DenseMap.EmptyDenseMap.type
   type EmptyDenseSet = DenseSet.EmptyDenseSet.type
 
-  type :+:[H, T <: HList] = HCons[H, T]
+  type :+:[H, T <: HList] = HList.HCons[H, T]
 
-  type HNil = HNil.type
+  type HNil = HList.HNil.type
+  val HNil = HList.HNil
+  
   type RNil = RNil.type
   type SINil = SINil.type
 
   type Id[X] = X
-  val :+: = HCons // for pattern matching
+  val :+: = HList.HCons // for pattern matching
 }

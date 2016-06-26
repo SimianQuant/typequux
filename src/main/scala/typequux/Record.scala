@@ -76,9 +76,9 @@ object Record {
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
-      ev4: PIndexer[D, HL, _, A, _]): AtConstraint[N, NonEmptyRecord[MP, HL], A] =
+      ev4: AtConstraint[D, HL, A]): AtConstraint[N, NonEmptyRecord[MP, HL], A] =
     new AtConstraint[N, NonEmptyRecord[MP, HL], A] {
-      override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)._2
+      override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)
     }
 
   implicit object RNilLengthConstraint extends LengthConstraint[RNil, _0]

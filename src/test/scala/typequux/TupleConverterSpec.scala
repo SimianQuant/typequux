@@ -15,6 +15,8 @@
   */
 package typequux
 
+import typequux._
+
 // format: OFF
 
 class TupleConverterSpec extends BaseSpec {

@@ -31,24 +31,6 @@ import macrocompat.bundle
   */
 sealed trait HList
 
-/** Cons cell of a HList, head is an element and tail is another HList
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-case class HCons[+H, +T <: HList](head: H, tail: T) extends HList {
-  override def toString: String = s"$head :+: $tail"
-}
-
-/** Empty HList
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-case object HNil extends HList {
-  override def toString: String = "HNil"
-}
-
 /** Companion object for hlist. 
   *
   * Contains implicit conversions to ops objects and typeclass constructors for the constraints
@@ -57,6 +39,195 @@ case object HNil extends HList {
   * @since 0.1
   */
 object HList {
+
+  /** Cons cell of a HList, head is an element and tail is another HList
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  case class HCons[+H, +T <: HList](head: H, tail: T) extends HList {
+    override def toString: String = s"$head :+: $tail"
+  }
+
+  /** Empty HList
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  case object HNil extends HList {
+    override def toString: String = "HNil"
+  }
+
+  /**
+    * PHL -> Parent HList
+    * M -> Common super type constructor of the HList
+    * FHL -> Functional HList (against which the zipper functiona have to be given)
+    * THL -> Type of the HList obtained by downconverting M to a traversable
+    */
+  class StrictZipper[PHL <: HList, M[_] <: Traversable[_], FHL <: HList, THL <: HList](
+      implicit val tr0: TransformConstraint[PHL, THL, M, Traversable],
+      val tr1: M ~> Traversable,
+      val tr2: TransformConstraint[THL, THL, Traversable, Traversable],
+      val tr3: DownTransformConstraint[THL, FHL, Traversable],
+      val evn: NotContained[M[_], Stream[_] :+: HNil],
+      val evfa: ForeachConstraint[THL, Traversable[_]]) {
+    import Zipper._
+
+    /**
+      * T -> Element type of the resulting traversable
+      * V -> Full type of the resulting traversable
+      */
+    def apply[T, V](f: FHL => T, arg: PHL)(implicit cbf: CanBuildFrom[M[T], T, V]): V = {
+      val bld = cbf()
+      @annotation.tailrec
+      def go(curr: THL): Unit = {
+        val isEmpty = curr.exists((t: Traversable[_]) => t.isEmpty)
+        if (!isEmpty) {
+          val hd = curr down heads
+          val tl = curr transform tails
+          val res = f(hd)
+          bld += res
+          go(tl)
+        }
+      }
+      go(arg transform tr1)
+      bld.result()
+    }
+  }
+
+  object StrictZipper {
+    implicit def strictZipper2[M[_] <: Traversable[_], X, Y, THL <: HList](
+        implicit tr0: TransformConstraint[M[X] :+: M[Y] :+: HNil, THL, M, Traversable],
+        tr1: M ~> Traversable,
+        tr2: TransformConstraint[THL, THL, Traversable, Traversable],
+        tr3: DownTransformConstraint[THL, X :+: Y :+: HNil, Traversable],
+        ex: ForeachConstraint[THL, Traversable[_]],
+        evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL] =
+      new StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL]
+
+    implicit def strictZipperN[M[_] <: Traversable[_], X, TL <: HList, FTL <: HList, THL <: HList](
+        implicit ev: StrictZipper[TL, M, FTL, _],
+        tr0: TransformConstraint[M[X] :+: TL, THL, M, Traversable],
+        tr1: M ~> Traversable,
+        tr2: TransformConstraint[THL, THL, Traversable, Traversable],
+        tr3: DownTransformConstraint[THL, X :+: FTL, Traversable],
+        ex: ForeachConstraint[THL, Traversable[_]],
+        evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: TL, M, X :+: FTL, THL] =
+      new StrictZipper[M[X] :+: TL, M, X :+: FTL, THL]
+  }
+
+  class LazyZipper[PHL <: HList, FHL <: HList](implicit val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
+                                               val tr1: DownTransformConstraint[PHL, FHL, Stream],
+                                               val ex: ForeachConstraint[PHL, Stream[_]]) {
+    import Zipper._
+
+    def apply[T](f: FHL => T, arg: PHL): Stream[T] = {
+      val isEmpty = arg.exists((t: Stream[_]) => t.isEmpty)
+      if (isEmpty) {
+        Stream.empty
+      } else {
+        val hd = arg down heads
+        val tl = arg transform streamTails
+        f(hd) #:: apply(f, tl)
+      }
+    }
+  }
+
+  object LazyZipper {
+    implicit def lazyZipper2[X, Y](
+        implicit tr0: TransformConstraint[
+            Stream[X] :+: Stream[Y] :+: HNil, Stream[X] :+: Stream[Y] :+: HNil, Stream, Stream],
+        tr1: DownTransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil, Stream],
+        ex: ForeachConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[_]])
+      : LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
+      new LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil]
+
+    implicit def lazyZipperN[X, TL <: HList, FTL <: HList](
+        implicit ev: LazyZipper[TL, FTL],
+        tr0: TransformConstraint[Stream[X] :+: TL, Stream[X] :+: TL, Stream, Stream],
+        tr1: DownTransformConstraint[Stream[X] :+: TL, X :+: FTL, Stream],
+        ex: ForeachConstraint[Stream[X] :+: TL, Stream[_]]): LazyZipper[Stream[X] :+: TL, X :+: FTL] =
+      new LazyZipper[Stream[X] :+: TL, X :+: FTL]
+  }
+
+  object Zipper {
+    val heads = new (Traversable ~> Id) { def apply[V](s: Traversable[V]): V = s.head }
+    val tails = new (Traversable ~> Traversable) { def apply[V](s: Traversable[V]): Traversable[V] = s.tail }
+    val streamTails = new (Stream ~> Stream) { def apply[T](s: Stream[T]): Stream[T] = s.tail }
+  }
+
+  sealed trait Indexer[HL, Before, At, After] {
+    def apply(hl: HL): (Before, At, After)
+  }
+
+  sealed trait PIndexer[N, HL, Before, At, After] extends Indexer[HL, Before, At, After]
+
+  object PIndexer {
+    import Dense._
+
+    implicit def toPIndexer0[H, TL <: HList]: PIndexer[_0, H :+: TL, HNil, H, TL] =
+      new PIndexer[_0, H :+: TL, HNil, H, TL] {
+        override def apply(hl: H :+: TL): (HNil, H, TL) = (HNil, hl.head, hl.tail)
+      }
+
+    implicit def toPIndexerN[N <: Dense, H, TL <: HList, Before <: HList, At, After <: HList](
+        implicit ev0: >[N, _0] =:= True,
+        ev1: PIndexer[N#Dec, TL, Before, At, After]): PIndexer[N, H :+: TL, H :+: Before, At, After] =
+      new PIndexer[N, H :+: TL, H :+: Before, At, After] {
+        override def apply(hl: H :+: TL) = {
+          val (tlBefore, at, after) = ev1(hl.tail)
+          (hl.head :+: tlBefore, at, after)
+        }
+      }
+  }
+
+  trait TIndexer[HL <: HList, Before <: HList, At, After <: HList] extends Indexer[HL, Before, At, After]
+
+  object TIndexer {
+    implicit def toTIndexer0[H, TL <: HList](implicit ev: NotContained[H, TL]): TIndexer[H :+: TL, HNil, H, TL] =
+      new TIndexer[H :+: TL, HNil, H, TL] {
+        override def apply(hl: H :+: TL) = (HNil, hl.head, hl.tail)
+      }
+
+    implicit def toTIndexerN[H, TL <: HList, Before <: HList, At, After <: HList](
+        implicit ev: TIndexer[TL, Before, At, After]): TIndexer[H :+: TL, H :+: Before, At, After] =
+      new TIndexer[H :+: TL, H :+: Before, At, After] {
+        override def apply(hl: H :+: TL) = {
+          val (tlBefore, at, after) = ev(hl.tail)
+          (hl.head :+: tlBefore, at, after)
+        }
+      }
+  }
+
+  class IndexedOps[HL <: HList, Before <: HList, At, After <: HList](hl: HL, ind: Indexer[HL, Before, At, After]) {
+
+    val (before, at, after) = ind(hl)
+
+    def drop: At :+: After = at :+: after
+
+    def take: Before = before
+
+    def updated[A, R <: HList](a: A)(implicit ev: AppendConstraint[Before, A :+: After, R]): R =
+      before :++: (a :+: after)
+
+    def remove[R <: HList](implicit ev: AppendConstraint[Before, After, R]): R = before :++: after
+
+    def map[T, R <: HList](f: At => T)(implicit ev: AppendConstraint[Before, T :+: After, R]): R =
+      before :++: (f(at) :+: after)
+
+    def flatMap[B <: HList, R0 <: HList, R1 <: HList](f: At => B)(
+        implicit ev0: AppendConstraint[B, After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
+      before :++: f(at) :++: after
+
+    def insert[C, R <: HList](c: C)(implicit ev: AppendConstraint[Before, C :+: At :+: After, R]): R =
+      before :++: (c :+: at :+: after)
+
+    def insertM[B <: HList, R0 <: HList, R1 <: HList](b: B)(
+        implicit ev0: AppendConstraint[B, At :+: After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
+      before :++: b :++: (at :+: after)
+
+    def splitAt: (Before, At :+: After) = (before, at :+: after)
+  }
 
   /** Converts an HList to its ops object
     *
@@ -882,6 +1053,10 @@ object HList {
     override def apply(a: A) = ev(a, HNil)
   }
 
+  sealed trait HReverseResult[A, C, R] {
+    def apply(a: A, c: C): R
+  }
+
   /** Base case of [[HReverseResult]] for HLists
     *
     * @tparam C Type of the List to be reversed
@@ -945,6 +1120,22 @@ object HList {
     new TransformConstraint[H :+: TL, N[X] :+: TlOp, M, N] {
       override def apply(f: M ~> N, hl: H :+: TL) = f(hl.head) :+: ev0(f, hl.tail)
     }
+
+  @bundle
+  class HListMacroImpl(val c: Context) {
+    import c.universe._
+    def toList[HL: c.WeakTypeTag, R]: Tree = {
+      val tp = implicitly[c.WeakTypeTag[HL]].tpe
+
+      def allTypes(xs: List[Type]): List[Type] = xs match {
+        case a :: b :: Nil => a :: allTypes(b.typeArgs)
+        case _ => Nil
+      }
+      val lt = allTypes(tp.typeArgs)
+      val lb = lub(lt)
+      q"new constraint.LubConstraint[$tp, $lb]{}"
+    }
+  }
 
   /** Builds [[constraint.LubConstraint]] for HLists
     *
@@ -1012,7 +1203,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def :+:[A](a: A): A :+: B = HCons(a, b) // scalastyle:ignore
+  def :+:[A](a: A): A :+: B = HList.HCons(a, b) // scalastyle:ignore
 
   /**
     *
@@ -1029,195 +1220,4 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @since 0.1
     */
   def t[S]: Tip[S, B] = new Tip(b)
-}
-
-@bundle
-class HListMacroImpl(val c: Context) {
-  import c.universe._
-  def toList[HL: c.WeakTypeTag, R]: Tree = {
-    val tp = implicitly[c.WeakTypeTag[HL]].tpe
-
-    def allTypes(xs: List[Type]): List[Type] = xs match {
-      case a :: b :: Nil => a :: allTypes(b.typeArgs)
-      case _ => Nil
-    }
-    val lt = allTypes(tp.typeArgs)
-    val lb = lub(lt)
-    q"new constraint.LubConstraint[$tp, $lb]{}"
-  }
-}
-
-sealed trait Indexer[HL, Before, At, After] {
-  def apply(hl: HL): (Before, At, After)
-}
-
-sealed trait PIndexer[N, HL, Before, At, After] extends Indexer[HL, Before, At, After]
-
-object PIndexer {
-  import Dense._
-
-  implicit def toPIndexer0[H, TL <: HList]: PIndexer[_0, H :+: TL, HNil, H, TL] =
-    new PIndexer[_0, H :+: TL, HNil, H, TL] {
-      override def apply(hl: H :+: TL): (HNil, H, TL) = (HNil, hl.head, hl.tail)
-    }
-
-  implicit def toPIndexerN[N <: Dense, H, TL <: HList, Before <: HList, At, After <: HList](
-      implicit ev0: >[N, _0] =:= True,
-      ev1: PIndexer[N#Dec, TL, Before, At, After]): PIndexer[N, H :+: TL, H :+: Before, At, After] =
-    new PIndexer[N, H :+: TL, H :+: Before, At, After] {
-      override def apply(hl: H :+: TL) = {
-        val (tlBefore, at, after) = ev1(hl.tail)
-        (hl.head :+: tlBefore, at, after)
-      }
-    }
-}
-
-trait TIndexer[HL <: HList, Before <: HList, At, After <: HList] extends Indexer[HL, Before, At, After]
-
-object TIndexer {
-  implicit def toTIndexer0[H, TL <: HList](implicit ev: NotContained[H, TL]): TIndexer[H :+: TL, HNil, H, TL] =
-    new TIndexer[H :+: TL, HNil, H, TL] {
-      override def apply(hl: H :+: TL) = (HNil, hl.head, hl.tail)
-    }
-
-  implicit def toTIndexerN[H, TL <: HList, Before <: HList, At, After <: HList](
-      implicit ev: TIndexer[TL, Before, At, After]): TIndexer[H :+: TL, H :+: Before, At, After] =
-    new TIndexer[H :+: TL, H :+: Before, At, After] {
-      override def apply(hl: H :+: TL) = {
-        val (tlBefore, at, after) = ev(hl.tail)
-        (hl.head :+: tlBefore, at, after)
-      }
-    }
-}
-
-class IndexedOps[HL <: HList, Before <: HList, At, After <: HList](hl: HL, ind: Indexer[HL, Before, At, After]) {
-
-  val (before, at, after) = ind(hl)
-
-  def drop: At :+: After = at :+: after
-
-  def take: Before = before
-
-  def updated[A, R <: HList](a: A)(implicit ev: AppendConstraint[Before, A :+: After, R]): R =
-    before :++: (a :+: after)
-
-  def remove[R <: HList](implicit ev: AppendConstraint[Before, After, R]): R = before :++: after
-
-  def map[T, R <: HList](f: At => T)(implicit ev: AppendConstraint[Before, T :+: After, R]): R =
-    before :++: (f(at) :+: after)
-
-  def flatMap[B <: HList, R0 <: HList, R1 <: HList](f: At => B)(
-      implicit ev0: AppendConstraint[B, After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
-    before :++: f(at) :++: after
-
-  def insert[C, R <: HList](c: C)(implicit ev: AppendConstraint[Before, C :+: At :+: After, R]): R =
-    before :++: (c :+: at :+: after)
-
-  def insertM[B <: HList, R0 <: HList, R1 <: HList](b: B)(
-      implicit ev0: AppendConstraint[B, At :+: After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
-    before :++: b :++: (at :+: after)
-
-  def splitAt: (Before, At :+: After) = (before, at :+: after)
-}
-
-/**
-  * PHL -> Parent HList
-  * M -> Common super type constructor of the HList
-  * FHL -> Functional HList (against which the zipper functiona have to be given)
-  * THL -> Type of the HList obtained by downconverting M to a traversable
-  */
-class StrictZipper[PHL <: HList, M[_] <: Traversable[_], FHL <: HList, THL <: HList](
-    implicit val tr0: TransformConstraint[PHL, THL, M, Traversable],
-    val tr1: M ~> Traversable,
-    val tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-    val tr3: DownTransformConstraint[THL, FHL, Traversable],
-    val evn: NotContained[M[_], Stream[_] :+: HNil],
-    val evfa: ForeachConstraint[THL, Traversable[_]]) {
-  import Zipper._
-
-  /**
-    * T -> Element type of the resulting traversable
-    * V -> Full type of the resulting traversable
-    */
-  def apply[T, V](f: FHL => T, arg: PHL)(implicit cbf: CanBuildFrom[M[T], T, V]): V = {
-    val bld = cbf()
-    @annotation.tailrec
-    def go(curr: THL): Unit = {
-      val isEmpty = curr.exists((t: Traversable[_]) => t.isEmpty)
-      if (!isEmpty) {
-        val hd = curr down heads
-        val tl = curr transform tails
-        val res = f(hd)
-        bld += res
-        go(tl)
-      }
-    }
-    go(arg transform tr1)
-    bld.result()
-  }
-}
-
-object StrictZipper {
-  implicit def strictZipper2[M[_] <: Traversable[_], X, Y, THL <: HList](
-      implicit tr0: TransformConstraint[M[X] :+: M[Y] :+: HNil, THL, M, Traversable],
-      tr1: M ~> Traversable,
-      tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-      tr3: DownTransformConstraint[THL, X :+: Y :+: HNil, Traversable],
-      ex: ForeachConstraint[THL, Traversable[_]],
-      evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL] =
-    new StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL]
-
-  implicit def strictZipperN[M[_] <: Traversable[_], X, TL <: HList, FTL <: HList, THL <: HList](
-      implicit ev: StrictZipper[TL, M, FTL, _],
-      tr0: TransformConstraint[M[X] :+: TL, THL, M, Traversable],
-      tr1: M ~> Traversable,
-      tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-      tr3: DownTransformConstraint[THL, X :+: FTL, Traversable],
-      ex: ForeachConstraint[THL, Traversable[_]],
-      evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: TL, M, X :+: FTL, THL] =
-    new StrictZipper[M[X] :+: TL, M, X :+: FTL, THL]
-}
-
-class LazyZipper[PHL <: HList, FHL <: HList](implicit val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
-                                             val tr1: DownTransformConstraint[PHL, FHL, Stream],
-                                             val ex: ForeachConstraint[PHL, Stream[_]]) {
-  import Zipper._
-
-  def apply[T](f: FHL => T, arg: PHL): Stream[T] = {
-    val isEmpty = arg.exists((t: Stream[_]) => t.isEmpty)
-    if (isEmpty) {
-      Stream.empty
-    } else {
-      val hd = arg down heads
-      val tl = arg transform streamTails
-      f(hd) #:: apply(f, tl)
-    }
-  }
-}
-
-object LazyZipper {
-  implicit def lazyZipper2[X, Y](
-      implicit tr0: TransformConstraint[
-          Stream[X] :+: Stream[Y] :+: HNil, Stream[X] :+: Stream[Y] :+: HNil, Stream, Stream],
-      tr1: DownTransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil, Stream],
-      ex: ForeachConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[_]])
-    : LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
-    new LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil]
-
-  implicit def lazyZipperN[X, TL <: HList, FTL <: HList](
-      implicit ev: LazyZipper[TL, FTL],
-      tr0: TransformConstraint[Stream[X] :+: TL, Stream[X] :+: TL, Stream, Stream],
-      tr1: DownTransformConstraint[Stream[X] :+: TL, X :+: FTL, Stream],
-      ex: ForeachConstraint[Stream[X] :+: TL, Stream[_]]): LazyZipper[Stream[X] :+: TL, X :+: FTL] =
-    new LazyZipper[Stream[X] :+: TL, X :+: FTL]
-}
-
-object Zipper {
-  val heads = new (Traversable ~> Id) { def apply[V](s: Traversable[V]): V = s.head }
-  val tails = new (Traversable ~> Traversable) { def apply[V](s: Traversable[V]): Traversable[V] = s.tail }
-  val streamTails = new (Stream ~> Stream) { def apply[T](s: Stream[T]): Stream[T] = s.tail }
-}
-
-sealed trait HReverseResult[A, C, R] {
-  def apply(a: A, c: C): R
 }
