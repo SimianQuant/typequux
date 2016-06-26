@@ -16,6 +16,7 @@
 package typequux
 
 import annotation.tailrec
+import Dense._
 import language.experimental.macros
 import language.implicitConversions
 import macrocompat.bundle
@@ -34,8 +35,6 @@ trait LiteralHash[X] {
 }
 
 object LiteralHash {
-
-  import Dense._
 
   type UnitTypeHash = _1
   type BooleanTypeHash = _2
@@ -253,8 +252,11 @@ object LiteralHash {
       def resolve(y: Float): Tree = {
         val intRep = java.lang.Float.floatToRawIntBits(y)
         val typeHash =
-          if (intRep < 0) tq"LiteralHash.NegativeEncodedFloatTypeHash"
-          else tq"LiteralHash.PositiveEncodedFloatTypeHash"
+          if (intRep < 0) {
+            tq"LiteralHash.NegativeEncodedFloatTypeHash"
+          } else {
+            tq"LiteralHash.PositiveEncodedFloatTypeHash"
+          }
         val valueHash = fromBinary(toBinary(intRep & Int.MaxValue))
         q"""
       new LiteralHash[Float]{

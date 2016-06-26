@@ -161,8 +161,12 @@ object SizedVector {
     }
 
     private[this] def fromBinary(binRep: List[Boolean]): c.Tree = {
-      binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) => if (v) tq"Dense.::[Dense.D1, $acc]" else 
-        tq"Dense.::[Dense.D0, $acc]")
+      binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) => if (v){
+          tq"Dense.::[Dense.D1, $acc]"
+          }  else {
+          tq"Dense.::[Dense.D0, $acc]"
+        })
+        
     }
 
   }

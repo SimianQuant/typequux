@@ -15,8 +15,8 @@
   */
 package typequux
 
-import language.{higherKinds, implicitConversions}
 import constraint._
+import language.{higherKinds, implicitConversions}
 import typequux._
 
 /**

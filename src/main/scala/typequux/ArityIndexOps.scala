@@ -18,6 +18,7 @@ package typequux
 import language.higherKinds
 import Dense.DenseRep
 import typequux._
+import constraint._
 
 /** Provides scala collection like operations on objects with an arbitrary arity. 
   *
@@ -25,8 +26,6 @@ import typequux._
   * @since 0.1
   */
 class ArityIndexOps[Z](z: Z) {
-
-  import constraint._
 
   /** Length of the collection
     *

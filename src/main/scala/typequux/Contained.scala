@@ -15,6 +15,8 @@
   */
 package typequux
 
+import typequux._
+
 /** Expresses that a type a member of the supplied set
   *
   * @author Harshad Deo
@@ -49,7 +51,6 @@ final class NotSubType[A, HL <: HList]
   * @since 0.1
   */
 object Contained {
-  import typequux._
   implicit def inHead[A, H, T <: HList](implicit ev0: A =:= H, ev1: NotContained[A, T]): Contained[A, H :+: T] =
     new Contained[A, H :+: T]
   implicit def inTail[A, H, T <: HList](implicit ev: Contained[A, T]): Contained[A, H :+: T] =
@@ -62,7 +63,6 @@ object Contained {
   * @since 0.1
   */
 object NotContained {
-  import typequux._
   implicit def nilDoesNotContain[A]: NotContained[A, HNil] = new NotContained[A, HNil]
   implicit def doesNotContain[A, H, T <: HList](implicit ev: NotContained[A, T]): NotContained[A, H :+: T] =
     new NotContained[A, H :+: T]
@@ -76,7 +76,6 @@ object NotContained {
   * @since 0.1
   */
 object SubType {
-  import typequux._
   implicit def subtyped[A, H, T <: HList](implicit ev0: A <:< H, ev1: NotSubType[A, T]): SubType[A, H :+: T] =
     new SubType[A, H :+: T]
   implicit def tailSubtyped[A, H, T <: HList](implicit ev: SubType[A, T]): SubType[A, H :+: T] =
@@ -89,7 +88,6 @@ object SubType {
   * @since 0.1
   */
 object NotSubType {
-  import typequux._
   implicit def nilDoesNotSubtype[A]: NotSubType[A, HNil] = new NotSubType[A, HNil]
   implicit def doesNotSubtype[A, H, T <: HList](implicit ev: NotSubType[A, T]): NotSubType[A, H :+: T] =
     new NotSubType[A, H :+: T]

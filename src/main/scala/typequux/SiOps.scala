@@ -15,8 +15,8 @@
   */
 package typequux
 
-import Dense.DenseRep
 import constraint._
+import Dense.DenseRep
 
 class SiOps[S](val s: S) {
 

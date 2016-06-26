@@ -23,6 +23,7 @@ import Dense._
 import language.experimental.macros
 import reflect.macros.whitebox.Context
 import macrocompat.bundle
+import HList.Zipper._
 
 /** Heterogenous Lists, i.e. linear sequences in which each element can have a different type
   * 
@@ -119,7 +120,6 @@ object HList {
   class LazyZipper[PHL <: HList, FHL <: HList](implicit val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
                                                val tr1: DownTransformConstraint[PHL, FHL, Stream],
                                                val ex: ForeachConstraint[PHL, Stream[_]]) {
-    import Zipper._
 
     def apply[T](f: FHL => T, arg: PHL): Stream[T] = {
       val isEmpty = arg.exists((t: Stream[_]) => t.isEmpty)
@@ -163,7 +163,6 @@ object HList {
   sealed trait PIndexer[N, HL, Before, At, After] extends Indexer[HL, Before, At, After]
 
   object PIndexer {
-    import Dense._
 
     implicit def toPIndexer0[H, TL <: HList]: PIndexer[_0, H :+: TL, HNil, H, TL] =
       new PIndexer[_0, H :+: TL, HNil, H, TL] {

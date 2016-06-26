@@ -15,6 +15,8 @@
   */
 package typequux
 
+import Bool._
+import Dense._
 import language.higherKinds
 import typequux._
 
@@ -37,8 +39,6 @@ sealed trait DenseSet {
   * @since 0.1
   */
 object DenseSet {
-  import Bool._
-  import Dense._
 
   /** Empty set, base case for constructing all dense sets
     *
