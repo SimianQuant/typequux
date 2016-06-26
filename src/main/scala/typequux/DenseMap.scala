@@ -76,7 +76,7 @@ object DenseMap {
         NonEmptyDenseMap[KT, VT, L#Remove[K], R], L#Union[R], NonEmptyDenseMap[KT, VT, L, R#Remove[K]], DenseMap]
     override type Get[K <: Dense] = K#Compare[KT]#Match[L#Get[K], VT, R#Get[K], Any]
     override type Union[X <: DenseMap] = L#Union[R]#Union[X]#Add[KT, VT]
-    override type Keyset = NonEmptyDenseSet[KT, L#Keyset, R#Keyset]
+    override type Keyset = DenseSet.NonEmptyDenseSet[KT, L#Keyset, R#Keyset]
     override type Size = _1 + L#Size + R#Size
   }
 

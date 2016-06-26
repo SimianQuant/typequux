@@ -26,6 +26,7 @@ package object typequux {
   type DNil = Dense.DNil.type
 
   type EmptyDenseMap = DenseMap.EmptyDenseMap.type
+  type EmptyDenseSet = DenseSet.EmptyDenseSet.type
 
   type :+:[H, T <: HList] = HCons[H, T]
 

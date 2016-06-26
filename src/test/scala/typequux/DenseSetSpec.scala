@@ -15,11 +15,13 @@
   */
 package typequux
 
+import Dense._
+import DenseSet._
+import typequux._
+
 class DenseSetSpec extends BaseSpec {
 
-  import Dense._
-  import DenseSet._
-
+  
   /********************* Unit Tests **************************/
   type A = EmptyDenseSet
   type B = EmptyDenseSet
