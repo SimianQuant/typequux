@@ -19,8 +19,10 @@ import language.higherKinds
 import Nat._
 import typequux._
 
-/**
-  * Peano natural numbers
+/** Peano natural numbers
+  *
+  * @author Harshad Deo
+  * @since 0.1
   */
 sealed trait Nat {
   type Match [NonZero[N <: Nat] <: Up, IfZero <: Up, Up] <: Up
@@ -29,6 +31,34 @@ sealed trait Nat {
   type FoldL [Init <: Type, Type, F <: Fold[Nat, Type]] <: Type
 }
 
+/** Contains implementation traits for [[Nat]] and typeconstructor aliases that make usage more pleasant. 
+  * 
+  * 1. Additive commutativity: <code> +[A, B] =:= +[B, A]  </code> 
+  *
+  * 2. Additive associativity: <code> +[A, +[B, C]] =:= +[+[A, B], C] </code> 
+  *
+  * 3. Additive identity: <code> +[A, _0] =:= A =:= +[_0, A] </code> 
+  *
+  * 4. Multiplicative commutativity: <code> *[A, B] =:= *[B, A] </code> 
+  *
+  * 5. Multiplicative associativity: <code> *[A, *[B, C]] =:= *[*[A, B], C] </code> 
+  *
+  * 6. Multiplicative identity: <code> *[A, _1] =:= A =:= *[_1, A] </code> 
+  *
+  * 7. Distributivity: <code> *[A, +[B, C]] =:= +[*[A, B], *[A, C]] </code> 
+  *
+  * 8. Zero exponent: <code> ^[A, _0] =:= _1 </code> 
+  *
+  * 9. One exponent: <code> ^[_1, A] =:= _1 </code> 
+  *
+  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code> 
+  *
+  * 11. Total Order 
+  *
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object Nat {
 
   /** Typeclass for typelevel fold
@@ -41,7 +71,7 @@ object Nat {
     def apply[N <: Elem, Acc <: Value](n: N, acc: Acc): Apply[N, Acc]
   }
 
-  trait Nat0 extends Nat {
+  object Nat0 extends Nat {
     override type Match[NonZero[N <: Nat] <: Up, IfZero <: Up, Up] = IfZero
     override type Compare[N <: Nat] = N#Match[Nat.ConstLt, EQ, Comparison]
     override type FoldR[Init <: Type, Type, F <: Fold[Nat, Type]] = Init
@@ -107,8 +137,22 @@ object Nat {
   def toInt[N <: Nat](implicit ev: NatRep[N]): Int = ev.v
 }
 
+/** Marker trait for typelevel subtraction of [[Nat]]
+  *
+  * @tparam M Minuend
+  * @tparam S Subtrahend
+  * @tparam D Difference
+  * 
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait NatDiff[M <: Nat, S <: Nat, D <: Nat]
 
+/** Contains implicit definitions to build a [[NatDiff]] marker
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object NatDiff {
 
   implicit def natDiff0[M <: Nat]: NatDiff[M, Nat0, M] = new NatDiff[M, Nat0, M] {}

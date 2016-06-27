@@ -23,6 +23,7 @@ package object typequux {
   type EQ = Comparison.EQ.type
   type GT = Comparison.GT.type
 
+  type Nat0 = Nat.Nat0.type
   type DNil = Dense.DNil.type
 
   type EmptyDenseMap = DenseMap.EmptyDenseMap.type

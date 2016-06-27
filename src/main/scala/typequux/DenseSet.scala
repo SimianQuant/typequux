@@ -20,7 +20,7 @@ import Dense._
 import language.higherKinds
 import typequux._
 
-/** Set of dense numbers implemented as a binary tree
+/** Typelevel set of [[Dense]] numbers, implemented as a binary tree
   *
   * @author Harshad Deo
   * @since 0.1
@@ -33,7 +33,7 @@ sealed trait DenseSet {
   type Size <: Dense
 }
 
-/** Companion object for [[DenseSet]]. Contains aliases for the type constructors that make usage more pleasant
+/** Contains implementation traits for [[DenseSet]] and typeconstructor aliases that make usage more pleasant. 
   *
   * @author Harshad Deo
   * @since 0.1

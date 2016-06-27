@@ -17,35 +17,47 @@ package typequux
 
 import typequux._
 
-/** Expresses that a type a member of the supplied set
+/** Marker that type A is one of the types of the supplied [[HList]] type
+  *
+  * @tparam A Type under consideration
+  * @tparam HL HList of types to check against
   *
   * @author Harshad Deo
   * @since 0.1
   */
 final class Contained[A, HL <: HList]
 
-/** Expresses that a type is not a member of the supplied set
+/** Marker that type A is not one of the types of the supplied [[HList]] type
+  *
+  * @tparam A Type under consideration
+  * @tparam HL HList of types to check against
   * 
   * @author Harshad Deo
   * @since 0.1
   */
 final class NotContained[A, HL <: HList]
 
-/** Expresses that a type is a subtype of the supplied set
+/** Marker that type A is a subtype of one of the types of the supplied [[HList]] type
+  * 
+  * @tparam A Type under consideration
+  * @tparam HL HList of types to check against
   * 
   * @author Harshad Deo
   * @since 0.1
   */
 final class SubType[A, HL <: HList]
 
-/** Expresses that a type is not a subtype of the supplied set
+/** Marker that type A is not a subtype of the types of the supplied [[HList]] type
+  *
+  * @tparam A Type under consideration
+  * @tparam HL HList of types to check against
   *
   * @author Harshad Deo
   * @since 0.1
   */
 final class NotSubType[A, HL <: HList]
 
-/** Implicits to generate a contained marker 
+/** Contains implicit definitions to build a [[Contained]] marker
   * 
   * @author Harshad Deo
   * @since 0.1
@@ -57,7 +69,7 @@ object Contained {
     new Contained[A, H :+: T]
 }
 
-/** Implicits to generate a not-contained marker 
+/** Contains implicit definitions to build a [[NotContained]] marker
   * 
   * @author Harshad Deo
   * @since 0.1
@@ -70,7 +82,7 @@ object NotContained {
       implicit ev0: A =:= H, ev1: NotContained[A, T]): NotContained[A, H :+: T] = new NotContained[A, H :+: T]
 }
 
-/** Implicits to generate a subtype marker 
+/** Containt implicit definitions to build a [[SubType]] marker
   *
   * @author Harshad Deo
   * @since 0.1
@@ -82,7 +94,7 @@ object SubType {
     new SubType[A, H :+: T]
 }
 
-/** Implicits to generate a not-subtype marker 
+/** Containt implicit definitions to build a [[NotSubType]] marker
   *
   * @author Harshad Deo
   * @since 0.1

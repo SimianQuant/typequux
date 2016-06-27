@@ -30,48 +30,47 @@ sealed trait Bool {
   type If [T <: Up, F <: Up, Up] <: Up
 }
 
-/**   Implements type constructors for common operations on type level booleans and a method to obtain the value level
-  * representation of typelevel booleans.
+/** Contains implementation for [[Bool]] and typeconstructor aliases that make usage more pleasant
   *
   * The operations can be shown to satisfy:
   *
-  * 1. Associativity of Or: ||[A, B || C] =:= ||[A || B, C]
+  * 1. Associativity of Or: <code> ||[A, B || C] =:= ||[A || B, C] </code>
   *
-  * 2. Associativity of And: &&[A, B && C] =:= &&[A && B, C]
+  * 2. Associativity of And: <code> &&[A, B && C] =:= &&[A && B, C] </code>
   *
-  * 3. Commutativity of Or: ||[A, B] =:= ||[B, A]
+  * 3. Commutativity of Or: <code> ||[A, B] =:= ||[B, A] </code>
   *
-  * 4. Commutativity of And: &&[A, B] =:= &&[B, A]
+  * 4. Commutativity of And: <code> &&[A, B] =:= &&[B, A] </code>
   *
-  * 5. Distributivity of Or over And: ||[A, B && C] =:= &&[A || B, A || C]
+  * 5. Distributivity of Or over And: <code> ||[A, B && C] =:= &&[A || B, A || C] </code>
   *
-  * 6. Distributivity of And over Or: &&[A, B || C] =:= ||[A && B, A && C]
+  * 6. Distributivity of And over Or:<code>  &&[A, B || C] =:= ||[A && B, A && C] </code>
   *
-  * 7. Identity for Or: ||[A, False] =:= A
+  * 7. Identity for Or: <code> ||[A, False] =:= A </code>
   *
-  * 8. Identity for And: &&[A, True] =:= A
+  * 8. Identity for And: <code> &&[A, True] =:= A </code>
   *
-  * 9. Annhilator for Or: ||[A, True] =:= True
+  * 9. Annhilator for Or: <code> ||[A, True] =:= True </code>
   *
-  * 10. Annhilator for And: &&[A, False] =:= False
+  * 10. Annhilator for And:<code>  &&[A, False] =:= False </code>
   *
-  * 11. Idempotence of Or: ||[A, A] =:= A
+  * 11. Idempotence of Or:<code>  ||[A, A] =:= A </code>
   *
-  * 12. Idempotence of And: &&[A, A] =:= A
+  * 12. Idempotence of And: <code> &&[A, A] =:= A </code>
   *
-  * 13. Absorption 1: &&[A, A || B] =:= A
+  * 13. Absorption 1:<code>  &&[A, A || B] =:= A </code>
   *
-  * 14. Absorbtion 2: ||[A, A && B] =:= A
+  * 14. Absorbtion 2: <code> ||[A, A && B] =:= A </code>
   *
-  * 15. Complementation 1: &&[A, Not[A]] =:= False
+  * 15. Complementation 1: <code> &&[A, Not[A]] =:= False </code>
   *
-  * 16. Complementation 2: ||[A, Not[A]] =:= True
+  * 16. Complementation 2: <code> ||[A, Not[A]] =:= True </code>
   *
-  * 17. Double Negation: Not[Not[A]] =:= A
+  * 17. Double Negation:<code>  Not[Not[A]] =:= A </code>
   *
-  * 18. De Morgan 1: &&[Not[A], Not[B]] =:= Not[A || B]
+  * 18. De Morgan 1: <code> &&[Not[A], Not[B]] =:= Not[A || B] </code>
   *
-  * 19. De Morgan 2: ||[Not[A], Not[B]] =:= Not[A && B]
+  * 19. De Morgan 2: <code> ||[Not[A], Not[B]] =:= Not[A && B] </code>
   * 
   * @author Harshad Deo
   * @since 0.1

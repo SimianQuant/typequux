@@ -55,6 +55,15 @@ scalacOptions in (Compile,doc) ++= Seq(
   "-P:linter:disable:UnusedParameter"
 )
 
+scalacOptions in (Compile, doc) <++= baseDirectory.map {
+  (bd: File) => Seq[String](
+    "-sourcepath", 
+    bd.getAbsolutePath, 
+    "-doc-source-url", 
+    "https://github.com/harshad-deo/typequux/tree/master€{FILE_PATH}.scala"
+    )
+  }
+
 initialCommands := """
 class Witness[T](val x: T)
 object Witness{
@@ -64,7 +73,3 @@ import typequux._
 """
 
 addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.14")
-
-import TodoListPlugin._
-compileWithTodolistSettings
-testWithTodolistSettings

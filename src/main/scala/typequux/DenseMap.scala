@@ -19,7 +19,7 @@ import Dense._
 import language.higherKinds
 import typequux._
 
-/** Typelevel map in which the keys are dense numbers. Implemented a binary tree. 
+/** Typelevel map in which the keys are [[Dense]] numbers. Implemented a binary tree. 
   *
   * @author Harshad Deo
   * @since 0.1
@@ -34,7 +34,7 @@ sealed trait DenseMap {
   type Size <: Dense
 }
 
-/** Companion object for [[DenseMap]]. Contains aliases for the type constructors which makes usage more pleasant 
+/** Contains implementation traits for [[DenseMap]] and typeconstructor aliases that make usage more pleasant. 
   *
   * @author Harshad Deo
   * @since 0.1

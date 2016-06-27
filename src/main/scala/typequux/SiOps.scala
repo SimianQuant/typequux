@@ -18,6 +18,13 @@ package typequux
 import constraint._
 import Dense.DenseRep
 
+/** Provides scala collection like operations on string indexed collections like [[Record]] and [[StringIndexedCollection]]
+  *
+  * @tparam S Type on which the operations are defined
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 class SiOps[S](val s: S) {
 
   def apply[T](lh: LiteralHash[String])(implicit ev: AtConstraint[lh.ValueHash, S, T]): T = ev(s)

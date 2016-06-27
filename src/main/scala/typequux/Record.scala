@@ -23,8 +23,20 @@ import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
 
+/** String indexed collection in which the elements can have different types. 
+  * Uses [[HList]] and [[DenseMap]] as backing datastructures
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 sealed trait Record
 
+/** Contains implementations of [[Record]] and implicit definitions for building typeclasses necessary 
+  * for the operations on records
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object Record {
 
   final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](

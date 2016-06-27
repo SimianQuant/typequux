@@ -21,12 +21,16 @@ import language.experimental.macros
 import language.implicitConversions
 import macrocompat.bundle
 import reflect.macros.whitebox
-import typequux._
 
-/**
-  * Typelevel representation of a compile time constant literal
-  * The type hash encoded the type of the literal and the value encoded the value of the literal
-  * therefore, even if a char and string have the same value hash, they will have different literal hashes
+/** Typelevel representation of a compile time constant literal. 
+  *
+  * The type hash encoded the type of the literal and the value encoded the value of the literal therefore, 
+  * even if a char and string have the same value hash, they will have different literal hashes.
+  *
+  * @tparam X Type of the literal that has been hashed
+  *
+  * @author Harshad Deo
+  * @since 0.1
   */
 trait LiteralHash[X] {
   type TypeHash <: Dense
@@ -34,6 +38,11 @@ trait LiteralHash[X] {
   val value: X
 }
 
+/** Contains implicit conversions to convert literals to their corresponding LiteralHash
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object LiteralHash {
 
   type UnitTypeHash = _1

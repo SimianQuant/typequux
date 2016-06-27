@@ -19,8 +19,7 @@ import Dense._
 import language.higherKinds
 import typequux._
 
-/**
-  * Typelevel representation of dense numbers, stored as a heterogenous list of digits
+/** Typelevel representation of dense numbers, stored as a list of [[Dense.Digit]]
   *
   * @author Harshad Deo
   * @since 0.1
@@ -51,36 +50,37 @@ sealed trait Dense {
   protected type CompareC [B <: Dense, Carry <: Comparison] <: Comparison
 }
 
-/** Container for digits of a dense number. Implements common operations on typelevel dense numbers and a method to 
-  * obtain a valuelevel representation of typelevel dense numbers.
+/** Contains implementation for [[Dense]] and typeconstructor aliases that make usage more pleasant
   *
   * The operations can be shown to satisfy:
   *
-  * 1. Additive commutativity: +[A, B] =:= +[B, A] 
+  * 1. Additive commutativity: <code> +[A, B] =:= +[B, A]  </code>
   *
-  * 2. Additive associativity: +[A, +[B, C]] =:= +[+[A, B], C]
+  * 2. Additive associativity: <code> +[A, +[B, C]] =:= +[+[A, B], C] </code>
   *
-  * 3. Additive identity: +[A, _0] =:= A =:= +[_0, A]
+  * 3. Additive identity: <code> +[A, _0] =:= A =:= +[_0, A] </code>
   *
-  * 4. Multiplicative commutativity: *[A, B] =:= *[B, A]
+  * 4. Multiplicative commutativity: <code> *[A, B] =:= *[B, A] </code>
   *
-  * 5. Multiplicative associativity: *[A, *[B, C]] =:= *[*[A, B], C]
+  * 5. Multiplicative associativity: <code> *[A, *[B, C]] =:= *[*[A, B], C] </code>
   *
-  * 6. Multiplicative identity: *[A, _1] =:= A =:= *[_1, A]
+  * 6. Multiplicative identity: <code> *[A, _1] =:= A =:= *[_1, A] </code>
   *
-  * 7. Distributivity: *[A, +[B, C]] =:= +[*[A, B], *[A, C]]
+  * 7. Distributivity: <code> *[A, +[B, C]] =:= +[*[A, B], *[A, C]] </code>
   *
-  * 8. Zero exponent: ^[A, _0] =:= _1
+  * 8. Zero exponent: <code> ^[A, _0] =:= _1 </code>
   *
-  * 9. One exponent: ^[A, _1] =:= A
+  * 9. One exponent: <code> ^[_1, A] =:= _1 </code>
   *
-  * 10. Exponent combination 1: *[^[A, B], ^[A, C]] =:= ^[A, *[B, C]]
+  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code> yes
   *
-  * 11. Exponent combination 2: ^[^[A, B], C] =:= ^[A, *[B, C]]
+  * 11. Exponent combination 1: <code> *[^[A, B], ^[A, C]] =:= ^[A, *[B, C]] </code>
   *
-  * 12. Exponent combination 3: ^[*[A, B], C] =:= *[^[A, C], ^[B, C]]
+  * 12. Exponent combination 2: <code> ^[^[A, B], C] =:= ^[A, *[B, C]] </code>
   *
-  * 13. Total Order
+  * 13. Exponent combination 3: <code> ^[*[A, B], C] =:= *[^[A, C], ^[B, C]] </code>
+  *
+  * 14. Total Order
   *
   * @author Harshad Deo
   * @since 0.1
@@ -237,16 +237,20 @@ object Dense {
   def toLong[D <: Dense](implicit dr: DenseRep[D]): Long = dr.v
 }
 
-/** Typelevel subtraction of dense numbers.
+/** Marker trait for typelevel subtraction of [[Dense]] numbers.
   *
   * Takes linear time (compared to log time for addition), therefore its usage should be limited
+  *
+  * @tparam M Minuend
+  * @tparam S Subtrahend
+  * @tparam D Difference
   * 
   * @author Harshad Deo
   * @since 0.1
   */
 sealed trait DenseDiff[M, S, D]
 
-/** Contains implicit definitions to implement typelevel subtraction
+/** Contains implicit definitions to build a [[DenseDiff]] marker
   *
   * @author Harshad Deo
   * @since 0.1

@@ -25,16 +25,15 @@ import reflect.macros.whitebox.Context
 import typequux._
 import constraint._
 
-/** Heterogenous Lists, i.e. linear sequences in which each element can have a different type
+/** Sequentially indexed arbitrary arity type in which each element can be of a different type
   * 
   * @author Harshad Deo
   * @since 0.1
   */
 sealed trait HList
 
-/** Companion object for hlist. 
-  *
-  * Contains implicit conversions to ops objects and typeclass constructors for the constraints
+/** Contains implementations for [[HList]] and implicit definitions to build the constraint typeclasses
+  * necessary for operations.
   *
   * @author Harshad Deo
   * @since 0.1
@@ -227,7 +226,7 @@ object HList {
     def splitAt: (Before, At :+: After) = (before, at :+: after)
   }
 
-  /** Converts an HList to its ops object
+  /** Converts an [[HList]] to its ops object
     *
     * @group Ops Converter
     * @author Harshad Deo
@@ -1187,8 +1186,9 @@ object HList {
   }
 }
 
-/**
-  * Common operations on hlists
+/** Common operations on [[HList]]
+  *
+  * @tparam B Type of the HList on which the operations are defined
   *
   * @author Harshad Deo
   * @since 0.1

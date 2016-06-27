@@ -17,8 +17,11 @@ package typequux
 
 import constraint._
 
-/** Provided arbitrary arity zips for supported types
+/** Provided arbitrary arity zips for sequentially indexed arbitrary arity types, like [[HList]] or Tuples
   * 
+  * @tparam Z Type on which operations are defined
+  * @tparam F Down-converted type of Z. For more, see [[constraint.DownTransformConstraint]]
+  *
   * @author Harshad Deo
   * @since 0.1
   */

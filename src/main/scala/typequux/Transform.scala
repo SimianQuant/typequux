@@ -20,6 +20,14 @@ import typequux._
 
 // scalastyle:off class.names
 
+/** Proxy for natural transformations between contexts
+  *
+  * @tparam F Source Context
+  * @tparam G Destination Context
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 trait ~>[-F[_], +G[_]] {
   def apply[A](a: F[A]): G[A]
   def andThen[H[_]](f: G ~> H): F ~> H = new (F ~> H) {
@@ -32,11 +40,12 @@ trait ~>[-F[_], +G[_]] {
 
 // scalastyle:off object.name
 
+/** Contains implicit conversions and values that provide several utility methods
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
 object ~> {
-
-  trait Const[A] {
-    type Apply[B] = A
-  }
 
   implicit def toFunctionOne[T, F[_], G[_]](f: F ~> G): F[T] => G[T] = x => f(x)
 

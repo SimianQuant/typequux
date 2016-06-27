@@ -22,6 +22,12 @@ import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
 
+/** Sequantially indexed collection of fixed size in which all elements are of the same type. 
+* Uses [[scala.collection.immutable.Vector]] as a backing datastructure
+*
+* @author Harshad Deo
+* @since 0.1
+*/
 final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
 
   def ++[N1 <: Dense, U >: T](that: SizedVector[N1, U]): SizedVector[N1 + N, U] =
@@ -103,6 +109,11 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   }
 }
 
+/** Implements methods to construct [[SizedVector]] objects
+*
+* @author Harshad Deo
+* @since 0.1
+*/
 object SizedVector {
 
   import Dense._

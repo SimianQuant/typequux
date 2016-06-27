@@ -18,7 +18,7 @@ package typequux
 import language.higherKinds
 import typequux._
 
-/** Type representing the result of a comparison
+/** Typelevel encoding of the result of a comparison
   *
   * @author Harshad Deo
   * @since 0.1
@@ -33,7 +33,7 @@ sealed trait Comparison {
   type le = Match[True, True, False, Bool]
 }
 
-/** Implements method to obtain a value level representation of a typelevel comparator 
+/** Contains implementation for [[Comparison]]
   *
   * @author Harshad Deo
   * @since 0.1

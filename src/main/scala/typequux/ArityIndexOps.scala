@@ -20,7 +20,9 @@ import language.higherKinds
 import typequux._
 import constraint._
 
-/** Provides scala collection like operations on objects with an arbitrary arity. 
+/** Provides scala collection like operations on sequantially indexed arbitrary arity types, like [[HList]] and tuple
+  *
+  * @tparam Z Type on which the operations are defined
   *
   * @author Harshad Deo
   * @since 0.1
