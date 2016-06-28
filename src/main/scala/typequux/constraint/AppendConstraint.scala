@@ -25,6 +25,6 @@ package typequux.constraint
   * @author Harshad Deo
   * @since 0.1
   */
-trait AppendConstraint[A, B, R] {
+trait AppendConstraint[-A, -B, +R] {
   def apply(a: A, b: B): R
 }

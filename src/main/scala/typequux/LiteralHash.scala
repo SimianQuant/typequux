@@ -25,7 +25,7 @@ import reflect.macros.whitebox
 /** Typelevel representation of a compile time constant literal. 
   *
   * The type hash encoded the type of the literal and the value encoded the value of the literal therefore, 
-  * even if a char and string have the same value hash, they will have different literal hashes.
+  * even if say, a char and string have the same value hash, they will have different literal hashes.
   *
   * @tparam X Type of the literal that has been hashed
   *
@@ -33,8 +33,26 @@ import reflect.macros.whitebox
   * @since 0.1
   */
 trait LiteralHash[X] {
+
+  /** [[Dense]] number encoding the type
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type TypeHash <: Dense
+
+  /** [[Dense]] number encoding the value
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ValueHash <: Dense
+
+  /** Value encoded
+    * 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   val value: X
 }
 
@@ -45,49 +63,234 @@ trait LiteralHash[X] {
   */
 object LiteralHash {
 
+  /** Type hash for Unit
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type UnitTypeHash = _1
+
+  /** Type hash for Booleans
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type BooleanTypeHash = _2
+
+  /** Type hash for Negative Bytes
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type NegativeByteTypeHash = _3
+
+  /** Type hash for Positive Bytes
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type PositiveByteTypeHash = _4
+
+  /** Type hash for Negative Short
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type NegativeShortTypeHash = _5
+
+  /** Type hash for Positive Short
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type PositiveShortTypeHash = _6
+
+  /** Type hash for Char
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type CharTypeHash = _7
+
+  /** Type hash for Negative Integer
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type NegativeIntegerTypeHash = _8
+
+  /** Type hash for Positive Integer
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type PositiveIntegerTypeHash = _9
+
+  /** Type hash for Negative Long
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type NegativeLongTypeHash = _10
+
+  /** Type hash for Positive Long
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type PositiveLongTypeHash = _11
+
+  /** Type hash for Floats whose integer encoding is negative
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type NegativeEncodedFloatTypeHash = _12
+
+  /** Type hash for Floats whose integer encoding is positive
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type PositiveEncodedFloatTypeHash = _13
+
+  /** Type hash for Doubles whose long encoding is negative
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type NegativeEncodedDoubleTypeHash = _14
+
+  /** Type hash for doubles whose long encoding is positive
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type PositiveEncodedDoubleTypeHash = _15
+
+  /** Type hash for strings
+    *
+    * @group Type Hashes
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type StringTypeHash = _16
 
+  /** Converter for [[scala.Unit]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forUnit(x: Unit): LiteralHash[Unit] = macro LiteralHashBuilderImpl.forUnit
 
+  /** Converter for [[scala.Boolean]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forBoolean(x: Boolean): LiteralHash[Boolean] = macro LiteralHashBuilderImpl.forBoolean
 
+  /** Converter for [[scala.Byte]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forByte(x: Byte): LiteralHash[Byte] = macro LiteralHashBuilderImpl.forByte
 
+  /** Converter for [[scala.Short]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forShort(x: Short): LiteralHash[Short] = macro LiteralHashBuilderImpl.forShort
 
+  /** Converter for [[scala.Char]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forChar(x: Char): LiteralHash[Char] = macro LiteralHashBuilderImpl.forChar
 
+  /** Converter for [[scala.Int]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forInt(x: Int): LiteralHash[Int] = macro LiteralHashBuilderImpl.forInt
 
+  /** Converter for [[scala.Long]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forLong(x: Long): LiteralHash[Long] = macro LiteralHashBuilderImpl.forLong
 
+  /** Converter for [[scala.Float]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forFloat(x: Float): LiteralHash[Float] = macro LiteralHashBuilderImpl.forFloat
 
+  /** Converter for [[scala.Double]]
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forDouble(x: Double): LiteralHash[Double] = macro LiteralHashBuilderImpl.forDouble
 
+  /** Converter for Strings
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def forString(x: String): LiteralHash[String] = macro LiteralHashBuilderImpl.forString
 
-  /**
-    * Convert an int literal to a byte/short
-    * Very dangerous, use with extreme caution
+  /** Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since [[scala.Byte]] and
+    * [[scala.Short]] literals can't be directly written. They are dangerous and should be used with caution. 
+    *
+    * @group Builder
+    * @author Harshad Deo
+    * @since 0.1
     */
   object LiteralHashDownConverter {
+
+    /** Implicit conversion to go from a [[scala.Int]] literal to a LiteralHash[Byte], provided that the literal 
+      * is within the supported range
+      *
+      * @author Harshad Deo
+      * @since 0,1
+      */
     implicit def int2Byte(x: Int): LiteralHash[Byte] = macro LiteralHashBuilderImpl.forInt2Byte
+
+    /** Implicit conversion to go from a [[scala.Int]] literal to a LiteralHash[Short], provided that the literal 
+    is within the supported range
+      */
     implicit def int2Short(x: Int): LiteralHash[Short] = macro LiteralHashBuilderImpl.forInt2Short
   }
 
@@ -96,7 +299,7 @@ object LiteralHash {
     *
     */
   @bundle
-  class LiteralHashBuilderImpl(val c: whitebox.Context) {
+  private[LiteralHash] class LiteralHashBuilderImpl(val c: whitebox.Context) {
     import c.universe._
 
     /**

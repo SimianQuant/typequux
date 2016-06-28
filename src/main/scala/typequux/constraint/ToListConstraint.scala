@@ -37,6 +37,14 @@ trait ToListConstraint[T, R] {
   */
 object ToListConstraint {
 
+  /** Builds [[ToListConstraint]] given types T and R
+  *
+  * @tparam T Type of the collection
+  * @tparam R Element type of the resultant list
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
   implicit def buildToListConstraint[T, R](
       implicit ev0: LubConstraint[T, R], ev1: ListBuilderConstraint[T, R]): ToListConstraint[T, R] =
     new ToListConstraint[T, R] {

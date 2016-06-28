@@ -39,6 +39,15 @@ sealed trait Record
   */
 object Record {
 
+  /** Implementation of a non-empty [[Record]]
+    *
+    * @tparam MP Type of the [[DenseMap]] that stores the indices
+    * @tparam HL Type of the backing [[HList]] that stores the values
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](
       private[typequux] val backing: HL, private[typequux] val keys: List[String])(
       implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
@@ -56,12 +65,26 @@ object Record {
     private[Record] def asMap: Map[String, Any] = this.toMap
   }
 
+  /** Implementation of an empty [[Record]]
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   case object RNil extends Record
 
-  implicit def record2Ops[R <: Record](r: R): SiOps[R] = new SiOps(r)
+  /** Converts a class to a record, by keeping track of all vals, case accessors and getters
+    * 
+    * @tparam T Type to be converted to a record
+    * 
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
 
   @bundle
-  class Class2RecordBuilder(val c: Context) {
+  private[Record] class Class2RecordBuilder(val c: Context) {
     import c.universe._
 
     def class2RecordImpl[T: c.WeakTypeTag](x: Tree): Tree = {
@@ -74,9 +97,26 @@ object Record {
     }
   }
 
-  def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
+  /** Converts a [[Record]] to an [[SiOps]] object
+    *
+    * @tparam R Type of the record to be converted
+    *
+    * @group Ops Converter
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def record2Ops[R <: Record](r: R): SiOps[R] = new SiOps(r)
 
-  implicit def rNilAddConstraint[N <: Dense, U](
+  /** Builds [[constraint.SIAddConstraint]] for empty [[Record]]
+    * 
+    * @tparam N Type index at which to add (i.e. String Value Hash)
+    * @tparam U Type of the object to add
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def rAddConstraintNil[N <: Dense, U](
       implicit ev: ToMapConstraint[NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil], Map[String, Any]])
     : SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] =
     new SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] {
@@ -85,7 +125,19 @@ object Record {
       }
     }
 
-  implicit def rNonEmptyAddConstraint[N <: Dense, MP <: DenseMap, HL <: HList, U, L <: Dense](
+  /** Builds [[constraint.SIAddConstraint]] for non-empty [[Record]]
+    *
+    * @tparam N Type index at which to add (i.e. string value hash)
+    * @tparam MP [[DenseMap]] corresponding to the record
+    * @tparam HL Type of the backing HList of the record
+    * @tparam U Type of the object being added
+    * @tparam L Typelevel length of the record being added to
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def rAddConstraintNonEmpty[N <: Dense, MP <: DenseMap, HL <: HList, U, L <: Dense](
       implicit ev0: LengthConstraint[HL, L],
       ev1: False =:= MP#Contains[N],
       ev2: ToMapConstraint[NonEmptyRecord[MP#Add[N, L], U :+: HL], Map[String, Any]])
@@ -97,7 +149,20 @@ object Record {
       }
     }
 
-  implicit def nonEmptyAtConstraint[MP <: DenseMap, HL <: HList, N <: Dense, L <: Dense, D, A](
+  /** Builds [[constraint.AtConstraint]] for [[Record]]
+    *
+    * @tparam MP [[DenseMap]] corresponding to the record
+    * @tparam HL Type of the backing HList of the record
+    * @tparam N Index at which to get (i.e. String Value Hash)
+    * @tparam L Length of the backing HList
+    * @tparam D Index of the HList corresponding to N
+    * @tparam A Type of the element being fetched
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def rAtConstraint[MP <: DenseMap, HL <: HList, N <: Dense, L <: Dense, D, A](
       implicit ev0: True =:= MP#Contains[N],
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
@@ -107,13 +172,43 @@ object Record {
       override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)
     }
 
+  /** Implements [[constraint.LengthConstraint]] for [[RNil]]
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit object RNilLengthConstraint extends LengthConstraint[RNil, _0]
 
-  implicit def nonEmptyLengthConstraint[MP <: DenseMap, HL <: HList, L <: Dense](
+  /** Builds [[constraint.LengthConstraint]] for [[NonEmptyRecord]]
+    *
+    * @tparam MP [[DenseMap]] corresponding to the record
+    * @tparam HL Type of the backing HList
+    * @tparam L Typelevel length
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def rLengthConstraint[MP <: DenseMap, HL <: HList, L <: Dense](
       implicit ev: LengthConstraint[HL, L]): LengthConstraint[NonEmptyRecord[MP, HL], L] =
     new LengthConstraint[NonEmptyRecord[MP, HL], L] {}
 
-  implicit def nonEmptyRecordUpdatedConstraint[N <: Dense, MP <: DenseMap, HL <: HList, L <: Dense, D, HR <: HList, U](
+  /** Builds [[constraint.UpdatedConstraint]] for [[Record]]
+    *
+    * @tparam N Index to update (i.e. String Value Hash)
+    * @tparam MP [[DenseMap]] corresponding to the record
+    * @tparam HL Type of the backing HList
+    * @tparam L Typelevel length of the backing HList
+    * @tparam D Index of the HList to update
+    * @tparam U Type of the element at the updated position
+    * @tparam HR Type of the backing HList after being updated
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def rUpdatedConstraint[N <: Dense, MP <: DenseMap, HL <: HList, L <: Dense, D, U, HR <: HList](
       implicit ev0: True =:= MP#Contains[N],
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
@@ -128,11 +223,27 @@ object Record {
       }
     }
 
+  /** Implements [[constraint.ToMapConstraint]] for [[RNil]]
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit object RNilToMapConstraint extends ToMapConstraint[RNil, Map[String, Nothing]] {
     override def apply(r: RNil): Map[String, Nothing] = Map.empty[String, Nothing]
   }
 
-  implicit def record2MapBuilder[MP <: DenseMap, HL <: HList, R](
+  /** Builds [[constraint.ToMapConstraint]] for [[NonEmptyRecord]]
+    *
+    * @tparam MP [[DenseMap]] corresponding to the record
+    * @tparam HL Type of the backing HList for the record
+    * @tparam R Least Upper Bound element type of the HList
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def rToMapConstraint[MP <: DenseMap, HL <: HList, R](
       implicit ev: ToListConstraint[HL, R]): ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] =
     new ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] {
       override def apply(r: NonEmptyRecord[MP, HL]) = {

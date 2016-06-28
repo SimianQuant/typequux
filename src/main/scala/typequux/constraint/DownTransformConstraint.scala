@@ -19,7 +19,7 @@ import language.higherKinds
 import typequux._
 import typequux._
 
-/** Typeclass to remove all elementa of an object from their context, for example converting.
+/** Typeclass to remove all elements of an object from their context, for example converting.
   * 
   * List[Int] :+: List[String] :+: HNil to Int :+: String :+: HNil. 
   *

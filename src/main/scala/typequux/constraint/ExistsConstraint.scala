@@ -37,6 +37,14 @@ trait ExistsConstraint[T, C] {
   */
 object ExistsConstraint {
 
+  /** Builds [[ExistsConstraint]] given for T and C
+    *
+    * @tparam T Type of the collection
+    * @tparam C Common type to which all elements of T can be converted
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def buildExistsConstraint[T, C](implicit ev: ForeachConstraint[T, C]): ExistsConstraint[T, C] =
     new ExistsConstraint[T, C] {
       override def apply(t: T, f: C => Boolean) = {

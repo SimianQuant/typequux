@@ -26,27 +26,125 @@ import typequux._
   */
 sealed trait Dense {
 
+  /** Lowest priority bit
+    *
+    * @group Representation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type digit <: Digit
+
+  /** Rest of the bits, stored in reverse order or priority
+    *
+    * @group Representation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type tail <: Dense
 
+  /** Increment the number
+    * 
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Inc <: Dense
+
+  /** Decrement the number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Dec <: Dense
 
+  /** Add to the number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Add [b <: Dense] <: Dense
+
+  /** Multiply with the number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Mult[b <: Dense] = b#Match[Karatsuba[b, DNil], DNil, Dense]
+
+  /** Square the number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Sq <: Dense
+
+  /** Yoda exponent - to the power of the base, raise the exponent (this is the base).
+    * Implemented this way for efficiency
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type YodaExp[b <: Dense] = ExpHelper[b, _1] // to the power of two, raise base
 
+  /** Unsigned left shift
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ShiftL <: Dense
+
+  /** Unsigned right shift
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ShiftR <: Dense
 
+  /** Typeconstructor for querying whether this is zero
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Match [NonZero <: Up, IfZero <: Up, Up] <: Up
+
+  /** Compares with the other dense number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Compare[B <: Dense] = CompareC[B, EQ]
 
+  /** 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   protected type Len <: Dense
 
+  /** 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   protected type Karatsuba [x <: Dense, res <: Dense] <: Dense // Karatsuba/Russian Peasant/Egyptian multiplication
+
+  /** 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   protected type ExpHelper [arg <: Dense, res <: Dense] <: Dense
+
+  /** 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   protected type CompareC [B <: Dense, Carry <: Comparison] <: Comparison
 }
 
@@ -72,7 +170,7 @@ sealed trait Dense {
   *
   * 9. One exponent: <code> ^[_1, A] =:= _1 </code>
   *
-  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code> yes
+  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code> 
   *
   * 11. Exponent combination 1: <code> *[^[A, B], ^[A, C]] =:= ^[A, *[B, C]] </code>
   *
@@ -89,16 +187,30 @@ object Dense {
 
   /** Represents a digit in the dense encoding of a natural number
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
   sealed trait Digit {
+
+    /** Typeconstructor for querying whether the digit is zero
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     type Match [IfOne <: Up, IfZero <: Up, Up] <: Up
+
+    /** Typeconstructor to compare two bits
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     type Compare [D <: Digit] <: Comparison
   }
 
   /** Represents a 0 in the dense encoding of a natural number
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -109,6 +221,7 @@ object Dense {
 
   /** Represents a 1 in the dense encoding of a natural number
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -119,10 +232,14 @@ object Dense {
 
   /** Non-zero dense number. The digit is the least significant bit
     *
+    * @tparam d Lowest priority bit
+    * @tparam T Rest of the bits, in decreasing order of priority
+    * 
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
-  trait DCons[d <: Dense.Digit, T <: Dense] extends Dense {
+  trait DCons[d <: Digit, T <: Dense] extends Dense {
 
     override type digit = d
     override type tail = T
@@ -151,6 +268,7 @@ object Dense {
 
   /** Dense Zero
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -175,48 +293,300 @@ object Dense {
     override protected type Len = _0
   }
 
+  /** Builds a new dense number by consing a bit to an existing dense number. The consed bit is the lowest priority
+    * bit in the resulting number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ::[H <: Digit, T <: Dense] = DCons[H, T]
 
+  /** Alias for adding two dense number
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type +[A <: Dense, B <: Dense] = A#Add[B]
+
+  /** Alias for multiplying two dense numbers
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type *[A <: Dense, B <: Dense] = A#Mult[B]
+
+  /** Alias for raising the first Dense number to the power of the second
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ^[A <: Dense, B <: Dense] = B#YodaExp[A]
 
+  /** Alias for comparing to dense numbers
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Compare[A <: Dense, B <: Dense] = A#Compare[B]
+
+  /** Alias for checking if two dense numbers are equal
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ===[A <: Dense, B <: Dense] = A#Compare[B]#eq
+
+  /** Alias for checking if the first dense number is less than the second
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type <[A <: Dense, B <: Dense] = A#Compare[B]#lt
+
+  /** Alias for checking whether the first dense number is less than or equal to the second
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type <=[A <: Dense, B <: Dense] = A#Compare[B]#le
+
+  /** Alias for checking whether the first dense number is greater than the second
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type >[A <: Dense, B <: Dense] = A#Compare[B]#gt
+
+  /** Alias for checking whether the first dense number is greater than or equal to the second
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type >=[A <: Dense, B <: Dense] = A#Compare[B]#ge
+
+  /** Alias for squaring a dense number. Makes the code more pleasant to read
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Sq[A <: Dense] = A#Sq
+
+  /** Alias for determing the greatest of two dense numbers
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Max[A <: Dense, B <: Dense] = A#Compare[B]#Match[B, A, A, Dense]
+
+  /** Alias for determining the lease of two dense numbers
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Min[A <: Dense, B <: Dense] = A#Compare[B]#Match[A, A, B, Dense]
 
+  /** Dense 0
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _0 = DNil
+
+  /** Dense 1
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _1 = D1 :: DNil
+
+  /** Dense 2
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _2 = D0 :: D1 :: DNil
+
+  /** Dense 3
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _3 = D1 :: D1 :: DNil
+
+  /** Dense 4
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _4 = D0 :: D0 :: D1 :: DNil
+
+  /** Dense 5
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _5 = D1 :: D0 :: D1 :: DNil
+
+  /** Dense 6
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _6 = D0 :: D1 :: D1 :: DNil
+
+  /** Dense 7
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _7 = D1 :: D1 :: D1 :: DNil
+
+  /** Dense 8
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _8 = D0 :: D0 :: D0 :: D1 :: DNil
+
+  /** Dense 9
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _9 = D1 :: D0 :: D0 :: D1 :: DNil
+
+  /** Dense 10
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _10 = D0 :: D1 :: D0 :: D1 :: DNil
+
+  /** Dense 11
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _11 = D1 :: D1 :: D0 :: D1 :: DNil
+
+  /** Dense 12
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _12 = D0 :: D0 :: D1 :: D1 :: DNil
+
+  /** Dense 13
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _13 = D1 :: D0 :: D1 :: D1 :: DNil
+
+  /** Dense 14
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _14 = D0 :: D1 :: D1 :: D1 :: DNil
+
+  /** Dense 15
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _15 = D1 :: D1 :: D1 :: D1 :: DNil
+
+  /** Dense 16
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _16 = D0 :: D0 :: D0 :: D0 :: D1 :: DNil
+
+  /** Dense 17
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _17 = D1 :: D0 :: D0 :: D0 :: D1 :: DNil
+
+  /** Dense 18
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _18 = D0 :: D1 :: D0 :: D0 :: D1 :: DNil
+
+  /** Dense 19
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _19 = D1 :: D1 :: D0 :: D0 :: D1 :: DNil
+
+  /** Dense 20
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _20 = D0 :: D0 :: D1 :: D0 :: D1 :: DNil
+
+  /** Dense 21
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _21 = D1 :: D0 :: D1 :: D0 :: D1 :: DNil
+
+  /** Dense 22
+    *
+    * @group Number aliases
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type _22 = D0 :: D1 :: D1 :: D0 :: D1 :: DNil
 
   /** Builda a value level representation of a dense type.
     *
+    * @tparam D Type to be converted to a value
+    *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -224,16 +594,42 @@ object Dense {
 
   /** Contains implicit definitions to build the value level representation of a dense type
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
   object DenseRep {
 
+    /** Implements [[DenseRep]] for [[DNil]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit object DNil2Rep extends DenseRep[DNil](0)
+
+    /** Builds [[DenseRep]] for [[DCons]] if the lowest priority bit is 0
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def dCons02Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D0 :: T] = new DenseRep(tr.v << 1)
+
+    /** Builds [[DenseRep]] for [[DCons]] if the lowest priority bit is 1
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def dCons22Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D1 :: T] = new DenseRep((tr.v << 1) | 1)
   }
 
+  /** Builds value level representation of a [[Dense]]
+    *
+    * @tparam D Dense type to be converted to a value
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def toLong[D <: Dense](implicit dr: DenseRep[D]): Long = dr.v
 }
 
@@ -256,7 +652,25 @@ sealed trait DenseDiff[M, S, D]
   * @since 0.1
   */
 object DenseDiff {
+
+  /** Base case for [[DenseDiff]]
+    *
+    * @tparam M Minuend
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def dsr0[M <: Dense]: DenseDiff[M, _0, M] = new DenseDiff[M, _0, M] {}
+
+  /** Induction case for [[DenseDiff]]
+    *
+    * @tparam M Minuend
+    * @tparam S Subtrahend
+    * @tparam DP Difference
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def dsrN[M <: Dense, S <: Dense, DP <: Dense](
       implicit ev: DenseDiff[M#Dec, S#Dec, DP], ev1: True =:= >[S, _0]): DenseDiff[M, S, DP] =
     new DenseDiff[M, S, DP] {}

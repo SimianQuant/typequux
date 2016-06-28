@@ -19,7 +19,7 @@ package typequux.constraint
   * 
   * @tparam H Type of the input object
   * @tparam R1 Type of the first object obtained by unzipping
-  * @tparam R2 type of the second object obtained by unzippint
+  * @tparam R2 type of the second object obtained by unzipping
   *
   * @author Harshad Deo
   * @since 0.1

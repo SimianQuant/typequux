@@ -25,12 +25,55 @@ import typequux._
   * @since 0.1
   */
 sealed trait DenseMap {
+
+  /** Check if the key is present in the map
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Contains [K <: Dense] <: Bool
+
+  /** Add a key and a value to the map. If the key is already present, the value is overridden
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Add [K <: Dense, V] <: DenseMap
+
+  /** Remove a key from the map
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Remove [K <: Dense] <: DenseMap
+
+  /** Get the value corresponding to the key
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Get [K <: Dense]
+
+  /** Union of the two dense maps. If two values share the same key, the value in the resultant map cannot be 
+    * predicted.
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Union [X <: DenseMap] <: DenseMap
+
+  /** The set of keys present in the map
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Keyset <: DenseSet
+
+  /** Typelevel size of the Map
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Size <: Dense
 }
 
@@ -43,6 +86,7 @@ object DenseMap {
 
   /** Empty Map, base case for constructing all maps
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -63,6 +107,7 @@ object DenseMap {
     * @tparam L DenseMap in which all keys are less than KT
     * @tparam R DenseMap in which all keys are greater than KT
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -80,8 +125,35 @@ object DenseMap {
     override type Size = _1 + L#Size + R#Size
   }
 
+  /** Alias to check if a key is present in the map
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Contains[M <: DenseMap, K <: Dense] = M#Contains[K]
+
+  /** Alias to remove a key (and its corresponding value) from the map
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Remove[M <: DenseMap, K <: Dense] = M#Remove[K]
+
+  /** Alias to get the value associated with a key
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Get[M <: DenseMap, K <: Dense] = M#Get[K]
+
+  /** Alias to get the union of two dense maps
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Union[M <: DenseMap, N <: DenseMap] = M#Union[N]
 }

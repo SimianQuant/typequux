@@ -26,10 +26,40 @@ import typequux._
   * @since 0.1
   */
 sealed trait DenseSet {
+
+  /** Checks if the key is present in the set
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Contains [X <: Dense] <: Bool
+
+  /** Adds a key to the set
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Include [X <: Dense] <: DenseSet
+
+  /** Removes a key from the set
+    * 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Remove [X <: Dense] <: DenseSet
+
+  /** Union with the other srt
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Union [X <: DenseSet] <: DenseSet
+
+  /** Size of the set (count of the elements present in it)
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Size <: Dense
 }
 
@@ -42,6 +72,7 @@ object DenseSet {
 
   /** Empty set, base case for constructing all dense sets
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -59,6 +90,7 @@ object DenseSet {
     * @tparam L DenseSet in which all values are less than V
     * @tparam R DenseSet in which all values are greater than V
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -74,9 +106,43 @@ object DenseSet {
     override type Size = _1 + L#Size + R#Size
   }
 
+  /** Alias to check if a key is present in the set
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Contains[A <: DenseSet, X <: Dense] = A#Contains[X]
+
+  /** Alias to add a key to the set
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Include[A <: DenseSet, X <: Dense] = A#Include[X]
+
+  /** Alias to remove a key from the set
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Remove[A <: DenseSet, X <: Dense] = A#Remove[X]
+
+  /** Alias to build the union of two sets
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Union[A <: DenseSet, B <: DenseSet] = A#Union[B]
+
+  /** Typeconstructor to check whether two sets have the same elements
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Eq[A <: DenseSet, B <: DenseSet] = &&[A#Size === B#Size, Union[A, B]#Size === B#Size]
 }

@@ -37,6 +37,14 @@ trait ForallConstraint[T, C] {
   */
 object ForallConstraint {
 
+  /** Builds [[ForallConstraint]] given for T and C
+    *
+    * @tparam T Type of the collection
+    * @tparam C Common type to which all elements of T can be converted
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def buildForallConstraint[T, C](implicit ev: ForeachConstraint[T, C]): ForallConstraint[T, C] =
     new ForallConstraint[T, C] {
       override def apply(t: T, f: C => Boolean) = {

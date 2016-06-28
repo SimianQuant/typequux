@@ -35,6 +35,14 @@ trait CountConstraint[T, C] {
   */
 object CountConstraint {
 
+  /** Builds [[CountConstraint]] given for T and C
+    *
+    * @tparam T Type of the collection
+    * @tparam C Common type to which all elements of T can be converted
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def buildCountConstraint[T, C](implicit ev: ForeachConstraint[T, C]): CountConstraint[T, C] =
     new CountConstraint[T, C] {
       override def apply(t: T, f: C => Boolean) = {

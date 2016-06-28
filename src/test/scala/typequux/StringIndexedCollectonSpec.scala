@@ -57,6 +57,7 @@ class StringIndexedCollectionSpec extends BaseSpec {
     assert(si1.size == 4)
     assert(si2.size == 5)
     assert(si3.size == 4)
+    assert(SINil.size == 0)
   }
 
   it should "convert to maps properly" in {

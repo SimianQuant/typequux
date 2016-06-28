@@ -13,12 +13,8 @@ lazy val compilecheck = taskKey[Unit]("compile and then scalastyle")
 
 compilecheck in Compile := Def.sequential(compile in Compile, (scalastyle in Compile).toTask("")).value
 
-lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
-
-import Defaults._
-
 libraryDependencies ++= Seq(
-  scalaReflect.value,
+  "org.scala-lang" % "scala-reflect" % scalaVersion.value,
   "org.typelevel" %% "macro-compat" % "1.1.1",
   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided",
   compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
@@ -32,7 +28,7 @@ wartremoverErrors ++= {
     OptionPartial, Product, Return, Serializable, TryPartial)
 }
 
-scalacOptions in (Compile,doc) ++= Seq(
+scalacOptions in (Compile) ++= Seq(
   "-deprecation",
   "-unchecked",
   "-explaintypes",
@@ -49,10 +45,13 @@ scalacOptions in (Compile,doc) ++= Seq(
   "-Ywarn-nullary-override",
   "-Ywarn-nullary-unit",
   "-Xfuture",
+  "-P:linter:disable:UnusedParameter"
+)
+
+scalacOptions in (Compile, doc) ++= Seq(
   "-author",
   "-groups", 
-  "-implicits",
-  "-P:linter:disable:UnusedParameter"
+  "-implicits"
 )
 
 scalacOptions in (Compile, doc) <++= baseDirectory.map {

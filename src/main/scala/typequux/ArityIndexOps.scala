@@ -31,6 +31,8 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Length of the collection
     *
+    * @tparam L Typelevel marker of length
+    * 
     * @group Basic
     * @author Harshad Deo
     * @since 0.1
@@ -38,6 +40,8 @@ class ArityIndexOps[Z](z: Z) {
   def length[L <: Dense](implicit ev0: LengthConstraint[Z, L], ev1: DenseRep[L]): Long = ev1.v
 
   /** Reverses the collection
+    *
+    * @tparam R Type of the reverse of the collection
     *
     * @group Basic
     * @author Harshad Deo
@@ -47,6 +51,8 @@ class ArityIndexOps[Z](z: Z) {
 
   /**Element at the index from left
     *
+    * @tparam At Type of the element at the index position
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -54,6 +60,8 @@ class ArityIndexOps[Z](z: Z) {
   def apply[At](i: LiteralHash[Int])(implicit ev: AtConstraint[i.ValueHash, Z, At]): At = ev(z)
 
   /**Element at the index from the right
+    *
+    * @tparam At Type of the element at the index position
     *
     * @group Index Based
     * @author Harshad Deo
@@ -63,6 +71,8 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Drop the first i elements
     *
+    * @tparam R Type of the resultant collection
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -70,6 +80,8 @@ class ArityIndexOps[Z](z: Z) {
   def drop[R](i: LiteralHash[Int])(implicit ev: DropConstraint[i.ValueHash, Z, R]): R = ev(z)
 
   /** Drop the last i elements
+    *
+    * @tparam R Type of the resultant collection
     *
     * @group Index Based
     * @author Harshad Deo
@@ -79,6 +91,8 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Take the first i elements
     *
+    * @tparam R Type of the resultant collection
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -86,6 +100,8 @@ class ArityIndexOps[Z](z: Z) {
   def take[R](i: LiteralHash[Int])(implicit ev: TakeConstraint[i.ValueHash, Z, R]): R = ev(z)
 
   /** Take the last i elements
+    *
+    * @tparam R Type of the resultant collection
     *
     * @group Index Based
     * @author Harshad Deo
@@ -95,6 +111,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Updated the element at index i from the left
     *
+    * @tparam A Type of the new element at the index position
+    * @tparam R Type of the resultant collection
+    * 
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -102,6 +121,9 @@ class ArityIndexOps[Z](z: Z) {
   def updated[A, R](i: LiteralHash[Int], a: A)(implicit ev: UpdatedConstraint[i.ValueHash, Z, A, R]): R = ev(z, a)
 
   /** Update element at index i from the right
+    *
+    * @tparam A Type of the new element at the index position
+    * @tparam R Type of the resultant collection
     *
     * @group Index Based
     * @author Harshad Deo
@@ -112,6 +134,8 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Remove element at index i from the left
     *
+    * @tparam R Type of the resultant collection
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -119,6 +143,8 @@ class ArityIndexOps[Z](z: Z) {
   def remove[R](i: LiteralHash[Int])(implicit ev: RemoveConstraint[i.ValueHash, Z, R]): R = ev(z)
 
   /** Remove element at index i from the right
+    *
+    * @tparam R Type of the resultant collection
     *
     * @group Index Based
     * @author Harshad Deo
@@ -128,6 +154,10 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Map the element at index i from the left
     *
+    * @tparam At Type of the old element at the index position
+    * @tparam T Type of the new element at the index position
+    * @tparam R Type of the resultant collection
+    * 
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -136,6 +166,10 @@ class ArityIndexOps[Z](z: Z) {
       implicit ev: IndexMapConstraint[i.ValueHash, Z, At, T, R]): R = ev(z, f)
 
   /** Map the element at index i from the right
+    *
+    * @tparam At Type of the old element at the index position
+    * @tparam T Type of the new element at the index position
+    * @tparam R Type of the resultant collection
     *
     * @group Index Based
     * @author Harshad Deo
@@ -146,6 +180,10 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Map the element at index i from the left and then "flatten" the result
     *
+    * @tparam At Type of the old element at the index position
+    * @tparam T Type of the new element at the index position
+    * @tparam R Type of the resultant collection
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -155,6 +193,10 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Map the element at index i from the right and then "flatten" the result
     *
+    * @tparam At Type of the old element at the index position
+    * @tparam T Type of the new element at the index position
+    * @tparam R Type of the resultant collection
+
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -164,6 +206,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Insert an element at index i from the left
     *
+    * @tparam T Type of the element to be inserted
+    * @tparam R Type of the resultant collection
+    * 
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -171,6 +216,9 @@ class ArityIndexOps[Z](z: Z) {
   def insert[T, R](i: LiteralHash[Int], t: T)(implicit ev: InsertConstraint[i.ValueHash, Z, T, R]): R = ev(z, t)
 
   /** Insert element at index i from the right
+    *
+    * @tparam T Type of the element to be inserted
+    * @tparam R Type of the resultant collection
     *
     * @group Index Based
     * @author Harshad Deo
@@ -181,6 +229,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Insert element at index i from the left and then "flatten" the result
     *
+    * @tparam T Type of the element to be inserted
+    * @tparam R Type of the resultant collection
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -189,6 +240,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Insert element at index i from the right and then "flatten" the result
     *
+    * @tparam T Type of the element to be inserted
+    * @tparam R Type of the resultant collection
+    * 
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -198,6 +252,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Split at index i from the left
     *
+    * @tparam L Type of the object to the left of the index position
+    * @tparam R Type of the object to the right of the index position
+    * 
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -206,6 +263,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Split at index i from the right
     *
+    * @tparam L Type of the element to the left of the index position
+    * @tparam R Type of the element to the right of the index position
+    * 
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -215,6 +275,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Zip with the elements of another object
     *
+    * @tparam C Type of the collection to be zipped with
+    * @tparam R Type of the resultant collection
+    * 
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -223,6 +286,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Unzip the elements to form two objects
     *
+    * @tparam R1 Type of the first collection obtained by unzipping
+    * @tparam R2 Type of the second collection obtained by unzipping
+    * 
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -231,6 +297,10 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Apply a natural transformation 
     *
+    * @tparam M Source context
+    * @tparam N Destination context
+    * @tparam R Type of the resultant collection
+    * 
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -239,6 +309,9 @@ class ArityIndexOps[Z](z: Z) {
 
   /** Apply a down transformation. For details, see [[constraint.DownTransformConstraint]]
     *
+    * @tparam M Source context
+    * @tparam R Type of the resultant collection
+    * 
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -248,6 +321,9 @@ class ArityIndexOps[Z](z: Z) {
   /** Apply function to the argument. If Z is a HList, In is a HList of functions, if it is a tuple, IN is an tuple
     * of the same arity of functions
     *
+    * @tparam In Type of the input
+    * @tparam R Type of the resultant collection
+    * 
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -255,6 +331,9 @@ class ArityIndexOps[Z](z: Z) {
   def fapply[In, R](in: In)(implicit ev: ApplyConstraint[Z, In, R]): R = ev(z, in)
 
   /** Yoda apply, like fapply except with the order of the arguments reversed
+    *
+    * @tparam F Type of the function
+    * @tparam Out Type of the resultant collection
     *
     * @group Transformation
     * @author Harshad Deo
@@ -265,6 +344,8 @@ class ArityIndexOps[Z](z: Z) {
   /** Apply a function for each element of the object, provided that all can be implicitly converted to 
     * an object of type C
     *
+    * @tparam C Type on which the operation is defined
+    * 
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -274,6 +355,8 @@ class ArityIndexOps[Z](z: Z) {
   /** Check if the predicate holds for at least one element of the object, provided that all can be implicitly
     * converted to an object of type C
     *
+    * @tparam C Type on which the operation is defined
+    * 
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -292,6 +375,8 @@ class ArityIndexOps[Z](z: Z) {
   /** Count the number of elements of the object for which the predicate holds, provided that each element can be 
     * implicitly converted to an object of type C
     *
+    * @tparam C Type on which the operation is defined
+    * 
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -301,6 +386,9 @@ class ArityIndexOps[Z](z: Z) {
   /** Apply a fold-left like operation on all elements of the object, provided that each element can be implicitly 
     * converted to an object of type C
     *
+    * @tparam ZT Type of the zero (and the resultant object)
+    * @tparam C Type on which the operation is defined
+    * 
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -310,6 +398,8 @@ class ArityIndexOps[Z](z: Z) {
   /** Convert the object to a list, with the element type being the least upper bound of the individual types of
     * the elements
     *
+    * @tparam R Element type of the resultant list
+    * 
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1

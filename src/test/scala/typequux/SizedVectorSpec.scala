@@ -85,11 +85,14 @@ class SizedVectorSpec extends BaseSpec {
 
     val c1: SizedVector[_7, Int] = v1 ++ v2
     val c2: SizedVector[_10, String] = v3 ++ v4
+    val c3: SizedVector[_7, Any] = v1 ++ v3
 
     assert(c1.length == 7)
     assert(c2.length == 10)
+    assert(c3.length == 7)
     assert(c1 == SizedVector(1, 2, 3, 99, 3, 77, 54))
     assert(c2 == SizedVector("a", "b", "c", "d", "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"))
+    assert(c3 == SizedVector(1, 2, 3, "a", "b", "c", "d"))
   }
 
   it should "apply properly" in {

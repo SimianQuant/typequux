@@ -24,12 +24,47 @@ import typequux._
   * @since 0.1
   */
 sealed trait Comparison {
+
+  /** Builds the type corresponding to the result of the comparison
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type Match [IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] <: Up
 
+  /** Boolean type representing that the first type was greater than the second
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type gt = Match[False, False, True, Bool]
+
+  /** Boolean type representing that the first type was greater than or equal to the second
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type ge = Match[False, True, True, Bool]
+
+  /** Boolean type representing that the first type was equal to the second
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type eq = Match[False, True, False, Bool]
+
+  /** Boolean type representing that the first type was less than the second
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type lt = Match[True, False, False, Bool]
+
+  /** Boolean type representing that the first type was less than or equal to the second
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type le = Match[True, True, False, Bool]
 }
 
@@ -69,24 +104,48 @@ object Comparison {
 
   /** String representation of a type level comparison result
     *
+    * @tparam C Comparison type to be converted to a value
+    * 
     * @author Harshad Deo
     * @since 0.1
     */
   sealed class ComparisonRep[C <: Comparison](val v: String)
 
-  /** Contains implicits for building a value-level representaton of a type level boolean
+  /** Contains implicits for building a value-level representaton of a type level comparison
     *
     * @author Harshad Deo
     * @since 0.1
     */
   object ComparisonRep {
 
+    /** Implements [[ComparisonRep]] for [[EQ]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit object EqComparisonRep extends ComparisonRep[EQ]("eq")
 
+    /** Implements [[ComparisonRep]] for [[GT]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit object GtComparisonRep extends ComparisonRep[GT]("gt")
 
+    /** Implements [[ComparisonRep]] for [[LT]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit object LtComparisonRep extends ComparisonRep[LT]("lt")
   }
 
+  /** Builds a string representation of the result of the comparison
+    *
+    * @tparam C Comparison type to be converted to a value
+    * 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def show[C <: Comparison](implicit ev: ComparisonRep[C]): String = ev.v
 }

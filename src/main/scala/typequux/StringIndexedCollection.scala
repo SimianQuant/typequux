@@ -38,6 +38,15 @@ sealed trait StringIndexedCollection[+T]
   */
 object StringIndexedCollection {
 
+  /** Implementation of a non-empty [[StringIndexedCollection]], equivalent to a cons cell of a list
+    *
+    * @tparam MP Type of the DenseMap that stores the indices
+    * @tparam T Type of the elements of the collection
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   final class NonEmptySI[MP <: DenseMap, +T] private[typequux](
       private[typequux] val backing: Vector[T], private[typequux] val keys: Vector[String])
       extends StringIndexedCollection[T] {
@@ -56,10 +65,34 @@ object StringIndexedCollection {
     }
   }
 
+  /** Implementation of an empty [[StringIndexedCollection]], equivalent to a Nil
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   object SINil extends StringIndexedCollection[Nothing]
 
+  /** Converts a [[StringIndexedCollection]] to an [[SiOps]] object
+    *
+    * @tparam S Type of the Collection
+    * @tparam T Element type of the collection
+    *
+    * @group Ops Converter
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def toOps[S, T](s: S)(implicit ev: S <:< StringIndexedCollection[T]): SiOps[S] = new SiOps[S](s)
 
+  /** Builds [[constraint.SIAddConstraint]] for an empty [[StringIndexedCollection]]
+    *
+    * @tparam N Type Index at which to add (i.e. String Value Hash)
+    * @tparam U Type of the value to add
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def siNIlAddConstraint[N <: Dense, U]
     : SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] =
     new SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] {
@@ -68,7 +101,19 @@ object StringIndexedCollection {
       }
     }
 
-  implicit def nonEmptySIAddConstraint[N <: Dense, MP <: DenseMap, T, U >: T](implicit ev0: False =:= MP#Contains[N])
+  /** Builds [[constraint.SIAddConstraint]] for non-empty [[StringIndexedCollection]]
+    *
+    * @tparam N Type index at which to add (i.e. String Value Hash)
+    * @tparam MP [[DenseMap]] of the existing collection
+    * @tparam T Type of the existing collection
+    * @tparam U Type of the element to be added
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def buildNonEmptySIAddConstraint[N <: Dense, MP <: DenseMap, T, U >: T](
+      implicit ev0: False =:= MP#Contains[N])
     : SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] =
     new SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] {
       override def apply(s: NonEmptySI[MP, T], u: U, k: String) = {
@@ -76,6 +121,16 @@ object StringIndexedCollection {
       }
     }
 
+  /** Builds [[constraint.AtConstraint]] for [[StringIndexedCollection]]
+    *
+    * @tparam MP [[DenseMap]] of the collection
+    * @tparam T Element type of the collection
+    * @tparam N Index at which to find the th element (i.e. String Value Hash)
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def buildSiAtConstraint[MP <: DenseMap, T, N <: Dense](
       implicit ev0: True =:= MP#Contains[N],
       ev1: MP#Get[N] <:< Dense,
@@ -84,12 +139,38 @@ object StringIndexedCollection {
       override def apply(s: NonEmptySI[MP, T]) = s.backing(ev2.v.toInt)
     }
 
-  case object SINilSizeConstraint extends LengthConstraint[SINil, _0]
+  /** Implements [[constraint.LengthConstraint]] for empty [[StringIndexedCollection]]
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit object SINilSizeConstraint extends LengthConstraint[SINil, _0]
 
+  /** Implements [[constraint.LengthConstraint]] for non-empty [[StringIndexedCollection]]
+    *
+    * @tparam MP [[DenseMap]] of the collection
+    * @tparam T Element type of the collection
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def nonEmptySiSizeConstraint[MP <: DenseMap, T]: LengthConstraint[NonEmptySI[MP, T], MP#Size] =
     new LengthConstraint[NonEmptySI[MP, T], MP#Size] {}
 
-  implicit def buildSIUpdatedConstraint[N <: Dense, T, U >: T, MP <: DenseMap](
+  /** Builds [[constraint.UpdatedConstraint]] for [[StringIndexedCollection]]
+    *
+    * @tparam N Index to update (i.e. String Value Hash)
+    * @tparam MP [[DenseMap]] of the collection
+    * @tparam T Element type of the collection
+    * @tparam U Type of the element to be inserted
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def buildSIUpdatedConstraint[N <: Dense, MP <: DenseMap, T, U >: T](
       implicit ev0: True =:= MP#Contains[N],
       ev1: MP#Get[N] <:< Dense,
       ev2: DenseRep[MP#Get[N]]): UpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] =
@@ -98,11 +179,26 @@ object StringIndexedCollection {
         new NonEmptySI[MP, U](s.backing.updated(ev2.v.toInt, u), s.keys)
     }
 
+  /** Implements [[constraint.ToMapConstraint]] for empty [[StringIndexedCollection]]
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit object SINilMapConstraint extends ToMapConstraint[SINil, Map[String, Nothing]] {
     override def apply(s: SINil): Map[String, Nothing] = Map.empty
   }
 
-  implicit def nonEmptyToMapConstraint[MP <: DenseMap, T]: ToMapConstraint[NonEmptySI[MP, T], Map[String, T]] =
+  /** Builds [[constraint.ToMapConstraint]] for non-empty [[StringIndexedCollection]]
+    *
+    * @tparam MP [[DenseMap]] of the collection
+    * @tparam T Element type of the collection
+    *
+    * @group Constraint Constructor
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def buildNonEmptyToMapConstraint[MP <: DenseMap, T]: ToMapConstraint[NonEmptySI[MP, T], Map[String, T]] =
     new ToMapConstraint[NonEmptySI[MP, T], Map[String, T]] {
       override def apply(s: NonEmptySI[MP, T]) = {
         (s.keys zip s.backing).toMap

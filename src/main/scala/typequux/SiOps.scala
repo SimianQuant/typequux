@@ -25,18 +25,55 @@ import Dense.DenseRep
   * @author Harshad Deo
   * @since 0.1
   */
-class SiOps[S](val s: S) {
+class SiOps[S](s: S) {
 
+  /** Element at the index
+    * 
+    * @tparam T Type of the element
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def apply[T](lh: LiteralHash[String])(implicit ev: AtConstraint[lh.ValueHash, S, T]): T = ev(s)
 
+  /** Update the element at the index
+    *
+    * @tparam U Resultant type of the element at the index
+    * @tparam R Resultant type of the collection
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: UpdatedConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u)
 
+  /** Add the element at the given index
+    *
+    * @tparam U Type of the element to be added
+    * @tparam R Type of the resultant collection
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def add[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIAddConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u, lh.value)
 
+  /** Size of the collection
+    * 
+    * @tparam L Typelevel representation of the size of the collection
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def size[L <: Dense](implicit ev0: LengthConstraint[S, L], ev1: DenseRep[L]): Int =
     ev1.v.toInt
 
+  /** Converts the collection to a map
+    *
+    * @tparam R Type of the resultant map
+    * 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   def toMap[R](implicit ev: ToMapConstraint[S, R]): R = ev(s)
 }

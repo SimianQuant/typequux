@@ -17,7 +17,6 @@ package typequux
 
 import collection.generic.CanBuildFrom
 import Dense._
-import HList.Zipper._
 import language.experimental.macros
 import language.{higherKinds, implicitConversions}
 import macrocompat.bundle
@@ -40,8 +39,12 @@ sealed trait HList
   */
 object HList {
 
-  /** Cons cell of a HList, head is an element and tail is another HList
+  /** Cons cell of a HList
     *
+    * @tparam H Type of the head of the HList
+    * @tparam T Type of the tail if the HList
+    * 
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -51,6 +54,7 @@ object HList {
 
   /** Empty HList
     *
+    * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
@@ -58,23 +62,35 @@ object HList {
     override def toString: String = "HNil"
   }
 
-  /**
-    * PHL -> Parent HList
-    * M -> Common super type constructor of the HList
-    * FHL -> Functional HList (against which the zipper functiona have to be given)
-    * THL -> Type of the HList obtained by downconverting M to a traversable
+  /** Arbitrary arity zipper in which the elements share common context that is a subtype of Traversable and 
+    * has strict evaluation semantics (not a [[scala.collection.immutable.Stream]])
+    * 
+    * @tparam PHL Input HList
+    * @tparam M  Common context of the types of the HList
+    * @tparam FHL Downconverted type of PHL. For details, see [[constraint.DownTransformConstraint]]
+    * @tparam THL Result of applying a M ~> Traversable transformation on PHL
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
     */
-  class StrictZipper[PHL <: HList, M[_] <: Traversable[_], FHL <: HList, THL <: HList](
-      implicit val tr0: TransformConstraint[PHL, THL, M, Traversable],
-      val tr1: M ~> Traversable,
-      val tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-      val tr3: DownTransformConstraint[THL, FHL, Traversable],
-      val evn: NotContained[M[_], Stream[_] :+: HNil],
-      val evfa: ForeachConstraint[THL, Traversable[_]]) {
+  class StrictZipper[PHL <: HList, M[_] <: Traversable[_], FHL <: HList, THL <: HList] private (
+      implicit private val tr0: TransformConstraint[PHL, THL, M, Traversable],
+      private val tr1: M ~> Traversable,
+      private val tr2: TransformConstraint[THL, THL, Traversable, Traversable],
+      private val tr3: DownTransformConstraint[THL, FHL, Traversable],
+      private val evn: NotContained[M[_], Stream[_] :+: HNil],
+      private val evfa: ForeachConstraint[THL, Traversable[_]]) {
 
-    /**
-      * T -> Element type of the resulting traversable
-      * V -> Full type of the resulting traversable
+    import Zipper._
+
+    /** Executes the zip
+      *
+      * @tparam T Element type of the resultant collection
+      * @tparam V Full type of the resultant collection
+      *
+      * @author Harshad Deo
+      * @since 0.1
       */
     def apply[T, V](f: FHL => T, arg: PHL)(implicit cbf: CanBuildFrom[M[T], T, V]): V = {
       val bld = cbf()
@@ -94,7 +110,24 @@ object HList {
     }
   }
 
+  /** Contains implicit definitions to build instances of the [[StrictZipper]] typeclass
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   object StrictZipper {
+
+    /** Base case for [[StrictZipper]]
+      *
+      * @tparam M Common context of the elements of the HList
+      * @tparam X Context free type of the head
+      * @tparam Y Context free type of the head of the tail
+      * @tparam THL Result of applying M ~> Traversable to M[X] :+: M[Y] :+: HNil
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def strictZipper2[M[_] <: Traversable[_], X, Y, THL <: HList](
         implicit tr0: TransformConstraint[M[X] :+: M[Y] :+: HNil, THL, M, Traversable],
         tr1: M ~> Traversable,
@@ -104,6 +137,17 @@ object HList {
         evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL] =
       new StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL]
 
+    /** Induction case for [[StrictZipper]]
+      *
+      * @tparam M Common context of the elements of the HList
+      * @tparam X Context free type of the head
+      * @tparam TL Type of the tail of the input HList
+      * @tparam FTL Downconverted type of the tail of the input HList. For details, see [[constraint.DownTransformConstraint]]
+      * @tparam THL Result of applying M ~> Traversable to M[X] :+: TL
+      * 
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def strictZipperN[M[_] <: Traversable[_], X, TL <: HList, FTL <: HList, THL <: HList](
         implicit ev: StrictZipper[TL, M, FTL, _],
         tr0: TransformConstraint[M[X] :+: TL, THL, M, Traversable],
@@ -115,10 +159,29 @@ object HList {
       new StrictZipper[M[X] :+: TL, M, X :+: FTL, THL]
   }
 
-  class LazyZipper[PHL <: HList, FHL <: HList](implicit val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
-                                               val tr1: DownTransformConstraint[PHL, FHL, Stream],
-                                               val ex: ForeachConstraint[PHL, Stream[_]]) {
+  /** Arbitrary arity zipper in which the common context for all the elements is [[scala.collection.immutable.Stream]]
+    *
+    * @tparam PHL Input HList
+    * @tparam FHL Downtransformed type of PHL. For details, see [[constraint.DownTransformConstraint]]
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  class LazyZipper[PHL <: HList, FHL <: HList] private (
+      implicit private val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
+      private val tr1: DownTransformConstraint[PHL, FHL, Stream],
+      private val ex: ForeachConstraint[PHL, Stream[_]]) {
 
+    import Zipper._
+
+    /** Executes the zip
+      * 
+      * @tparam T Element type of the resultant stream
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def apply[T](f: FHL => T, arg: PHL): Stream[T] = {
       val isEmpty = arg.exists((t: Stream[_]) => t.isEmpty)
       if (isEmpty) {
@@ -131,7 +194,22 @@ object HList {
     }
   }
 
+  /** Contains implicit definitions to build instances of the [[LazyZipper]] typeclass
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   object LazyZipper {
+
+    /** Base case for [[LazyZipper]]
+      *
+      * @tparam X Context free type of the head
+      * @tparam Y Context free type of the head of the tail
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def lazyZipper2[X, Y](
         implicit tr0: TransformConstraint[
             Stream[X] :+: Stream[Y] :+: HNil, Stream[X] :+: Stream[Y] :+: HNil, Stream, Stream],
@@ -140,6 +218,15 @@ object HList {
       : LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
       new LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil]
 
+    /** Induction case for [[LazyZipper]]
+      *
+      * @tparam X Context free type of the head
+      * @tparam TL Type of the tail
+      * @tparam FTL Downtransformed type of the tail. For details, see [[constraint.DownTransformConstraint]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def lazyZipperN[X, TL <: HList, FTL <: HList](
         implicit ev: LazyZipper[TL, FTL],
         tr0: TransformConstraint[Stream[X] :+: TL, Stream[X] :+: TL, Stream, Stream],
@@ -148,25 +235,80 @@ object HList {
       new LazyZipper[Stream[X] :+: TL, X :+: FTL]
   }
 
-  object Zipper {
+  /** Utility transformations used in zips
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  private[HList] object Zipper {
     val heads = new (Traversable ~> Id) { def apply[V](s: Traversable[V]): V = s.head }
     val tails = new (Traversable ~> Traversable) { def apply[V](s: Traversable[V]): Traversable[V] = s.tail }
     val streamTails = new (Stream ~> Stream) { def apply[T](s: Stream[T]): Stream[T] = s.tail }
   }
 
+  /** Factorizes a HList into sublists of elemets before, the element at, and the element after, as per some indexation
+    * scheme.
+    *
+    * @tparam HL HList being factorized
+    * @tparam Before Type of the sublist before the index position
+    * @tparam At Type of the element at the index position
+    * @tparam After Type of the sublist after the index position
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   sealed trait Indexer[HL, Before, At, After] {
     def apply(hl: HL): (Before, At, After)
   }
 
+  /** Indexed based on position from the head of the HList. Indices are, by convention, 0-based
+    *
+    * @tparam N TypeIndex at which to Index
+    * @tparam HL Type of the HList being indexed
+    * @tparam Before Type of the sublist before the index position
+    * @tparam At Type of the element at the index position
+    * @tparam After Type of the sublist after the index position
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   sealed trait PIndexer[N, HL, Before, At, After] extends Indexer[HL, Before, At, After]
 
+  /** Implements implicit definitions to build the [[PIndexer]] typeclass
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   object PIndexer {
 
+    /** Base case for [[PIndexer]]
+      *
+      * @tparam H Type of the head of the HList
+      * @tparam TL Type of the tail of the HList
+      * 
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def toPIndexer0[H, TL <: HList]: PIndexer[_0, H :+: TL, HNil, H, TL] =
       new PIndexer[_0, H :+: TL, HNil, H, TL] {
         override def apply(hl: H :+: TL): (HNil, H, TL) = (HNil, hl.head, hl.tail)
       }
 
+    /** Induction case for [[PIndexer]]
+      *
+      * @tparam N Typelevel representation of the index
+      * @tparam H Type of the head of the HList
+      * @tparam TL Type of the tail of the HList
+      * @tparam Before The type of the Before sublist of the factorization of the tail
+      * @tparam At Type of the element at index 0 (obtained from the factorization of the tail)
+      * @tparam After Type of the sublist after index 0 (obtained from the factorization of the tail)
+      * 
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def toPIndexerN[N <: Dense, H, TL <: HList, Before <: HList, At, After <: HList](
         implicit ev0: >[N, _0] =:= True,
         ev1: PIndexer[N#Dec, TL, Before, At, After]): PIndexer[N, H :+: TL, H :+: Before, At, After] =
@@ -178,14 +320,52 @@ object HList {
       }
   }
 
-  trait TIndexer[HL <: HList, Before <: HList, At, After <: HList] extends Indexer[HL, Before, At, After]
+  /** Index based on type. Requesters should constrain the At type. If multiple elements have the same type
+    * as the constraint, the one furthest from the head will be chosen. 
+    *
+    * @tparam HL HList being indexed
+    * @tparam Before Type of the sublist before the index
+    * @tparam At Type of the index constraint
+    * @tparam After Type of the sublist after the index
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  sealed trait TIndexer[HL <: HList, Before <: HList, At, After <: HList] extends Indexer[HL, Before, At, After]
 
+  /** Implements implicit definitions to build the [[TIndexer]] typeclass
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   object TIndexer {
+
+    /** Base case for [[TIndexer]]
+      *
+      * @tparam H Head of the HList (and the indexation constraint)
+      * @tparam TL Type of the tail of the HList
+      * 
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def toTIndexer0[H, TL <: HList](implicit ev: NotContained[H, TL]): TIndexer[H :+: TL, HNil, H, TL] =
       new TIndexer[H :+: TL, HNil, H, TL] {
         override def apply(hl: H :+: TL) = (HNil, hl.head, hl.tail)
       }
 
+    /** Induction case for [[TIndexer]]
+      *
+      * @tparam H Head of the HList
+      * @tparam TL Tail of the HList
+      * @tparam Before The type of the Before sublist of the factorization of the tail
+      * @tparam At Constraint
+      * @tparam After Type of the sublist after the constraint
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def toTIndexerN[H, TL <: HList, Before <: HList, At, After <: HList](
         implicit ev: TIndexer[TL, Before, At, After]): TIndexer[H :+: TL, H :+: Before, At, After] =
       new TIndexer[H :+: TL, H :+: Before, At, After] {
@@ -196,38 +376,115 @@ object HList {
       }
   }
 
+  /** Scala collection like operations on HLists given an [[Indexer]]
+    *
+    * @tparam HL Type of the HList
+    * @tparam Before Type of the sublist before the index
+    * @tparam At Type of element at the index
+    * @tparam After Type of the sublist after the index
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.1
+    */
   class IndexedOps[HL <: HList, Before <: HList, At, After <: HList](hl: HL, ind: Indexer[HL, Before, At, After]) {
 
     val (before, at, after) = ind(hl)
 
+    /** Drop the sublist before the index
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def drop: At :+: After = at :+: after
 
+    /** Keep the sublist before the index
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def take: Before = before
 
+    /** Update the element at the index
+      *
+      * @tparam A Type of the new element
+      * @tparam R Type of the resultant HList
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def updated[A, R <: HList](a: A)(implicit ev: AppendConstraint[Before, A :+: After, R]): R =
       before :++: (a :+: after)
 
+    /** Remove the element at the index
+      *
+      * @tparam R Type of the resultant HList
+      * 
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def remove[R <: HList](implicit ev: AppendConstraint[Before, After, R]): R = before :++: after
 
+    /** Map the element at the index
+      *
+      * @tparam T Type of the result of the mapping
+      * @tparam R Type of the resultant HList
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def map[T, R <: HList](f: At => T)(implicit ev: AppendConstraint[Before, T :+: After, R]): R =
       before :++: (f(at) :+: after)
 
+    /** Map the element at the index and then "flatten" the result
+      *
+      * @tparam B Result of the map
+      * @tparam R0 Result of appending B and After
+      * @tparam R1 Result of the flatmap operation
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def flatMap[B <: HList, R0 <: HList, R1 <: HList](f: At => B)(
         implicit ev0: AppendConstraint[B, After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
       before :++: f(at) :++: after
 
+    /** Insert a new element at the index
+      *
+      * @tparam C Type of the element to be inserted
+      * @tparam R Type of the resultant HList
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def insert[C, R <: HList](c: C)(implicit ev: AppendConstraint[Before, C :+: At :+: After, R]): R =
       before :++: (c :+: at :+: after)
 
+    /** Insert an HList at the index
+      *
+      * @tparam B Type of the HList to be inserted
+      * @tparam R0 Type of the result of appending B and <code> At :+: After </code>
+      * @tparam R1 Type of the resultant HList
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def insertM[B <: HList, R0 <: HList, R1 <: HList](b: B)(
         implicit ev0: AppendConstraint[B, At :+: After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
       before :++: b :++: (at :+: after)
 
+    /** Partition the HList at the index
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     def splitAt: (Before, At :+: After) = (before, at :+: after)
   }
 
   /** Converts an [[HList]] to its ops object
     *
+    * @tparam B Type of the HList being converted
+    * 
     * @group Ops Converter
     * @author Harshad Deo
     * @since 0.1
@@ -236,6 +493,9 @@ object HList {
 
   /** Converts an HList to an arity zipped ops object
     * 
+    * @tparam B Type of the HList being converted
+    * @tparam F Downtransformed type of B. For details, see [[constraint.DownTransformConstraint]]
+    *
     * @group Ops Converter
     * @author Harshad Deo
     * @since 0.1
@@ -252,15 +512,26 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  class Tip[S, HL <: HList](val hl: HL)
+  class Tip[S, HL <: HList] private[typequux](private val hl: HL)
 
-  /** Companion object for [[Tip]], Contains implicit conversion to convert it to an Indexed Ops object
+  /** Companion object for [[Tip]], Contains implicit conversion to convert it to an [[IndexedOps]] object
     *
     * @group Ops Converter
     * @author Harshad Deo
     * @since 0.1
     */
   object Tip {
+
+    /** Converts a [[Tip]] to an [[IndexedOps]] object
+      *
+      * @tparam S Type to index on
+      * @tparam HL Type of the hList to index
+      * @tparam Before Type of the sublist before the index
+      * @tparam After Type of the sublist after the index
+      * 
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit def tip2IndexedOps[S, HL <: HList, Before <: HList, After <: HList](tip: HList.Tip[S, HL])(
         implicit ev: TIndexer[HL, Before, S, After]): IndexedOps[HL, Before, S, After] = new IndexedOps(tip.hl, ev)
   }
@@ -374,7 +645,7 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hAtRightConstraint[L <: Dense, HL <: HList, N <: Dense, A, D](
+  implicit def hAtRightConstraint[L <: Dense, HL <: HList, N <: Dense, D, A](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, _, A, _]): AtRightConstraint[N, HL, A] = new AtRightConstraint[N, HL, A] {
@@ -579,7 +850,7 @@ object HList {
   /** Builder of [[constraint.IndexFlatMapConstraint]] for HLists
     *
     * @tparam N Type index of the element to flatmap
-    * @tparam HL Type of the hlist on which to apply the operation*
+    * @tparam HL Type of the hlist on which to apply the operation
     * @tparam At Type of the element at index N
     * @tparam T Type of the HList generated by the flatmap operation
     * @tparam R Type of the resultant HList
@@ -882,7 +1153,7 @@ object HList {
     *
     * @tparam N Type index of the element to remove (from the right)
     * @tparam L Length of the HList
-    * @tparam D Type index of ele element to remove (from the left)
+    * @tparam D Type index of element to remove (from the left)
     * @tparam HL Type of the HList on which to apply the operation
     * @tparam Before Type of the sublist before index D
     * @tparam After Type of the sublist after index D
@@ -1119,7 +1390,7 @@ object HList {
     }
 
   @bundle
-  class HListMacroImpl(val c: Context) {
+  private[HList] class HListMacroImpl(val c: Context) {
     import c.universe._
     def toList[HL: c.WeakTypeTag, R]: Tree = {
       val tp = implicitly[c.WeakTypeTag[HL]].tpe
@@ -1195,14 +1466,20 @@ object HList {
   */
 class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
 
-  /**
+  /** Adds an element to the head of a HList
+    * 
+    *@tparam A Type of the element being added
+    *
     * @group Basic
     * @author Harshad Deo
     * @since 0.1
     */
   def :+:[A](a: A): A :+: B = HList.HCons(a, b) // scalastyle:ignore
 
-  /**
+  /** Prepends an hlist to this one
+    *
+    * @tparam A Type of the HList being prepended
+    * @tparam R Type of the resultant HList
     *
     * @group Basic
     * @author Harshad Deo
@@ -1210,7 +1487,9 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     */
   def :++:[A, R](a: A)(implicit ev: AppendConstraint[A, B, R]): R = ev(a, b) // scalastyle:ignore
 
-  /**
+  /** Builds a type-indexer, can be used to factorize a HList by type. For details, see [[HList.TIndexer]]
+    *
+    * @tparam S Type to index against
     * 
     * @group Index Based
     * @author Harshad Deo

@@ -27,6 +27,12 @@ import typequux._
   * @since 0.1
   */
 sealed trait Bool {
+
+  /** Type constructor implementing the choice
+    * 
+    * @author Harshad Deo
+    * @since 0.1
+    */
   type If [T <: Up, F <: Up, Up] <: Up
 }
 
@@ -77,62 +83,82 @@ sealed trait Bool {
   */
 object Bool {
 
-  /**
-    * Type constructor for logical conjunction
+  /** Type constructor for logical conjunction
     *
-    * A && B =:= True if A =:= True and B =:= True
+    * <code> A && B =:= True if A =:= True and B =:= True </code>
     *
-    * A && B =:= False otherwise
+    * <code> A && B =:= False otherwise </code>
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   type &&[A <: Bool, B <: Bool] = A#If[B, False, Bool]
 
-  /**
-    * Type constructor for logical disjunction
+  /** Type constructor for logical disjunction
     *
-    * A || B =:= False if A =:= False and B =:= False
+    * <code> A || B =:= False if A =:= False and B =:= False </code>
     *
-    * A || B =:= True otherwise
+    * <code> A || B =:= True otherwise </code>
+    * 
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   type ||[A <: Bool, B <: Bool] = A#If[True, B, Bool]
 
-  /**
-    * Type constructor for logical negation
+  /** Type constructor for logical negation
     *
-    * Not[True] =:= False
+    * <code> Not[True] =:= False </code>
     *
-    * Not[False] =:= True
+    * <code> Not[False] =:= True </code>
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   type Not[A <: Bool] = A#If[False, True, Bool]
 
-  /**
-    * Type constructor for logical exclusive or
+  /** Type constructor for logical exclusive or
     *
-    * A Xor B =:= True if exactly one of A =:= True or B =:= True
+    * <code> A Xor B =:= True </code> if exactly one of <code> A =:= True or B =:= True </code>
     *
-    * A Xor B =:= False otherwise
+    * <code> A Xor B =:= False </code> otherwise
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   type Xor[A <: Bool, B <: Bool] = A#If[Not[B], B, Bool]
 
-  /**
-    * Typeconstructor for material implication
+  /** Typeconstructor for material implication
     *
-    * If A =:= True, A ->> B =:= B
+    * <code> If A =:= True, A ->> B =:= B </code>
     *
-    * If A =:= False, the value of B is ignored and the constructor returns True
+    * <code> If A =:= False, </code> the value of B is ignored and the constructor returns True
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   type ->>[A <: Bool, B <: Bool] = A#If[B, True, Bool]
 
   /**
     * Type constructor for logical equivalence
     *
-    * A Eqv B =:= True if A =:= B
+    * <code> A Eqv B =:= True if A =:= B </code>
     *
-    * A Eqv B =:= False otherwise
+    * <code> A Eqv B =:= False </false> otherwise 
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   type Eqv[A <: Bool, B <: Bool] = A#If[B, Not[B], Bool]
 
   /** Typelevel representation of a predicate being true
     *
+    * @group Implementations
     * @author Harshad Deo
     * @since 0.1
     */
@@ -142,6 +168,7 @@ object Bool {
 
   /** Typelevel representation of a predicate being False
     *
+    * @group Implementations
     * @author Harshad Deo
     * @since 0.1
     */
@@ -152,22 +179,42 @@ object Bool {
   /**
     * Provides a value for a type level boolean
     *
+    * @group Implementations
+    * @author Harshad Deo
     * @since 0.1
     */
   sealed class BoolRep[+B <: Bool](val v: Boolean)
 
   /** Provides implicits for converting typelevel booleans to value level booleans
     *
+    * @group Implementations
     * @author Harshad Deo
     * @since 0.1
     */
   object BoolRep {
+
+    /** Implements [[BoolRep]] in case of [[True]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit object TrueRep extends BoolRep[True](true)
+
+    /** Implements [[BoolRep]] in case of [[False]]
+      *
+      * @author Harshad Deo
+      * @since 0.1
+      */
     implicit object FalseRep extends BoolRep[False](false)
   }
 
-  /**
-    * Method to convert a typelevel boolean to its value representation
+  /** Method to convert a typelevel boolean to its value representation
+    *
+    * @tparam B Type of the boolean to be converted to a value
+    * 
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.1
     */
   def toBoolean[B <: Bool](implicit ev: BoolRep[B]): Boolean = ev.v
 }

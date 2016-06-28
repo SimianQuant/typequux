@@ -36,6 +36,15 @@ trait FoldLeftConstraint[T, Z, C] {
   */
 object FoldLeftConstraint {
 
+  /** Builds [[FoldLeftConstraint]] given for T, C and Z
+    *
+    * @tparam T Type of the collection
+    * @tparam Z Type of the result of the foldleft
+    * @tparam C Common type to which all elements of T can be converted
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
   implicit def buildFoldLeftConstraint[T, Z, C](implicit ev: ForeachConstraint[T, C]): FoldLeftConstraint[T, Z, C] =
     new FoldLeftConstraint[T, Z, C] {
       override def apply(t: T, z: Z, f: (Z, C) => Z) = {
