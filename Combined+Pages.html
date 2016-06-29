@@ -1,0 +1,167 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html>
+      <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <title>TypeQuux — Combined Pages</title>
+        
+        <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/blueprint/grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+        <!--[if lt IE 8]>
+          <link rel="stylesheet" href={ relativeBase + "css/blueprint/ie.css" } type="text/css" media="screen, projection"/>
+        <![endif]-->
+        <link rel="stylesheet" href="css/pamflet.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamflet-print.css" type="text/css" media="print"/>
+        <link rel="stylesheet" href="css/pamflet-grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/color_scheme-redmond.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-github.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-monokai.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamfletheight_2em_2em.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.collapse.js"></script>
+        <script type="text/javascript" src="js/pamflet.js"></script>
+        <script type="text/javascript">
+          Pamflet.page.language = 'en';
+        </script>
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><script type="text/javascript" src="js/prettify/lang-scala.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+        
+        
+      </head>
+      <body class="color_scheme-redmond">
+        <a class="page prev nav" href="Contents+in+Depth.html">
+            <span class="space">&nbsp;</span>
+            <span class="flip arrow">❧</span>
+          </a>
+        <div class="container contentswrapper">
+          <div class="span-16 prepend-1 append-1 contents">
+            <div class="tocwrapper show">
+      <a class="tochead nav" style="display: none" href="#toc">❦</a>
+      <a name="toc"></a>
+      <h4 class="toctitle">Contents</h4>
+      <div class="tocbody">
+      <div><a href="#TypeQuux">TypeQuux</a></div><ol class="toc"> <li><div><a href="#Two+Quick+Examples">Two Quick Examples</a></div></li><li><div><a href="#Pre+Requisites">Pre Requisites</a></div></li><li><div><a href="#Usage">Usage</a></div><ol class="toc"> <li><div><a href="#Church+Encoding+of+Booleans">Church Encoding of Booleans</a></div></li><li><div><a href="#Peano+Numbers">Peano Numbers</a></div></li><li><div><a href="#Dense+Numbers">Dense Numbers</a></div></li><li><div><a href="#Type+Sets">Type Sets</a></div></li><li><div><a href="#Type+Maps">Type Maps</a></div></li><li><div><a href="#Natural+Transformations">Natural Transformations</a></div></li><li><div><a href="#Type-Unions+and+Exclusions">Type-Unions and Exclusions</a></div></li><li><div><a href="#Singleton+Types+for+Literals">Singleton Types for Literals</a></div></li><li><div><a href="#Covariant+Heterogenous+Lists">Covariant Heterogenous Lists</a></div></li><li><div><a href="#Tuple+Ops">Tuple Ops</a></div></li><li><div><a href="#Sized+Vectors">Sized Vectors</a></div></li><li><div><a href="#String+Indexed+Collections">String Indexed Collections</a></div></li><li><div><a href="#Records">Records</a></div></li><li><div><a href="#Understanding+Constraints">Understanding Constraints</a></div></li> </ol></li> </ol></div></div><h1 id="TypeQuux">TypeQuux<a href="#TypeQuux" class="header-link"><span class="header-link-content">&nbsp;</span></a></h1><p>Typelevel programming allows developers to encode several flavours of runtime invariants into the type system. 
+Unfortunately, libraries that support typelevel programming tend to be poorly documented, difficult to understand and 
+difficult to hack. This makes them hard to customize to the needs of a specific project/problem. TypeQuux provides concise, 
+efficient and easy-to-modify implementations of several typelevel programming primitives. As such, it represents 
+collected wisdom on type-hackery in scala.
+</p><h2 id="Two+Quick+Examples">Two Quick Examples<a href="#Two+Quick+Examples" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Here are two quick examples to illustrate the look, feel and abilities of the API. 
+</p><h2 id="Constraints+help+you+abstract+over+structure">Constraints help you abstract over structure<a href="#Constraints+help+you+abstract+over+structure" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // importing the package
+import typequux._
+
+scala&gt; import typequux._ // importing the package object
+import typequux._
+
+scala&gt; import constraint._ // importing the constraints API
+import constraint._
+
+scala&gt; def atExample[R](i: LiteralHash[_], r: R)(implicit ev: AtConstraint[i.ValueHash, R, String]): String = ev(r)
+atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constraint.AtConstraint[i.ValueHash,R,String])String
+</code></pre><p>A <code>LiteralHash[T]</code> is an encapsulation of the singleton type associated with a literal of type <code>T</code>. The <code>ValueHash</code> is the 
+singleton type associated with the value of the literal. The companion object for <code>LiteralHash</code> containt implicit converters
+to build the objects from the regular literals. You can find out more in the <a href="https://github.com/harshad-deo/typequux/wiki/Usage-of-Singleton-Types-for-Literals">wiki</a>.
+</p><p>Constraints are typeclasses that abstract over specific typelevel datastructures like <a href="https://github.com/harshad-deo/typequux/wiki/Usage-of-HLists">HLists</a>, <a href="https://github.com/harshad-deo/typequux/wiki/String-Indexed-Collection-Usage">StringIndexedCollections</a> and <a href="https://github.com/harshad-deo/typequux/wiki/Record-usage">Records</a> (and also programming techniques like structural induction) to encode the invariants associated with the problem. They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. You can find out more in the <a href="https://github.com/harshad-deo/typequux/wiki/Understanding-Constraints">wiki</a>. In this example, the encoded invariant is that given an index (<code>ValueHash</code>) and an object of type <code>R</code>, the value at the 
+index position should be a <code>String</code>. 
+</p><p>This can be used with sequentially indexed collections, like HLists and Tuples (the regular scala tuples).
+</p><pre><code class="prettyprint lang-scala">scala&gt; atExample(1, true :+: &quot;foo&quot; :+: 42L :+: HNil)
+res0: String = foo
+
+scala&gt; atExample(1, true :+: &quot;foo&quot; :+: 42L :+: HNil) // this is a HList
+res1: String = foo
+
+scala&gt; atExample(2, true :+: &quot;foo&quot; :+: 42L :+: HNil) // does not compile
+
+scala&gt; atExample(2, &quot;oogachaka&quot; :+: 3.14159 :+: &quot;2.718&quot; :+: Some(&quot;one is spying on you&quot;) :+: HNil)
+res3: String = 2.718
+
+scala&gt; import TupleOps._ // pimp my tuples
+import TupleOps._
+
+scala&gt; atExample(1, (true, &quot;foo&quot;, 42L))
+res4: String = foo
+
+scala&gt; atExample(2, (3.14159, Some(&quot;one is spying on you&quot;), &quot;oogachaka&quot;, 42L, List(1, 2,3)))
+res6: String = oogachaka
+</code></pre><p>The same code can also be used with string indexed collections, like <code>StringIndexedCollections</code> (in which all elements are the same type)
+or <code>Records</code> (in which they can be of different types). The type signatures for these can be quite complicated and dont cimmunicate much, 
+which is why they are, for clarity, replaced below with <code>\**\</code>. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; val si1 = SINil.add(&quot;name&quot;, &quot;goku&quot;).add(&quot;son&quot;, &quot;gohan&quot;).add(&quot;friend&quot;, &quot;krillin&quot;) // String Indexed Collection
+si1: /**/
+
+scala&gt; val si2 = SINil.add(&quot;leader&quot;, &quot;Frieza&quot;).add(&quot;henchmen&quot;, &quot;ginyu&quot;).add(&quot;father&quot;, &quot;king cold&quot;)
+si2: /**/
+
+scala&gt; atExample(&quot;name&quot;, si1)
+res7: String = goku
+
+scala&gt; atExample(&quot;name&quot;, si2) // does not compile
+
+scala&gt; val si3 = SINil.add(&quot;house&quot;, &quot;Lannister&quot;).add(&quot;name&quot;, &quot;Tyrion&quot;).add(&quot;aka&quot;, &quot;The Imp&quot;)
+si3: /**/
+
+scala&gt; atExample(&quot;name&quot;, si3)
+res10: String = Tyrion
+
+scala&gt; val r1 = RNil.add(&quot;name&quot;, &quot;goku&quot;).add(&quot;powerlevel&quot;, 9000).add(&quot;friends&quot;, List(&quot;krillin&quot;, &quot;yamcha&quot;)) // Record
+r1: /**/
+
+scala&gt; val r2 = RNil.add(&quot;show&quot;, &quot;futurama&quot;).add(&quot;coolest&quot;, &quot;Zoidberg&quot;)
+r2: /**/
+
+scala&gt; atExample(&quot;name&quot;, r1)
+res11: String = goku
+
+scala&gt; atExample(&quot;name&quot;, r2) // does not compile
+
+</code></pre><p>Or even classes
+</p><pre><code class="prettyprint lang-scala">scala&gt; case class User(name: String, age: Int)
+defined class User
+
+scala&gt; atExample(&quot;name&quot;, Record.class2Record(User(&quot;Harshad&quot;, 24)))
+res15: String = Harshad
+</code></pre><h2 id="Arbitrary+Arity+Zips">Arbitrary Arity Zips<a href="#Arbitrary+Arity+Zips" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Less sexy but as useful as the above example is the ability to perform arbitrary arity zips. Here are a few quick examples:
+</p><pre><code class="prettyprint lang-scala">scala&gt; (List(1, 2,3 ), List(1.1, 2.2, 4.4), List(true, false, false, true, true), List(&quot;philip&quot;, &quot;fry&quot;, &quot;bender&quot;, &quot;leela&quot;)).azipped // tuples
+res16: List[(Int, Double, Boolean, String)] = List((1,1.1,true,philip), (2,2.2,false,fry), (3,4.4,false,bender))
+
+scala&gt; (List(1, 2,3 ) :+: List(1.1, 2.2, 4.4) :+: List(true, false, false, true, true) :+: List(&quot;philip&quot;, &quot;fry&quot;, &quot;bender&quot;, &quot;leela&quot;) :+: HNil).azipped // HLists
+res17: /**/ = List(1 :+: 1.1 :+: true :+: philip :+: HNil, 2 :+: 2.2 :+: false :+: fry :+: HNil, 3 :+: 4.4 :+: false :+: bender :+: HNil)
+
+scala&gt; (Stream.from(1), Stream.continually(util.Random.nextBoolean)).zipwith((a: (Int, Boolean)) =&gt; if(a._2) a._1 * 100.0 else a._1 / 100.0)
+res19: Stream[Double] = Stream(100.0, ?)
+
+scala&gt; (res19 take 5).toVector
+res20: Vector[Double] = Vector(100.0, 200.0, 0.03, 400.0, 0.05)
+</code></pre><h2 id="Pre+Requisites">Pre Requisites<a href="#Pre+Requisites" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>While scala is an advanced programming language and typelevel programming is an advanced aspect of scala, the library 
+has been designed so as to be usable and modifiable without going into the gory-depths of the type system. 
+</p><ul><li>The operations on hlists, tuples, sized vectors, string indexed collections and records are fairly straightforward and 
+should be usable with a cursory knowledge of the type system.
+</li><li>To use and compose the constraints api, type unions, type exclusions, type hierarchy unions and type hierarchy exclusions, 
+you should be familiar with the typeclass pattern. <a href="http://danielwestheide.com/blog/2013/02/06/the-neophytes-guide-to-scala-part-12-type-classes.html">This</a> 
+is a quick refresher
+</li><li>Singleton types for literals are implemented as dependent types, so you should be comfortable with dependent types to 
+use them. You should be comfortable with macros if you want to fiddle with the implementation.
+</li><li>The constraints API is implemented using indexers, transformers and zippers, which are implemented using structural induction. <a href="https://www.cs.cmu.edu/~rwh/introsml/techniques/structur.htm">Here</a> is a link to get you started.
+</li><li>You should be comfortable with higher-kinds/type-constructors to use typelevel booleans, peano numbers, dense numbers, type-sets, type-maps and natural transformations. </li></ul><h2 id="Usage">Usage<a href="#Usage" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Describes usage</p><h2 id="Church+Encoding+of+Booleans">Church Encoding of Booleans<a href="#Church+Encoding+of+Booleans" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Peano+Numbers">Peano Numbers<a href="#Peano+Numbers" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Dense+Numbers">Dense Numbers<a href="#Dense+Numbers" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Type+Sets">Type Sets<a href="#Type+Sets" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Type+Maps">Type Maps<a href="#Type+Maps" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Natural+Transformations">Natural Transformations<a href="#Natural+Transformations" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Type-Unions+and+Exclusions">Type-Unions and Exclusions<a href="#Type-Unions+and+Exclusions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Singleton+Types+for+Literals">Singleton Types for Literals<a href="#Singleton+Types+for+Literals" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Covariant+Heterogenous+Lists">Covariant Heterogenous Lists<a href="#Covariant+Heterogenous+Lists" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Tuple+Ops">Tuple Ops<a href="#Tuple+Ops" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Sized+Vectors">Sized Vectors<a href="#Sized+Vectors" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="String+Indexed+Collections">String Indexed Collections<a href="#String+Indexed+Collections" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Records">Records<a href="#Records" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><h2 id="Understanding+Constraints">Understanding Constraints<a href="#Understanding+Constraints" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p>
+          </div>
+        </div>
+        <div class="header">
+          <div class="container">
+        <div class="span-16 prepend-1 append-1">
+          <div class="span-16 top nav">
+            <div class="span-16 title">
+              <span>TypeQuux</span> — Combined Pages
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="footer">
+          
+        </div>
+        <a href="http://github.com/harshad-deo/typequux" class="fork nav"><img src="img/fork.png" alt="Fork me on GitHub"/></a>
+        
+      </body>
+    </html>
