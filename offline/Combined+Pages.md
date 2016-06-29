@@ -9,7 +9,7 @@ This makes them hard to customize to the needs of a specific project/problem. Ty
 efficient and easy-to-modify implementations of several typelevel programming primitives. As such, it represents 
 collected wisdom on type-hackery in scala.
 
-You can now
+You can now:
 
 * Head over to the [github page](https://github.com/harshad-deo/typequux) which has instructions on how to set-up a project
 * Peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package)
@@ -40,7 +40,7 @@ atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constrain
 
 A `LiteralHash[T]` is an encapsulation of the singleton type associated with a literal of type `T`. The `ValueHash` is the 
 singleton type associated with the value of the literal. The companion object for `LiteralHash` containt implicit converters
-to build the objects from the regular literals. You can find out more in [here](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html).
+to build the objects from the regular literals. You can find out more [here](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html).
 
 Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html), [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html) and [Records](https://harshad-deo.github.io/typequux/Records.html) (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
 They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
@@ -1427,7 +1427,8 @@ scala> HNil down list2Down
 res76: /**/ = HNil
 ```
 
-### You can apply an hlist of functions to a hlist of arguments. 
+#### You can apply an hlist of functions to a hlist of arguments. 
+
 Or you could yoda-apply it for kicks.
 
 ```scala

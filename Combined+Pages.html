@@ -49,7 +49,7 @@ difficult to hack.
 </p><p>This makes them hard to customize to the needs of a specific project/problem. TypeQuux provides concise, 
 efficient and easy-to-modify implementations of several typelevel programming primitives. As such, it represents 
 collected wisdom on type-hackery in scala.
-</p><p>You can now
+</p><p>You can now:
 </p><ul><li>Head over to the <a href="https://github.com/harshad-deo/typequux">github page</a> which has instructions on how to set-up a project
 </li><li>Peruse through the <a href="https://harshad-deo.github.io/typequux/api/#typequux.package">API</a>
 </li><li>Read the examples below
@@ -68,7 +68,7 @@ scala&gt; def atExample[R](i: LiteralHash[_], r: R)(implicit ev: AtConstraint[i.
 atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constraint.AtConstraint[i.ValueHash,R,String])String
 </code></pre><p>A <code>LiteralHash[T]</code> is an encapsulation of the singleton type associated with a literal of type <code>T</code>. The <code>ValueHash</code> is the 
 singleton type associated with the value of the literal. The companion object for <code>LiteralHash</code> containt implicit converters
-to build the objects from the regular literals. You can find out more in <a href="https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html">here</a>.
+to build the objects from the regular literals. You can find out more <a href="https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html">here</a>.
 </p><p>Constraints are typeclasses that abstract over specific typelevel datastructures like <a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">HLists</a>, <a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a> and <a href="https://harshad-deo.github.io/typequux/Records.html">Records</a> (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
 They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
 You can find out more <a href="https://harshad-deo.github.io/typequux/Understanding+Constraints.html">here</a>. 
@@ -996,7 +996,7 @@ res75: /**/ = 1 :+: true :+: HNil
 
 scala&gt; HNil down list2Down
 res76: /**/ = HNil
-</code></pre><h3 id="You+can+apply+an+hlist+of+functions+to+a+hlist+of+arguments.">You can apply an hlist of functions to a hlist of arguments.<a href="#You+can+apply+an+hlist+of+functions+to+a+hlist+of+arguments." class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><p>Or you could yoda-apply it for kicks.
+</code></pre><h4 id="You+can+apply+an+hlist+of+functions+to+a+hlist+of+arguments.">You can apply an hlist of functions to a hlist of arguments.<a href="#You+can+apply+an+hlist+of+functions+to+a+hlist+of+arguments." class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Or you could yoda-apply it for kicks.
 </p><pre><code class="prettyprint lang-scala">scala&gt; val y1 = 9.75 :+: 'x' :+: HNil
 y1: /**/ = 9.75 :+: x :+: HNil
 
