@@ -513,8 +513,10 @@ object LiteralHash {
       */
     def forString(x: Tree): Tree = {
       def resolve(y: String): Tree = {
-        val longRep = y map char2Long
-        val binRep = toBinary(longRep: _*)
+        val inv = y.map(a => (~a).toChar)
+        val hc1 = y.## & Int.MaxValue
+        val hc2 = inv.## & Int.MaxValue
+        val binRep = toBinary(hc1.toLong, hc2.toLong)
         val valueHash = fromBinary(binRep)
         q"""
       new LiteralHash[String]{
