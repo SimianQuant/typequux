@@ -1,0 +1,14 @@
+pre {
+    overflow: auto;
+    background-color: #f7f7f7;
+    padding: 16px;
+}
+
+code {
+    overflow: auto;
+    background-color: #f7f7f7;
+    font-size: initial;
+    line-height: 1.45;
+    border-radius: 3px;
+    font-family: monospace;
+}

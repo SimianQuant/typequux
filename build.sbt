@@ -75,6 +75,10 @@ addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.14")
 
 enablePlugins(SiteScaladocPlugin)
 
+siteSubdirName in SiteScaladoc := "api"
+
+enablePlugins(PamfletPlugin)
+
 previewLaunchBrowser := false
 
 ghpages.settings
