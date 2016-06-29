@@ -24,7 +24,9 @@
         <script type="text/javascript">
           Pamflet.page.language = 'en';
         </script>
-        
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><script type="text/javascript" src="js/prettify/lang-scala.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
         
         
@@ -39,7 +41,166 @@
           </a>
         <div class="container contentswrapper">
           <div class="span-16 prepend-1 append-1 contents">
-            <h2 id="Dense+Numbers">Dense Numbers<a href="#Dense+Numbers" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><div class="bottom nav span-16">
+            <h2 id="Dense+Numbers">Dense Numbers<a href="#Dense+Numbers" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Many typelevel constructs like <a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">heterogenous lists</a> (and in this library, also <a href="https://harshad-deo.github.io/typequux/Type+Sets.html">type sets</a>, <a href="https://harshad-deo.github.io/typequux/Type+Maps.html">type maps</a>, <a href="https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html">literal singleton types</a> and other constructs derived from them) rely on an encoding of natural numbers at the type level. While <a href="https://harshad-deo.github.io/typequux/Peano+Numbers.html">Peano numbers</a> are simple, their construction is too cumbersome and performance too poor for them to be suitable for most of the more complex constructs provided by the library.
+</p><p>Functionally, dense numbers encode a numeric type in binary. A number is either 0 or a heterogenous list of digits. For non zero numbers, the <code>head</code> of the list is the least significant bit and the last element is always <code>1</code>. 
+</p><pre><code class="prettyprint lang-scala">sealed trait Dense 
+trait DCons[d &lt;: Dense.Digit, T &lt;: Dense] extends Dense
+trait DNil extends Dense 
+
+object Dense {
+
+  sealed trait Digit 
+  trait D0 extends Digit 
+  trait D1 extends Digit 
+
+  type ::[H &lt;: Digit, T &lt;: Dense] = DCons[H, T]
+
+  type _0 = DNil
+  type _1 = D1 :: DNil
+  type _2 = D0 :: D1 :: DNil
+  type _3 = D1 :: D1 :: DNil
+  type _4 = D0 :: D0 :: D1 :: DNil
+  type _5 = D1 :: D0 :: D1 :: DNil
+  type _6 = D0 :: D1 :: D1 :: DNil
+  type _7 = D1 :: D1 :: D1 :: DNil
+  type _8 = D0 :: D0 :: D0 :: D1 :: DNil
+  type _9 = D1 :: D0 :: D0 :: D1 :: DNil
+}
+</code></pre><p>By construction, left shift and right shift are constant time operations while all other times are log-time or worse. Therefore, in theory, indexers that use dense numbers are less efficient than those that use Peano numbers. In practice, the difference can be ignored and is compensated several times over by the performance gained in other operations. This is why typequux exclusively uses dense numbers to encode natural numbers into types. 
+</p><p>The type signatures for dense numbers can be quite long and are not terribly informative. <code>/**/</code> represents an omitted (for clarity) type signature. 
+</p><p>Some of the type constructors that are a part of the <code>Dense</code> trait are useful in practice. 
+</p><h4 id="Increment">Increment<a href="#Increment" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import Dense._
+import typequux._
+import Dense._
+
+scala&gt; implicitly[_0#Inc =:= _1]
+res0: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_7#Inc =:= _8]
+res2: /**/ = &lt;function1&gt;
+</code></pre><h4 id="Decrement">Decrement<a href="#Decrement" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[_1#Dec =:= _0]
+res3: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_16#Dec =:= _15]
+res4: /**/ = &lt;function1&gt;
+</code></pre><h4 id="Left+Shift">Left Shift<a href="#Left+Shift" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[_0#ShiftL =:= _0]
+res5: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_1#ShiftL =:= _2]
+res6: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_3#ShiftL =:= _6]
+res7: /**/ = &lt;function1&gt;
+</code></pre><h4 id="Right+Shift">Right Shift<a href="#Right+Shift" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[_0#ShiftR =:= _0]
+res8: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_1#ShiftR =:= _0]
+res9: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_2#ShiftR =:= _1]
+res10: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_7#ShiftR =:= _3]
+res11: /**/ = &lt;function1&gt;
+</code></pre><p>The companion object provides type constructors that implement common operations. Supported operations are: 
+</p><h4 id="Addition">Addition<a href="#Addition" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[_2 + _3 =:= _5]
+res12: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_6 + _0 =:= _6]
+res13: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_0 + _2 =:= _2]
+res14: /**/ = &lt;function1&gt;
+</code></pre><h4 id="Multiplication">Multiplication<a href="#Multiplication" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[_4 * _0 =:= _0]
+res15: =:=[typequux.Dense.*[typequux.Dense._4,typequux.Dense._0],typequux.Dense._0] = &lt;function1&gt;
+
+scala&gt; implicitly[_7 * _1 =:= _7]
+res16: =:=[typequux.Dense.*[typequux.Dense._7,typequux.Dense._1],typequux.Dense._7] = &lt;function1&gt;
+
+scala&gt; implicitly[_3 * _4 =:= _12]
+res17: =:=[typequux.Dense.*[typequux.Dense._3,typequux.Dense._4],typequux.Dense._12] = &lt;function1&gt;
+
+scala&gt; implicitly[_4 * _4 =:= _16]
+res18: =:=[typequux.Dense.*[typequux.Dense._4,typequux.Dense._4],typequux.Dense._16] = &lt;function1&gt;
+</code></pre><h4 id="Exponentiation">Exponentiation<a href="#Exponentiation" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[_5 ^ _0 =:= _1]
+res19: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_7 ^ _1 =:= _7]
+res20: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_1 ^ _4 =:= _1]
+res21: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_3 ^ _2 =:= _9]
+res22: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_2 ^ _4 =:= _16]
+res23: /**/ = &lt;function1&gt;
+</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package object, for True and False
+import typequux._
+
+scala&gt; implicitly[_0 &lt; _3 =:= True]
+res26: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_5 &lt;= _5 =:= True]
+res27: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_5 === _5 =:= True]
+res28: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_5 === _7 =:= False]
+res29: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_7 &gt; _4 =:= True]
+res30: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[_7 &gt;= _4 =:= True]
+res31: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[Max[_4, _5] =:= _5]
+res32: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[Min[_5, _9] =:= _5]
+res33: /**/ = &lt;function1&gt;
+</code></pre><h4 id="Subtraction">Subtraction<a href="#Subtraction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>It is implemented by a marker typeclass.
+</p><pre><code class="prettyprint lang-scala">scala&gt; implicitly[DenseDiff[_0, _0, _0]]
+res34: /**/ = /**/
+
+scala&gt; implicitly[DenseDiff[_4, _0, _4]]
+res35: /**/ = /**/
+
+scala&gt; implicitly[DenseDiff[_13, _5, _8]]
+res36: /**/ = /**/
+</code></pre><h4 id="Value+Representation">Value Representation<a href="#Value+Representation" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; Dense.toLong[_0]
+res37: Long = 0
+
+scala&gt; Dense.toLong[_16]
+res38: Long = 16
+
+scala&gt; Dense.toLong[_16 * _4]
+res39: Long = 64
+</code></pre><p>Dense numbers can be shown to satisfy: 
+</p><ol><li>Additive Commutativity: <code>+[A, B] =:= +[B, A]</code>
+</li><li>Multiplicative Commutativity: <code>*[A, B] =:= *[B, A]</code>
+</li><li>Additive Associativity: <code>+[A, +[B, C]] =:= +[+[A, B], C]</code>
+</li><li>Multiplicative Associativity: <code>*[A, *[B, C]] =:= *[*[A, B], C]</code>
+</li><li>Distributivity: <code>*[+[A, B], C] =:= +[*[A, C], *[B, C]]</code>
+</li><li>Additive Identity: <code>+[A, _0] =:= A</code>, <code>+[_0, A] =:= A</code>
+</li><li>Multiplicative Identity: <code>*[A, _1] =:= A</code>, <code>*[_1, A] =:= A</code>
+</li><li>Decrement of Increment: <code>A#Inc#Dec =:= A</code>
+</li><li>Right Shift of Left Shift: <code>A#ShiftL#ShiftR =:= A</code>
+</li><li>Left Shift: <code>A#ShiftL =:= *[A, _2]</code>
+</li><li>Right Shift: <code>Xor[===[A, _2 * A#ShiftR], ===[A, *[_2, A#ShiftR] + _1]] =:= True</code>
+</li><li>Exponent Combine 1: <code>*[A ^ B, A ^ C] =:= ^[A, B + C]</code>
+</li><li>Exponent Combine 2: <code>^[A ^ B, C] =:= ^[A, B * C]</code>
+</li><li>Exponent Combine 3: <code>*[A ^ C, B ^ C] =:= ^[A * B, C]</code>
+</li><li>Exponent Identity: <code>^[A, _1] =:= A</code>
+</li><li>Exponent Zero: <code>^[A, _0] =:= _1</code>
+</li><li>Exponent One: <code>^[_1, A] =:= _1</code>
+</li><li>Total Order
+</li></ol><p>Refer to the <a href="https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSpec.scala">test cases</a> for examples
+</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Dense">API</a>
+</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Dense.scala">Source</a></li></ul><div class="bottom nav span-16">
                         <em>Next Page</em>
                         <span class="arrow">❧</span>
                         <a href="Type+Sets.html"> Type Sets </a>                        

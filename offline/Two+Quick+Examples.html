@@ -55,14 +55,14 @@ scala&gt; def atExample[R](i: LiteralHash[_], r: R)(implicit ev: AtConstraint[i.
 atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constraint.AtConstraint[i.ValueHash,R,String])String
 </code></pre><p>A <code>LiteralHash[T]</code> is an encapsulation of the singleton type associated with a literal of type <code>T</code>. The <code>ValueHash</code> is the 
 singleton type associated with the value of the literal. The companion object for <code>LiteralHash</code> containt implicit converters
-to build the objects from the regular literals. You can find out more in the <a href="https://github.com/harshad-deo/typequux/wiki/Usage-of-Singleton-Types-for-Literals">wiki</a>.
-</p><p>Constraints are typeclasses that abstract over specific typelevel datastructures like <a href="https://github.com/harshad-deo/typequux/wiki/Usage-of-HLists">HLists</a>, <a href="https://github.com/harshad-deo/typequux/wiki/String-Indexed-Collection-Usage">StringIndexedCollections</a> and <a href="https://github.com/harshad-deo/typequux/wiki/Record-usage">Records</a> (and also programming techniques like structural induction) to encode the invariants associated with the problem. They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. You can find out more in the <a href="https://github.com/harshad-deo/typequux/wiki/Understanding-Constraints">wiki</a>. In this example, the encoded invariant is that given an index (<code>ValueHash</code>) and an object of type <code>R</code>, the value at the 
-index position should be a <code>String</code>. 
+to build the objects from the regular literals. You can find out more in <a href="https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html">here</a>.
+</p><p>Constraints are typeclasses that abstract over specific typelevel datastructures like <a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">HLists</a>, <a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a> and <a href="https://harshad-deo.github.io/typequux/Records.html">Records</a> (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
+They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
+You can find out more <a href="https://harshad-deo.github.io/typequux/Understanding+Constraints.html">here</a>. 
+</p><p>In this example, the encoded invariant is that given an index (<code>ValueHash</code>) and an object of type <code>R</code>, the value at the index position should be a <code>String</code>. 
+<strong>It should be stressed that this is achieved without using runtime reflection or structural types.</strong>
 </p><p>This can be used with sequentially indexed collections, like HLists and Tuples (the regular scala tuples).
-</p><pre><code class="prettyprint lang-scala">scala&gt; atExample(1, true :+: &quot;foo&quot; :+: 42L :+: HNil)
-res0: String = foo
-
-scala&gt; atExample(1, true :+: &quot;foo&quot; :+: 42L :+: HNil) // this is a HList
+</p><pre><code class="prettyprint lang-scala">scala&gt; atExample(1, true :+: &quot;foo&quot; :+: 42L :+: HNil) // this is a HList
 res1: String = foo
 
 scala&gt; atExample(2, true :+: &quot;foo&quot; :+: 42L :+: HNil) // does not compile
@@ -78,9 +78,9 @@ res4: String = foo
 
 scala&gt; atExample(2, (3.14159, Some(&quot;one is spying on you&quot;), &quot;oogachaka&quot;, 42L, List(1, 2,3)))
 res6: String = oogachaka
-</code></pre><p>The same code can also be used with string indexed collections, like <code>StringIndexedCollections</code> (in which all elements are the same type)
-or <code>Records</code> (in which they can be of different types). The type signatures for these can be quite complicated and dont cimmunicate much, 
-which is why they are, for clarity, replaced below with <code>\**\</code>. 
+</code></pre><p>The same code can also be used with string indexed collections, like <code>StringIndexedCollections</code> (in which all elements are of the same type)
+or <code>Records</code> (in which they can be of different types). The type signatures for these can be quite complicated and dont communicate much. 
+For clarity, they are replaced below with <code>\**\</code>. 
 </p><pre><code class="prettyprint lang-scala">scala&gt; val si1 = SINil.add(&quot;name&quot;, &quot;goku&quot;).add(&quot;son&quot;, &quot;gohan&quot;).add(&quot;friend&quot;, &quot;krillin&quot;) // String Indexed Collection
 si1: /**/
 
@@ -127,7 +127,8 @@ res19: Stream[Double] = Stream(100.0, ?)
 
 scala&gt; (res19 take 5).toVector
 res20: Vector[Double] = Vector(100.0, 200.0, 0.03, 400.0, 0.05)
-</code></pre><div class="bottom nav span-16">
+</code></pre><p>The rest of the project documentation provides details on these and other primitives. 
+</p><div class="bottom nav span-16">
                         <em>Next Page</em>
                         <span class="arrow">❧</span>
                         <a href="Pre+Requisites.html"> Pre Requisites </a>                        

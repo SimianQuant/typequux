@@ -24,7 +24,9 @@
         <script type="text/javascript">
           Pamflet.page.language = 'en';
         </script>
-        
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><script type="text/javascript" src="js/prettify/lang-scala.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
         
         
@@ -39,7 +41,152 @@
           </a>
         <div class="container contentswrapper">
           <div class="span-16 prepend-1 append-1 contents">
-            <h2 id="Church+Encoding+of+Booleans">Church Encoding of Booleans<a href="#Church+Encoding+of+Booleans" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>text</p><div class="bottom nav span-16">
+            <h2 id="Church+Encoding+of+Booleans">Church Encoding of Booleans<a href="#Church+Encoding+of+Booleans" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Church booleans are the simplest typelevel constructs and are mostly used to establish invariants of more complex constructs. 
+Functionally, they are an alias for a single type constructor that chooses from one of two alternatives. 
+</p><pre><code class="prettyprint lang-scala">sealed trait Bool {
+  type If [T &lt;: Up, F &lt;: Up, Up] &lt;: Up
+}
+trait True extends Bool {
+  override type If[T &lt;: Up, F &lt;: Up, Up] = T
+}
+trait False extends Bool {
+  override type If[T &lt;: Up, F &lt;: Up, Up] = F
+}
+</code></pre><p>The usage is pretty straightforward 
+</p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
+import typequux._
+
+scala&gt; import typequux._ // package object
+import typequux._
+
+scala&gt; type Rep[B &lt;: Bool] = B#If[Int, String, Any]
+defined type alias Rep
+
+scala&gt; implicitly[Rep[True] =:= Int]
+res0: =:=[Rep[typequux.typequux.True],Int] = &lt;function1&gt;
+
+scala&gt; implicitly[Rep[False] =:= String]
+res1: =:=[Rep[typequux.typequux.False],String] = &lt;function1&gt;
+</code></pre><p>The companion object implements type constructors for common operations. Supported operations are:
+</p><h4 id="Conjunction">Conjunction<a href="#Conjunction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import Bool._
+import Bool._
+
+scala&gt; implicitly[False &amp;&amp; False =:= False]
+res2: =:=[typequux.Bool.&amp;&amp;[typequux.typequux.False,typequux.typequux.False],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[False &amp;&amp; True =:= False]
+res3: =:=[typequux.Bool.&amp;&amp;[typequux.typequux.False,typequux.typequux.True],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[True &amp;&amp; False =:= False]
+res4: =:=[typequux.Bool.&amp;&amp;[typequux.typequux.True,typequux.typequux.False],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[True &amp;&amp; True =:= True]
+res5: =:=[typequux.Bool.&amp;&amp;[typequux.typequux.True,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Disjunction">Disjunction<a href="#Disjunction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[False || False =:= False]
+res6: =:=[typequux.Bool.||[typequux.typequux.False,typequux.typequux.False],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[True || False =:= True]
+res7: =:=[typequux.Bool.||[typequux.typequux.True,typequux.typequux.False],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[False || True =:= True]
+res8: =:=[typequux.Bool.||[typequux.typequux.False,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[True || True =:= True]
+res9: =:=[typequux.Bool.||[typequux.typequux.True,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Negation">Negation<a href="#Negation" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[Not[True] =:= False]
+res10: =:=[typequux.Bool.Not[typequux.typequux.True],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[Not[False] =:= True]
+res11: =:=[typequux.Bool.Not[typequux.typequux.False],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[Not[Not[True]] =:= True]
+res12: =:=[typequux.Bool.Not[typequux.Bool.Not[typequux.typequux.True]],typequux.typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Exclusive+Or">Exclusive Or<a href="#Exclusive+Or" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[False Xor False =:= False]
+res13: =:=[typequux.Bool.Xor[typequux.typequux.False,typequux.typequux.False],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[True Xor False =:= True]
+res14: =:=[typequux.Bool.Xor[typequux.typequux.True,typequux.typequux.False],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[False Xor True =:= True]
+res15: =:=[typequux.Bool.Xor[typequux.typequux.False,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[True Xor True =:= False]
+res16: =:=[typequux.Bool.Xor[typequux.typequux.True,typequux.typequux.True],typequux.typequux.False] = &lt;function1&gt;
+</code></pre><h4 id="Material+Implication">Material Implication<a href="#Material+Implication" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt;  implicitly[True -&gt;&gt; True =:= True]
+res17: =:=[typequux.Bool.-&gt;&gt;[typequux.typequux.True,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[True -&gt;&gt; False =:= False]
+res18: =:=[typequux.Bool.-&gt;&gt;[typequux.typequux.True,typequux.typequux.False],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[False -&gt;&gt; True =:= True]
+res19: =:=[typequux.Bool.-&gt;&gt;[typequux.typequux.False,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[False -&gt;&gt; False =:= True]
+res20: =:=[typequux.Bool.-&gt;&gt;[typequux.typequux.False,typequux.typequux.False],typequux.typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Equivalence">Equivalence<a href="#Equivalence" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[False Eqv False =:= True]
+res21: =:=[typequux.Bool.Eqv[typequux.typequux.False,typequux.typequux.False],typequux.typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[False Eqv True =:= False]
+res22: =:=[typequux.Bool.Eqv[typequux.typequux.False,typequux.typequux.True],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[True Eqv False =:= False]
+res23: =:=[typequux.Bool.Eqv[typequux.typequux.True,typequux.typequux.False],typequux.typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[True Eqv True =:= True]
+res24: =:=[typequux.Bool.Eqv[typequux.typequux.True,typequux.typequux.True],typequux.typequux.True] = &lt;function1&gt;
+</code></pre><p>These type constructors can be used to prove properties about other constructs. For example, total order transitivity of <a href="https://harshad-deo.github.io/typequux/Dense+Numbers.html">dense numbers</a>:
+</p><pre><code class="prettyprint lang-scala">scala&gt; class TotalOrderTransitivity[A, B, C]
+defined class TotalOrderTransitivity
+
+
+scala&gt; import Dense._
+import Dense._
+
+scala&gt; :paste
+// Entering paste mode (ctrl-D to finish)
+
+implicit def toToTr[A &lt;: Dense, B &lt;: Dense, C &lt;: Dense](
+      implicit ev: =:=[True, &amp;&amp;[A &lt;= B, B &lt;= C] -&gt;&gt; &lt;=[A, C]]): TotalOrderTransitivity[A, B, C] =
+    new TotalOrderTransitivity[A, B, C]
+
+
+// Exiting paste mode, now interpreting.
+
+toToTr: [A &lt;: typequux.Dense, B &lt;: typequux.Dense, C &lt;: typequux.Dense](implicit ev: =:=[typequux.typequux.True,typequux.Bool.-&gt;&gt;[typequux.Bool.&amp;&amp;[typequux.Dense.&lt;=[A,B],typequux.Dense.&lt;=[B,C]],typequux.Dense.&lt;=[A,C]]])TotalOrderTransitivity[A,B,C]
+
+scala&gt; implicitly[TotalOrderTransitivity[_3, _0, _12]]
+res25: TotalOrderTransitivity[typequux.Dense._3,typequux.Dense._0,typequux.Dense._12] = TotalOrderTransitivity@386d4a02
+
+scala&gt; implicitly[TotalOrderTransitivity[_3, _0, _2]]
+res26: TotalOrderTransitivity[typequux.Dense._3,typequux.Dense._0,typequux.Dense._2] = TotalOrderTransitivity@4bfb88ce
+</code></pre><h4 id="Value+Conversion">Value Conversion<a href="#Value+Conversion" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; Bool.toBoolean[True]
+res27: Boolean = true
+
+scala&gt; Bool.toBoolean[False]
+res28: Boolean = false
+</code></pre><p>Church booleans can be shown to satisfy the following laws:
+</p><ol><li>Associativity of Or: <code>||[A, B || C] =:= ||[A || B, C]</code>
+</li><li>Associativity of And: <code>&amp;&amp;[A, B &amp;&amp; C] =:= &amp;&amp;[A &amp;&amp; B, C]</code>
+</li><li>Commutativity of Or: <code>||[A, B] =:= ||[B, A]</code>
+</li><li>Commutativity of And: <code>&amp;&amp;[A, B] =:= &amp;&amp;[B, A]</code>
+</li><li>Distributivity of Or over And: <code>||[A, B &amp;&amp; C] =:= &amp;&amp;[A || B, A || C]</code>
+</li><li>Distributivity of And over Or: <code>&amp;&amp;[A, B || C] =:= ||[A &amp;&amp; B, A &amp;&amp; C]</code>
+</li><li>Identity for Or: <code>||[A, False] =:= A</code>
+</li><li>Identity for And: <code>&amp;&amp;[A, True] =:= A</code>
+</li><li>Annhilator for Or: <code>||[A, True] =:= True</code>
+</li><li>Annhilator for And: <code>&amp;&amp;[A, False] =:= False</code>
+</li><li>Idempotence of Or: <code>||[A, A] =:= A</code>
+</li><li>Idempotence of And: <code>&amp;&amp;[A, A] =:= A</code>
+</li><li>Absorption 1: <code>&amp;&amp;[A, A || B] =:= A</code>
+</li><li>Absorbtion 2: <code>||[A, A &amp;&amp; B] =:= A</code>
+</li><li>Complementation 1: <code>&amp;&amp;[A, Not[A]] =:= False</code>
+</li><li>Complementation 2: <code>||[A, Not[A]] =:= True</code>
+</li><li>Double Negation: <code>Not[Not[A]] =:= A</code>
+</li><li>De Morgan 1: <code>&amp;&amp;[Not[A], Not[B]] =:= Not[A || B]</code>
+</li><li>De Morgan 2: <code>||[Not[A], Not[B]] =:= Not[A &amp;&amp; B]</code>
+</li></ol><p>Refer to the <a href="https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/BoolSpec.scala">test cases</a> for the proofs. 
+</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Bool">API</a>
+</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Bool.scala">Source</a></li></ul><div class="bottom nav span-16">
                         <em>Next Page</em>
                         <span class="arrow">❧</span>
                         <a href="Peano+Numbers.html"> Peano Numbers </a>                        
