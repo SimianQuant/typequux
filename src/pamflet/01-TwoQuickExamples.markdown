@@ -21,19 +21,18 @@ atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constrain
 
 A `LiteralHash[T]` is an encapsulation of the singleton type associated with a literal of type `T`. The `ValueHash` is the 
 singleton type associated with the value of the literal. The companion object for `LiteralHash` containt implicit converters
-to build the objects from the regular literals. You can find out more in the [wiki](https://github.com/harshad-deo/typequux/wiki/Usage-of-Singleton-Types-for-Literals).
+to build the objects from the regular literals. You can find out more [here](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html).
 
+Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html), [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html) and [Records](https://harshad-deo.github.io/typequux/Records.html) (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
+They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
+You can find out more [here](https://harshad-deo.github.io/typequux/Understanding+Constraints.html). 
 
-Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://github.com/harshad-deo/typequux/wiki/Usage-of-HLists), [StringIndexedCollections](https://github.com/harshad-deo/typequux/wiki/String-Indexed-Collection-Usage) and [Records](https://github.com/harshad-deo/typequux/wiki/Record-usage) (and also programming techniques like structural induction) to encode the invariants associated with the problem. They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. You can find out more in the [wiki](https://github.com/harshad-deo/typequux/wiki/Understanding-Constraints). In this example, the encoded invariant is that given an index (`ValueHash`) and an object of type `R`, the value at the 
-index position should be a `String`. 
-
+In this example, the encoded invariant is that given an index (`ValueHash`) and an object of type `R`, the value at the index position should be a `String`. 
+**It should be stressed that this is achieved without using runtime reflection or structural types.**
 
 This can be used with sequentially indexed collections, like HLists and Tuples (the regular scala tuples).
 
 ```scala
-scala> atExample(1, true :+: "foo" :+: 42L :+: HNil)
-res0: String = foo
-
 scala> atExample(1, true :+: "foo" :+: 42L :+: HNil) // this is a HList
 res1: String = foo
 
@@ -52,9 +51,9 @@ scala> atExample(2, (3.14159, Some("one is spying on you"), "oogachaka", 42L, Li
 res6: String = oogachaka
 ```
 
-The same code can also be used with string indexed collections, like `StringIndexedCollections` (in which all elements are the same type)
-or `Records` (in which they can be of different types). The type signatures for these can be quite complicated and dont cimmunicate much, 
-which is why they are, for clarity, replaced below with `\**\`. 
+The same code can also be used with string indexed collections, like `StringIndexedCollections` (in which all elements are of the same type)
+or `Records` (in which they can be of different types). The type signatures for these can be quite complicated and dont communicate much. 
+For clarity, they are replaced below with `\**\`. 
 
 ```scala
 scala> val si1 = SINil.add("name", "goku").add("son", "gohan").add("friend", "krillin") // String Indexed Collection
@@ -97,6 +96,7 @@ scala> atExample("name", Record.class2Record(User("Harshad", 24)))
 res15: String = Harshad
 ```
 
+
 ## Arbitrary Arity Zips
 
 Less sexy but as useful as the above example is the ability to perform arbitrary arity zips. Here are a few quick examples:
@@ -114,3 +114,5 @@ res19: Stream[Double] = Stream(100.0, ?)
 scala> (res19 take 5).toVector
 res20: Vector[Double] = Vector(100.0, 200.0, 0.03, 400.0, 0.05)
 ```
+
+The rest of the project documentation provides details on these and other primitives. 
