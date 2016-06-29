@@ -122,5 +122,20 @@ scala> atExample("name", Record.class2Record(User("Harshad", 24)))
 res15: String = Harshad
 ```
 
-
 #### Arbitrary Arity Zips
+
+Less sexy but as useful as the above example is the ability to perform arbitrary arity zips. Here are a few quick examples:
+
+```scala
+scala> (List(1, 2,3 ), List(1.1, 2.2, 4.4), List(true, false, false, true, true), List("philip", "fry", "bender", "leela")).azipped // tuples
+res16: List[(Int, Double, Boolean, String)] = List((1,1.1,true,philip), (2,2.2,false,fry), (3,4.4,false,bender))
+
+scala> (List(1, 2,3 ) :+: List(1.1, 2.2, 4.4) :+: List(true, false, false, true, true) :+: List("philip", "fry", "bender", "leela") :+: HNil).azipped // HLists
+res17: /**/ = List(1 :+: 1.1 :+: true :+: philip :+: HNil, 2 :+: 2.2 :+: false :+: fry :+: HNil, 3 :+: 4.4 :+: false :+: bender :+: HNil)
+
+scala> (Stream.from(1), Stream.continually(util.Random.nextBoolean)).zipwith((a: (Int, Boolean)) => if(a._2) a._1 * 100.0 else a._1 / 100.0)
+res19: Stream[Double] = Stream(100.0, ?)
+
+scala> (res19 take 5).toVector
+res20: Vector[Double] = Vector(100.0, 200.0, 0.03, 400.0, 0.05)
+```
