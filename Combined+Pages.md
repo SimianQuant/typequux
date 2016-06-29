@@ -1068,16 +1068,22 @@ In the library, DenseMaps are used as backing datastructures for StringIndexedCo
 Natural Transformations
 -----------------------
 
+Coming Soon
+
 ### See Also
 * [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Transform.scala)
 Type-Unions and Exclusions
 ------------------------------------------------------------------------------
+
+Coming Soon
 
 ### See Also
 * [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Contained.scala)
 * [HList](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html)
 Singleton Types for Literals
 ----------------------------
+
+Coming Soon
 
 ### See Also
 * [API](https://harshad-deo.github.io/typequux/api/#typequux.LiteralHash)
@@ -2099,11 +2105,15 @@ res99: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
 Sized Vectors
 -------------
 
+Coming Soon
+
 ### See Also
 * [API](https://harshad-deo.github.io/typequux/api/#typequux.SizedVector)
 * [Source](https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/SizedVector.scala)
 String Indexed Collections
 --------------------------
+
+Coming Soon
 
 ### See Also
 * [API](https://harshad-deo.github.io/typequux/api/#typequux.StringIndexedCollection)
@@ -2111,11 +2121,15 @@ String Indexed Collections
 Records
 -------
 
+Coming Soon
+
 ### See Also
 * [API](https://harshad-deo.github.io/typequux/api/#typequux.Record)
 * [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Record.scala)
 Understanding Constraints
 -----------
+
+Coming Soon
 
 ### See Also
 * [API](https://harshad-deo.github.io/typequux/api/#typequux.constraint.package)
