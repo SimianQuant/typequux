@@ -68,7 +68,11 @@ class Witness[T](val x: T)
 object Witness{
   def apply[T](x: T): Witness[T] = new Witness(x)
 }
-import typequux._
+//import typequux._
 """
 
 addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.14")
+
+enablePlugins(SiteScaladocPlugin)
+
+previewLaunchBrowser := false

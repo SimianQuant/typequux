@@ -101,7 +101,7 @@ si3: /**/
 scala> atExample("name", si3)
 res10: String = Tyrion
 
-scala> val r1 = RNil.add("name", "goku").add("powerleve", 9000).add("friends", List("krillin", "yamcha")) // Record
+scala> val r1 = RNil.add("name", "goku").add("powerlevel", 9000).add("friends", List("krillin", "yamcha")) // Record
 r1: /**/
 
 scala> val r2 = RNil.add("show", "futurama").add("coolest", "Zoidberg")
