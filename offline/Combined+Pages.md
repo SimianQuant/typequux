@@ -2882,7 +2882,7 @@ res7: (Int, String) = (42,foo)
 scala> constr1(4, (42, "foo", true)) // does not compile
 ```
 
-if you fix type `R`, it constrains the shape of the input and also constrains the index to a singular value.
+If you fix type `R`, it constrains the shape of the input and also constrains the index to a singular value.
 
 ```scala
 scala> def constr2[T](i: LiteralHash[Int], t: T)(implicit ev: TakeConstraint[i.ValueHash, T, (Int, Boolean)]): (Int, Boolean) = ev(t)

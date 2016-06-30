@@ -2058,7 +2058,7 @@ scala&gt; constr1(2, (42, &quot;foo&quot;, true))
 res7: (Int, String) = (42,foo)
 
 scala&gt; constr1(4, (42, &quot;foo&quot;, true)) // does not compile
-</code></pre><p>if you fix type <code>R</code>, it constrains the shape of the input and also constrains the index to a singular value.
+</code></pre><p>If you fix type <code>R</code>, it constrains the shape of the input and also constrains the index to a singular value.
 </p><pre><code class="prettyprint lang-scala">scala&gt; def constr2[T](i: LiteralHash[Int], t: T)(implicit ev: TakeConstraint[i.ValueHash, T, (Int, Boolean)]): (Int, Boolean) = ev(t)
 constr2: [T](i: typequux.LiteralHash[Int], t: T)(implicit ev: typequux.constraint.TakeConstraint[i.ValueHash,T,(Int, Boolean)])(Int, Boolean)
 
