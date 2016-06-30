@@ -12,7 +12,7 @@ them hard to customize to the needs of a specific project/problem.
 TypeQuux provides concise, efficient and easy-to-modify 
 implementations of several typelevel programming primitives. As such, it represents collected wisdom on type-hackery in scala. 
 
-To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package). You can see an indexed view of suppored primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
+To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package). You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
 
 
 Currently supported primitives are:
@@ -28,9 +28,9 @@ Currently supported primitives are:
 9. [Covariant heterogenous lists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html)
 10. [HList style operations on tuples](https://harshad-deo.github.io/typequux/Tuple+Ops.html)
 11. [Collections with statically known sizes](https://harshad-deo.github.io/typequux/Sized+Vectors.html)
-12. [Collections indexed by a string](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
-13. [Records](https://harshad-deo.github.io/typequux/Records.html)
-14. [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html), that allow you to abstract over structure
+12. [Collections indexed by a string](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html), which are like associative maps with static guarentees
+13. [Records](https://harshad-deo.github.io/typequux/Records.html), which are like adhoc classes
+14. [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html), that allow you to abstract over arity and structure
 
 
 ## License
