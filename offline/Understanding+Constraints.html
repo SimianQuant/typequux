@@ -96,8 +96,7 @@ scala&gt; constr2(3, (42, true, Some(List(true, false)), &quot;oogachaka&quot;, 
 
 scala&gt; constr2(2, (42)) // does not compile
 </code></pre><p>Constraints are composable. They can be combined with other constraints to encode very granular problem requirements. 
-(This is infact how most of the library is implemented).
-</p><p>Consider the following (very hypothetical) scenario: 
+(This is infact how most of the library is implemented). Consider the following (very hypothetical) scenario: 
 </p><p>You have to take the first k elements of a primitive (arity and type is unconstrained), but they have to be convertable to a 
 list of <code>Option[AnyRef]</code>. In the real world, the least upper bound type would be some sort of a business object, but 
 to keep things simple, lets say that its an <code>AnyRef</code>.
@@ -153,7 +152,7 @@ res34: List[Object] = List(None, Some(matt le blanc), Some(List(trevor noah, joh
 
 scala&gt; constr4(5, (Some(&quot;foo&quot;), None)) // does not compile
 
-scala&gt; constr4(2, 'c' :+: Some(&quot;matt le blanc&quot;) :+: Some(List(&quot;jon steward&quot;, &quot;jay leno&quot;)) :+: None :+: HNil) // does not compile
+scala&gt; constr4(2, 'c' :+: Some(&quot;matt le blanc&quot;) :+: Some(List(&quot;jon stewart&quot;, &quot;jay leno&quot;)) :+: None :+: HNil) // does not compile
 </code></pre><p>There are 40 constraints that ship with the current version of the library. You can check them out in the API link below. 
 </p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.constraint.package">API</a></li></ul><div class="bottom nav end span-16">
                         
