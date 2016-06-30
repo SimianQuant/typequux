@@ -1512,9 +1512,177 @@ res99: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
 </code></pre><h3 id="See+also">See also<a href="#See+also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/TupleOps.scala">Source</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">HLists</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Understanding+Constraints.html">Constraints</a>
-</li></ul><h2 id="Sized+Vectors">Sized Vectors<a href="#Sized+Vectors" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Coming Soon
-</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.SizedVector">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/SizedVector.scala">Source</a></li></ul><h2 id="String+Indexed+Collections">String Indexed Collections<a href="#String+Indexed+Collections" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>String indexed collections are similar to immutable associative maps between string keys and values, all of which have to be 
+</li></ul><h2 id="Sized+Vectors">Sized Vectors<a href="#Sized+Vectors" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>SizedVectors are vectors with statically known sizes. They differ from <a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a>
+in that they are sequentially indexed by an integer rather than by a string. Therefore, they are like tuples in which each element has the same type. 
+</p><p>The indices are 0-based and indexation can begin on the left or the right. The type signatures for SizedVectors can be quite 
+complicated and are not terribly informative. For clarity, they are replaced below by <code>\**\</code>. 
+</p><p>The common feature of the supported operations is that the size information is preserved. Supported operations are:
+</p><h4 id="Construction">Construction<a href="#Construction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
+import typequux._
+
+scala&gt; import typequux._ // package object
+import typequux._
+
+scala&gt; val sz1 = SizedVector(1, 2, 3)
+sz1: /**/ = SizedVector(1, 2, 3)
+
+scala&gt; val sz2 = SizedVector(true, false, false, true, true)
+sz2: /**/ = SizedVector(true, false, false, true, true)
+
+scala&gt; def testCons[N &lt;: Dense, T](a: SizedVector[N, T], b: SizedVector[N, T]): Boolean = true
+testCons: [N &lt;: typequux.Dense, T](a: typequux.SizedVector[N,T], b: typequux.SizedVector[N,T])Boolean
+
+scala&gt; testCons(SizedVector(1.1, 2.2, 3.3), SizedVector(3.14, 2.718, 6.626))
+res0: Boolean = true
+
+scala&gt; testCons(SizedVector(1.1, 2.2, 3.3), SizedVector(3.14, 2.718, 6.626, 1.618)) // does not compile                                                   
+
+scala&gt; val sz3 = SizedVector.from(2, List(&quot;fry&quot;, &quot;bender&quot;))
+sz3: Option[/**/] = Some(SizedVector(fry, bender))
+
+scala&gt; val sz4 = SizedVector.from(2, List(&quot;fry&quot;, &quot;bender&quot;, &quot;amy&quot;)) // static guarentee on runtime size
+sz4: Option[/**/] = None
+
+scala&gt; val sz5 = SizedVector(&quot;fry&quot;, &quot;bender&quot;, &quot;amy&quot;)
+sz5: /**/ = SizedVector(fry, bender, amy)
+
+scala&gt; val sz6 = SizedVector(&quot;professor&quot;, &quot;zoidberg&quot;)
+sz6: /**/ = SizedVector(professor, zoidberg)
+
+scala&gt; val sz7 = SizedVector(1.1, 2.2, 3.3)
+sz7: /**/ = SizedVector(1.1, 2.2, 3.3)
+
+scala&gt; 100.0 +: sz7 // prepend
+res5: /**/ = SizedVector(100.0, 1.1, 2.2, 3.3)
+
+scala&gt; sz7 :+ 100.0 // append
+res6: /**/ = SizedVector(1.1, 2.2, 3.3, 100.0)
+
+scala&gt; val sz8 = sz5 ++ sz6 // concatenation
+sz8: /**/ = SizedVector(fry, bender, amy, professor, zoidberg)
+</code></pre><h4 id="Value+at+an+index">Value at an index<a href="#Value+at+an+index" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz5
+res9: /**/ = SizedVector(fry, bender, amy)
+
+scala&gt; sz5(0)
+res10: String = fry
+
+scala&gt; sz5(2)
+res11: String = amy
+
+scala&gt; sz5(4) // does not compile
+&lt;console&gt;:19: error: Cannot prove that typequux.Bool.True.type =:= typequux.Bool.False.type.
+       sz5(4)
+</code></pre><h4 id="Update">Update<a href="#Update" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz8.updated(2, &quot;zapp brannigan&quot;)
+res15: /**/ = SizedVector(fry, bender, zapp brannigan, professor, zoidberg)
+
+scala&gt; sz8.updated(0, &quot;richard nixon&quot;)
+res17: /**/ = SizedVector(richard nixon, bender, amy, professor, zoidberg)
+
+scala&gt; sz8.updated(12, &quot;richard nixon&quot;) // does not compile
+</code></pre><h4 id="Length">Length<a href="#Length" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz5.length
+res18: Int = 3
+
+scala&gt; sz8.length
+res19: Int = 5
+</code></pre><h4 id="Reverse">Reverse<a href="#Reverse" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz5.reverse
+res20: /**/ = SizedVector(amy, bender, fry)
+
+scala&gt; sz8.reverse
+res21: /**/ = SizedVector(zoidberg, professor, amy, bender, fry)
+
+scala&gt; sz8.reverse.reverse == sz8
+res24: Boolean = true
+</code></pre><h4 id="Drop">Drop<a href="#Drop" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz8.drop(2)
+res26: /**/ = SizedVector(amy, professor, zoidberg)
+
+scala&gt; sz8.dropRight(3)
+res27: /**/ = SizedVector(fry, bender)
+
+scala&gt; sz8.drop(20) // does not compile
+
+scala&gt; sz8.dropRight(20) // does not compile
+</code></pre><h4 id="Take">Take<a href="#Take" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz8.take(2)
+res30: /**/ = SizedVector(fry, bender)
+
+scala&gt; sz8.takeRight(2)
+res31: /**/ = SizedVector(professor, zoidberg)
+
+scala&gt; sz8.take(11) // does not compile
+
+scala&gt; sz8.takeRight(11) // does not compile
+</code></pre><h4 id="Slice">Slice<a href="#Slice" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz8.slice(0, 3)
+res35: /**/ = SizedVector(fry, bender, amy)
+
+scala&gt; sz8.slice(2, 4)
+res36: /**/ = SizedVector(amy, professor)
+
+scala&gt; sz8.slice(1, 10) // does not compile 
+</code></pre><h4 id="Map">Map<a href="#Map" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz8 map (s =&gt; s.length)
+res40: /**/ = SizedVector(3, 6, 3, 9, 8)
+
+scala&gt; sz8 map (s =&gt; s.toUpperCase)
+res41: /**/ = SizedVector(FRY, BENDER, AMY, PROFESSOR, ZOIDBERG)
+</code></pre><h4 id="Sorting">Sorting<a href="#Sorting" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; sz8.sortBy(_.length)
+res42: /**/ = SizedVector(fry, amy, bender, zoidberg, professor)
+
+scala&gt; sz8.sortWith(_.length &gt; _.length)
+res43: /**/ = SizedVector(professor, zoidberg, bender, fry, amy)
+
+scala&gt; sz8.sorted
+res44: /**/ = SizedVector(amy, bender, fry, professor, zoidberg)
+</code></pre><h4 id="Split">Split<a href="#Split" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; val v = SizedVector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+v: /**/ = SizedVector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+scala&gt; v.splitAt(2)
+res45: /**/ = (SizedVector(1, 2),SizedVector(3, 4, 5, 6, 7, 8, 9, 10))
+
+scala&gt; v.splitAt(8)
+res46: /**/ = (SizedVector(1, 2, 3, 4, 5, 6, 7, 8),SizedVector(9, 10))
+
+scala&gt; v.splitAt(20) // does not compile
+</code></pre><h4 id="Flattening">Flattening<a href="#Flattening" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>If the element type is itself a <code>SizedVector</code> of type <code>T</code>, you can flatten the original to obtain a <code>SizedVector</code> of type <code>T</code>. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; :paste
+// Entering paste mode (ctrl-D to finish)
+
+    val el11 = SizedVector(1, 2, 3)
+    val el12 = SizedVector(4, 5, 6)
+    val el13 = SizedVector(7, 8, 9)
+    val el14 = SizedVector(10, 11, 12)
+
+// Exiting paste mode, now interpreting.
+
+el11: /**/ = SizedVector(1, 2, 3)
+el12: /**/ = SizedVector(4, 5, 6)
+el13: /**/ = SizedVector(7, 8, 9)
+el14: /**/ = SizedVector(10, 11, 12)
+
+scala&gt; val el1 = SizedVector(el11, el12, el13, el14)
+el1: /**/ = SizedVector(SizedVector(1, 2, 3), SizedVector(4, 5, 6), SizedVector(7, 8, 9), SizedVector(10, 11, 12))
+
+scala&gt; el1.flatten
+res48: /**/ = SizedVector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+
+scala&gt; v.flatten // does not compile
+</code></pre><h4 id="Zip+and+Unzip">Zip and Unzip<a href="#Zip+and+Unzip" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; val zp = sz8 zip v
+zp: /**/ = SizedVector((fry,1), (bender,2), (amy,3), (professor,4), (zoidberg,5))
+
+scala&gt; zp.unzip
+res50: /**/
+
+scala&gt; res50._1
+res51: /**/ = SizedVector(fry, bender, amy, professor, zoidberg)
+
+scala&gt; res50._2
+res52: /**/ = SizedVector(1, 2, 3, 4, 5)
+</code></pre><h4 id="Access+to+the+backing+vector">Access to the backing vector<a href="#Access+to+the+backing+vector" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>This can help interop with the rest of your codebase. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; sz8.backing
+res53: Vector[String] = Vector(fry, bender, amy, professor, zoidberg)
+
+scala&gt; v.backing
+res54: Vector[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+</code></pre><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.SizedVector">API</a>
+</li><li><a href="https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/SizedVector.scala">Source</a>
+</li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a></li></ul><h2 id="String+Indexed+Collections">String Indexed Collections<a href="#String+Indexed+Collections" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>String indexed collections are similar to immutable associative maps between string keys and values, all of which have to be 
 of the same type. They differ from standard collections like <code>Map</code> in that the presence or absence of a key can be 
 guarenteed at compile time. 
 </p><p>String Indexed collections use a <a href="https://harshad-deo.github.io/typequux/Type+Maps.html">TypeMap</a> to store the keys and their association
