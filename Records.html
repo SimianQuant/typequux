@@ -24,7 +24,9 @@
         <script type="text/javascript">
           Pamflet.page.language = 'en';
         </script>
-        
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><script type="text/javascript" src="js/prettify/lang-scala.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
         
         
@@ -39,9 +41,114 @@
           </a>
         <div class="container contentswrapper">
           <div class="span-16 prepend-1 append-1 contents">
-            <h2 id="Records">Records<a href="#Records" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Coming Soon
-</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Record">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Record.scala">Source</a></li></ul><div class="bottom nav span-16">
+            <h2 id="Records">Records<a href="#Records" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Records are similar to immutable associative maps between strings and values except in two ways:
+</p><ul><li>The presence or absence of a key can be guarenteed at compile time
+</li><li>They preserve the specific type of all the values
+</li></ul><p>Therefore, in a way, they are like ad-hoc classes. Records use a <a href="https://harshad-deo.github.io/typequux/Type+Maps.html">TypeMap</a> to store the 
+keys and their association and a <a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">HList</a> to store the values. 
+The type signatures for records can be quite complicated and are not terribly informative. For clarity, they are replaced below by <code>\**\</code>.
+Supported operations are:
+</p><h4 id="Construction">Construction<a href="#Construction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
+import typequux._
+
+scala&gt; import typequux._ // package object
+import typequux._
+
+scala&gt; val r1 = RNil.add(&quot;name&quot;, &quot;goku&quot;).add(&quot;powerlevel&quot;, 8000).add(&quot;friends&quot;, List(&quot;krillin&quot;, &quot;yamcha&quot;, &quot;bulma&quot;))
+r1: /**/
+
+scala&gt; val r2 = r1.add(&quot;family&quot;, List(&quot;gohan&quot;, &quot;chichi&quot;)) // vegeta saga
+r2: /**/
+</code></pre><p>If a key exists, construction will fail at compile time. Only keys that are not present can be added. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; val r3 = r1.add(&quot;powerlevel&quot;, 9000) // does not compile
+</code></pre><h4 id="Value+corresponding+to+an+index">Value corresponding to an index<a href="#Value+corresponding+to+an+index" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Note that the specific types are preserved
+</p><pre><code class="prettyprint lang-scala">scala&gt; r1(&quot;name&quot;)
+res0: String = goku
+
+scala&gt; r2(&quot;powerlevel&quot;)
+res1: Int = 8000
+
+scala&gt; r2(&quot;family&quot;)
+res2: List[String] = List(gohan, chichi)
+
+scala&gt; r1(&quot;family&quot;) // does not compile 
+</code></pre><h4 id="Updates">Updates<a href="#Updates" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Only keys that are present can be updated
+</p><pre><code class="prettyprint lang-scala">scala&gt; val r4 = r1.updated(&quot;powerlevel&quot;, 32000) // kaioken attack
+r4: /**/
+
+scala&gt; r1(&quot;powerlevel&quot;)
+res4: Int = 8000
+
+scala&gt; r4(&quot;powerlevel&quot;)
+res5: Int = 32000
+
+scala&gt; r1.updated(&quot;teacher&quot;, &quot;king kai&quot;) // does not compile
+</code></pre><h4 id="Size">Size<a href="#Size" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; r1.size
+res7: Int = 3
+
+scala&gt; r2.size
+res8: Int = 4
+
+scala&gt; r4.size
+res10: Int = 3
+</code></pre><h4 id="Conversion+to+maps">Conversion to maps<a href="#Conversion+to+maps" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>This can help interop with the rest of your library. The type of the value of the map is the least upper bound of the types of
+the elements of the record.
+</p><pre><code class="prettyprint lang-scala">scala&gt; val r5 = RNil.add(&quot;a&quot;, 1).add(&quot;b&quot;, 4L).add(&quot;c&quot;, 'c')
+r5: /**/
+
+scala&gt; r5.toMap
+res11: Map[String,AnyVal] = Map(c -&gt; c, b -&gt; 4, a -&gt; 1)
+
+scala&gt; val r6 = RNil.add(&quot;a&quot;, List(1, 2, 3)).add(&quot;b&quot;, Set(true, false)).add(&quot;c&quot;, Vector(1.1, 2.2))
+r6: /**/
+
+scala&gt; r6.toMap
+res12: Map[String,scala.collection.immutable.Iterable[AnyVal] with Int with Boolean =&gt; AnyVal] = Map(c -&gt; Vector(1.1, 2.2), b -&gt; Set(true, false), a -&gt; List(1, 2, 3))
+
+scala&gt; val r7 = RNil.add(&quot;a&quot;, Some((1, 2,3))).add(&quot;b&quot;, None)
+r7: /**/
+
+scala&gt; r7.toMap
+res13: Map[String,Option[(Int, Int, Int)]] = Map(b -&gt; None, a -&gt; Some((1,2,3)))
+</code></pre><h4 id="Conversion+from+classes">Conversion from classes<a href="#Conversion+from+classes" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Records can be built from classes. In this case, the public values, getters and case accessors are converted to keys in the record. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; case class Foo(i: Int, d: Double, s: String)
+defined class Foo
+
+scala&gt; val rc1 = Record.class2Record(Foo(1, 3.14159, &quot;oogachaka&quot;))
+rc1: /**/
+
+scala&gt; rc1.toMap
+res14: Map[String,Any] = Map(i -&gt; 1, d -&gt; 3.14159, s -&gt; oogachaka)
+
+scala&gt; class Bar(val i: List[Int], val d: List[Double], s: String)
+defined class Bar
+
+scala&gt; val rc2 = Record.class2Record(new Bar(List(1, 2,3), List(3.14159, 2.718, 6.626), &quot;alpha&quot;))
+rc2: /**/
+
+scala&gt; rc2.toMap
+res15: Map[String,List[AnyVal]] = Map(i -&gt; List(1, 2, 3), d -&gt; List(3.14159, 2.718, 6.626))
+
+scala&gt; class Baz(val v: Int){var unsafeBool = true}
+defined class Baz
+
+scala&gt; val rc3 = Record.class2Record(new Baz(42))
+rc3: /**/
+
+scala&gt; rc3.toMap
+res16: Map[String,AnyVal] = Map(v -&gt; 42, unsafeBool -&gt; true)
+
+scala&gt; class Quux(val i: Int){def rnd: Boolean = util.Random.nextBoolean}
+defined class Quux
+
+scala&gt; val rc4 = Record.class2Record(new Quux(42))
+rc4: /**/
+
+scala&gt; rc4.toMap
+res17: Map[String,Int] = Map(i -&gt; 42)
+</code></pre><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Record">API</a>
+</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Record.scala">Source</a>
+</li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a></li></ul><div class="bottom nav span-16">
                         <em>Next Page</em>
                         <span class="arrow">❧</span>
                         <a href="Understanding+Constraints.html"> Understanding Constraints </a>                        
