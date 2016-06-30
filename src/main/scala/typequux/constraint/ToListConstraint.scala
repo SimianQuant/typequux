@@ -25,7 +25,7 @@ package typequux.constraint
   * @author Harshad Deo
   * @since 0.1
   */
-trait ToListConstraint[T, R] {
+trait ToListConstraint[T, +R] {
   def apply(t: T): List[R]
 }
 
