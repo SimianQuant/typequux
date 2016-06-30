@@ -2681,7 +2681,7 @@ Records are similar to immutable associative maps between strings and values exc
 
 Therefore, in a way, they are like ad-hoc classes. Records use a [TypeMap](https://harshad-deo.github.io/typequux/Type+Maps.html) to store the 
 keys and their association and a [HList](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html) to store the values. 
-The type signatures for records can be quite complicated and are not terribly informative. For clarity, they are replaced below by `\**\`.
+The type signatures for records can be quite complicated and are not terribly informative. For clarity, they are replaced below by `/**/`.
 Supported operations are:
 
 #### Construction
