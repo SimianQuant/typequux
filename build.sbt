@@ -3,7 +3,7 @@ scalaVersion := "2.11.8"
 crossScalaVersions := Seq("2.10.6")
 
 name := "typequux"
-organization := "typefoo"
+organization := "com.simianquant"
 version := "0.1"
 
 fork := true

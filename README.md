@@ -14,6 +14,7 @@ implementations of several typelevel programming primitives. As such, it represe
 
 To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package). You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
 
+The project should be uploaded on Sonatype soon. In the meantime, you can follow the example [here](http://alvinalexander.com/scala/using-github-projects-scala-library-dependencies-sbt-sbteclipse) for using TypeQuux in your code. 
 
 Currently supported primitives are:
 
