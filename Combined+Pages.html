@@ -1845,7 +1845,120 @@ scala&gt; rc4.toMap
 res17: Map[String,Int] = Map(i -&gt; 42)
 </code></pre><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Record">API</a>
 </li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Record.scala">Source</a>
-</li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a></li></ul><h2 id="Understanding+Constraints">Understanding Constraints<a href="#Understanding+Constraints" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Coming Soon
+</li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a></li></ul><h2 id="Understanding+Constraints">Understanding Constraints<a href="#Understanding+Constraints" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Constraints are composable typeclasses that abstract over the specifics of primitives likes HLists and Records to encode an 
+invariant associated with a problem. They are the central conceptual abstraction of operations on the primitives that ship
+with TypeQuux and play the major role in supporting the claim that the library is <em>hackable</em>.
+</p><p>As an example, consider the <code>TakeConstraint</code> (<a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/constraint/TakeConstraint.scala">source</a>):
+</p><pre><code class="prettyprint lang-scala">trait TakeConstraint[N, HL, R] {
+  def apply(hl: HL): R
+}
+</code></pre><p>The invariant that it encodes is that given an object of type <code>HL</code>, the type of the first <code>N</code> elements is <code>R</code>. The semantics are of course
+enforced by convention, but are consistent in the default implementations for <code>TakeConstraint</code> that ship with the library. 
+</p><p>If you leave all three type parameters unconstrained, the code will compile for all types for which such a constraint can be satisfied, 
+regardless of arity or the specific primitive. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import typequux._; import TupleOps._; import constraint._
+import typequux._
+import typequux._
+import TupleOps._
+import constraint._
+
+scala&gt; def uncons[T, R](i: LiteralHash[Int], t: T)(implicit ev: TakeConstraint[i.ValueHash, T, R]): R = ev(t)
+uncons: [T, R](i: typequux.LiteralHash[Int], t: T)(implicit ev: typequux.constraint.TakeConstraint[i.ValueHash,T,R])R
+
+scala&gt; uncons(2, (true, &quot;foo&quot;, 42)) // tuple
+res0: (Boolean, String) = (true,foo)
+
+scala&gt; uncons(2, (true, &quot;foo&quot;, List(3.14159, 2.71828), 42L, Some(&quot;bananas&quot;))) // tuple
+res1: (Boolean, String) = (true,foo)
+
+scala&gt; uncons(2, Some(&quot;bananas&quot;) :+: &quot;watermelon&quot; :+: 0 :+: HNil) // HList
+res3: /**/ = Some(bananas) :+: watermelon :+: HNil
+
+scala&gt; uncons(4, (12, &quot;22/7&quot;)) // does not compile
+</code></pre><p>If you fix type <code>T</code>, it constrains the indices for which the expression compiles and also the primitives that are valid.
+</p><pre><code class="prettyprint lang-scala">scala&gt; def constr1[R](i: LiteralHash[Int], t: (Int, String, Boolean))(implicit ev: TakeConstraint[i.ValueHash, (Int, String, Boolean), R]): R = ev(t)
+constr1: [R](i: typequux.LiteralHash[Int], t: (Int, String, Boolean))(implicit ev: typequux.constraint.TakeConstraint[i.ValueHash,(Int, String, Boolean),R])R
+
+scala&gt; constr1(1, (42, &quot;foo&quot;, true))
+res6: Int = 42
+
+scala&gt; constr1(2, (42, &quot;foo&quot;, true))
+res7: (Int, String) = (42,foo)
+
+scala&gt; constr1(4, (42, &quot;foo&quot;, true)) // does not compile
+</code></pre><p>if you fix type <code>R</code>, it constrains the shape of the input and also constrains the index to a singular value.
+</p><pre><code class="prettyprint lang-scala">scala&gt; def constr2[T](i: LiteralHash[Int], t: T)(implicit ev: TakeConstraint[i.ValueHash, T, (Int, Boolean)]): (Int, Boolean) = ev(t)
+constr2: [T](i: typequux.LiteralHash[Int], t: T)(implicit ev: typequux.constraint.TakeConstraint[i.ValueHash,T,(Int, Boolean)])(Int, Boolean)
+
+scala&gt; constr2(2, (42, true, List(1, 2,3)))
+res10: (Int, Boolean) = (42,true)
+
+scala&gt; constr2(2, (42, true, Some(List(true, false)), &quot;oogachaka&quot;, ('t', 'q')))
+res11: (Int, Boolean) = (42,true)
+
+scala&gt; constr2(3, (42, true, Some(List(true, false)), &quot;oogachaka&quot;, ('t', 'q'))) // does not compile
+
+scala&gt; constr2(2, (42)) // does not compile
+</code></pre><p>Constraints are composable. They can be combined with other constraints to encode very granular problem requirements. 
+(This is infact how most of the library is implemented).
+</p><p>Consider the following (very hypothetical) scenario: 
+</p><p>You have to take the first k elements of a primitive (arity and type is unconstrained), but they have to be convertable to a 
+list of <code>Option[AnyRef]</code>. In the real world, the least upper bound type would be some sort of a business object, but 
+to keep things simple, lets say that its an <code>AnyRef</code>.
+</p><pre><code class="prettyprint lang-scala">scala&gt; def constr3[T, R](i: LiteralHash[Int], t: T)(implicit ev0: TakeConstraint[i.ValueHash, T, R], ev1: ToListConstraint[R, Option[AnyRef]]): List[Option[AnyRef]] = ev1(ev0(t))
+constr3: [T, R](i: typequux.LiteralHash[Int], t: T)(implicit ev0: typequux.constraint.TakeConstraint[i.ValueHash,T,R], implicit ev1: typequux.constraint.ToListConstraint[R,Option[AnyRef]])List[Option[AnyRef]]
+
+scala&gt; constr3(2, (Some(&quot;oogachaka&quot;), None, Some(List(1,2 ,3))))
+res24: List[Option[Object]] = List(Some(oogachaka), None)
+
+scala&gt; constr3(3, (None, Some(Set(true, false, false)), Some(&quot;oogachaka&quot;), None, Some(List(1,2 ,3))))
+res25: List[Option[Object]] = List(None, Some(Set(true, false)), Some(oogachaka))
+
+scala&gt; constr3(3, None :+: Some(&quot;matt le blanc&quot;) :+: Some(List(&quot;trevor noah&quot;, &quot;john oliver&quot;)) :+: None :+: HNil)
+res27: List[Option[Object]] = List(None, Some(matt le blanc), Some(List(trevor noah, john oliver)))
+
+scala&gt; constr3(2, Some(12) :+: Some(&quot;matt le blanc&quot;) :+: Some(List(&quot;jon stewart&quot;, &quot;jay leno&quot;)) :+: None :+: HNil) // does not compile, Int is not a subtype of AnyRef
+
+scala&gt; constr3(5, (Some(&quot;foo&quot;), None)) // does not compile, cannot take
+</code></pre><p>If this is a constraint that is recurrent in several parts of your program or you wish to make the code easier to read, you
+can refactor it like so:
+</p><pre><code class="prettyprint lang-scala">scala&gt; :paste
+// Entering paste mode (ctrl-D to finish)
+
+trait MyConstraint[N, R]{
+  def apply(r: R): List[AnyRef]
+}
+
+object MyConstraint{
+  implicit def build[N, R, T](
+    implicit ev0: TakeConstraint[N, R, T], ev1: ToListConstraint[T, AnyRef]): MyConstraint[N, R] =
+      new MyConstraint[N, R]{
+        override def apply(r: R) = ev1(ev0(r))
+      }
+}
+
+
+// Exiting paste mode, now interpreting.
+
+defined trait MyConstraint
+defined object MyConstraint
+
+scala&gt; def constr4[R](i: LiteralHash[Int], r: R)(implicit ev: MyConstraint[i.ValueHash, R]): List[AnyRef] = ev(r)
+constr4: [R](i: typequux.LiteralHash[Int], r: R)(implicit ev: MyConstraint[i.ValueHash,R])List[AnyRef]
+
+scala&gt; constr4(2, (Some(&quot;oogachaka&quot;), None, Some(List(1,2 ,3))))
+res32: List[Object] = List(Some(oogachaka), None)
+
+scala&gt; constr4(3, (None, Some(Set(true, false, false)), Some(&quot;oogachaka&quot;), None, Some(List(1,2 ,3))))
+res33: List[Object] = List(None, Some(Set(true, false)), Some(oogachaka))
+
+scala&gt; constr4(3, None :+: Some(&quot;matt le blanc&quot;) :+: Some(List(&quot;trevor noah&quot;, &quot;john oliver&quot;)) :+: None :+: HNil)
+res34: List[Object] = List(None, Some(matt le blanc), Some(List(trevor noah, john oliver)))
+
+scala&gt; constr4(5, (Some(&quot;foo&quot;), None)) // does not compile
+
+scala&gt; constr4(2, 'c' :+: Some(&quot;matt le blanc&quot;) :+: Some(List(&quot;jon steward&quot;, &quot;jay leno&quot;)) :+: None :+: HNil) // does not compile
+</code></pre><p>There are 40 constraints that ship with the current version of the library. You can check them out in the API link below. 
 </p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.constraint.package">API</a></li></ul>
           </div>
         </div>
