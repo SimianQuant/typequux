@@ -7,7 +7,7 @@ organization := "com.simianquant"
 version := "0.1"
 
 fork := true
-coverageEnabled := true
+coverageEnabled in Test := true
 
 lazy val compilecheck = taskKey[Unit]("compile and then scalastyle")
 
