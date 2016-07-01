@@ -4,7 +4,7 @@ crossScalaVersions := Seq("2.10.6")
 
 name := "typequux"
 organization := "com.simianquant"
-version := "0.1"
+version := "0.1.1"
 
 fork := true
 coverageEnabled in Test := true

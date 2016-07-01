@@ -1,6 +1,7 @@
 # TypeQuux
 
 [![Build Status](https://travis-ci.org/harshad-deo/typequux.svg?branch=master)](https://travis-ci.org/harshad-deo/typequux)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11)
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a73e78adc99949b29a3ea55f0ee92a41)](https://www.codacy.com/app/subterranean-hominid/typequux?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harshad-deo/typequux&amp;utm_campaign=Badge_Grade)
 [![Gitter](https://badges.gitter.im/harshad-deo/typequux.svg)](https://gitter.im/harshad-deo/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -14,7 +15,13 @@ implementations of several typelevel programming primitives. As such, it represe
 
 To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package). You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
 
-The project should be uploaded on Sonatype soon. In the meantime, you can follow the example [here](http://alvinalexander.com/scala/using-github-projects-scala-library-dependencies-sbt-sbteclipse) for using TypeQuux in your code. 
+To use, add the following line to your `build.sbt` file:
+
+```scala
+libraryDependencies += "com.simianquant" %% "typequux" % "0.1.1"
+```
+
+Currently, only 2.11 binaries are supported. 
 
 Currently supported primitives are:
 
