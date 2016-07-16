@@ -4,10 +4,9 @@ crossScalaVersions := Seq("2.10.6")
 
 name := "typequux"
 organization := "com.simianquant"
-version := "0.1.1"
+version := "0.1.2-SNAPSHOT"
 
 fork := true
-coverageEnabled in Test := true
 
 lazy val compilecheck = taskKey[Unit]("compile and then scalastyle")
 
