@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/harshad-deo/typequux.svg?branch=master)](https://travis-ci.org/harshad-deo/typequux)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.8.svg)](https://www.scala-js.org)
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a73e78adc99949b29a3ea55f0ee92a41)](https://www.codacy.com/app/subterranean-hominid/typequux?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harshad-deo/typequux&amp;utm_campaign=Badge_Grade)
 [![Gitter](https://badges.gitter.im/harshad-deo/typequux.svg)](https://gitter.im/harshad-deo/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -18,7 +19,8 @@ To see what is possible, head on over to the [project site](https://harshad-deo.
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.1.2"
+libraryDependencies += "com.simianquant" %% "typequux" % "0.2.0" // scala-jvm
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.2.0" // scala-js/cross
 ```
 
 Currently, only 2.11 binaries are supported. 
