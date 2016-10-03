@@ -27,57 +27,57 @@ import typequux._
 sealed trait Nat {
 
   /** Typeconstructor for querying whether this is zero or not
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Match [NonZero[N <: Nat] <: Up, IfZero <: Up, Up] <: Up
+  type Match[NonZero[N <: Nat] <: Up, IfZero <: Up, Up] <: Up
 
   /** Compares with the other peano number
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Compare [N <: Nat] <: Comparison
+  type Compare[N <: Nat] <: Comparison
 
   /** Typelevel FoldRight
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  type FoldR [Init <: Type, Type, F <: Fold[Nat, Type]] <: Type
+  type FoldR[Init <: Type, Type, F <: Fold[Nat, Type]] <: Type
 
   /** Typelevel FoldLeft
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  type FoldL [Init <: Type, Type, F <: Fold[Nat, Type]] <: Type
+  type FoldL[Init <: Type, Type, F <: Fold[Nat, Type]] <: Type
 }
 
-/** Contains implementation traits for [[Nat]] and typeconstructor aliases that make usage more pleasant. 
-  * 
-  * 1. Additive commutativity: <code> +[A, B] =:= +[B, A]  </code> 
+/** Contains implementation traits for [[Nat]] and typeconstructor aliases that make usage more pleasant.
   *
-  * 2. Additive associativity: <code> +[A, +[B, C]] =:= +[+[A, B], C] </code> 
+  * 1. Additive commutativity: <code> +[A, B] =:= +[B, A]  </code>
   *
-  * 3. Additive identity: <code> +[A, _0] =:= A =:= +[_0, A] </code> 
+  * 2. Additive associativity: <code> +[A, +[B, C]] =:= +[+[A, B], C] </code>
   *
-  * 4. Multiplicative commutativity: <code> *[A, B] =:= *[B, A] </code> 
+  * 3. Additive identity: <code> +[A, _0] =:= A =:= +[_0, A] </code>
   *
-  * 5. Multiplicative associativity: <code> *[A, *[B, C]] =:= *[*[A, B], C] </code> 
+  * 4. Multiplicative commutativity: <code> *[A, B] =:= *[B, A] </code>
   *
-  * 6. Multiplicative identity: <code> *[A, _1] =:= A =:= *[_1, A] </code> 
+  * 5. Multiplicative associativity: <code> *[A, *[B, C]] =:= *[*[A, B], C] </code>
   *
-  * 7. Distributivity: <code> *[A, +[B, C]] =:= +[*[A, B], *[A, C]] </code> 
+  * 6. Multiplicative identity: <code> *[A, _1] =:= A =:= *[_1, A] </code>
   *
-  * 8. Zero exponent: <code> ^[A, _0] =:= _1 </code> 
+  * 7. Distributivity: <code> *[A, +[B, C]] =:= +[*[A, B], *[A, C]] </code>
   *
-  * 9. One exponent: <code> ^[_1, A] =:= _1 </code> 
+  * 8. Zero exponent: <code> ^[A, _0] =:= _1 </code>
   *
-  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code> 
+  * 9. One exponent: <code> ^[_1, A] =:= _1 </code>
   *
-  * 11. Total Order 
+  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code>
+  *
+  * 11. Total Order
   *
   *
   * @author Harshad Deo
@@ -94,11 +94,11 @@ object Nat {
   trait Fold[-Elem, Value] {
 
     /** Typelevel Fold
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
-    type Apply [E <: Elem, Acc <: Value] <: Value
+    type Apply[E <: Elem, Acc <: Value] <: Value
 
     /** Valuelevel fold
       *
@@ -220,7 +220,7 @@ object Nat {
   private[Nat] type ConstLt[X] = LT
 
   /** Alias for getting the result of comparing two numbers
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -228,7 +228,7 @@ object Nat {
   type Compare[A <: Nat, B <: Nat] = A#Compare[B]
 
   /** Alias for checking if the two numbers are equal
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -236,7 +236,7 @@ object Nat {
   type ===[A <: Nat, B <: Nat] = A#Compare[B]#eq
 
   /** Alias for checking if the first number is less than the second
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -244,7 +244,7 @@ object Nat {
   type <[A <: Nat, B <: Nat] = A#Compare[B]#lt
 
   /** Alias for checking if the first number is less than or equal to the second
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -252,7 +252,7 @@ object Nat {
   type <=[A <: Nat, B <: Nat] = A#Compare[B]#le
 
   /** Alias for checking if the first number is greater than the second
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -260,7 +260,7 @@ object Nat {
   type >[A <: Nat, B <: Nat] = A#Compare[B]#gt
 
   /** Alias for checking if the first number is greater than or equal to the second
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -268,7 +268,7 @@ object Nat {
   type >=[A <: Nat, B <: Nat] = A#Compare[B]#ge
 
   /** Alias for checking if the number is zero
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -276,7 +276,7 @@ object Nat {
   type IsO[A <: Nat] = A#Match[ConstFalse, True, Bool]
 
   /** Alias for adding two numbers
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -284,7 +284,7 @@ object Nat {
   type +[A <: Nat, B <: Nat] = A#FoldR[B, Nat, IncFold]
 
   /** Alias for multiplying two numbers
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -292,7 +292,7 @@ object Nat {
   type *[A <: Nat, B <: Nat] = A#FoldR[_0, Nat, SumFold[B]]
 
   /** Alias for computing the factorial of the number
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -300,7 +300,7 @@ object Nat {
   type Fact[A <: Nat] = A#FoldL[_1, Nat, ProdFold]
 
   /** Alias for computing the exponent of the number
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -308,7 +308,7 @@ object Nat {
   type ^[A <: Nat, B <: Nat] = B#FoldR[_1, Nat, ExpFold[A]]
 
   /** Alias for computing the square of the number
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -355,10 +355,10 @@ object Nat {
     override type Apply[N <: Nat, Acc <: Nat] = *[By, Acc]
   }
 
-  /** Builds a value level representation of the [[Nat]] 
+  /** Builds a value level representation of the [[Nat]]
     *
     * @tparam N Natural number for which the value level representation is being built
-    * 
+    *
     * @group Implementation
     * @author Harshad Deo
     * @since 0.1
@@ -406,7 +406,7 @@ object Nat {
   * @tparam M Minuend
   * @tparam S Subtrahend
   * @tparam D Difference
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */

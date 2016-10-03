@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to split a sequentially indexed collection (like a [[HList]] or a tuple) at a specified index. 
+/** Typeclass to split a sequentially indexed collection (like a [[HList]] or a tuple) at a specified index.
   * By Convention, indices are 0-based and begin from the left (beginning).
   *
   * @tparam N Index at which to split

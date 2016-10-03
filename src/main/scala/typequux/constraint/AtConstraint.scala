@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to get an element given an index. For sequentially indexed objects like [[HList]] and Tuples, 
+/** Typeclass to get an element given an index. For sequentially indexed objects like [[HList]] and Tuples,
   * index is, by convention, 0-based from the beginning.
   *
   * @tparam N Type of the Index

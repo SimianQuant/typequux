@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to zip all the elements of an object together, equivalent to an arbitrary-arity zip. 
+/** Typeclass to zip all the elements of an object together, equivalent to an arbitrary-arity zip.
   *
   * @tparam Z Type of the object on which the operation is applied
   * @tparam F Downconverted type of Z, for details, see [[DownTransformConstraint]]

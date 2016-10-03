@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to insert multiple elements at a specified type-index. 
+/** Typeclass to insert multiple elements at a specified type-index.
   * By convention, indices are 0-based from the right(end).
   *
   * @tparam N Index at which the element is to be inserted

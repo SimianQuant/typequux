@@ -32,28 +32,28 @@ sealed trait DenseSet {
     * @author Harshad Deo
     * @since 0.1
     */
-  type Contains [X <: Dense] <: Bool
+  type Contains[X <: Dense] <: Bool
 
   /** Adds a key to the set
     *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Include [X <: Dense] <: DenseSet
+  type Include[X <: Dense] <: DenseSet
 
   /** Removes a key from the set
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Remove [X <: Dense] <: DenseSet
+  type Remove[X <: Dense] <: DenseSet
 
   /** Union with the other srt
     *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Union [X <: DenseSet] <: DenseSet
+  type Union[X <: DenseSet] <: DenseSet
 
   /** Size of the set (count of the elements present in it)
     *
@@ -63,7 +63,7 @@ sealed trait DenseSet {
   type Size <: Dense
 }
 
-/** Contains implementation traits for [[DenseSet]] and typeconstructor aliases that make usage more pleasant. 
+/** Contains implementation traits for [[DenseSet]] and typeconstructor aliases that make usage more pleasant.
   *
   * @author Harshad Deo
   * @since 0.1
@@ -100,8 +100,10 @@ object DenseSet {
                                                            NonEmptyDenseSet[V, L, R],
                                                            NonEmptyDenseSet[V, L, R#Include[X]],
                                                            DenseSet]
-    override type Remove[X <: Dense] = X#Compare[V]#Match[
-        NonEmptyDenseSet[V, L#Remove[X], R], L#Union[R], NonEmptyDenseSet[V, L, R#Remove[X]], DenseSet]
+    override type Remove[X <: Dense] = X#Compare[V]#Match[NonEmptyDenseSet[V, L#Remove[X], R],
+                                                          L#Union[R],
+                                                          NonEmptyDenseSet[V, L, R#Remove[X]],
+                                                          DenseSet]
     override type Union[X <: DenseSet] = L#Union[R]#Union[X]#Include[V]
     override type Size = _1 + L#Size + R#Size
   }

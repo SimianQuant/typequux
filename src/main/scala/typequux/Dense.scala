@@ -43,7 +43,7 @@ sealed trait Dense {
   type tail <: Dense
 
   /** Increment the number
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -64,7 +64,7 @@ sealed trait Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  type Add [b <: Dense] <: Dense
+  type Add[b <: Dense] <: Dense
 
   /** Multiply with the number
     *
@@ -113,7 +113,7 @@ sealed trait Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  type Match [NonZero <: Up, IfZero <: Up, Up] <: Up
+  type Match[NonZero <: Up, IfZero <: Up, Up] <: Up
 
   /** Compares with the other dense number
     *
@@ -123,29 +123,29 @@ sealed trait Dense {
     */
   type Compare[B <: Dense] = CompareC[B, EQ]
 
-  /** 
+  /**
     * @author Harshad Deo
     * @since 0.1
     */
   protected type Len <: Dense
 
-  /** 
+  /**
     * @author Harshad Deo
     * @since 0.1
     */
-  protected type Karatsuba [x <: Dense, res <: Dense] <: Dense // Karatsuba/Russian Peasant/Egyptian multiplication
+  protected type Karatsuba[x <: Dense, res <: Dense] <: Dense // Karatsuba/Russian Peasant/Egyptian multiplication
 
-  /** 
+  /**
     * @author Harshad Deo
     * @since 0.1
     */
-  protected type ExpHelper [arg <: Dense, res <: Dense] <: Dense
+  protected type ExpHelper[arg <: Dense, res <: Dense] <: Dense
 
-  /** 
+  /**
     * @author Harshad Deo
     * @since 0.1
     */
-  protected type CompareC [B <: Dense, Carry <: Comparison] <: Comparison
+  protected type CompareC[B <: Dense, Carry <: Comparison] <: Comparison
 }
 
 /** Contains implementation for [[Dense]] and typeconstructor aliases that make usage more pleasant
@@ -170,7 +170,7 @@ sealed trait Dense {
   *
   * 9. One exponent: <code> ^[_1, A] =:= _1 </code>
   *
-  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code> 
+  * 10. Exponent Identity: <code> ^[A, _1] =:= A </code>
   *
   * 11. Exponent combination 1: <code> *[^[A, B], ^[A, C]] =:= ^[A, *[B, C]] </code>
   *
@@ -198,14 +198,14 @@ object Dense {
       * @author Harshad Deo
       * @since 0.1
       */
-    type Match [IfOne <: Up, IfZero <: Up, Up] <: Up
+    type Match[IfOne <: Up, IfZero <: Up, Up] <: Up
 
     /** Typeconstructor to compare two bits
       *
       * @author Harshad Deo
       * @since 0.1
       */
-    type Compare [D <: Digit] <: Comparison
+    type Compare[D <: Digit] <: Comparison
   }
 
   /** Represents a 0 in the dense encoding of a natural number
@@ -234,7 +234,7 @@ object Dense {
     *
     * @tparam d Lowest priority bit
     * @tparam T Rest of the bits, in decreasing order of priority
-    * 
+    *
     * @group Implementation
     * @author Harshad Deo
     * @since 0.1
@@ -640,7 +640,7 @@ object Dense {
   * @tparam M Minuend
   * @tparam S Subtrahend
   * @tparam D Difference
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -671,7 +671,7 @@ object DenseDiff {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def dsrN[M <: Dense, S <: Dense, DP <: Dense](
-      implicit ev: DenseDiff[M#Dec, S#Dec, DP], ev1: True =:= >[S, _0]): DenseDiff[M, S, DP] =
+  implicit def dsrN[M <: Dense, S <: Dense, DP <: Dense](implicit ev: DenseDiff[M#Dec, S#Dec, DP],
+                                                         ev1: True =:= >[S, _0]): DenseDiff[M, S, DP] =
     new DenseDiff[M, S, DP] {}
 }

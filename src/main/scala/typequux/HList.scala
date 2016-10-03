@@ -24,7 +24,7 @@ import typequux._
 import constraint._
 
 /** Sequentially indexed arbitrary arity type in which each element can be of a different type
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -42,7 +42,7 @@ object HList {
     *
     * @tparam H Type of the head of the HList
     * @tparam T Type of the tail if the HList
-    * 
+    *
     * @group Implementation
     * @author Harshad Deo
     * @since 0.1
@@ -61,9 +61,9 @@ object HList {
     override def toString: String = "HNil"
   }
 
-  /** Arbitrary arity zipper in which the elements share common context that is a subtype of Traversable and 
+  /** Arbitrary arity zipper in which the elements share common context that is a subtype of Traversable and
     * has strict evaluation semantics (not a [[scala.collection.immutable.Stream]])
-    * 
+    *
     * @tparam PHL Input HList
     * @tparam M  Common context of the types of the HList
     * @tparam FHL Downconverted type of PHL. For details, see [[constraint.DownTransformConstraint]]
@@ -143,7 +143,7 @@ object HList {
       * @tparam TL Type of the tail of the input HList
       * @tparam FTL Downconverted type of the tail of the input HList. For details, see [[constraint.DownTransformConstraint]]
       * @tparam THL Result of applying M ~> Traversable to M[X] :+: TL
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
@@ -175,7 +175,7 @@ object HList {
     import Zipper._
 
     /** Executes the zip
-      * 
+      *
       * @tparam T Element type of the resultant stream
       *
       * @author Harshad Deo
@@ -210,8 +210,10 @@ object HList {
       * @since 0.1
       */
     implicit def lazyZipper2[X, Y](
-        implicit tr0: TransformConstraint[
-            Stream[X] :+: Stream[Y] :+: HNil, Stream[X] :+: Stream[Y] :+: HNil, Stream, Stream],
+        implicit tr0: TransformConstraint[Stream[X] :+: Stream[Y] :+: HNil,
+                                          Stream[X] :+: Stream[Y] :+: HNil,
+                                          Stream,
+                                          Stream],
         tr1: DownTransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil, Stream],
         ex: ForeachConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[_]])
       : LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
@@ -287,7 +289,7 @@ object HList {
       *
       * @tparam H Type of the head of the HList
       * @tparam TL Type of the tail of the HList
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
@@ -304,7 +306,7 @@ object HList {
       * @tparam Before The type of the Before sublist of the factorization of the tail
       * @tparam At Type of the element at index 0 (obtained from the factorization of the tail)
       * @tparam After Type of the sublist after index 0 (obtained from the factorization of the tail)
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
@@ -320,7 +322,7 @@ object HList {
   }
 
   /** Index based on type. Requesters should constrain the At type. If multiple elements have the same type
-    * as the constraint, the one furthest from the head will be chosen. 
+    * as the constraint, the one furthest from the head will be chosen.
     *
     * @tparam HL HList being indexed
     * @tparam Before Type of the sublist before the index
@@ -345,7 +347,7 @@ object HList {
       *
       * @tparam H Head of the HList (and the indexation constraint)
       * @tparam TL Type of the tail of the HList
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
@@ -418,7 +420,7 @@ object HList {
     /** Remove the element at the index
       *
       * @tparam R Type of the resultant HList
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
@@ -444,8 +446,8 @@ object HList {
       * @author Harshad Deo
       * @since 0.1
       */
-    def flatMap[B <: HList, R0 <: HList, R1 <: HList](f: At => B)(
-        implicit ev0: AppendConstraint[B, After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
+    def flatMap[B <: HList, R0 <: HList, R1 <: HList](f: At => B)(implicit ev0: AppendConstraint[B, After, R0],
+                                                                  ev1: AppendConstraint[Before, R0, R1]): R1 =
       before :++: f(at) :++: after
 
     /** Insert a new element at the index
@@ -468,8 +470,8 @@ object HList {
       * @author Harshad Deo
       * @since 0.1
       */
-    def insertM[B <: HList, R0 <: HList, R1 <: HList](b: B)(
-        implicit ev0: AppendConstraint[B, At :+: After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
+    def insertM[B <: HList, R0 <: HList, R1 <: HList](b: B)(implicit ev0: AppendConstraint[B, At :+: After, R0],
+                                                            ev1: AppendConstraint[Before, R0, R1]): R1 =
       before :++: b :++: (at :+: after)
 
     /** Partition the HList at the index
@@ -483,7 +485,7 @@ object HList {
   /** Converts an [[HList]] to its ops object
     *
     * @tparam B Type of the HList being converted
-    * 
+    *
     * @group Ops Converter
     * @author Harshad Deo
     * @since 0.1
@@ -491,7 +493,7 @@ object HList {
   implicit def toHListOps[B <: HList](b: B): HListOps[B] = new HListOps(b)
 
   /** Converts an HList to an arity zipped ops object
-    * 
+    *
     * @tparam B Type of the HList being converted
     * @tparam F Downtransformed type of B. For details, see [[constraint.DownTransformConstraint]]
     *
@@ -502,7 +504,7 @@ object HList {
   implicit def toArityZipOps[B <: HList, F](b: B)(
       implicit ev: DownTransformConstraint[B, F, Traversable]): ArityZipOps[B, F] = new ArityZipOps[B, F](b)
 
-  /** Marker trait for a type indexed on an hlist. 
+  /** Marker trait for a type indexed on an hlist.
     *
     * @tparam S Type on which the HList is indexed
     * @tparam HL Type of the HList
@@ -511,7 +513,7 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  class Tip[S, HL <: HList] private[typequux](private val hl: HL)
+  class Tip[S, HL <: HList] private[typequux] (private val hl: HL)
 
   /** Companion object for [[Tip]], Contains implicit conversion to convert it to an [[IndexedOps]] object
     *
@@ -527,7 +529,7 @@ object HList {
       * @tparam HL Type of the hList to index
       * @tparam Before Type of the sublist before the index
       * @tparam After Type of the sublist after the index
-      * 
+      *
       * @author Harshad Deo
       * @since 0.1
       */
@@ -651,7 +653,7 @@ object HList {
     override def apply(hl: HL) = ev2(hl)._2
   }
 
-  /** Base case for [[constraint.DownTransformConstraint]] for HLists. 
+  /** Base case for [[constraint.DownTransformConstraint]] for HLists.
     *
     * @tparam M Context from which to downconvert
     *
@@ -665,7 +667,7 @@ object HList {
     }
 
   /** Induction case for [[constraint.DownTransformConstraint]] for HLists
-    * 
+    *
     * @tparam M Context from which to downconvert
     * @tparam X Down converted type at the head
     * @tparam TL Tail of the input HList
@@ -817,7 +819,7 @@ object HList {
     *
     * @tparam C Common type on which the operation is defined
     * @tparam H Head of the HList
-    * 
+    *
     * @group Constraint Constructor
     * @author Harshad Deo
     * @since 0.1
@@ -837,8 +839,8 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hForeachConstraintN[C, H, TL <: HList](
-      implicit ev0: ForeachConstraint[TL, C], ev1: H => C): ForeachConstraint[H :+: TL, C] =
+  implicit def hForeachConstraintN[C, H, TL <: HList](implicit ev0: ForeachConstraint[TL, C],
+                                                      ev1: H => C): ForeachConstraint[H :+: TL, C] =
     new ForeachConstraint[H :+: TL, C] {
       override def apply(hl: H :+: TL)(f: C => Unit) = {
         f(hl.head)
@@ -861,8 +863,14 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hIndexFlatMapConstraint[
-      N, HL <: HList, At, T <: HList, R <: HList, Before <: HList, After <: HList, R0 <: HList](
+  implicit def hIndexFlatMapConstraint[N,
+                                       HL <: HList,
+                                       At,
+                                       T <: HList,
+                                       R <: HList,
+                                       Before <: HList,
+                                       After <: HList,
+                                       R0 <: HList](
       implicit ev0: PIndexer[N, HL, Before, At, After],
       ev1: AppendConstraint[T, After, R0],
       ev2: AppendConstraint[Before, R0, R]): IndexFlatMapConstraint[N, HL, At, T, R] =
@@ -953,8 +961,15 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hIndexMapRightConstraint[
-      N <: Dense, L <: Dense, D, HL <: HList, At, Before <: HList, After <: HList, T, R <: HList](
+  implicit def hIndexMapRightConstraint[N <: Dense,
+                                        L <: Dense,
+                                        D,
+                                        HL <: HList,
+                                        At,
+                                        Before <: HList,
+                                        After <: HList,
+                                        T,
+                                        R <: HList](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, At, After],
@@ -1006,8 +1021,15 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hInsertRightConstraint[
-      N <: Dense, L <: Dense, D, HL <: HList, Before <: HList, At, After <: HList, T, R <: HList](
+  implicit def hInsertRightConstraint[N <: Dense,
+                                      L <: Dense,
+                                      D,
+                                      HL <: HList,
+                                      Before <: HList,
+                                      At,
+                                      After <: HList,
+                                      T,
+                                      R <: HList](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, At, After],
@@ -1034,17 +1056,23 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hInserMConstraint[
-      N, HL <: HList, Before <: HList, At, After <: HList, T <: HList, R0 <: HList, R <: HList](
-      implicit ev0: PIndexer[N, HL, Before, At, After],
-      ev1: AppendConstraint[T, At :+: After, R0],
-      ev2: AppendConstraint[Before, R0, R]): InsertMConstraint[N, HL, T, R] = new InsertMConstraint[N, HL, T, R] {
-    override def apply(hl: HL, t: T) = {
-      val (before, at, after) = ev0(hl)
-      val r0 = ev1(t, at :+: after)
-      ev2(before, r0)
+  implicit def hInserMConstraint[N,
+                                 HL <: HList,
+                                 Before <: HList,
+                                 At,
+                                 After <: HList,
+                                 T <: HList,
+                                 R0 <: HList,
+                                 R <: HList](implicit ev0: PIndexer[N, HL, Before, At, After],
+                                             ev1: AppendConstraint[T, At :+: After, R0],
+                                             ev2: AppendConstraint[Before, R0, R]): InsertMConstraint[N, HL, T, R] =
+    new InsertMConstraint[N, HL, T, R] {
+      override def apply(hl: HL, t: T) = {
+        val (before, at, after) = ev0(hl)
+        val r0 = ev1(t, at :+: after)
+        ev2(before, r0)
+      }
     }
-  }
 
   /** Builder of [[constraint.InsertMRightConstraint]] for HLists
     *
@@ -1087,7 +1115,7 @@ object HList {
     }
 
   /** Builder of [[constraint.TakeConstraint]] for HLists
-    * 
+    *
     * @tparam N Type index of the number of elements to take
     * @tparam HL Type of the HList on which to apply the operation
     * @tparam R Type of the resultant HList
@@ -1103,7 +1131,7 @@ object HList {
     }
 
   /** Builder of [[constraint.TakeRightConstraint]] for HLists
-    * 
+    *
     * @tparam N Type index of the number of elementa to take (from the right)
     * @tparam L Length of the HList
     * @tparam D Type index of the number fo elements to drop (from the left)
@@ -1162,8 +1190,13 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hRemoveRightConstrint[
-      N <: Dense, L <: Dense, D, HL <: HList, Before <: HList, After <: HList, R <: HList](
+  implicit def hRemoveRightConstrint[N <: Dense,
+                                     L <: Dense,
+                                     D,
+                                     HL <: HList,
+                                     Before <: HList,
+                                     After <: HList,
+                                     R <: HList](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, _, After],
@@ -1196,7 +1229,7 @@ object HList {
     }
 
   /** Builder of [[constraint.SplitAtRightConstraint]] for HLists
-    * 
+    *
     * @tparam N Type index at which to split (from right)
     * @tparam L Length of the hList
     * @tparam D Type index at which to split (from the left)
@@ -1270,7 +1303,7 @@ object HList {
       }
     }
 
-  /** Builder of [[constraint.InternalZipConstraint]] for HLists whose common outer type constructor is a strict 
+  /** Builder of [[constraint.InternalZipConstraint]] for HLists whose common outer type constructor is a strict
     * collection, like a List or a Vector
 
     * @tparam Z Type of the hlist to be internally zipped
@@ -1285,7 +1318,8 @@ object HList {
     * @since 0.1
     */
   implicit def hStrictInternalZipConstraint[Z <: HList, F <: HList, M[_] <: Traversable[_], THL <: HList, T, V](
-      implicit ev0: StrictZipper[Z, M, F, THL], ev1: CanBuildFrom[M[T], T, V]): InternalZipConstraint[Z, F, T, V] =
+      implicit ev0: StrictZipper[Z, M, F, THL],
+      ev1: CanBuildFrom[M[T], T, V]): InternalZipConstraint[Z, F, T, V] =
     new InternalZipConstraint[Z, F, T, V] {
       override def apply(z: Z, f: F => T) = ev0(f, z)
     }
@@ -1415,7 +1449,7 @@ object HList {
   implicit def hLubConstraint[HL <: HList, R]: LubConstraint[HL, R] = macro HListMacroImpl.toList[HL, R]
 
   /** Base case of [[constraint.ListBuilderConstraint]] for HLists
-    * 
+    *
     * @tparam H Type of the head of the HList
     * @tparam T LUB of the HList
     *
@@ -1439,7 +1473,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsToListConsConstraint[H, TL <: HList, T](
-      implicit ev0: H <:< T, ev1: ListBuilderConstraint[TL, T]): ListBuilderConstraint[H :+: TL, T] =
+      implicit ev0: H <:< T,
+      ev1: ListBuilderConstraint[TL, T]): ListBuilderConstraint[H :+: TL, T] =
     new ListBuilderConstraint[H :+: TL, T] {
       override def apply(hl: H :+: TL): List[T] = hl.head :: ev1(hl.tail)
     }
@@ -1465,7 +1500,7 @@ object HList {
 class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
 
   /** Adds an element to the head of a HList
-    * 
+    *
     *@tparam A Type of the element being added
     *
     * @group Basic
@@ -1488,7 +1523,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
   /** Builds a type-indexer, can be used to factorize a HList by type. For details, see [[HList.TIndexer]]
     *
     * @tparam S Type to index against
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1

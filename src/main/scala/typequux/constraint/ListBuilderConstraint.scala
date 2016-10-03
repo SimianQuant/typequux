@@ -16,7 +16,7 @@
 package typequux.constraint
 
 /** Typeclass to convert an object to a list. Differs from [[ToListConstraint]] in that in practice, the lower bound
-  * will be constrained by another typeclass. To implicitly obtain a typeclass with the LB constrained, see 
+  * will be constrained by another typeclass. To implicitly obtain a typeclass with the LB constrained, see
   * [[ToListConstraint]].
   *
   * @tparam T Type of the object being converted

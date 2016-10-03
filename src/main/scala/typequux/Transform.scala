@@ -31,7 +31,7 @@ import typequux._
 trait ~>[-F[_], +G[_]] {
 
   /** Executes the transformation
-    * 
+    *
     * @tparam A Specific type on which the context is transformed
     *
     * @author Harshad Deo
@@ -40,7 +40,7 @@ trait ~>[-F[_], +G[_]] {
   def apply[A](a: F[A]): G[A]
 
   /** Composes two transformations into a new transformation, with this one applied first
-    * 
+    *
     * @tparam H Final context of the resultant transformation
     *
     * @author Harshad Deo
@@ -71,7 +71,7 @@ trait ~>[-F[_], +G[_]] {
   */
 object ~> {
 
-  /** Implicitly converts a natural transformation into a monomorphic function given that the initial context is not 
+  /** Implicitly converts a natural transformation into a monomorphic function given that the initial context is not
     * identity. This allows transformations to be used with objects like regular scala collections
     *
     * @tparam T Type on which the contexts are aplied
@@ -83,7 +83,7 @@ object ~> {
     */
   implicit def toFunctionOne[T, F[_], G[_]](f: F ~> G): F[T] => G[T] = x => f(x)
 
-  /** Implicitly converts a natural transformation into a monomorphic function given that the initial context is 
+  /** Implicitly converts a natural transformation into a monomorphic function given that the initial context is
     * identity. This allows transformations to be used with objects like regular scala collections
     *
     * @tparam T Type on which the contexts are aplied

@@ -17,7 +17,7 @@ package typequux.constraint
 
 import util.control.Breaks._
 
-/** Typeclass to check if an element satisfies a given predicate given that each element of the object can be 
+/** Typeclass to check if an element satisfies a given predicate given that each element of the object can be
   * implicitly converted to a type C. Default implementation is provided in the companion object.
   *
   * @tparam T Type of the object on which the exists operation is applied, like a hlist or a tuple

@@ -30,7 +30,7 @@ sealed trait Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  type Match [IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] <: Up
+  type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] <: Up
 
   /** Boolean type representing that the first type was greater than the second
     *
@@ -105,7 +105,7 @@ object Comparison {
   /** String representation of a type level comparison result
     *
     * @tparam C Comparison type to be converted to a value
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -143,7 +143,7 @@ object Comparison {
   /** Builds a string representation of the result of the comparison
     *
     * @tparam C Comparison type to be converted to a value
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */

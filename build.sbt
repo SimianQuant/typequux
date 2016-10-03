@@ -17,8 +17,17 @@ libraryDependencies ++= Seq(
 
 wartremoverErrors ++= {
   import Wart._
-  Seq(Any2StringAdd, EitherProjectionPartial, Enumeration,  IsInstanceOf, ListOps, Option2Iterable, 
-    OptionPartial, Product, Return, Serializable, TryPartial)
+  Seq(Any2StringAdd,
+      EitherProjectionPartial,
+      Enumeration,
+      IsInstanceOf,
+      ListOps,
+      Option2Iterable,
+      OptionPartial,
+      Product,
+      Return,
+      Serializable,
+      TryPartial)
 }
 
 scalacOptions in (Compile) ++= Seq(
@@ -26,7 +35,8 @@ scalacOptions in (Compile) ++= Seq(
   "-unchecked",
   "-explaintypes",
   "-Ywarn-unused-import",
-  "-encoding", "UTF-8",
+  "-encoding",
+  "UTF-8",
   "-feature",
   "-Xlog-reflective-calls",
   "-Ywarn-dead-code",
@@ -43,18 +53,18 @@ scalacOptions in (Compile) ++= Seq(
 
 scalacOptions in (Compile, doc) ++= Seq(
   "-author",
-  "-groups", 
+  "-groups",
   "-implicits"
 )
 
-scalacOptions in (Compile, doc) <++= baseDirectory.map {
-  (bd: File) => Seq[String](
-    "-sourcepath", 
-    bd.getAbsolutePath, 
-    "-doc-source-url", 
+scalacOptions in (Compile, doc) <++= baseDirectory.map { (bd: File) =>
+  Seq[String](
+    "-sourcepath",
+    bd.getAbsolutePath,
+    "-doc-source-url",
     "https://github.com/harshad-deo/typequux/tree/master€{FILE_PATH}.scala"
-    )
-  }
+  )
+}
 
 testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
 

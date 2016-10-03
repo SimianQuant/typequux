@@ -19,7 +19,7 @@ import Dense._
 import language.higherKinds
 import typequux._
 
-/** Typelevel map in which the keys are [[Dense]] numbers. Implemented a binary tree. 
+/** Typelevel map in which the keys are [[Dense]] numbers. Implemented a binary tree.
   *
   * @author Harshad Deo
   * @since 0.1
@@ -31,36 +31,36 @@ sealed trait DenseMap {
     * @author Harshad Deo
     * @since 0.1
     */
-  type Contains [K <: Dense] <: Bool
+  type Contains[K <: Dense] <: Bool
 
   /** Add a key and a value to the map. If the key is already present, the value is overridden
     *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Add [K <: Dense, V] <: DenseMap
+  type Add[K <: Dense, V] <: DenseMap
 
   /** Remove a key from the map
     *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Remove [K <: Dense] <: DenseMap
+  type Remove[K <: Dense] <: DenseMap
 
   /** Get the value corresponding to the key
     *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Get [K <: Dense]
+  type Get[K <: Dense]
 
-  /** Union of the two dense maps. If two values share the same key, the value in the resultant map cannot be 
+  /** Union of the two dense maps. If two values share the same key, the value in the resultant map cannot be
     * predicted.
     *
     * @author Harshad Deo
     * @since 0.1
     */
-  type Union [X <: DenseMap] <: DenseMap
+  type Union[X <: DenseMap] <: DenseMap
 
   /** The set of keys present in the map
     *
@@ -77,7 +77,7 @@ sealed trait DenseMap {
   type Size <: Dense
 }
 
-/** Contains implementation traits for [[DenseMap]] and typeconstructor aliases that make usage more pleasant. 
+/** Contains implementation traits for [[DenseMap]] and typeconstructor aliases that make usage more pleasant.
   *
   * @author Harshad Deo
   * @since 0.1
@@ -100,7 +100,7 @@ object DenseMap {
     override type Size = Dense._0
   }
 
-  /** Non empty typelevel map, implemented as a binary tree. 
+  /** Non empty typelevel map, implemented as a binary tree.
     *
     * @tparam KT Type of the key
     * @tparam VT Value associated with KT
@@ -117,8 +117,10 @@ object DenseMap {
                                                            NonEmptyDenseMap[KT, V, L, R],
                                                            NonEmptyDenseMap[KT, VT, L, R#Add[K, V]],
                                                            DenseMap]
-    override type Remove[K <: Dense] = K#Compare[KT]#Match[
-        NonEmptyDenseMap[KT, VT, L#Remove[K], R], L#Union[R], NonEmptyDenseMap[KT, VT, L, R#Remove[K]], DenseMap]
+    override type Remove[K <: Dense] = K#Compare[KT]#Match[NonEmptyDenseMap[KT, VT, L#Remove[K], R],
+                                                           L#Union[R],
+                                                           NonEmptyDenseMap[KT, VT, L, R#Remove[K]],
+                                                           DenseMap]
     override type Get[K <: Dense] = K#Compare[KT]#Match[L#Get[K], VT, R#Get[K], Any]
     override type Union[X <: DenseMap] = L#Union[R]#Union[X]#Add[KT, VT]
     override type Keyset = DenseSet.NonEmptyDenseSet[KT, L#Keyset, R#Keyset]

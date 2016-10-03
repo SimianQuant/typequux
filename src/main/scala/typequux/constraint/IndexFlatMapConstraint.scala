@@ -21,7 +21,7 @@ package typequux.constraint
   * @tparam N Index at which insertion happens
   * @tparam HL Type of the object on which the operation is applied
   * @tparam At Type of the object at index specified by N
-  * @tparam T Type of the result of applying the mapping function 
+  * @tparam T Type of the result of applying the mapping function
   * @tparam R Type of the resulting object
   *
   * @author Harshad Deo

@@ -16,7 +16,7 @@
 package typequux.constraint
 
 /** Typeclass to implement a fold-left style on an object, given that all elements of the object can be implicitly
-  * converted to a type C. Default implementation is provided in the companion object. 
+  * converted to a type C. Default implementation is provided in the companion object.
   *
   * @tparam T Type of the object on which the fold left operation is applied
   * @tparam Z Type of the result of the left fold

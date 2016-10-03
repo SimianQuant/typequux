@@ -31,17 +31,17 @@ final class Contained[A, HL <: HList] private ()
   *
   * @tparam A Type under consideration
   * @tparam HL HList of types to check against
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
 final class NotContained[A, HL <: HList] private ()
 
 /** Marker that type A is a subtype of one of the types of the supplied [[HList]] type
-  * 
+  *
   * @tparam A Type under consideration
   * @tparam HL HList of types to check against
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -58,7 +58,7 @@ final class SubType[A, HL <: HList] private ()
 final class NotSubType[A, HL <: HList] private ()
 
 /** Contains implicit definitions to build a [[Contained]] marker.
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -90,7 +90,7 @@ object Contained {
 }
 
 /** Contains implicit definitions to build a [[NotContained]] marker.
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -105,7 +105,7 @@ object NotContained {
     */
   implicit def nilDoesNotContain[A]: NotContained[A, HNil] = new NotContained[A, HNil]
 
-  /** Induction step for [[NotContained]]. Works because two instances are available for the same object, thereby 
+  /** Induction step for [[NotContained]]. Works because two instances are available for the same object, thereby
     * an implicit cannot be constructed.
     *
     * @tparam A Type being checked for exclusion
@@ -118,7 +118,7 @@ object NotContained {
   implicit def doesNotContain[A, H, T <: HList](implicit ev: NotContained[A, T]): NotContained[A, H :+: T] =
     new NotContained[A, H :+: T]
 
-  /** Induction step for [[NotContained]]. Works because two instances are available for the same object, thereby 
+  /** Induction step for [[NotContained]]. Works because two instances are available for the same object, thereby
     * an implicit cannot be constructed.
     *
     * @tparam A Type being checked for exclusion
@@ -128,8 +128,9 @@ object NotContained {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def ambiguousContains[A, H, T <: HList](
-      implicit ev0: A =:= H, ev1: NotContained[A, T]): NotContained[A, H :+: T] = new NotContained[A, H :+: T]
+  implicit def ambiguousContains[A, H, T <: HList](implicit ev0: A =:= H,
+                                                   ev1: NotContained[A, T]): NotContained[A, H :+: T] =
+    new NotContained[A, H :+: T]
 }
 
 /** Containt implicit definitions to build a [[SubType]] marker
@@ -180,7 +181,7 @@ object NotSubType {
     */
   implicit def nilDoesNotSubtype[A]: NotSubType[A, HNil] = new NotSubType[A, HNil]
 
-  /** Induction case for [[NotSubType]]. Works because two instances are available for the same object, thereby 
+  /** Induction case for [[NotSubType]]. Works because two instances are available for the same object, thereby
     * an implicit cannot be constructed.
     *
     * @tparam A Type being checked for subtyping
@@ -193,7 +194,7 @@ object NotSubType {
   implicit def doesNotSubtype[A, H, T <: HList](implicit ev: NotSubType[A, T]): NotSubType[A, H :+: T] =
     new NotSubType[A, H :+: T]
 
-  /** Induction case for [[NotSubType]]. Works because two instances are available for the same object, thereby 
+  /** Induction case for [[NotSubType]]. Works because two instances are available for the same object, thereby
     * an implicit cannot be constructed.
     *
     * @tparam A Type being checked for subtyping
@@ -203,6 +204,7 @@ object NotSubType {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def ambiguousNotSubtype[A, H, T <: HList](
-      implicit ev: A <:< H, ev1: NotSubType[A, T]): NotSubType[A, H :+: T] = new NotSubType[A, H :+: T]
+  implicit def ambiguousNotSubtype[A, H, T <: HList](implicit ev: A <:< H,
+                                                     ev1: NotSubType[A, T]): NotSubType[A, H :+: T] =
+    new NotSubType[A, H :+: T]
 }

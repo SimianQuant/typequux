@@ -129,10 +129,11 @@ object Tuple2HListConverter {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tuple10Converter[A, B, C, D, E, F, G, H, I, J]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] =
-    new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] {
+  implicit def tuple10Converter[A, B, C, D, E, F, G, H, I, J]
+    : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J),
+                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] =
+    new Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J),
+                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: HNil
     }
@@ -142,10 +143,11 @@ object Tuple2HListConverter {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tuple11Converter[A, B, C, D, E, F, G, H, I, J, K]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] =
-    new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] {
+  implicit def tuple11Converter[A, B, C, D, E, F, G, H, I, J, K]
+    : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K),
+                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] =
+    new Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K),
+                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: HNil
     }
@@ -187,8 +189,8 @@ object Tuple2HListConverter {
     : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K, L, M, N),
                            A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: HNil
     }
@@ -199,11 +201,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple15Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: HNil
     }
@@ -214,11 +216,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple16Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: HNil
     }
@@ -229,11 +231,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple17Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: a._17 :+: HNil
     }
@@ -244,11 +246,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple18Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: a._17 :+: a._18 :+: HNil
     }
@@ -259,11 +261,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple19Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: a._17 :+: a._18 :+: a._19 :+: HNil
     }
@@ -274,11 +276,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple20Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: a._17 :+: a._18 :+: a._19 :+: a._20 :+: HNil
     }
@@ -289,11 +291,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple21Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: a._17 :+: a._18 :+: a._19 :+: a._20 :+: a._21 :+: HNil
     }
@@ -304,11 +306,11 @@ object Tuple2HListConverter {
     * @since 0.1
     */
   implicit def tuple22Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V]: Tuple2HListConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: V :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: V :+: HNil] =
     new Tuple2HListConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: V :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: S :+: T :+: U :+: V :+: HNil] {
       override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V)) =
         a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: a._13 :+: a._14 :+: a._15 :+: a._16 :+: a._17 :+: a._18 :+: a._19 :+: a._20 :+: a._21 :+: a._22 :+: HNil
     }
@@ -326,7 +328,7 @@ sealed trait HList2TupleConverter[T, HL] {
   def apply(hl: HL): T
 }
 
-/** Provided implicit definition to convert [[HList]] to Tuple1. 
+/** Provided implicit definition to convert [[HList]] to Tuple1.
   * Kept in a trait that is subtyped to avoid ambiguity with more specific converters
   *
   * @author Harshad Deo
@@ -347,7 +349,7 @@ trait LowPriorityHList2TupleConverter {
     }
 }
 
-/** Provides implicit definitions to convert Tuple2-18 to [[HList]]. Beyond Tuple18, the implicit search takes too long 
+/** Provides implicit definitions to convert Tuple2-18 to [[HList]]. Beyond Tuple18, the implicit search takes too long
   * to be practical
   *
   * @author Harshad Deo
@@ -461,10 +463,11 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def invTuple10Converter[A, B, C, D, E, F, G, H, I, J]: HList2TupleConverter[
-      (A, B, C, D, E, F, G, H, I, J), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] =
-    new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] {
+  implicit def invTuple10Converter[A, B, C, D, E, F, G, H, I, J]
+    : HList2TupleConverter[(A, B, C, D, E, F, G, H, I, J),
+                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] =
+    new HList2TupleConverter[(A, B, C, D, E, F, G, H, I, J),
+                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] {
       override def apply(hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil) = hl match {
         case a :+: b :+: c :+: d :+: e :+: f :+: g :+: h :+: i :+: j :+: HNil => (a, b, c, d, e, f, g, h, i, j)
       }
@@ -475,10 +478,11 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def invTuple11Converter[A, B, C, D, E, F, G, H, I, J, K]: HList2TupleConverter[
-      (A, B, C, D, E, F, G, H, I, J, K), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] =
-    new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J, K), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] {
+  implicit def invTuple11Converter[A, B, C, D, E, F, G, H, I, J, K]
+    : HList2TupleConverter[(A, B, C, D, E, F, G, H, I, J, K),
+                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] =
+    new HList2TupleConverter[(A, B, C, D, E, F, G, H, I, J, K),
+                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] {
       override def apply(hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil) = hl match {
         case a :+: b :+: c :+: d :+: e :+: f :+: g :+: h :+: i :+: j :+: k :+: HNil =>
           (a, b, c, d, e, f, g, h, i, j, k)
@@ -527,8 +531,8 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     : HList2TupleConverter[(A, B, C, D, E, F, G, H, I, J, K, L, M, N),
                            A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil] =
     new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil] {
       override def apply(
           hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: HNil) = hl match {
         case a :+: b :+: c :+: d :+: e :+: f :+: g :+: h :+: i :+: j :+: k :+: l :+: m :+: n :+: HNil =>
@@ -542,11 +546,11 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     * @since 0.1
     */
   implicit def invTuple15Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O]: HList2TupleConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] =
     new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil] {
       override def apply(
           hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: HNil) =
         hl match {
@@ -561,11 +565,11 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     * @since 0.1
     */
   implicit def invTuple16Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P]: HList2TupleConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] =
     new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil] {
       override def apply(
           hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: HNil) =
         hl match {
@@ -580,11 +584,11 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     * @since 0.1
     */
   implicit def invTuple17Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q]: HList2TupleConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] =
     new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil] {
       override def apply(
           hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: HNil) =
         hl match {
@@ -599,11 +603,11 @@ object HList2TupleConverter extends LowPriorityHList2TupleConverter {
     * @since 0.1
     */
   implicit def invTuple18Converter[A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R]: HList2TupleConverter[
-      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
-      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] =
+    (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
+    A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] =
     new HList2TupleConverter[
-        (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
-        A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] {
+      (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R),
+      A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil] {
       override def apply(
           hl: A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: M :+: N :+: O :+: P :+: Q :+: R :+: HNil) =
         hl match {

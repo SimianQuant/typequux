@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to reverse a sequentially indexed object, like a [[HList]] or a tuple. 
+/** Typeclass to reverse a sequentially indexed object, like a [[HList]] or a tuple.
   *
   * @tparam A Type of the object being reversed
   * @tparam R Type of the reversed object

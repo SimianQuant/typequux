@@ -17,7 +17,7 @@ package typequux.constraint
 
 /** Typeclass for function application.
   *
-  * @tparam F Type of the Function 
+  * @tparam F Type of the Function
   * @tparam In Type of the Input
   * @tparam Out Type Output
   *

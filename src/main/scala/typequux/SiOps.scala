@@ -28,7 +28,7 @@ import Dense.DenseRep
 class SiOps[S](s: S) {
 
   /** Element at the index
-    * 
+    *
     * @tparam T Type of the element
     *
     * @author Harshad Deo
@@ -59,7 +59,7 @@ class SiOps[S](s: S) {
     ev(s, u, lh.value)
 
   /** Size of the collection
-    * 
+    *
     * @tparam L Typelevel representation of the size of the collection
     *
     * @author Harshad Deo
@@ -71,7 +71,7 @@ class SiOps[S](s: S) {
   /** Converts the collection to a map
     *
     * @tparam R Type of the resultant map
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */

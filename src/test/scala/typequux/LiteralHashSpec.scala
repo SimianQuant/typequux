@@ -256,8 +256,8 @@ class LiteralHashSpec extends BaseSpec {
 
   // now for the fun parts
 
-  def intAdditionTest(a: LiteralHash[Int], b: LiteralHash[Int])(
-      implicit ev0: DenseRep[a.ValueHash + b.ValueHash], ev1: IsTrue[a.TypeHash === b.TypeHash]) =
+  def intAdditionTest(a: LiteralHash[Int], b: LiteralHash[Int])(implicit ev0: DenseRep[a.ValueHash + b.ValueHash],
+                                                                ev1: IsTrue[a.TypeHash === b.TypeHash]) =
     (a.value + b.value) == ev0.v
 
   def intMultiplicationTest(a: LiteralHash[Int], b: LiteralHash[Int])(

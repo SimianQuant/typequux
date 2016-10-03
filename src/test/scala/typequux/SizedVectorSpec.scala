@@ -170,21 +170,21 @@ class SizedVectorSpec extends BaseSpec {
 
     assert(f1 == SizedVector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
     assert(
-        f2 == SizedVector("alpha",
-                          "bravo",
-                          "charlie",
-                          "delta",
-                          "echo",
-                          "foxtrot",
-                          "golf",
-                          "hotel",
-                          "india",
-                          "juliet",
-                          "kilo",
-                          "lima",
-                          "mike",
-                          "november",
-                          "oscar"))
+      f2 == SizedVector("alpha",
+                        "bravo",
+                        "charlie",
+                        "delta",
+                        "echo",
+                        "foxtrot",
+                        "golf",
+                        "hotel",
+                        "india",
+                        "juliet",
+                        "kilo",
+                        "lima",
+                        "mike",
+                        "november",
+                        "oscar"))
     assert(f3 == SizedVector(1.1, 2.2))
   }
 
@@ -291,12 +291,12 @@ class SizedVectorSpec extends BaseSpec {
 
     assert(z1 == SizedVector(("ferrari", 1), ("porsche", 2), ("pagani", 3)))
     assert(
-        z2 == SizedVector(("ferrari", 1.1),
-                          ("porsche", 2.2),
-                          ("pagani", 3.3),
-                          ("mclaren", 4.4),
-                          ("bugatti", 5.5),
-                          ("koenigsegg", 6.6)))
+      z2 == SizedVector(("ferrari", 1.1),
+                        ("porsche", 2.2),
+                        ("pagani", 3.3),
+                        ("mclaren", 4.4),
+                        ("bugatti", 5.5),
+                        ("koenigsegg", 6.6)))
 
     val (uz1l, uz1r) = z1.unzip
     val (uz2l, uz2r) = z2.unzip

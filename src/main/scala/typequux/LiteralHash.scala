@@ -21,9 +21,9 @@ import language.experimental.macros
 import language.implicitConversions
 import reflect.macros.whitebox
 
-/** Typelevel representation of a compile time constant literal. 
+/** Typelevel representation of a compile time constant literal.
   *
-  * The type hash encoded the type of the literal and the value encoded the value of the literal therefore, 
+  * The type hash encoded the type of the literal and the value encoded the value of the literal therefore,
   * even if say, a char and string have the same value hash, they will have different literal hashes.
   *
   * @tparam X Type of the literal that has been hashed
@@ -48,7 +48,7 @@ trait LiteralHash[X] {
   type ValueHash <: Dense
 
   /** Value encoded
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -271,7 +271,7 @@ object LiteralHash {
   implicit def forString(x: String): LiteralHash[String] = macro LiteralHashBuilderImpl.forString
 
   /** Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since [[scala.Byte]] and
-    * [[scala.Short]] literals can't be directly written. They are dangerous and should be used with caution. 
+    * [[scala.Short]] literals can't be directly written. They are dangerous and should be used with caution.
     *
     * @group Builder
     * @author Harshad Deo
@@ -279,7 +279,7 @@ object LiteralHash {
     */
   object LiteralHashDownConverter {
 
-    /** Implicit conversion to go from a [[scala.Int]] literal to a LiteralHash[Byte], provided that the literal 
+    /** Implicit conversion to go from a [[scala.Int]] literal to a LiteralHash[Byte], provided that the literal
       * is within the supported range
       *
       * @author Harshad Deo
@@ -287,7 +287,7 @@ object LiteralHash {
       */
     implicit def int2Byte(x: Int): LiteralHash[Byte] = macro LiteralHashBuilderImpl.forInt2Byte
 
-    /** Implicit conversion to go from a [[scala.Int]] literal to a LiteralHash[Short], provided that the literal 
+    /** Implicit conversion to go from a [[scala.Int]] literal to a LiteralHash[Short], provided that the literal
     is within the supported range
       */
     implicit def int2Short(x: Int): LiteralHash[Short] = macro LiteralHashBuilderImpl.forInt2Short
@@ -306,8 +306,8 @@ object LiteralHash {
     private[this] def char2Long(x: Char) = x.toLong | 65536L
 
     private[this] def abortHere(typeOfExp: String) = c.abort(
-        c.enclosingPosition,
-        s"Supplied $typeOfExp expression is not a compile time constant. Please consider providing either a literal or a final val"
+      c.enclosingPosition,
+      s"Supplied $typeOfExp expression is not a compile time constant. Please consider providing either a literal or a final val"
     )
 
     def forUnit(x: Tree): Tree = {
@@ -566,7 +566,7 @@ object LiteralHash {
 
     private[this] def fromBinary[T: c.WeakTypeTag](binRep: List[Boolean]): c.Tree = {
       binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) =>
-            if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
+        if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
     }
   }
 }

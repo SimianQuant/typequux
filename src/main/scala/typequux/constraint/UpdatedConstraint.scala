@@ -21,7 +21,7 @@ package typequux.constraint
   * @tparam HL Type of the object to update
   * @tparam A Type of the new object at the position
   * @tparam R Type of the resultant object
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */

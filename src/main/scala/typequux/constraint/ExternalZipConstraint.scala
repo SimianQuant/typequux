@@ -15,13 +15,13 @@
   */
 package typequux.constraint
 
-/** Typeclass to zip the elements of two objects, as opposed to zipping all the elements of one object, which 
+/** Typeclass to zip the elements of two objects, as opposed to zipping all the elements of one object, which
   * is done by the [[InternalZipConstraint]] typeclass.
   *
   * @tparam A Type of the first object to be zipped
   * @tparam B Type of the second object to be zipped
   * @tparam R Type of the result of zipping
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */

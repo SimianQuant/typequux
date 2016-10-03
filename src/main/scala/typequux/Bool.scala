@@ -29,11 +29,11 @@ import typequux._
 sealed trait Bool {
 
   /** Type constructor implementing the choice
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  type If [T <: Up, F <: Up, Up] <: Up
+  type If[T <: Up, F <: Up, Up] <: Up
 }
 
 /** Contains implementation for [[Bool]] and typeconstructor aliases that make usage more pleasant
@@ -77,7 +77,7 @@ sealed trait Bool {
   * 18. De Morgan 1: <code> &&[Not[A], Not[B]] =:= Not[A || B] </code>
   *
   * 19. De Morgan 2: <code> ||[Not[A], Not[B]] =:= Not[A && B] </code>
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -100,7 +100,7 @@ object Bool {
     * <code> A || B =:= False if A =:= False and B =:= False </code>
     *
     * <code> A || B =:= True otherwise </code>
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1
@@ -148,7 +148,7 @@ object Bool {
     *
     * <code> A Eqv B =:= True if A =:= B </code>
     *
-    * <code> A Eqv B =:= False </false> otherwise 
+    * <code> A Eqv B =:= False </false> otherwise
     *
     * @group Operations
     * @author Harshad Deo
@@ -211,7 +211,7 @@ object Bool {
   /** Method to convert a typelevel boolean to its value representation
     *
     * @tparam B Type of the boolean to be converted to a value
-    * 
+    *
     * @group Operations
     * @author Harshad Deo
     * @since 0.1

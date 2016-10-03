@@ -22,7 +22,7 @@ import util.control.Breaks._
   *
   * @tparam T Type of the object on which the operation is being applied
   * @tparam C Common class to which all elements of the object can be converted
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */

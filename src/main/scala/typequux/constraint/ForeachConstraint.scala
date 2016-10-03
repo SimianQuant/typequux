@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to apply an operation to each element of an object, given that all elements of the object can be 
+/** Typeclass to apply an operation to each element of an object, given that all elements of the object can be
   * implicitly converted to a common class C.
   *
   * @tparam INP Type of the object to which the operation is being applied

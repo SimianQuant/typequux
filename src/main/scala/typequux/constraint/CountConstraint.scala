@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to count the number of elements satisfying a given predicate, given that each element of the object 
+/** Typeclass to count the number of elements satisfying a given predicate, given that each element of the object
   * can be converted implicitly to a common class C. Default implementation is provided in the companion object.
   *
   * @tparam T Type of the object on which the count operation is applied, like a [[HList]] or a Tuple

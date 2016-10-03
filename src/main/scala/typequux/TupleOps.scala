@@ -43,7 +43,7 @@ class TupleIndexOps[Z](z: Z) extends ArityIndexOps(z) {
     *
     * @tparam A Type of the tuple to which Z is appended
     * @tparam R Type of the result
-    * 
+    *
     * @group Basic
     * @author Harshad Deo
     * @since 0.1
@@ -91,8 +91,8 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpLengthConstraint[Z, HL <: HList, L <: Dense](
-      implicit ev0: Tuple2HListConverter[Z, HL], ev1: LengthConstraint[HL, L]): LengthConstraint[Z, L] =
+  implicit def tpLengthConstraint[Z, HL <: HList, L <: Dense](implicit ev0: Tuple2HListConverter[Z, HL],
+                                                              ev1: LengthConstraint[HL, L]): LengthConstraint[Z, L] =
     new LengthConstraint[Z, L] {}
 
   /** Builder of [[constraint.AppendConstraint]] for tuples
@@ -153,13 +153,13 @@ object TupleOps {
     * @tparam T Type of the Tuple
     * @tparam HL Type of the HList corresponding to T
     * @tparam A Type of the element at index N
-    * 
+    *
     * @group Constraint Constructor
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpAtConstraint[N, T, HL <: HList, A](
-      implicit ev0: Tuple2HListConverter[T, HL], ev1: AtConstraint[N, HL, A]): AtConstraint[N, T, A] =
+  implicit def tpAtConstraint[N, T, HL <: HList, A](implicit ev0: Tuple2HListConverter[T, HL],
+                                                    ev1: AtConstraint[N, HL, A]): AtConstraint[N, T, A] =
     new AtConstraint[N, T, A] {
       override def apply(t: T) = {
         val hl = ev0(t)
@@ -170,7 +170,7 @@ object TupleOps {
   /** Builder of [[constraint.AtRightConstraint]] for tuples
     *
     * @tparam N Index at which to get the element (from the right)
-    * @tparam T Type of the tuple 
+    * @tparam T Type of the tuple
     * @tparam HL Type of the HList corresponding to T
     * @tparam A Type of the element at index N
     *
@@ -179,7 +179,8 @@ object TupleOps {
     * @since 0.1
     */
   implicit def tpAtRightConstraint[N <: Dense, T, HL <: HList, A](
-      implicit ev0: Tuple2HListConverter[T, HL], ev1: AtRightConstraint[N, HL, A]): AtRightConstraint[N, T, A] =
+      implicit ev0: Tuple2HListConverter[T, HL],
+      ev1: AtRightConstraint[N, HL, A]): AtRightConstraint[N, T, A] =
     new AtRightConstraint[N, T, A] {
       override def apply(t: T) = {
         val hl = ev0(t)
@@ -199,7 +200,8 @@ object TupleOps {
     * @since 0.1
     */
   implicit def tpConsConstraint[T, HL <: HList, U, R](
-      implicit ev0: Tuple2HListConverter[T, HL], ev1: HList2TupleConverter[R, U :+: HL]): ConsConstraint[T, U, R] =
+      implicit ev0: Tuple2HListConverter[T, HL],
+      ev1: HList2TupleConverter[R, U :+: HL]): ConsConstraint[T, U, R] =
     new ConsConstraint[T, U, R] {
       override def apply(t: T, u: U) = {
         val hl = ev0(t)
@@ -337,8 +339,8 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpForeachConstraint[INP, HL <: HList, C](
-      implicit ev0: Tuple2HListConverter[INP, HL], ev1: ForeachConstraint[HL, C]): ForeachConstraint[INP, C] =
+  implicit def tpForeachConstraint[INP, HL <: HList, C](implicit ev0: Tuple2HListConverter[INP, HL],
+                                                        ev1: ForeachConstraint[HL, C]): ForeachConstraint[INP, C] =
     new ForeachConstraint[INP, C] {
       override def apply(t: INP)(f: C => Unit) = {
         val hl = ev0(t)
@@ -356,7 +358,7 @@ object TupleOps {
     * @tparam HLF Type of the HList corresponding to T
     * @tparam HLM Type of the HList obtained by flatmapping element at index N of HL to type HLF
     * @tparam R Type of tuple corresponding to HLM
-    * 
+    *
     * @group Constraint Constructor
     * @author Harshad Deo
     * @since 0.1
@@ -428,7 +430,7 @@ object TupleOps {
   }
 
   /** Builder of [[constraint.IndexMapRightConstraint]] for tuples
-    * 
+    *
     * @tparam N Index of the element to map (from the right)
     * @tparam Z Type of the input tuple
     * @tparam HL Type of the HList corresponding to Z
@@ -530,7 +532,7 @@ object TupleOps {
   }
 
   /** Builder of [[constraint.InsertMRightConstraint]] for tuples
-    * 
+    *
     * @tparam N Type index at which to insert (from the right)
     * @tparam Z Type of the input tuple
     * @tparam HL Type of the HList corresponding to Z
@@ -796,7 +798,7 @@ object TupleOps {
   }
 
   /** Builder of [[constraint.TransformConstraint]] for tuples
-    * 
+    *
     * @tparam I Type of the input Tuple
     * @tparam HLI Type of HList corresponding to I
     * @tparam M Type of the input context
@@ -820,7 +822,7 @@ object TupleOps {
   }
 
   /** Builder of [[constraint.ToListConstraint]] for tuples
-    * 
+    *
     * @tparam Z Type of the input tuple
     * @tparam HL Type of HList corresponding to Z
     * @tparam R Element type of resultant List
@@ -829,8 +831,8 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpToListConstraint[Z, HL, R](
-      implicit ev0: Tuple2HListConverter[Z, HL], ev1: ToListConstraint[HL, R]): ToListConstraint[Z, R] =
+  implicit def tpToListConstraint[Z, HL, R](implicit ev0: Tuple2HListConverter[Z, HL],
+                                            ev1: ToListConstraint[HL, R]): ToListConstraint[Z, R] =
     new ToListConstraint[Z, R] {
       override def apply(z: Z): List[R] = ev1(ev0(z))
     }

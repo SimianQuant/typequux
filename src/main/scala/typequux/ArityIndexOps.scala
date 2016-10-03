@@ -32,7 +32,7 @@ class ArityIndexOps[Z](z: Z) {
   /** Length of the collection
     *
     * @tparam L Typelevel marker of length
-    * 
+    *
     * @group Basic
     * @author Harshad Deo
     * @since 0.1
@@ -113,7 +113,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam A Type of the new element at the index position
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -157,7 +157,7 @@ class ArityIndexOps[Z](z: Z) {
     * @tparam At Type of the old element at the index position
     * @tparam T Type of the new element at the index position
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -208,7 +208,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam T Type of the element to be inserted
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -242,7 +242,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam T Type of the element to be inserted
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -254,7 +254,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam L Type of the object to the left of the index position
     * @tparam R Type of the object to the right of the index position
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -265,7 +265,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam L Type of the element to the left of the index position
     * @tparam R Type of the element to the right of the index position
-    * 
+    *
     * @group Index Based
     * @author Harshad Deo
     * @since 0.1
@@ -277,7 +277,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam C Type of the collection to be zipped with
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -288,19 +288,19 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam R1 Type of the first collection obtained by unzipping
     * @tparam R2 Type of the second collection obtained by unzipping
-    * 
+    *
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
     */
   def unzip[R1, R2](implicit ev: ExternalUnzipConstraint[Z, R1, R2]): (R1, R2) = ev(z)
 
-  /** Apply a natural transformation 
+  /** Apply a natural transformation
     *
     * @tparam M Source context
     * @tparam N Destination context
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -311,7 +311,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam M Source context
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -323,7 +323,7 @@ class ArityIndexOps[Z](z: Z) {
     *
     * @tparam In Type of the input
     * @tparam R Type of the resultant collection
-    * 
+    *
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1
@@ -341,11 +341,11 @@ class ArityIndexOps[Z](z: Z) {
     */
   def yapply[F, Out](f: F)(implicit ev: ApplyConstraint[F, Z, Out]): Out = ev(f, z)
 
-  /** Apply a function for each element of the object, provided that all can be implicitly converted to 
+  /** Apply a function for each element of the object, provided that all can be implicitly converted to
     * an object of type C
     *
     * @tparam C Type on which the operation is defined
-    * 
+    *
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -356,7 +356,7 @@ class ArityIndexOps[Z](z: Z) {
     * converted to an object of type C
     *
     * @tparam C Type on which the operation is defined
-    * 
+    *
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -372,23 +372,23 @@ class ArityIndexOps[Z](z: Z) {
     */
   def forall[C](f: C => Boolean)(implicit ev: ForallConstraint[Z, C]): Boolean = ev(z, f)
 
-  /** Count the number of elements of the object for which the predicate holds, provided that each element can be 
+  /** Count the number of elements of the object for which the predicate holds, provided that each element can be
     * implicitly converted to an object of type C
     *
     * @tparam C Type on which the operation is defined
-    * 
+    *
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
     */
   def count[C](f: C => Boolean)(implicit ev: CountConstraint[Z, C]): Int = ev(z, f)
 
-  /** Apply a fold-left like operation on all elements of the object, provided that each element can be implicitly 
+  /** Apply a fold-left like operation on all elements of the object, provided that each element can be implicitly
     * converted to an object of type C
     *
     * @tparam ZT Type of the zero (and the resultant object)
     * @tparam C Type on which the operation is defined
-    * 
+    *
     * @group Common View
     * @author Harshad Deo
     * @since 0.1
@@ -399,7 +399,7 @@ class ArityIndexOps[Z](z: Z) {
     * the elements
     *
     * @tparam R Element type of the resultant list
-    * 
+    *
     * @group Transformation
     * @author Harshad Deo
     * @since 0.1

@@ -22,7 +22,7 @@ import language.implicitConversions
 import reflect.macros.whitebox.Context
 import typequux._
 
-/** String indexed collection in which the elements can have different types. 
+/** String indexed collection in which the elements can have different types.
   * Uses [[HList]] and [[DenseMap]] as backing datastructures
   *
   * @author Harshad Deo
@@ -30,7 +30,7 @@ import typequux._
   */
 sealed trait Record
 
-/** Contains implementations of [[Record]] and implicit definitions for building typeclasses necessary 
+/** Contains implementations of [[Record]] and implicit definitions for building typeclasses necessary
   * for the operations on records
   *
   * @author Harshad Deo
@@ -47,9 +47,9 @@ object Record {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux](
-      private[typequux] val backing: HL, private[typequux] val keys: List[String])(
-      implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
+  final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux] (
+      private[typequux] val backing: HL,
+      private[typequux] val keys: List[String])(implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
       extends Record {
     override def hashCode: Int = asMap.##
 
@@ -73,9 +73,9 @@ object Record {
   case object RNil extends Record
 
   /** Converts a class to a record, by keeping track of all vals, case accessors and getters
-    * 
+    *
     * @tparam T Type to be converted to a record
-    * 
+    *
     * @group Implementation
     * @author Harshad Deo
     * @since 0.1
@@ -106,7 +106,7 @@ object Record {
   implicit def record2Ops[R <: Record](r: R): SiOps[R] = new SiOps(r)
 
   /** Builds [[constraint.SIAddConstraint]] for empty [[Record]]
-    * 
+    *
     * @tparam N Type index at which to add (i.e. String Value Hash)
     * @tparam U Type of the object to add
     *

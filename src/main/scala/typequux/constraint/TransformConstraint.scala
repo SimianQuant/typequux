@@ -19,7 +19,7 @@ import language.higherKinds
 import typequux._
 
 /** Typeclass to apply a natural transformation to an object.
-  * 
+  *
   * @tparam INP Type of the input
   * @tparam OP Type of the output
   * @tparam M Input of the transformation

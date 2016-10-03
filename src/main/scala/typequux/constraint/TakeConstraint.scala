@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to take a type-indexed number of elements from the left of a sequentially indexed object, like 
+/** Typeclass to take a type-indexed number of elements from the left of a sequentially indexed object, like
   * a [[HList]] or a tuple. By convention, indexes are 0-based.
   *
   * @tparam N Type index of the elements to be dropped

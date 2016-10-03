@@ -20,17 +20,17 @@ import Dense._
 import language.implicitConversions
 import typequux._
 
-/** String indexed collection in which all the elements are of the same type. 
+/** String indexed collection in which all the elements are of the same type.
   * Uses [[scala.collection.immutable.Vector]] and [[DenseMap]] as backing datastructures
   *
-  * @tparam T Type of the collection 
+  * @tparam T Type of the collection
   *
   * @author Harshad Deo
   * @since 0.1
   */
 sealed trait StringIndexedCollection[+T]
 
-/** Contains implementations of [[StringIndexedCollection]]  and implicit definitions for building typeclasses necessary 
+/** Contains implementations of [[StringIndexedCollection]]  and implicit definitions for building typeclasses necessary
   * for the operations on string indexed collections
   *
   * @author Harshad Deo
@@ -47,8 +47,8 @@ object StringIndexedCollection {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class NonEmptySI[MP <: DenseMap, +T] private[typequux](
-      private[typequux] val backing: Vector[T], private[typequux] val keys: Vector[String])
+  final class NonEmptySI[MP <: DenseMap, +T] private[typequux] (private[typequux] val backing: Vector[T],
+                                                                private[typequux] val keys: Vector[String])
       extends StringIndexedCollection[T] {
     override def hashCode: Int = this.toMap.##
 

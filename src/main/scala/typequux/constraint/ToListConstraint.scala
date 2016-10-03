@@ -21,7 +21,7 @@ package typequux.constraint
   *
   * @tparam T Type of the object being constructed
   * @tparam R Element type of resultant list
-  * 
+  *
   * @author Harshad Deo
   * @since 0.1
   */
@@ -29,7 +29,7 @@ trait ToListConstraint[T, +R] {
   def apply(t: T): List[R]
 }
 
-/** Companion object for [[ToListConstraint]]. Contains default implementation in terms of [[LubConstraint]] and 
+/** Companion object for [[ToListConstraint]]. Contains default implementation in terms of [[LubConstraint]] and
   * [[ListBuilderConstraint]].
   *
   * @author Harshad Deo
@@ -45,8 +45,8 @@ object ToListConstraint {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def buildToListConstraint[T, R](
-      implicit ev0: LubConstraint[T, R], ev1: ListBuilderConstraint[T, R]): ToListConstraint[T, R] =
+  implicit def buildToListConstraint[T, R](implicit ev0: LubConstraint[T, R],
+                                           ev1: ListBuilderConstraint[T, R]): ToListConstraint[T, R] =
     new ToListConstraint[T, R] {
       override def apply(t: T) = ev1(t)
     }

@@ -15,8 +15,8 @@
   */
 package typequux.constraint
 
-/** Typeclass to unzip the elements of an object into two object, for example an [[HList]] of Tuple2s into two HLists. 
-  * 
+/** Typeclass to unzip the elements of an object into two object, for example an [[HList]] of Tuple2s into two HLists.
+  *
   * @tparam H Type of the input object
   * @tparam R1 Type of the first object obtained by unzipping
   * @tparam R2 type of the second object obtained by unzipping

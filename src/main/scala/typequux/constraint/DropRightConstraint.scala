@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-/** Typeclass to remove a type-indexed number of elements from the right of a sequentially indexed object, like 
+/** Typeclass to remove a type-indexed number of elements from the right of a sequentially indexed object, like
   * a [[HList]] or a tuple. By convention, indexes are 0-based.
   *
   * @tparam N Type index of the elements to be dropped
