@@ -103,7 +103,8 @@ val typequux = crossProject
   )
   .jsSettings(
     scalaJSUseRhino in Global := false,
-    scalaJSStage in Test := FullOptStage
+    scalaJSStage in Test := FullOptStage,
+    coverageExcludedPackages := ".*"
   )
 
 lazy val typequuxJS = typequux.js
