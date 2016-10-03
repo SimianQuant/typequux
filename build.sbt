@@ -2,7 +2,7 @@ scalaVersion := "2.11.8"
 
 name := "typequux"
 organization := "com.simianquant"
-version := "0.1.2-SNAPSHOT"
+version := "0.1.2"
 
 fork := true
 
