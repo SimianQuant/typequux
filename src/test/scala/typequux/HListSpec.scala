@@ -15,8 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
-
 class HListSpec extends BaseSpec {
 
   import typequux._
@@ -27,7 +25,7 @@ class HListSpec extends BaseSpec {
   val b: Boolean = x.tail.head
   val d: Option[Double] = x.tail.tail.tail.head
 
-  illTyped {
+  assertTypeError {
     """
     x.tail.tail.tail.tail.head
     x.tail.tail.tail.tail.tail

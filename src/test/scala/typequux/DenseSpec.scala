@@ -15,7 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
 import typequux._
 
 /**
@@ -29,8 +28,8 @@ class DenseSpec extends BaseSpec {
   type Rep[D <: Digit] = D#Match[Int, String, Any]
   implicitly[Rep[D0] =:= String]
   implicitly[Rep[D1] =:= Int]
-  illTyped { """implicitly[Rep[D0] =:= Int]""" }
-  illTyped { """implicitly[Rep[D1] =:= String]""" }
+  assertTypeError { """implicitly[Rep[D0] =:= Int]""" }
+  assertTypeError { """implicitly[Rep[D1] =:= String]""" }
 
   implicitly[D0#Compare[D0] =:= EQ]
   implicitly[D0#Compare[D1] =:= LT]
@@ -131,7 +130,7 @@ class DenseSpec extends BaseSpec {
   implicitly[DenseDiff[_10, _10, _0]]
   implicitly[DenseDiff[_6, _2, _4]]
   implicitly[DenseDiff[_17, _13, _4]]
-  illTyped { """DenseDiff[_7, _10, _3]""" }
+  assertTypeError { """DenseDiff[_7, _10, _3]""" }
 
   /************** Property Based Tests *************************/
   // binary properties

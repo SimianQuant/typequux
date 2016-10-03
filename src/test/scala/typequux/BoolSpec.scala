@@ -15,7 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
 import typequux._
 
 /**
@@ -32,60 +31,60 @@ class BoolSpec extends BaseSpec {
 
   eqv[Rep[True], Int]
   eqv[Rep[False], String]
-  illTyped { """implicitly[Rep[True] =:= String]""" }
-  illTyped { """implicitly[Rep[False] =:= Int]""" }
-  illTyped { """implicitly[Rep[True]] =:= Long""" }
+  assertTypeError { """implicitly[Rep[True] =:= String]""" }
+  assertTypeError { """implicitly[Rep[False] =:= Int]""" }
+  assertTypeError { """implicitly[Rep[True]] =:= Long""" }
 
   /********** Truth table tests *******************/
   implicitly[Not[True] =:= False]
   implicitly[Not[False] =:= True]
-  illTyped { """implicitly[Not[True] =:= True]""" }
-  illTyped { """implicitly[Not[False] =:= False]""" }
+  assertTypeError { """implicitly[Not[True] =:= True]""" }
+  assertTypeError { """implicitly[Not[False] =:= False]""" }
 
   implicitly[False || False =:= False]
   implicitly[False || True =:= True]
   implicitly[True || False =:= True]
   implicitly[True || True =:= True]
-  illTyped { """implicitly[False || False =:= True]""" }
-  illTyped { """implicitly[False || True =:= False]""" }
-  illTyped { """implicitly[True || False =:= False]""" }
-  illTyped { """implicitly[True || True =:= False]""" }
+  assertTypeError { """implicitly[False || False =:= True]""" }
+  assertTypeError { """implicitly[False || True =:= False]""" }
+  assertTypeError { """implicitly[True || False =:= False]""" }
+  assertTypeError { """implicitly[True || True =:= False]""" }
 
   implicitly[False && False =:= False]
   implicitly[False && True =:= False]
   implicitly[True && False =:= False]
   implicitly[True && True =:= True]
-  illTyped { """implicitly[False && False =:= True]""" }
-  illTyped { """implicitly[False && True =:= True]""" }
-  illTyped { """implicitly[True && False =:= True]""" }
-  illTyped { """implicitly[True && True =:= False]""" }
+  assertTypeError { """implicitly[False && False =:= True]""" }
+  assertTypeError { """implicitly[False && True =:= True]""" }
+  assertTypeError { """implicitly[True && False =:= True]""" }
+  assertTypeError { """implicitly[True && True =:= False]""" }
 
   implicitly[False Xor False =:= False]
   implicitly[True Xor False =:= True]
   implicitly[False Xor True =:= True]
   implicitly[True Xor True =:= False]
-  illTyped { """implicitly[False Xor False =:= True]""" }
-  illTyped { """implicitly[True Xor False =:= False]""" }
-  illTyped { """implicitly[False Xor True =:= False]""" }
-  illTyped { """implicitly[True Xor True =:= True]""" }
+  assertTypeError { """implicitly[False Xor False =:= True]""" }
+  assertTypeError { """implicitly[True Xor False =:= False]""" }
+  assertTypeError { """implicitly[False Xor True =:= False]""" }
+  assertTypeError { """implicitly[True Xor True =:= True]""" }
 
   implicitly[False ->> False =:= True]
   implicitly[True ->> False =:= False]
   implicitly[False ->> True =:= True]
   implicitly[True ->> True =:= True]
-  illTyped { """implicitly[False ->> False =:= False]""" }
-  illTyped { """implicitly[True ->> False =:= True]""" }
-  illTyped { """implicitly[False ->> True =:= False]""" }
-  illTyped { """implicitly[True ->> True =:= False]""" }
+  assertTypeError { """implicitly[False ->> False =:= False]""" }
+  assertTypeError { """implicitly[True ->> False =:= True]""" }
+  assertTypeError { """implicitly[False ->> True =:= False]""" }
+  assertTypeError { """implicitly[True ->> True =:= False]""" }
 
   implicitly[False Eqv False =:= True]
   implicitly[True Eqv False =:= False]
   implicitly[False Eqv True =:= False]
   implicitly[True Eqv True =:= True]
-  illTyped { """ implicitly[False Eqv False =:= False]""" }
-  illTyped { """ implicitly[True Eqv False =:= True]""" }
-  illTyped { """ implicitly[False Eqv True =:= True]""" }
-  illTyped { """ implicitly[True Eqv True =:= False]""" }
+  assertTypeError { """ implicitly[False Eqv False =:= False]""" }
+  assertTypeError { """ implicitly[True Eqv False =:= True]""" }
+  assertTypeError { """ implicitly[False Eqv True =:= True]""" }
+  assertTypeError { """ implicitly[True Eqv True =:= False]""" }
 
   /***************** Laws Test *****************************/
   // Ternary laws

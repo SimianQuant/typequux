@@ -15,7 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
 import typequux._
 
 class RecordSpec extends BaseSpec {
@@ -25,7 +24,7 @@ class RecordSpec extends BaseSpec {
   val r3 = r1.updated("a", Some(List(1, 2, 3)))
 
   "A record" should "apply properly" in {
-    illTyped { """r1("o")""" }
+    assertTypeError { """r1("o")""" }
 
     val r1a: List[Int] = r1("a")
     val r1b: Long = r1("p")
@@ -37,7 +36,7 @@ class RecordSpec extends BaseSpec {
   }
 
   it should "add correctly" in {
-    illTyped { """r1.add("a", None)""" }
+    assertTypeError { """r1.add("a", None)""" }
 
     val r2a: List[Int] = r2("a")
     val r2b: Long = r2("p")
@@ -49,7 +48,7 @@ class RecordSpec extends BaseSpec {
   }
 
   it should "update correctly" in {
-    illTyped { """r1.updated("vw", "golf")""" }
+    assertTypeError { """r1.updated("vw", "golf")""" }
 
     val r3a: Option[List[Int]] = r3("a")
     val r3b: Long = r3("p")
@@ -113,9 +112,9 @@ class RecordSpec extends BaseSpec {
     val r2 = class2Record(new Demo2("me", 42))
     val r3 = class2Record(Demo3("oogachaka", 42L))
 
-    illTyped { """r1("a")""" }
-    illTyped { """r2("b")""" }
-    illTyped { """r2("c")""" }
+    assertTypeError { """r1("a")""" }
+    assertTypeError { """r2("b")""" }
+    assertTypeError { """r2("c")""" }
 
     assert(r1("b") == "42")
     assert(r2("a") == "me")

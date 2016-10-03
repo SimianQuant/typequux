@@ -15,8 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
-
 class LiteralHashSpec extends BaseSpec {
 
   import Dense._
@@ -26,11 +24,11 @@ class LiteralHashSpec extends BaseSpec {
 
   forUnit(())
   def unitRes(x: String): Unit = println(x)
-  illTyped { """forUnit(unitRes("foo"))""" }
+  assertTypeError { """forUnit(unitRes("foo"))""" }
 
   forBoolean(true)
   forBoolean(false)
-  illTyped { """forBoolean(util.Random.nextBoolean())""" }
+  assertTypeError { """forBoolean(util.Random.nextBoolean())""" }
 
   forByte(0)
   forByte(10)
@@ -38,20 +36,20 @@ class LiteralHashSpec extends BaseSpec {
   forByte(Byte.MaxValue)
   forByte(Byte.MinValue)
   def randByte(): Byte = (util.Random.nextInt & 127).toByte
-  illTyped { """typequux.LiteralHashBuilder.forByte(128)""" }
-  illTyped { """typequux.LiteralHashBuilder.forByte(-129)""" }
-  illTyped { """forByte(randByte())""" }
+  assertTypeError { """typequux.LiteralHashBuilder.forByte(128)""" }
+  assertTypeError { """typequux.LiteralHashBuilder.forByte(-129)""" }
+  assertTypeError { """forByte(randByte())""" }
 
   LiteralHashDownConverter.int2Byte(0)
   LiteralHashDownConverter.int2Byte(4)
   LiteralHashDownConverter.int2Byte(-10)
   LiteralHashDownConverter.int2Byte(Byte.MaxValue)
   LiteralHashDownConverter.int2Byte(Byte.MinValue)
-  illTyped { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(128)""" }
-  illTyped { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(-129)""" }
-  illTyped { """LiteralHashDownConverter.int2Byte(-200)""" }
-  illTyped { """LiteralHashDownConverter.int2Byte(500)""" }
-  illTyped { """LiteralHashDownConverter.int2Byte(util.Random.nextInt())""" }
+  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(128)""" }
+  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(-129)""" }
+  assertTypeError { """LiteralHashDownConverter.int2Byte(-200)""" }
+  assertTypeError { """LiteralHashDownConverter.int2Byte(500)""" }
+  assertTypeError { """LiteralHashDownConverter.int2Byte(util.Random.nextInt())""" }
 
   forShort(0)
   forShort(15)
@@ -59,31 +57,31 @@ class LiteralHashSpec extends BaseSpec {
   forShort(Short.MaxValue)
   forShort(Short.MinValue)
   def randShort(): Short = (util.Random.nextInt & 32767).toShort
-  illTyped { """typequux.LiteralHashBuilder.forShort(32768)""" }
-  illTyped { """typequux.LiteralHashBuilder.forShort(-32769)""" }
-  illTyped { """forShort(randShort())""" }
+  assertTypeError { """typequux.LiteralHashBuilder.forShort(32768)""" }
+  assertTypeError { """typequux.LiteralHashBuilder.forShort(-32769)""" }
+  assertTypeError { """forShort(randShort())""" }
 
   LiteralHashDownConverter.int2Short(0)
   LiteralHashDownConverter.int2Short(66)
   LiteralHashDownConverter.int2Short(-1000)
   LiteralHashDownConverter.int2Short(32767)
   LiteralHashDownConverter.int2Short(-32768)
-  illTyped { """typequux.LiteralHashBuilder.LiteralHashDownConverter(32768)""" }
-  illTyped { """typequux.LiteralHashBuilder.LiteralHashDownConverter(-32769)""" }
-  illTyped { """LiteralHashDownConverter.int2Short(-40000)""" }
-  illTyped { """LiteralHashDownConverter.int2Short(50000)""" }
-  illTyped { """LiteralHashDownConverter.int2Short(util.Random.nextInt())""" }
+  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter(32768)""" }
+  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter(-32769)""" }
+  assertTypeError { """LiteralHashDownConverter.int2Short(-40000)""" }
+  assertTypeError { """LiteralHashDownConverter.int2Short(50000)""" }
+  assertTypeError { """LiteralHashDownConverter.int2Short(util.Random.nextInt())""" }
 
   forChar('a')
   forChar('x')
-  illTyped { """forChar(util.Random.nextPrintableChar())""" }
+  assertTypeError { """forChar(util.Random.nextPrintableChar())""" }
 
   forInt(0)
   forInt(16)
   forInt(-100)
   forInt(Int.MaxValue)
   forInt(Int.MinValue)
-  illTyped { """forInt(util.Random.nextInt())""" }
+  assertTypeError { """forInt(util.Random.nextInt())""" }
 
   forLong(0L)
   forLong(16L)
@@ -92,7 +90,7 @@ class LiteralHashSpec extends BaseSpec {
   forLong(-2147483649L)
   forLong(Long.MaxValue)
   forLong(Long.MinValue)
-  illTyped { """forLong(util.Random.nextLong())""" }
+  assertTypeError { """forLong(util.Random.nextLong())""" }
 
   forFloat(0f)
   forFloat(11f)
@@ -102,7 +100,7 @@ class LiteralHashSpec extends BaseSpec {
   forFloat(Float.NaN)
   forFloat(3.402823E38f)
   forFloat(-3.402823E38f)
-  illTyped { """forFloat(util.Random.nextFloat())""" }
+  assertTypeError { """forFloat(util.Random.nextFloat())""" }
 
   forDouble(0.0)
   forDouble(234.423)
@@ -112,12 +110,12 @@ class LiteralHashSpec extends BaseSpec {
   forDouble(Double.NaN)
   forDouble(1.7976931348623157E308)
   forDouble(-1.7976931348623157E308)
-  illTyped { """forDouble(util.Random.nextDouble())""" }
+  assertTypeError { """forDouble(util.Random.nextDouble())""" }
 
   forString("")
   forString("oogachaka")
   forString("~!@#$%^&*()_+")
-  illTyped { """forString(util.Random.nextString(4))""" }
+  assertTypeError { """forString(util.Random.nextString(4))""" }
 
   // Tests to check the type hashing
 

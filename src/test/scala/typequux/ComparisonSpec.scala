@@ -16,7 +16,6 @@
 package typequux
 
 import Comparison._
-import shapeless.test.illTyped
 import typequux._
 
 /**
@@ -30,12 +29,12 @@ class ComparisonSpec extends BaseSpec {
   eqv[Rep[EQ], String]
   eqv[Rep[GT], Double]
 
-  illTyped { """implicitly[Rep[LT] =:= String]""" }
-  illTyped { """implicitly[Rep[EQ] =:= Int]""" }
-  illTyped { """implicitly[Rep[GT] =:= Int]""" }
-  illTyped { """implicitly[Rep[LT] =:= Double]""" }
-  illTyped { """implicitly[Rep[EQ] =:= Double]""" }
-  illTyped { """implicitly[Rep[GT] =:= String]""" }
+  assertTypeError { """implicitly[Rep[LT] =:= String]""" }
+  assertTypeError { """implicitly[Rep[EQ] =:= Int]""" }
+  assertTypeError { """implicitly[Rep[GT] =:= Int]""" }
+  assertTypeError { """implicitly[Rep[LT] =:= Double]""" }
+  assertTypeError { """implicitly[Rep[EQ] =:= Double]""" }
+  assertTypeError { """implicitly[Rep[GT] =:= String]""" }
 
   isTrue[LT#lt]
   isTrue[LT#le]

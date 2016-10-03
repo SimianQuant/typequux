@@ -12,8 +12,7 @@ compilecheck in Compile := Def.sequential(compile in Compile, (scalastyle in Com
 
 libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-  "org.scalatest" %% "scalatest" % "2.2.6" % "test",
-  "com.chuusai" %% "shapeless" % "2.3.1" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 )
 
 wartremoverErrors ++= {
@@ -56,6 +55,8 @@ scalacOptions in (Compile, doc) <++= baseDirectory.map {
     "https://github.com/harshad-deo/typequux/tree/master€{FILE_PATH}.scala"
     )
   }
+
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
 
 initialCommands := """
 class Witness[T](val x: T)

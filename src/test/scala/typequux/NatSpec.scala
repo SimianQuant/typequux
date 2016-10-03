@@ -15,7 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
 import typequux._
 
 /**
@@ -32,9 +31,9 @@ class NatSpec extends BaseSpec {
   eqv[Rep[_0], String]
   eqv[Rep[_1], Int]
   eqv[Rep[_8], Int]
-  illTyped { """implicitly[Rep[_0] =:= Int]""" }
-  illTyped { """implicitly[Rep[_1] =:= String]""" }
-  illTyped { """implicitly[Rep[_8] =:= String]""" }
+  assertTypeError { """implicitly[Rep[_0] =:= Int]""" }
+  assertTypeError { """implicitly[Rep[_1] =:= String]""" }
+  assertTypeError { """implicitly[Rep[_8] =:= String]""" }
 
   implicitly[_0 Compare _0 =:= EQ]
   implicitly[_1 Compare _1 =:= EQ]
@@ -45,31 +44,31 @@ class NatSpec extends BaseSpec {
   implicitly[_1 Compare _0 =:= GT]
   implicitly[_7 Compare _0 =:= GT]
   implicitly[_7 Compare _1 =:= GT]
-  illTyped { """implicitly[_0 Compare _0 =:= LT]""" }
-  illTyped { """implicitly[_1 Compare _1 =:= LT]""" }
-  illTyped { """implicitly[_7 Compare _7 =:= LT]""" }
-  illTyped { """implicitly[_0 Compare _1 =:= GT]""" }
-  illTyped { """implicitly[_0 Compare _7 =:= GT]""" }
-  illTyped { """implicitly[_1 Compare _7 =:= GT]""" }
-  illTyped { """implicitly[_1 Compare _0 =:= LT]""" }
-  illTyped { """implicitly[_7 Compare _0 =:= LT]""" }
-  illTyped { """implicitly[_7 Compare _1 =:= LT]""" }
-  illTyped { """implicitly[_0 Compare _0 =:= GT]""" }
-  illTyped { """implicitly[_1 Compare _1 =:= GT]""" }
-  illTyped { """implicitly[_7 Compare _7 =:= GT]""" }
-  illTyped { """implicitly[_0 Compare _1 =:= EQ]""" }
-  illTyped { """implicitly[_0 Compare _7 =:= EQ]""" }
-  illTyped { """implicitly[_1 Compare _7 =:= EQ]""" }
-  illTyped { """implicitly[_1 Compare _0 =:= EQ]""" }
-  illTyped { """implicitly[_7 Compare _0 =:= EQ]""" }
-  illTyped { """implicitly[_7 Compare _1 =:= EQ]""" }
+  assertTypeError { """implicitly[_0 Compare _0 =:= LT]""" }
+  assertTypeError { """implicitly[_1 Compare _1 =:= LT]""" }
+  assertTypeError { """implicitly[_7 Compare _7 =:= LT]""" }
+  assertTypeError { """implicitly[_0 Compare _1 =:= GT]""" }
+  assertTypeError { """implicitly[_0 Compare _7 =:= GT]""" }
+  assertTypeError { """implicitly[_1 Compare _7 =:= GT]""" }
+  assertTypeError { """implicitly[_1 Compare _0 =:= LT]""" }
+  assertTypeError { """implicitly[_7 Compare _0 =:= LT]""" }
+  assertTypeError { """implicitly[_7 Compare _1 =:= LT]""" }
+  assertTypeError { """implicitly[_0 Compare _0 =:= GT]""" }
+  assertTypeError { """implicitly[_1 Compare _1 =:= GT]""" }
+  assertTypeError { """implicitly[_7 Compare _7 =:= GT]""" }
+  assertTypeError { """implicitly[_0 Compare _1 =:= EQ]""" }
+  assertTypeError { """implicitly[_0 Compare _7 =:= EQ]""" }
+  assertTypeError { """implicitly[_1 Compare _7 =:= EQ]""" }
+  assertTypeError { """implicitly[_1 Compare _0 =:= EQ]""" }
+  assertTypeError { """implicitly[_7 Compare _0 =:= EQ]""" }
+  assertTypeError { """implicitly[_7 Compare _1 =:= EQ]""" }
 
   type C = _0#FoldR[Int, AnyVal, Fold[Nat, AnyVal]]
   implicitly[C =:= Int]
-  illTyped { """implicitly[C =:= AnyVal]""" }
+  assertTypeError { """implicitly[C =:= AnyVal]""" }
   type D = _0#FoldL[String, AnyRef, Fold[Nat, AnyRef]]
   implicitly[D =:= String]
-  illTyped { """implicitly[D =:= AnyRef]""" }
+  assertTypeError { """implicitly[D =:= AnyRef]""" }
 
   // basic sum tests
   isTrue[_0 + _0 === _0]
@@ -121,7 +120,7 @@ class NatSpec extends BaseSpec {
   implicitly[NatDiff[_8, _3, _5]]
   implicitly[NatDiff[_9, _0, _9]]
   implicitly[NatDiff[_6, _2, _4]]
-  illTyped { """implicitly[NatDiff[_0, _1, _1]]""" }
+  assertTypeError { """implicitly[NatDiff[_0, _1, _1]]""" }
 
   /************************* Property Tests *********************/
   // binary properties

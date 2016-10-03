@@ -15,8 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
-
 class SizedVectorSpec extends BaseSpec {
 
   import Dense._
@@ -99,7 +97,7 @@ class SizedVectorSpec extends BaseSpec {
     val v1: SizedVector[_4, Double] = SizedVector(0.0, 1.0, 2.0, 3.0)
     val v2: SizedVector[_6, String] = SizedVector("fry", "bender", "leela", "zoidberg", "amy", "kipf")
 
-    illTyped { """v1(4)""" }
+    assertTypeError { """v1(4)""" }
 
     assert(v1(0) == 0.0)
     assert(v1(1) == 1.0)
@@ -116,10 +114,10 @@ class SizedVectorSpec extends BaseSpec {
   it should "drop properly" in {
     val v: SizedVector[_5, Int] = SizedVector(11, 12, 19, 23, 55)
 
-    illTyped { """v.drop(0)""" }
-    illTyped { """v.drop(5)""" }
-    illTyped { """v.dropRight(0)""" }
-    illTyped { """v.dropRight(5)""" }
+    assertTypeError { """v.drop(0)""" }
+    assertTypeError { """v.drop(5)""" }
+    assertTypeError { """v.dropRight(0)""" }
+    assertTypeError { """v.dropRight(5)""" }
 
     assert(v.drop(1) == SizedVector(12, 19, 23, 55))
     assert(v.drop(3) == SizedVector(23, 55))
@@ -162,9 +160,9 @@ class SizedVectorSpec extends BaseSpec {
     val el3 = SizedVector(el31, el32)
     val f3 = el3.flatten
 
-    illTyped { """el11.flatten""" }
-    illTyped { """el22.flatten""" }
-    illTyped { """el31.flatten""" }
+    assertTypeError { """el11.flatten""" }
+    assertTypeError { """el22.flatten""" }
+    assertTypeError { """el31.flatten""" }
 
     assert(f1.length == 12)
     assert(f2.length == 15)
@@ -224,9 +222,9 @@ class SizedVectorSpec extends BaseSpec {
   it should "slice properly" in {
     val v = SizedVector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
-    illTyped { """ v.slice(0, 0)""" }
-    illTyped { """ v.slice(5, 2)""" }
-    illTyped { """ v.slice(2, 11)""" }
+    assertTypeError { """ v.slice(0, 0)""" }
+    assertTypeError { """ v.slice(5, 2)""" }
+    assertTypeError { """ v.slice(2, 11)""" }
 
     val s1 = v.slice(2, 6)
     val s2 = v.slice(0, 5)
@@ -252,8 +250,8 @@ class SizedVectorSpec extends BaseSpec {
   it should "split properly" in {
     val v = SizedVector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
-    illTyped { """v.splitAt(0)""" }
-    illTyped { """v.splitAt(11)""" }
+    assertTypeError { """v.splitAt(0)""" }
+    assertTypeError { """v.splitAt(11)""" }
 
     val s1 = v.splitAt(4)
     val s2 = v.splitAt(8)
@@ -265,10 +263,10 @@ class SizedVectorSpec extends BaseSpec {
   it should "take properly" in {
     val v: SizedVector[_5, Int] = SizedVector(11, 12, 19, 23, 55)
 
-    illTyped { """v.take(0)""" }
-    illTyped { """v.take(5)""" }
-    illTyped { """v.takeRight(0)""" }
-    illTyped { """v.takeRight(5)""" }
+    assertTypeError { """v.take(0)""" }
+    assertTypeError { """v.take(5)""" }
+    assertTypeError { """v.takeRight(0)""" }
+    assertTypeError { """v.takeRight(5)""" }
 
     assert(v.take(1) == SizedVector(11))
     assert(v.take(3) == SizedVector(11, 12, 19))

@@ -15,7 +15,6 @@
   */
 package typequux
 
-import shapeless.test.illTyped
 import typequux._
 
 class StringIndexedCollectionSpec extends BaseSpec {
@@ -33,7 +32,7 @@ class StringIndexedCollectionSpec extends BaseSpec {
     assert(si1("e") == 2.718)
     assert(si1("h") == 6.626)
     assert(si1("phi") == 1.618)
-    illTyped { """si("x")""" }
+    assertTypeError { """si("x")""" }
   }
 
   it should "add correctly" in {
@@ -42,11 +41,11 @@ class StringIndexedCollectionSpec extends BaseSpec {
     assert(si2("h") == 6.626)
     assert(si2("phi") == 1.618)
     assert(si2("k") == 1.38)
-    illTyped { """si1.add("pi", 42)""" }
+    assertTypeError { """si1.add("pi", 42)""" }
   }
 
   it should "update correctly" in {
-    illTyped { """si1.updated("k", 1.3806)""" }
+    assertTypeError { """si1.updated("k", 1.3806)""" }
     assert(si3("pi") == 3.14159)
     assert(si3("e") == 2.718)
     assert(si3("h") == 6.62607)
