@@ -18,7 +18,7 @@ To see what is possible, head on over to the [project site](https://harshad-deo.
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.1.1"
+libraryDependencies += "com.simianquant" %% "typequux" % "0.1.2"
 ```
 
 Currently, only 2.11 binaries are supported. 
