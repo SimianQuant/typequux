@@ -19,7 +19,6 @@ import annotation.tailrec
 import Dense._
 import language.experimental.macros
 import language.implicitConversions
-import macrocompat.bundle
 import reflect.macros.whitebox
 
 /** Typelevel representation of a compile time constant literal. 
@@ -298,7 +297,6 @@ object LiteralHash {
     * Macro bundle that can be used by the typeclasses subsequently
     *
     */
-  @bundle
   private[LiteralHash] class LiteralHashBuilderImpl(val c: whitebox.Context) {
     import c.universe._
 

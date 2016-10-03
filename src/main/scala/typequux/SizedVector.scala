@@ -18,7 +18,6 @@ package typequux
 import annotation.tailrec
 import Dense._
 import language.experimental.macros
-import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
 
@@ -279,7 +278,6 @@ object SizedVector {
     */
   def apply[T](inp: T*): Any = macro SizedVectorBuilder.build[T]
 
-  @bundle
   private[SizedVector] class SizedVectorBuilder(val c: Context) {
     import c.universe._
     def build[T: c.WeakTypeTag](inp: Tree*): Tree = {

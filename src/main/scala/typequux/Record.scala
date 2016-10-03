@@ -19,7 +19,6 @@ import constraint._
 import Dense._
 import language.experimental.macros
 import language.implicitConversions
-import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
 
@@ -83,7 +82,6 @@ object Record {
     */
   def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
 
-  @bundle
   private[Record] class Class2RecordBuilder(val c: Context) {
     import c.universe._
 

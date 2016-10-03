@@ -19,7 +19,6 @@ import collection.generic.CanBuildFrom
 import Dense._
 import language.experimental.macros
 import language.{higherKinds, implicitConversions}
-import macrocompat.bundle
 import reflect.macros.whitebox.Context
 import typequux._
 import constraint._
@@ -1389,7 +1388,6 @@ object HList {
       override def apply(f: M ~> N, hl: H :+: TL) = f(hl.head) :+: ev0(f, hl.tail)
     }
 
-  @bundle
   private[HList] class HListMacroImpl(val c: Context) {
     import c.universe._
     def toList[HL: c.WeakTypeTag, R]: Tree = {
