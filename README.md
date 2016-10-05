@@ -1,6 +1,7 @@
 # TypeQuux
 
 [![Build Status](https://travis-ci.org/harshad-deo/typequux.svg?branch=master)](https://travis-ci.org/harshad-deo/typequux)
+[![Build status](https://ci.appveyor.com/api/projects/status/kvi1jh1nh1l6k2u8?svg=true)](https://ci.appveyor.com/project/harshad-deo/typequux)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.8.svg)](https://www.scala-js.org)
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
