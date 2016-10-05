@@ -7,7 +7,7 @@ os: Windows Server 2012
 environment:
   SBT_OPTS: -Dfile.encoding=UTF8
   JAVA_OPTS: -Dfile.encoding=UTF8
-  nodejs_version: "4.6.0"
+  nodejs_version: "4.4.2"
 
 install:
   - ps: |
