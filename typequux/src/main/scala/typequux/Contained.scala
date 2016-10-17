@@ -15,6 +15,8 @@
   */
 package typequux
 
+import language.experimental.macros
+import reflect.macros.blackbox
 import typequux._
 
 /** Marker that type A is one of the types of the supplied [[HList]] type
@@ -56,6 +58,13 @@ final class SubType[A, HL <: HList] private ()
   * @since 0.1
   */
 final class NotSubType[A, HL <: HList] private ()
+
+/** Marker that all types of HL1 are contained in HL2
+  *
+  * @author Harshad Deo
+  * @since 0.3
+  */
+final class AllContained[HL1 <: HList, HL2 <: HList] private ()
 
 /** Contains implicit definitions to build a [[Contained]] marker.
   *
@@ -207,4 +216,14 @@ object NotSubType {
   implicit def ambiguousNotSubtype[A, H, T <: HList](implicit ev: A <:< H,
                                                      ev1: NotSubType[A, T]): NotSubType[A, H :+: T] =
     new NotSubType[A, H :+: T]
+}
+
+object AllContained {
+
+  implicit def baseCase[HL <: HList]: AllContained[HNil, HL] = new AllContained[HNil, HL]
+
+  implicit def inductionCase[H, TL <: HList, HL <: HList](implicit ev0: Contained[H, HL],
+                                                          ev1: AllContained[TL, HL]): AllContained[H :+: TL, HL] =
+    new AllContained[H :+: TL, HL]
+
 }

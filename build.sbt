@@ -4,7 +4,7 @@ val typequux = crossProject
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.2.0",
+    version := "0.2.1",
     scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,
@@ -28,7 +28,7 @@ val typequux = crossProject
       "-deprecation",
       "-unchecked",
       "-explaintypes",
-      "-Ywarn-unused-import",
+      //"-Ywarn-unused-import",
       "-encoding",
       "UTF-8",
       "-feature",
@@ -62,13 +62,14 @@ val typequux = crossProject
       | object Witness{
       |   def apply[T](x: T): Witness[T] = new Witness(x)
       | }
+      | import typequux._
       | import typequux._""".stripMargin,
     addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.14"),
     siteSubdirName in SiteScaladoc := "api",
     previewLaunchBrowser := false,
     publishMavenStyle := true,
     publishArtifact in Test := false,
-    publishTo := Some("releases"  at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
+    publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
     pomIncludeRepository := { _ =>
       false
     },

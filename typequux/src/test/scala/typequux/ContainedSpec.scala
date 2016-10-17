@@ -105,4 +105,18 @@ class ContainedSpec extends BaseSpec {
   assertTypeError { """implicitly[NotSubType[Some[Int], Traversable[_] :+: Option[_] :+: HNil]]""" }
   assertTypeError { """implicitly[NotSubType[Array[Int], Array[_] :+: List[_] :+: HNil]]""" }
   assertTypeError { """implicitly[NotSubType[Set[String], Traversable[_] :+: Option[_] :+: Set[Any] :+: HNil]]""" }
+
+  // test for AllContained
+  implicitly[AllContained[HNil, Int :+: HNil]]
+  implicitly[AllContained[Int :+: HNil, Int :+: HNil]]
+  implicitly[AllContained[List[_] :+: HNil, List[_] :+: HNil]]
+  implicitly[
+    AllContained[Int :+: String :+: Boolean :+: HNil, List[_] :+: String :+: Boolean :+: Int :+: Array[Int] :+: HNil]]
+  implicitly[AllContained[List[_] :+: Array[_] :+: Int :+: HNil,
+                          Int :+: Array[_] :+: Boolean :+: Int :+: String :+: List[_] :+: HNil]]
+
+  assertTypeError("""AllContained[Int :+: HNil, HNil]""")
+  assertTypeError("""AllContained[Int :+: HNil, String :+: HNil]""")
+  assertTypeError("""AllContained[Int :+: String :+: HNil, Int :+: HNil]""")
+
 }
