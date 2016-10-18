@@ -4,7 +4,7 @@ val typequux = crossProject
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.2.1",
+    version := "0.2.2",
     scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,

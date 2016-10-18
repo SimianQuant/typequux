@@ -20,8 +20,8 @@ To see what is possible, head on over to the [project site](https://harshad-deo.
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.2.0" // scala-jvm
-libraryDependencies += "com.simianquant" %%% "typequux" % "0.2.0" // scala-js/cross
+libraryDependencies += "com.simianquant" %% "typequux" % "0.2.2" // scala-jvm
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.2.2" // scala-js/cross
 ```
 
 Currently, only 2.11 binaries are supported. 

@@ -27,7 +27,7 @@ import typequux._
   * @author Harshad Deo
   * @since 0.1
   */
-final class Contained[A, HL <: HList] private ()
+final class Contained[A, HL] private ()
 
 /** Marker that type A is not one of the types of the supplied [[HList]] type
   *
@@ -37,7 +37,7 @@ final class Contained[A, HL <: HList] private ()
   * @author Harshad Deo
   * @since 0.1
   */
-final class NotContained[A, HL <: HList] private ()
+final class NotContained[A, HL] private ()
 
 /** Marker that type A is a subtype of one of the types of the supplied [[HList]] type
   *
@@ -47,7 +47,7 @@ final class NotContained[A, HL <: HList] private ()
   * @author Harshad Deo
   * @since 0.1
   */
-final class SubType[A, HL <: HList] private ()
+final class SubType[A, HL] private ()
 
 /** Marker that type A is not a subtype of the types of the supplied [[HList]] type
   *
@@ -57,14 +57,14 @@ final class SubType[A, HL <: HList] private ()
   * @author Harshad Deo
   * @since 0.1
   */
-final class NotSubType[A, HL <: HList] private ()
+final class NotSubType[A, HL] private ()
 
 /** Marker that all types of HL1 are contained in HL2
   *
   * @author Harshad Deo
   * @since 0.3
   */
-final class AllContained[HL1 <: HList, HL2 <: HList] private ()
+final class AllContained[HL1, HL2] private ()
 
 /** Contains implicit definitions to build a [[Contained]] marker.
   *
