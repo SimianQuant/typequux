@@ -170,7 +170,7 @@ object Record {
       override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)
     }
 
-  /** Implements [[constraint.LengthConstraint]] for [[RNil]]
+  /** Implements [[constraint.LengthConstraint]] for [[RN0]]
     *
     * @group Constraint Constructor
     * @author Harshad Deo
@@ -221,7 +221,7 @@ object Record {
       }
     }
 
-  /** Implements [[constraint.ToMapConstraint]] for [[RNil]]
+  /** Implements [[constraint.ToMapConstraint]] for [[RN0]]
     *
     * @group Constraint Constructor
     * @author Harshad Deo
