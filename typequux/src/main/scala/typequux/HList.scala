@@ -21,7 +21,7 @@ import language.experimental.macros
 import language.{higherKinds, implicitConversions}
 import reflect.macros.whitebox.Context
 import typequux._
-import constraint._
+import typequux.constraint._
 
 /** Sequentially indexed arbitrary arity type in which each element can be of a different type
   *
