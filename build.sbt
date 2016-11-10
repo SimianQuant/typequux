@@ -4,12 +4,14 @@ val typequux = crossProject
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.2.2",
+    version := "0.3.0-SNAPSHOT",
     scalaVersion := "2.11.8",
+    crossScalaVersions := Seq("2.11.8", "2.12.0"),
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,
       "org.scalatest" %%% "scalatest" % "3.0.0" % "test"
     ),
+    incOptions := incOptions.value.withLogRecompileOnMacro(false),
     wartremoverErrors ++= {
       import Wart._
       Seq(Any2StringAdd,
@@ -64,7 +66,7 @@ val typequux = crossProject
       | }
       | import typequux._
       | import typequux._""".stripMargin,
-    addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.14"),
+    addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16"),
     siteSubdirName in SiteScaladoc := "api",
     previewLaunchBrowser := false,
     publishMavenStyle := true,
@@ -98,14 +100,15 @@ val typequux = crossProject
     fork := true
   )
   .jsSettings(
-    scalaJSUseRhino in Global := false,
     scalaJSStage in Test := FullOptStage,
     coverageExcludedPackages := ".*"
   )
 
-lazy val typequuxJS = typequux.js
-lazy val typequuxJVM = typequux.jvm
+lazy val typequuxJS = typequux.js.settings(name := "typequuxJS")
+lazy val typequuxJVM = typequux.jvm.settings(name := "typequuxJVM").aggregate(typequuxJS)
 
 ghpages.settings
 
 git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
+
+onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value

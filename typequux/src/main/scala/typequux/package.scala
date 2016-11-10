@@ -31,14 +31,14 @@ package object typequux {
 
   type :+:[H, T <: HList] = HList.HCons[H, T]
 
-  type HNil = HList.HNil.type
-  val HNil = HList.HNil // scalastyle:ignore
+  val HNil = HList.HN0 // scalastyle:ignore
+  type HNil = HNil.type
 
-  type RNil = Record.RNil.type
-  val RNil = Record.RNil // scalastyle:ignore
+  val RNil = Record.RN0 // scalastyle:ignore
+  type RNil = RNil.type
 
-  type SINil = StringIndexedCollection.SINil.type
-  val SINil = StringIndexedCollection.SINil // scalastyle:ignore
+  val SINil = StringIndexedCollection.SIN0 // scalastyle:ignore
+  type SINil = SINil.type
 
   type Id[X] = X
   val :+: = HList.HCons // scalastyle:ignore

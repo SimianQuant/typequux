@@ -70,7 +70,7 @@ object Record {
     * @author Harshad Deo
     * @since 0.1
     */
-  case object RNil extends Record
+  case object RN0 extends Record
 
   /** Converts a class to a record, by keeping track of all vals, case accessors and getters
     *

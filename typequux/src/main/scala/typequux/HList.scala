@@ -57,7 +57,7 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  case object HNil extends HList {
+  case object HN0 extends HList {
     override def toString: String = "HNil"
   }
 

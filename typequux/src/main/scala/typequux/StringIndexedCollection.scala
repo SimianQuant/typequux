@@ -71,7 +71,7 @@ object StringIndexedCollection {
     * @author Harshad Deo
     * @since 0.1
     */
-  object SINil extends StringIndexedCollection[Nothing]
+  object SIN0 extends StringIndexedCollection[Nothing]
 
   /** Converts a [[StringIndexedCollection]] to an [[SiOps]] object
     *
