@@ -14,8 +14,3 @@ before_install:
 script: "sbt clean coverage test"
 
 after_success: "sbt ++$TRAVIS_SCALA_VERSION coverageReport coveralls"
-
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer

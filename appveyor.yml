@@ -8,13 +8,14 @@ environment:
   SBT_OPTS: -Dfile.encoding=UTF8
   JAVA_OPTS: -Dfile.encoding=UTF8
   nodejs_version: "4.5.0"
+  JAVA_HOME: C:\Program Files\Java\jdk1.8.0
 
 install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       if (!(Test-Path -Path "C:\sbt" )) {
         (new-object System.Net.WebClient).DownloadFile(
-          'https://dl.bintray.com/sbt/native-packages/sbt/0.13.13/sbt-0.13.14.zip',
+          'https://dl.bintray.com/sbt/native-packages/sbt/0.13.13/sbt-0.13.13.zip',
           'C:\sbt-bin.zip'
         )
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\sbt-bin.zip", "C:\sbt")
