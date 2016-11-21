@@ -1,3 +1,7 @@
+import org.scoverage.coveralls.Imports.CoverallsKeys._
+
+coverallsToken := Some("9hEwTXoYLumfUa4DDm76fMp8cvJ86ywab")
+
 val typequux = crossProject
   .crossType(CrossType.Pure)
   .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
