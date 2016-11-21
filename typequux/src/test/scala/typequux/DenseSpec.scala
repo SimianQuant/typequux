@@ -24,113 +24,126 @@ class DenseSpec extends BaseSpec {
 
   import Dense._
 
-  /*********************** Unit Tests *****************************/
   type Rep[D <: Digit] = D#Match[Int, String, Any]
-  implicitly[Rep[D0] =:= String]
-  implicitly[Rep[D1] =:= Int]
-  assertTypeError { """implicitly[Rep[D0] =:= Int]""" }
-  assertTypeError { """implicitly[Rep[D1] =:= String]""" }
 
-  implicitly[D0#Compare[D0] =:= EQ]
-  implicitly[D0#Compare[D1] =:= LT]
-  implicitly[D1#Compare[D0] =:= GT]
-  implicitly[D1#Compare[D1] =:= EQ]
+  it should "pass rep tests" in {
+    assertCompiles { """implicitly[Rep[D0] =:= String]""" }
+    assertCompiles { """implicitly[Rep[D1] =:= Int]""" }
+    assertTypeError { """implicitly[Rep[D0] =:= Int]""" }
+    assertTypeError { """implicitly[Rep[D1] =:= String]""" }
+  }
 
-  isTrue[_0 === _0]
-  isTrue[_1 === _1]
-  isTrue[_3 === _3]
-  isTrue[_5 === _5]
-  isTrue[_9 === _9]
+  it should "pass comparison tests" in {
+    assertCompiles { """implicitly[D0#Compare[D0] =:= EQ]""" }
+    assertCompiles { """implicitly[D0#Compare[D1] =:= LT]""" }
+    assertCompiles { """implicitly[D1#Compare[D0] =:= GT]""" }
+    assertCompiles { """implicitly[D1#Compare[D1] =:= EQ]""" }
 
-  isTrue[_0 < _1]
-  isTrue[_1 > _0]
-  isTrue[_2 < _3]
-  isTrue[_3 > _2]
-  isTrue[_3 < _5]
-  isTrue[_6 > _3]
-  isTrue[_6 > _5]
-  isTrue[_4 < _6]
-  isTrue[_6 < _9]
-  isTrue[_9 > _7]
-  isTrue[_10 < _15]
-  isTrue[_11 <= _11]
+    assertCompiles { """isTrue[_0 === _0]""" }
+    assertCompiles { """isTrue[_1 === _1]""" }
+    assertCompiles { """isTrue[_3 === _3]""" }
+    assertCompiles { """isTrue[_5 === _5]""" }
+    assertCompiles { """isTrue[_9 === _9]""" }
 
-  isTrue[_0#Inc === _1]
-  isTrue[_1#Inc === _2]
-  isTrue[_2#Inc === _3]
-  isTrue[_3#Inc === _4]
-  isTrue[_4#Inc === _5]
-  isTrue[_5#Inc === _6]
-  isTrue[_6#Inc === _7]
-  isTrue[_7#Inc === _8]
-  isTrue[_8#Inc === _9]
-  isTrue[_9#Inc === _10]
-  isTrue[_10#Inc === _11]
-  isTrue[_11#Inc === _12]
-  isTrue[_12#Inc === _13]
-  isTrue[_13#Inc === _14]
-  isTrue[_14#Inc === _15]
+    assertCompiles { """isTrue[_0 < _1]""" }
+    assertCompiles { """isTrue[_1 > _0]""" }
+    assertCompiles { """isTrue[_2 < _3]""" }
+    assertCompiles { """isTrue[_3 > _2]""" }
+    assertCompiles { """isTrue[_3 < _5]""" }
+    assertCompiles { """isTrue[_6 > _3]""" }
+    assertCompiles { """isTrue[_6 > _5]""" }
+    assertCompiles { """isTrue[_4 < _6]""" }
+    assertCompiles { """isTrue[_6 < _9]""" }
+    assertCompiles { """isTrue[_9 > _7]""" }
+    assertCompiles { """isTrue[_10 < _15]""" }
+    assertCompiles { """isTrue[_11 <= _11]""" }
+  }
 
-  isTrue[_1#Dec === _0]
-  isTrue[_2#Dec === _1]
-  isTrue[_3#Dec === _2]
-  isTrue[_4#Dec === _3]
-  isTrue[_5#Dec === _4]
-  isTrue[_6#Dec === _5]
-  isTrue[_7#Dec === _6]
-  isTrue[_8#Dec === _7]
-  isTrue[_9#Dec === _8]
-  isTrue[_10#Dec === _9]
-  isTrue[_11#Dec === _10]
-  isTrue[_12#Dec === _11]
-  isTrue[_13#Dec === _12]
-  isTrue[_14#Dec === _13]
-  isTrue[_15#Dec === _14]
+  it should "pass increment tests" in {
+    assertCompiles { """isTrue[_0#Inc === _1]""" }
+    assertCompiles { """isTrue[_1#Inc === _2]""" }
+    assertCompiles { """isTrue[_2#Inc === _3]""" }
+    assertCompiles { """isTrue[_3#Inc === _4]""" }
+    assertCompiles { """isTrue[_4#Inc === _5]""" }
+    assertCompiles { """isTrue[_5#Inc === _6]""" }
+    assertCompiles { """isTrue[_6#Inc === _7]""" }
+    assertCompiles { """isTrue[_7#Inc === _8]""" }
+    assertCompiles { """isTrue[_8#Inc === _9]""" }
+    assertCompiles { """isTrue[_9#Inc === _10]""" }
+    assertCompiles { """isTrue[_10#Inc === _11]""" }
+    assertCompiles { """isTrue[_11#Inc === _12]""" }
+    assertCompiles { """isTrue[_12#Inc === _13]""" }
+    assertCompiles { """isTrue[_13#Inc === _14]""" }
+    assertCompiles { """isTrue[_14#Inc === _15]""" }
+  }
 
-  // basic sum tests
-  isTrue[_0 + _0 === _0]
-  isTrue[_1 + _0 === _1]
-  isTrue[_0 + _1 === _1]
-  isTrue[_0 + _3 === _3]
-  isTrue[_3 + _0 === _3]
-  isTrue[_3 + _5 === _8]
-  isTrue[_5 + _3 === _8]
-  isTrue[_3 + _2 === _5]
+  it should "pass decrement tests" in {
+    assertCompiles { """isTrue[_1#Dec === _0]""" }
+    assertCompiles { """isTrue[_2#Dec === _1]""" }
+    assertCompiles { """isTrue[_3#Dec === _2]""" }
+    assertCompiles { """isTrue[_4#Dec === _3]""" }
+    assertCompiles { """isTrue[_5#Dec === _4]""" }
+    assertCompiles { """isTrue[_6#Dec === _5]""" }
+    assertCompiles { """isTrue[_7#Dec === _6]""" }
+    assertCompiles { """isTrue[_8#Dec === _7]""" }
+    assertCompiles { """isTrue[_9#Dec === _8]""" }
+    assertCompiles { """isTrue[_10#Dec === _9]""" }
+    assertCompiles { """isTrue[_11#Dec === _10]""" }
+    assertCompiles { """isTrue[_12#Dec === _11]""" }
+    assertCompiles { """isTrue[_13#Dec === _12]""" }
+    assertCompiles { """isTrue[_14#Dec === _13]""" }
+    assertCompiles { """isTrue[_15#Dec === _14]""" }
+  }
 
-  // basic product tests
-  isTrue[_0 * _0 === _0]
-  isTrue[_1 * _0 === _0]
-  isTrue[_0 * _1 === _0]
-  isTrue[_1 * _1 === _1]
-  isTrue[_1 * _9 === _9]
-  isTrue[_9 * _1 === _9]
-  isTrue[_2 * _2 === _4]
-  isTrue[_2 * _3 === _6]
-  isTrue[_3 * _2 === _6]
-  isTrue[_2 * _4 === _8]
-  isTrue[_4 * _2 === _8]
-  isTrue[_3 * _3 === _9]
+  it should "pass basic sum tests" in {
+    assertCompiles { """isTrue[_0 + _0 === _0]""" }
+    assertCompiles { """isTrue[_1 + _0 === _1]""" }
+    assertCompiles { """isTrue[_0 + _1 === _1]""" }
+    assertCompiles { """isTrue[_0 + _3 === _3]""" }
+    assertCompiles { """isTrue[_3 + _0 === _3]""" }
+    assertCompiles { """isTrue[_3 + _5 === _8]""" }
+    assertCompiles { """isTrue[_5 + _3 === _8]""" }
+    assertCompiles { """isTrue[_3 + _2 === _5]""" }
+  }
 
-  isTrue[_0#YodaExp[_1] === _1]
-  isTrue[_1#YodaExp[_0] === _0]
-  isTrue[_0#YodaExp[_0] === _1]
-  isTrue[_1 ^ _1 === _1]
-  isTrue[_5 ^ _0 === _1]
-  isTrue[_5 ^ _1 === _5]
-  isTrue[_2 ^ _2 === _4]
-  isTrue[_2 ^ _3 === _8]
-  isTrue[_3 ^ _2 === _9]
-  isTrue[_3 ^ _3 === *[_9, _3]]
+  it should "pass basic product tests" in {
+    assertCompiles { """isTrue[_0 * _0 === _0]""" }
+    assertCompiles { """isTrue[_1 * _0 === _0]""" }
+    assertCompiles { """isTrue[_0 * _1 === _0]""" }
+    assertCompiles { """isTrue[_1 * _1 === _1]""" }
+    assertCompiles { """isTrue[_1 * _9 === _9]""" }
+    assertCompiles { """isTrue[_9 * _1 === _9]""" }
+    assertCompiles { """isTrue[_2 * _2 === _4]""" }
+    assertCompiles { """isTrue[_2 * _3 === _6]""" }
+    assertCompiles { """isTrue[_3 * _2 === _6]""" }
+    assertCompiles { """isTrue[_2 * _4 === _8]""" }
+    assertCompiles { """isTrue[_4 * _2 === _8]""" }
+    assertCompiles { """isTrue[_3 * _3 === _9]""" }
+  }
 
-  // some more tests
-  isTrue[+[_1, *[_8, _10]] === ^[_9, _2]]
-  isTrue[*[_4#Sq, _4#Sq] === ^[_2, _8]]
+  it should "pass exponent tests" in {
+    assertCompiles { """isTrue[_0#YodaExp[_1] === _1]""" }
+    assertCompiles { """isTrue[_1#YodaExp[_0] === _0]""" }
+    assertCompiles { """isTrue[_0#YodaExp[_0] === _1]""" }
+    assertCompiles { """isTrue[_1 ^ _1 === _1]""" }
+    assertCompiles { """isTrue[_5 ^ _0 === _1]""" }
+    assertCompiles { """isTrue[_5 ^ _1 === _5]""" }
+    assertCompiles { """isTrue[_2 ^ _2 === _4]""" }
+    assertCompiles { """isTrue[_2 ^ _3 === _8]""" }
+    assertCompiles { """isTrue[_3 ^ _2 === _9]""" }
+    assertCompiles { """isTrue[_3 ^ _3 === *[_9, _3]]""" }
 
-  // subtraction tests
-  implicitly[DenseDiff[_10, _10, _0]]
-  implicitly[DenseDiff[_6, _2, _4]]
-  implicitly[DenseDiff[_17, _13, _4]]
-  assertTypeError { """DenseDiff[_7, _10, _3]""" }
+    // some more tests
+    assertCompiles { """isTrue[+[_1, *[_8, _10]] === ^[_9, _2]]""" }
+    assertCompiles { """isTrue[*[_4#Sq, _4#Sq] === ^[_2, _8]]""" }
+  }
+
+  it should "pass subtraction tests" in {
+    assertCompiles { """implicitly[DenseDiff[_10, _10, _0]]""" }
+    assertCompiles { """implicitly[DenseDiff[_6, _2, _4]]""" }
+    assertCompiles { """implicitly[DenseDiff[_17, _13, _4]]""" }
+    assertTypeError { """DenseDiff[_7, _10, _3]""" }
+  }
 
   /************** Property Based Tests *************************/
   // binary properties
@@ -158,106 +171,109 @@ class DenseSpec extends BaseSpec {
                                          ev1: MultiplicativeCommutativity[A, B],
                                          ev2: TotalOrderAntiSymmetry[A, B],
                                          ev3: TotalOrderTotality[A, B]) = true
-  binaryLaws[_3, _9]
-  binaryLaws[_12, _14]
-  binaryLaws[_1, _3]
-  binaryLaws[_6, _11]
-  binaryLaws[_7, _12]
-  binaryLaws[_3, _15]
-  binaryLaws[_1, _4]
-  binaryLaws[_11, _12]
-  binaryLaws[_2, _4]
-  binaryLaws[_12, _15]
-  binaryLaws[_6, _10]
-  binaryLaws[_5, _5]
-  binaryLaws[_7, _14]
-  binaryLaws[_5, _10]
-  binaryLaws[_4, _5]
-  binaryLaws[_8, _15]
-  binaryLaws[_11, _14]
-  binaryLaws[_6, _15]
-  binaryLaws[_3, _12]
-  binaryLaws[_2, _13]
-  binaryLaws[_2, _2]
-  binaryLaws[_13, _15]
-  binaryLaws[_1, _7]
-  binaryLaws[_1, _1]
-  binaryLaws[_2, _6]
-  binaryLaws[_4, _12]
-  binaryLaws[_2, _3]
-  binaryLaws[_11, _11]
-  binaryLaws[_7, _13]
-  binaryLaws[_4, _10]
-  binaryLaws[_6, _9]
-  binaryLaws[_9, _9]
-  binaryLaws[_2, _14]
-  binaryLaws[_12, _12]
-  binaryLaws[_12, _13]
-  binaryLaws[_5, _11]
-  binaryLaws[_0, _0]
-  binaryLaws[_1, _12]
-  binaryLaws[_9, _13]
-  binaryLaws[_1, _10]
-  binaryLaws[_8, _14]
-  binaryLaws[_6, _12]
-  binaryLaws[_4, _11]
-  binaryLaws[_4, _8]
-  binaryLaws[_1, _2]
-  binaryLaws[_6, _8]
-  binaryLaws[_5, _15]
-  binaryLaws[_4, _15]
-  binaryLaws[_3, _7]
-  binaryLaws[_7, _9]
-  binaryLaws[_3, _10]
-  binaryLaws[_8, _13]
-  binaryLaws[_8, _9]
-  binaryLaws[_7, _15]
-  binaryLaws[_1, _9]
-  binaryLaws[_5, _12]
-  binaryLaws[_3, _11]
-  binaryLaws[_3, _5]
-  binaryLaws[_4, _4]
-  binaryLaws[_0, _7]
-  binaryLaws[_2, _12]
-  binaryLaws[_0, _12]
-  binaryLaws[_4, _14]
-  binaryLaws[_8, _10]
-  binaryLaws[_7, _8]
-  binaryLaws[_1, _6]
-  binaryLaws[_4, _6]
-  binaryLaws[_3, _14]
-  binaryLaws[_9, _11]
-  binaryLaws[_8, _11]
-  binaryLaws[_10, _10]
-  binaryLaws[_11, _15]
-  binaryLaws[_2, _7]
-  binaryLaws[_2, _10]
-  binaryLaws[_7, _7]
-  binaryLaws[_1, _5]
-  binaryLaws[_0, _5]
-  binaryLaws[_10, _12]
-  binaryLaws[_0, _8]
-  binaryLaws[_0, _13]
-  binaryLaws[_13, _14]
-  binaryLaws[_14, _14]
-  binaryLaws[_6, _6]
-  binaryLaws[_1, _15]
-  binaryLaws[_7, _11]
-  binaryLaws[_10, _15]
-  binaryLaws[_4, _9]
-  binaryLaws[_15, _15]
-  binaryLaws[_0, _11]
-  binaryLaws[_8, _12]
-  binaryLaws[_4, _13]
-  binaryLaws[_7, _10]
-  binaryLaws[_0, _14]
-  binaryLaws[_6, _13]
-  binaryLaws[_10, _11]
-  binaryLaws[_11, _13]
-  binaryLaws[_2, _11]
-  binaryLaws[_2, _5]
-  binaryLaws[_1, _13]
-  binaryLaws[_0, _10]
+
+  it should "pass binary laws" in {
+    assertCompiles { """binaryLaws[_3, _9]""" }
+    assertCompiles { """binaryLaws[_12, _14]""" }
+    assertCompiles { """binaryLaws[_1, _3]""" }
+    assertCompiles { """binaryLaws[_6, _11]""" }
+    assertCompiles { """binaryLaws[_7, _12]""" }
+    assertCompiles { """binaryLaws[_3, _15]""" }
+    assertCompiles { """binaryLaws[_1, _4]""" }
+    assertCompiles { """binaryLaws[_11, _12]""" }
+    assertCompiles { """binaryLaws[_2, _4]""" }
+    assertCompiles { """binaryLaws[_12, _15]""" }
+    assertCompiles { """binaryLaws[_6, _10]""" }
+    assertCompiles { """binaryLaws[_5, _5]""" }
+    assertCompiles { """binaryLaws[_7, _14]""" }
+    assertCompiles { """binaryLaws[_5, _10]""" }
+    assertCompiles { """binaryLaws[_4, _5]""" }
+    assertCompiles { """binaryLaws[_8, _15]""" }
+    assertCompiles { """binaryLaws[_11, _14]""" }
+    assertCompiles { """binaryLaws[_6, _15]""" }
+    assertCompiles { """binaryLaws[_3, _12]""" }
+    assertCompiles { """binaryLaws[_2, _13]""" }
+    assertCompiles { """binaryLaws[_2, _2]""" }
+    assertCompiles { """binaryLaws[_13, _15]""" }
+    assertCompiles { """binaryLaws[_1, _7]""" }
+    assertCompiles { """binaryLaws[_1, _1]""" }
+    assertCompiles { """binaryLaws[_2, _6]""" }
+    assertCompiles { """binaryLaws[_4, _12]""" }
+    assertCompiles { """binaryLaws[_2, _3]""" }
+    assertCompiles { """binaryLaws[_11, _11]""" }
+    assertCompiles { """binaryLaws[_7, _13]""" }
+    assertCompiles { """binaryLaws[_4, _10]""" }
+    assertCompiles { """binaryLaws[_6, _9]""" }
+    assertCompiles { """binaryLaws[_9, _9]""" }
+    assertCompiles { """binaryLaws[_2, _14]""" }
+    assertCompiles { """binaryLaws[_12, _12]""" }
+    assertCompiles { """binaryLaws[_12, _13]""" }
+    assertCompiles { """binaryLaws[_5, _11]""" }
+    assertCompiles { """binaryLaws[_0, _0]""" }
+    assertCompiles { """binaryLaws[_1, _12]""" }
+    assertCompiles { """binaryLaws[_9, _13]""" }
+    assertCompiles { """binaryLaws[_1, _10]""" }
+    assertCompiles { """binaryLaws[_8, _14]""" }
+    assertCompiles { """binaryLaws[_6, _12]""" }
+    assertCompiles { """binaryLaws[_4, _11]""" }
+    assertCompiles { """binaryLaws[_4, _8]""" }
+    assertCompiles { """binaryLaws[_1, _2]""" }
+    assertCompiles { """binaryLaws[_6, _8]""" }
+    assertCompiles { """binaryLaws[_5, _15]""" }
+    assertCompiles { """binaryLaws[_4, _15]""" }
+    assertCompiles { """binaryLaws[_3, _7]""" }
+    assertCompiles { """binaryLaws[_7, _9]""" }
+    assertCompiles { """binaryLaws[_3, _10]""" }
+    assertCompiles { """binaryLaws[_8, _13]""" }
+    assertCompiles { """binaryLaws[_8, _9]""" }
+    assertCompiles { """binaryLaws[_7, _15]""" }
+    assertCompiles { """binaryLaws[_1, _9]""" }
+    assertCompiles { """binaryLaws[_5, _12]""" }
+    assertCompiles { """binaryLaws[_3, _11]""" }
+    assertCompiles { """binaryLaws[_3, _5]""" }
+    assertCompiles { """binaryLaws[_4, _4]""" }
+    assertCompiles { """binaryLaws[_0, _7]""" }
+    assertCompiles { """binaryLaws[_2, _12]""" }
+    assertCompiles { """binaryLaws[_0, _12]""" }
+    assertCompiles { """binaryLaws[_4, _14]""" }
+    assertCompiles { """binaryLaws[_8, _10]""" }
+    assertCompiles { """binaryLaws[_7, _8]""" }
+    assertCompiles { """binaryLaws[_1, _6]""" }
+    assertCompiles { """binaryLaws[_4, _6]""" }
+    assertCompiles { """binaryLaws[_3, _14]""" }
+    assertCompiles { """binaryLaws[_9, _11]""" }
+    assertCompiles { """binaryLaws[_8, _11]""" }
+    assertCompiles { """binaryLaws[_10, _10]""" }
+    assertCompiles { """binaryLaws[_11, _15]""" }
+    assertCompiles { """binaryLaws[_2, _7]""" }
+    assertCompiles { """binaryLaws[_2, _10]""" }
+    assertCompiles { """binaryLaws[_7, _7]""" }
+    assertCompiles { """binaryLaws[_1, _5]""" }
+    assertCompiles { """binaryLaws[_0, _5]""" }
+    assertCompiles { """binaryLaws[_10, _12]""" }
+    assertCompiles { """binaryLaws[_0, _8]""" }
+    assertCompiles { """binaryLaws[_0, _13]""" }
+    assertCompiles { """binaryLaws[_13, _14]""" }
+    assertCompiles { """binaryLaws[_14, _14]""" }
+    assertCompiles { """binaryLaws[_6, _6]""" }
+    assertCompiles { """binaryLaws[_1, _15]""" }
+    assertCompiles { """binaryLaws[_7, _11]""" }
+    assertCompiles { """binaryLaws[_10, _15]""" }
+    assertCompiles { """binaryLaws[_4, _9]""" }
+    assertCompiles { """binaryLaws[_15, _15]""" }
+    assertCompiles { """binaryLaws[_0, _11]""" }
+    assertCompiles { """binaryLaws[_8, _12]""" }
+    assertCompiles { """binaryLaws[_4, _13]""" }
+    assertCompiles { """binaryLaws[_7, _10]""" }
+    assertCompiles { """binaryLaws[_0, _14]""" }
+    assertCompiles { """binaryLaws[_6, _13]""" }
+    assertCompiles { """binaryLaws[_10, _11]""" }
+    assertCompiles { """binaryLaws[_11, _13]""" }
+    assertCompiles { """binaryLaws[_2, _11]""" }
+    assertCompiles { """binaryLaws[_2, _5]""" }
+    assertCompiles { """binaryLaws[_1, _13]""" }
+    assertCompiles { """binaryLaws[_0, _10]""" }
+  }
 
   // ternary laws
 
@@ -285,106 +301,109 @@ class DenseSpec extends BaseSpec {
                                                       ev1: MultiplicativeAssociativity[A, B, C],
                                                       ev2: Distributivity[A, B, C],
                                                       ev3: TotalOrderTransitivity[A, B, C]) = true
-  ternaryLaws[_1, _3, _6]
-  ternaryLaws[_0, _2, _13]
-  ternaryLaws[_3, _14, _15]
-  ternaryLaws[_5, _8, _8]
-  ternaryLaws[_2, _11, _13]
-  ternaryLaws[_0, _2, _8]
-  ternaryLaws[_6, _14, _14]
-  ternaryLaws[_2, _2, _15]
-  ternaryLaws[_10, _11, _11]
-  ternaryLaws[_0, _0, _0]
-  ternaryLaws[_0, _0, _10]
-  ternaryLaws[_5, _6, _15]
-  ternaryLaws[_1, _5, _13]
-  ternaryLaws[_3, _4, _10]
-  ternaryLaws[_2, _5, _10]
-  ternaryLaws[_2, _3, _3]
-  ternaryLaws[_4, _13, _15]
-  ternaryLaws[_4, _8, _11]
-  ternaryLaws[_0, _7, _13]
-  ternaryLaws[_3, _4, _14]
-  ternaryLaws[_4, _10, _15]
-  ternaryLaws[_9, _9, _12]
-  ternaryLaws[_4, _11, _12]
-  ternaryLaws[_2, _11, _11]
-  ternaryLaws[_0, _12, _15]
-  ternaryLaws[_3, _3, _13]
-  ternaryLaws[_8, _9, _11]
-  ternaryLaws[_8, _8, _12]
-  ternaryLaws[_1, _9, _15]
-  ternaryLaws[_3, _6, _12]
-  ternaryLaws[_9, _9, _10]
-  ternaryLaws[_1, _8, _8]
-  ternaryLaws[_2, _3, _12]
-  ternaryLaws[_1, _6, _15]
-  ternaryLaws[_1, _8, _12]
-  ternaryLaws[_2, _6, _15]
-  ternaryLaws[_2, _4, _6]
-  ternaryLaws[_1, _1, _1]
-  ternaryLaws[_4, _8, _15]
-  ternaryLaws[_8, _10, _10]
-  ternaryLaws[_7, _7, _7]
-  ternaryLaws[_8, _8, _10]
-  ternaryLaws[_2, _2, _14]
-  ternaryLaws[_6, _6, _7]
-  ternaryLaws[_7, _8, _10]
-  ternaryLaws[_3, _5, _14]
-  ternaryLaws[_2, _10, _13]
-  ternaryLaws[_2, _3, _10]
-  ternaryLaws[_0, _0, _1]
-  ternaryLaws[_4, _4, _8]
-  ternaryLaws[_2, _13, _13]
-  ternaryLaws[_10, _14, _15]
-  ternaryLaws[_3, _13, _15]
-  ternaryLaws[_7, _12, _14]
-  ternaryLaws[_6, _7, _14]
-  ternaryLaws[_6, _6, _10]
-  ternaryLaws[_2, _8, _12]
-  ternaryLaws[_2, _13, _15]
-  ternaryLaws[_2, _2, _8]
-  ternaryLaws[_0, _12, _13]
-  ternaryLaws[_4, _5, _8]
-  ternaryLaws[_7, _8, _8]
-  ternaryLaws[_4, _5, _13]
-  ternaryLaws[_0, _5, _15]
-  ternaryLaws[_2, _13, _14]
-  ternaryLaws[_0, _5, _12]
-  ternaryLaws[_2, _2, _9]
-  ternaryLaws[_3, _6, _8]
-  ternaryLaws[_0, _6, _9]
-  ternaryLaws[_5, _5, _6]
-  ternaryLaws[_2, _5, _11]
-  ternaryLaws[_0, _3, _14]
-  ternaryLaws[_1, _3, _3]
-  ternaryLaws[_4, _8, _14]
-  ternaryLaws[_1, _2, _6]
-  ternaryLaws[_9, _10, _10]
-  ternaryLaws[_1, _2, _2]
-  ternaryLaws[_1, _10, _14]
-  ternaryLaws[_4, _9, _15]
-  ternaryLaws[_0, _4, _6]
-  ternaryLaws[_3, _11, _13]
-  ternaryLaws[_5, _7, _12]
-  ternaryLaws[_4, _13, _14]
-  ternaryLaws[_3, _10, _13]
-  ternaryLaws[_0, _2, _2]
-  ternaryLaws[_5, _8, _9]
-  ternaryLaws[_4, _6, _14]
-  ternaryLaws[_1, _8, _10]
-  ternaryLaws[_1, _5, _8]
-  ternaryLaws[_6, _11, _15]
-  ternaryLaws[_1, _1, _6]
-  ternaryLaws[_6, _10, _13]
-  ternaryLaws[_4, _11, _14]
-  ternaryLaws[_5, _11, _11]
-  ternaryLaws[_3, _4, _11]
-  ternaryLaws[_0, _5, _14]
-  ternaryLaws[_4, _4, _15]
-  ternaryLaws[_2, _2, _12]
-  ternaryLaws[_9, _11, _12]
-  ternaryLaws[_0, _4, _15]
+
+  it should "pass ternary laws" in {
+    assertCompiles { """ternaryLaws[_1, _3, _6]""" }
+    assertCompiles { """ternaryLaws[_0, _2, _13]""" }
+    assertCompiles { """ternaryLaws[_3, _14, _15]""" }
+    assertCompiles { """ternaryLaws[_5, _8, _8]""" }
+    assertCompiles { """ternaryLaws[_2, _11, _13]""" }
+    assertCompiles { """ternaryLaws[_0, _2, _8]""" }
+    assertCompiles { """ternaryLaws[_6, _14, _14]""" }
+    assertCompiles { """ternaryLaws[_2, _2, _15]""" }
+    assertCompiles { """ternaryLaws[_10, _11, _11]""" }
+    assertCompiles { """ternaryLaws[_0, _0, _0]""" }
+    assertCompiles { """ternaryLaws[_0, _0, _10]""" }
+    assertCompiles { """ternaryLaws[_5, _6, _15]""" }
+    assertCompiles { """ternaryLaws[_1, _5, _13]""" }
+    assertCompiles { """ternaryLaws[_3, _4, _10]""" }
+    assertCompiles { """ternaryLaws[_2, _5, _10]""" }
+    assertCompiles { """ternaryLaws[_2, _3, _3]""" }
+    assertCompiles { """ternaryLaws[_4, _13, _15]""" }
+    assertCompiles { """ternaryLaws[_4, _8, _11]""" }
+    assertCompiles { """ternaryLaws[_0, _7, _13]""" }
+    assertCompiles { """ternaryLaws[_3, _4, _14]""" }
+    assertCompiles { """ternaryLaws[_4, _10, _15]""" }
+    assertCompiles { """ternaryLaws[_9, _9, _12]""" }
+    assertCompiles { """ternaryLaws[_4, _11, _12]""" }
+    assertCompiles { """ternaryLaws[_2, _11, _11]""" }
+    assertCompiles { """ternaryLaws[_0, _12, _15]""" }
+    assertCompiles { """ternaryLaws[_3, _3, _13]""" }
+    assertCompiles { """ternaryLaws[_8, _9, _11]""" }
+    assertCompiles { """ternaryLaws[_8, _8, _12]""" }
+    assertCompiles { """ternaryLaws[_1, _9, _15]""" }
+    assertCompiles { """ternaryLaws[_3, _6, _12]""" }
+    assertCompiles { """ternaryLaws[_9, _9, _10]""" }
+    assertCompiles { """ternaryLaws[_1, _8, _8]""" }
+    assertCompiles { """ternaryLaws[_2, _3, _12]""" }
+    assertCompiles { """ternaryLaws[_1, _6, _15]""" }
+    assertCompiles { """ternaryLaws[_1, _8, _12]""" }
+    assertCompiles { """ternaryLaws[_2, _6, _15]""" }
+    assertCompiles { """ternaryLaws[_2, _4, _6]""" }
+    assertCompiles { """ternaryLaws[_1, _1, _1]""" }
+    assertCompiles { """ternaryLaws[_4, _8, _15]""" }
+    assertCompiles { """ternaryLaws[_8, _10, _10]""" }
+    assertCompiles { """ternaryLaws[_7, _7, _7]""" }
+    assertCompiles { """ternaryLaws[_8, _8, _10]""" }
+    assertCompiles { """ternaryLaws[_2, _2, _14]""" }
+    assertCompiles { """ternaryLaws[_6, _6, _7]""" }
+    assertCompiles { """ternaryLaws[_7, _8, _10]""" }
+    assertCompiles { """ternaryLaws[_3, _5, _14]""" }
+    assertCompiles { """ternaryLaws[_2, _10, _13]""" }
+    assertCompiles { """ternaryLaws[_2, _3, _10]""" }
+    assertCompiles { """ternaryLaws[_0, _0, _1]""" }
+    assertCompiles { """ternaryLaws[_4, _4, _8]""" }
+    assertCompiles { """ternaryLaws[_2, _13, _13]""" }
+    assertCompiles { """ternaryLaws[_10, _14, _15]""" }
+    assertCompiles { """ternaryLaws[_3, _13, _15]""" }
+    assertCompiles { """ternaryLaws[_7, _12, _14]""" }
+    assertCompiles { """ternaryLaws[_6, _7, _14]""" }
+    assertCompiles { """ternaryLaws[_6, _6, _10]""" }
+    assertCompiles { """ternaryLaws[_2, _8, _12]""" }
+    assertCompiles { """ternaryLaws[_2, _13, _15]""" }
+    assertCompiles { """ternaryLaws[_2, _2, _8]""" }
+    assertCompiles { """ternaryLaws[_0, _12, _13]""" }
+    assertCompiles { """ternaryLaws[_4, _5, _8]""" }
+    assertCompiles { """ternaryLaws[_7, _8, _8]""" }
+    assertCompiles { """ternaryLaws[_4, _5, _13]""" }
+    assertCompiles { """ternaryLaws[_0, _5, _15]""" }
+    assertCompiles { """ternaryLaws[_2, _13, _14]""" }
+    assertCompiles { """ternaryLaws[_0, _5, _12]""" }
+    assertCompiles { """ternaryLaws[_2, _2, _9]""" }
+    assertCompiles { """ternaryLaws[_3, _6, _8]""" }
+    assertCompiles { """ternaryLaws[_0, _6, _9]""" }
+    assertCompiles { """ternaryLaws[_5, _5, _6]""" }
+    assertCompiles { """ternaryLaws[_2, _5, _11]""" }
+    assertCompiles { """ternaryLaws[_0, _3, _14]""" }
+    assertCompiles { """ternaryLaws[_1, _3, _3]""" }
+    assertCompiles { """ternaryLaws[_4, _8, _14]""" }
+    assertCompiles { """ternaryLaws[_1, _2, _6]""" }
+    assertCompiles { """ternaryLaws[_9, _10, _10]""" }
+    assertCompiles { """ternaryLaws[_1, _2, _2]""" }
+    assertCompiles { """ternaryLaws[_1, _10, _14]""" }
+    assertCompiles { """ternaryLaws[_4, _9, _15]""" }
+    assertCompiles { """ternaryLaws[_0, _4, _6]""" }
+    assertCompiles { """ternaryLaws[_3, _11, _13]""" }
+    assertCompiles { """ternaryLaws[_5, _7, _12]""" }
+    assertCompiles { """ternaryLaws[_4, _13, _14]""" }
+    assertCompiles { """ternaryLaws[_3, _10, _13]""" }
+    assertCompiles { """ternaryLaws[_0, _2, _2]""" }
+    assertCompiles { """ternaryLaws[_5, _8, _9]""" }
+    assertCompiles { """ternaryLaws[_4, _6, _14]""" }
+    assertCompiles { """ternaryLaws[_1, _8, _10]""" }
+    assertCompiles { """ternaryLaws[_1, _5, _8]""" }
+    assertCompiles { """ternaryLaws[_6, _11, _15]""" }
+    assertCompiles { """ternaryLaws[_1, _1, _6]""" }
+    assertCompiles { """ternaryLaws[_6, _10, _13]""" }
+    assertCompiles { """ternaryLaws[_4, _11, _14]""" }
+    assertCompiles { """ternaryLaws[_5, _11, _11]""" }
+    assertCompiles { """ternaryLaws[_3, _4, _11]""" }
+    assertCompiles { """ternaryLaws[_0, _5, _14]""" }
+    assertCompiles { """ternaryLaws[_4, _4, _15]""" }
+    assertCompiles { """ternaryLaws[_2, _2, _12]""" }
+    assertCompiles { """ternaryLaws[_9, _11, _12]""" }
+    assertCompiles { """ternaryLaws[_0, _4, _15]""" }
+  }
 
   class ExponentCombine0[A, B, C]
   implicit def toExpCmb0[A <: Dense, B <: Dense, C <: Dense](
@@ -406,66 +425,69 @@ class DenseSpec extends BaseSpec {
       ev1: ExponentCombine1[A, B, C],
       ev2: ExponentCombine2[A, B, C]
   ) = true
-  ternaryExpLaws[_0, _0, _0]
-  ternaryExpLaws[_0, _0, _1]
-  ternaryExpLaws[_0, _0, _2]
-  ternaryExpLaws[_0, _0, _3]
-  ternaryExpLaws[_0, _1, _1]
-  ternaryExpLaws[_0, _1, _2]
-  ternaryExpLaws[_0, _1, _3]
-  ternaryExpLaws[_0, _2, _2]
-  ternaryExpLaws[_0, _2, _3]
-  ternaryExpLaws[_0, _3, _3]
-  ternaryExpLaws[_1, _0, _0]
-  ternaryExpLaws[_1, _0, _1]
-  ternaryExpLaws[_1, _0, _2]
-  ternaryExpLaws[_1, _0, _3]
-  ternaryExpLaws[_1, _1, _1]
-  ternaryExpLaws[_1, _1, _2]
-  ternaryExpLaws[_1, _1, _3]
-  ternaryExpLaws[_1, _2, _2]
-  ternaryExpLaws[_1, _2, _3]
-  ternaryExpLaws[_1, _3, _3]
-  ternaryExpLaws[_2, _0, _0]
-  ternaryExpLaws[_2, _0, _1]
-  ternaryExpLaws[_2, _0, _2]
-  ternaryExpLaws[_2, _0, _3]
-  ternaryExpLaws[_2, _1, _1]
-  ternaryExpLaws[_2, _1, _2]
-  ternaryExpLaws[_2, _1, _3]
-  ternaryExpLaws[_2, _2, _2]
-  ternaryExpLaws[_2, _2, _3]
-  ternaryExpLaws[_2, _3, _3]
-  ternaryExpLaws[_3, _0, _0]
-  ternaryExpLaws[_3, _0, _1]
-  ternaryExpLaws[_3, _0, _2]
-  ternaryExpLaws[_3, _0, _3]
-  ternaryExpLaws[_3, _1, _1]
-  ternaryExpLaws[_3, _1, _2]
-  ternaryExpLaws[_3, _1, _3]
-  ternaryExpLaws[_3, _2, _2]
-  ternaryExpLaws[_3, _2, _3]
-  ternaryExpLaws[_3, _3, _3]
-  ternaryExpLaws[_4, _0, _0]
-  ternaryExpLaws[_4, _0, _1]
-  ternaryExpLaws[_4, _0, _2]
-  ternaryExpLaws[_4, _0, _3]
-  ternaryExpLaws[_4, _1, _1]
-  ternaryExpLaws[_4, _1, _2]
-  ternaryExpLaws[_4, _1, _3]
-  ternaryExpLaws[_4, _2, _2]
-  ternaryExpLaws[_4, _2, _3]
-  ternaryExpLaws[_4, _3, _3]
-  ternaryExpLaws[_5, _0, _0]
-  ternaryExpLaws[_5, _0, _1]
-  ternaryExpLaws[_5, _0, _2]
-  ternaryExpLaws[_5, _0, _3]
-  ternaryExpLaws[_5, _1, _1]
-  ternaryExpLaws[_5, _1, _2]
-  ternaryExpLaws[_5, _1, _3]
-  ternaryExpLaws[_5, _2, _2]
-  ternaryExpLaws[_5, _2, _3]
-  ternaryExpLaws[_5, _3, _3]
+
+  it should "pass ternary exponent laws" in {
+    assertCompiles { """ternaryExpLaws[_0, _0, _0]""" }
+    assertCompiles { """ternaryExpLaws[_0, _0, _1]""" }
+    assertCompiles { """ternaryExpLaws[_0, _0, _2]""" }
+    assertCompiles { """ternaryExpLaws[_0, _0, _3]""" }
+    assertCompiles { """ternaryExpLaws[_0, _1, _1]""" }
+    assertCompiles { """ternaryExpLaws[_0, _1, _2]""" }
+    assertCompiles { """ternaryExpLaws[_0, _1, _3]""" }
+    assertCompiles { """ternaryExpLaws[_0, _2, _2]""" }
+    assertCompiles { """ternaryExpLaws[_0, _2, _3]""" }
+    assertCompiles { """ternaryExpLaws[_0, _3, _3]""" }
+    assertCompiles { """ternaryExpLaws[_1, _0, _0]""" }
+    assertCompiles { """ternaryExpLaws[_1, _0, _1]""" }
+    assertCompiles { """ternaryExpLaws[_1, _0, _2]""" }
+    assertCompiles { """ternaryExpLaws[_1, _0, _3]""" }
+    assertCompiles { """ternaryExpLaws[_1, _1, _1]""" }
+    assertCompiles { """ternaryExpLaws[_1, _1, _2]""" }
+    assertCompiles { """ternaryExpLaws[_1, _1, _3]""" }
+    assertCompiles { """ternaryExpLaws[_1, _2, _2]""" }
+    assertCompiles { """ternaryExpLaws[_1, _2, _3]""" }
+    assertCompiles { """ternaryExpLaws[_1, _3, _3]""" }
+    assertCompiles { """ternaryExpLaws[_2, _0, _0]""" }
+    assertCompiles { """ternaryExpLaws[_2, _0, _1]""" }
+    assertCompiles { """ternaryExpLaws[_2, _0, _2]""" }
+    assertCompiles { """ternaryExpLaws[_2, _0, _3]""" }
+    assertCompiles { """ternaryExpLaws[_2, _1, _1]""" }
+    assertCompiles { """ternaryExpLaws[_2, _1, _2]""" }
+    assertCompiles { """ternaryExpLaws[_2, _1, _3]""" }
+    assertCompiles { """ternaryExpLaws[_2, _2, _2]""" }
+    assertCompiles { """ternaryExpLaws[_2, _2, _3]""" }
+    assertCompiles { """ternaryExpLaws[_2, _3, _3]""" }
+    assertCompiles { """ternaryExpLaws[_3, _0, _0]""" }
+    assertCompiles { """ternaryExpLaws[_3, _0, _1]""" }
+    assertCompiles { """ternaryExpLaws[_3, _0, _2]""" }
+    assertCompiles { """ternaryExpLaws[_3, _0, _3]""" }
+    assertCompiles { """ternaryExpLaws[_3, _1, _1]""" }
+    assertCompiles { """ternaryExpLaws[_3, _1, _2]""" }
+    assertCompiles { """ternaryExpLaws[_3, _1, _3]""" }
+    assertCompiles { """ternaryExpLaws[_3, _2, _2]""" }
+    assertCompiles { """ternaryExpLaws[_3, _2, _3]""" }
+    assertCompiles { """ternaryExpLaws[_3, _3, _3]""" }
+    assertCompiles { """ternaryExpLaws[_4, _0, _0]""" }
+    assertCompiles { """ternaryExpLaws[_4, _0, _1]""" }
+    assertCompiles { """ternaryExpLaws[_4, _0, _2]""" }
+    assertCompiles { """ternaryExpLaws[_4, _0, _3]""" }
+    assertCompiles { """ternaryExpLaws[_4, _1, _1]""" }
+    assertCompiles { """ternaryExpLaws[_4, _1, _2]""" }
+    assertCompiles { """ternaryExpLaws[_4, _1, _3]""" }
+    assertCompiles { """ternaryExpLaws[_4, _2, _2]""" }
+    assertCompiles { """ternaryExpLaws[_4, _2, _3]""" }
+    assertCompiles { """ternaryExpLaws[_4, _3, _3]""" }
+    assertCompiles { """ternaryExpLaws[_5, _0, _0]""" }
+    assertCompiles { """ternaryExpLaws[_5, _0, _1]""" }
+    assertCompiles { """ternaryExpLaws[_5, _0, _2]""" }
+    assertCompiles { """ternaryExpLaws[_5, _0, _3]""" }
+    assertCompiles { """ternaryExpLaws[_5, _1, _1]""" }
+    assertCompiles { """ternaryExpLaws[_5, _1, _2]""" }
+    assertCompiles { """ternaryExpLaws[_5, _1, _3]""" }
+    assertCompiles { """ternaryExpLaws[_5, _2, _2]""" }
+    assertCompiles { """ternaryExpLaws[_5, _2, _3]""" }
+    assertCompiles { """ternaryExpLaws[_5, _3, _3]""" }
+  }
 
   // unary laws
 
@@ -510,29 +532,32 @@ class DenseSpec extends BaseSpec {
                             ev5: ExpIdentity[A],
                             ev6: LeftShift[A],
                             ev7: RightShift[A]) = true
-  unaryLaws[_0]
-  unaryLaws[_1]
-  unaryLaws[_2]
-  unaryLaws[_3]
-  unaryLaws[_4]
-  unaryLaws[_5]
-  unaryLaws[_6]
-  unaryLaws[_7]
-  unaryLaws[_8]
-  unaryLaws[_9]
-  unaryLaws[_10]
-  unaryLaws[_11]
-  unaryLaws[_12]
-  unaryLaws[_13]
-  unaryLaws[_14]
-  unaryLaws[_15]
-  unaryLaws[_16]
-  unaryLaws[_17]
-  unaryLaws[_18]
-  unaryLaws[_19]
-  unaryLaws[_20]
-  unaryLaws[_21]
-  unaryLaws[_22]
+
+  it should "pass unary laws" in {
+    assertCompiles { """unaryLaws[_0]""" }
+    assertCompiles { """unaryLaws[_1]""" }
+    assertCompiles { """unaryLaws[_2]""" }
+    assertCompiles { """unaryLaws[_3]""" }
+    assertCompiles { """unaryLaws[_4]""" }
+    assertCompiles { """unaryLaws[_5]""" }
+    assertCompiles { """unaryLaws[_6]""" }
+    assertCompiles { """unaryLaws[_7]""" }
+    assertCompiles { """unaryLaws[_8]""" }
+    assertCompiles { """unaryLaws[_9]""" }
+    assertCompiles { """unaryLaws[_10]""" }
+    assertCompiles { """unaryLaws[_11]""" }
+    assertCompiles { """unaryLaws[_12]""" }
+    assertCompiles { """unaryLaws[_13]""" }
+    assertCompiles { """unaryLaws[_14]""" }
+    assertCompiles { """unaryLaws[_15]""" }
+    assertCompiles { """unaryLaws[_16]""" }
+    assertCompiles { """unaryLaws[_17]""" }
+    assertCompiles { """unaryLaws[_18]""" }
+    assertCompiles { """unaryLaws[_19]""" }
+    assertCompiles { """unaryLaws[_20]""" }
+    assertCompiles { """unaryLaws[_21]""" }
+    assertCompiles { """unaryLaws[_22]""" }
+  }
 
   "A dense number type" should "evaluate to integers correctly" in {
     assert(toLong[_0] == 0)

@@ -46,22 +46,22 @@ class DenseSetLiteralSpec extends BaseSpec {
     val cd = merge(c, d)
     val dd = merge(d, d)
 
-    checkContains(aa, 1)
-    checkContains(bb, 2)
-    checkContains(cc, 3)
-    checkContains(dd, 4)
-    checkContains(ab, 1)
-    checkContains(ab, 2)
-    checkContains(ac, 1)
-    checkContains(ac, 3)
-    checkContains(ad, 1)
-    checkContains(ad, 4)
-    checkContains(bc, 2)
-    checkContains(bc, 3)
-    checkContains(bd, 2)
-    checkContains(bd, 4)
-    checkContains(cd, 3)
-    checkContains(cd, 4)
+    assertCompiles { """checkContains(aa, 1)""" }
+    assertCompiles { """checkContains(bb, 2)""" }
+    assertCompiles { """checkContains(cc, 3)""" }
+    assertCompiles { """checkContains(dd, 4)""" }
+    assertCompiles { """checkContains(ab, 1)""" }
+    assertCompiles { """checkContains(ab, 2)""" }
+    assertCompiles { """checkContains(ac, 1)""" }
+    assertCompiles { """checkContains(ac, 3)""" }
+    assertCompiles { """checkContains(ad, 1)""" }
+    assertCompiles { """checkContains(ad, 4)""" }
+    assertCompiles { """checkContains(bc, 2)""" }
+    assertCompiles { """checkContains(bc, 3)""" }
+    assertCompiles { """checkContains(bd, 2)""" }
+    assertCompiles { """checkContains(bd, 4)""" }
+    assertCompiles { """checkContains(cd, 3)""" }
+    assertCompiles { """checkContains(cd, 4)""" }
 
     assert(size(aa) == 1)
     assert(size(bb) == 1)
@@ -86,43 +86,43 @@ class DenseSetLiteralSpec extends BaseSpec {
     val bcd2 = merge(bc, bd)
     val bcd3 = merge(bd, cd)
 
-    checkContains(abc1, 1)
-    checkContains(abc1, 2)
-    checkContains(abc1, 3)
-    checkContains(abc2, 1)
-    checkContains(abc2, 2)
-    checkContains(abc2, 3)
-    checkContains(abc3, 1)
-    checkContains(abc3, 2)
-    checkContains(abc3, 3)
+    assertCompiles { """checkContains(abc1, 1)""" }
+    assertCompiles { """checkContains(abc1, 2)""" }
+    assertCompiles { """checkContains(abc1, 3)""" }
+    assertCompiles { """checkContains(abc2, 1)""" }
+    assertCompiles { """checkContains(abc2, 2)""" }
+    assertCompiles { """checkContains(abc2, 3)""" }
+    assertCompiles { """checkContains(abc3, 1)""" }
+    assertCompiles { """checkContains(abc3, 2)""" }
+    assertCompiles { """checkContains(abc3, 3)""" }
 
     assert(size(abc1) == 3)
     assert(size(abc2) == 3)
     assert(size(abc3) == 3)
 
-    checkContains(abd1, 1)
-    checkContains(abd1, 2)
-    checkContains(abd1, 4)
-    checkContains(abd2, 1)
-    checkContains(abd2, 2)
-    checkContains(abd2, 4)
-    checkContains(abd3, 1)
-    checkContains(abd3, 2)
-    checkContains(abd3, 4)
+    assertCompiles { """checkContains(abd1, 1)""" }
+    assertCompiles { """checkContains(abd1, 2)""" }
+    assertCompiles { """checkContains(abd1, 4)""" }
+    assertCompiles { """checkContains(abd2, 1)""" }
+    assertCompiles { """checkContains(abd2, 2)""" }
+    assertCompiles { """checkContains(abd2, 4)""" }
+    assertCompiles { """checkContains(abd3, 1)""" }
+    assertCompiles { """checkContains(abd3, 2)""" }
+    assertCompiles { """checkContains(abd3, 4)""" }
 
     assert(size(abd1) == 3)
     assert(size(abd2) == 3)
     assert(size(abd3) == 3)
 
-    checkContains(bcd1, 2)
-    checkContains(bcd1, 3)
-    checkContains(bcd1, 4)
-    checkContains(bcd2, 2)
-    checkContains(bcd2, 3)
-    checkContains(bcd2, 4)
-    checkContains(bcd3, 2)
-    checkContains(bcd3, 3)
-    checkContains(bcd3, 4)
+    assertCompiles { """checkContains(bcd1, 2)""" }
+    assertCompiles { """checkContains(bcd1, 3)""" }
+    assertCompiles { """checkContains(bcd1, 4)""" }
+    assertCompiles { """checkContains(bcd2, 2)""" }
+    assertCompiles { """checkContains(bcd2, 3)""" }
+    assertCompiles { """checkContains(bcd2, 4)""" }
+    assertCompiles { """checkContains(bcd3, 2)""" }
+    assertCompiles { """checkContains(bcd3, 3)""" }
+    assertCompiles { """checkContains(bcd3, 4)""" }
 
     assert(size(bcd1) == 3)
     assert(size(bcd2) == 3)
@@ -134,26 +134,26 @@ class DenseSetLiteralSpec extends BaseSpec {
     val abcd4 = merge(abc1, bcd1)
     val abcd5 = merge(abd1, bcd1)
 
-    checkContains(abcd1, 1)
-    checkContains(abcd1, 2)
-    checkContains(abcd1, 3)
-    checkContains(abcd1, 4)
-    checkContains(abcd2, 1)
-    checkContains(abcd2, 2)
-    checkContains(abcd2, 3)
-    checkContains(abcd2, 4)
-    checkContains(abcd3, 1)
-    checkContains(abcd3, 2)
-    checkContains(abcd3, 3)
-    checkContains(abcd3, 4)
-    checkContains(abcd4, 1)
-    checkContains(abcd4, 2)
-    checkContains(abcd4, 3)
-    checkContains(abcd4, 4)
-    checkContains(abcd5, 1)
-    checkContains(abcd5, 2)
-    checkContains(abcd5, 3)
-    checkContains(abcd5, 4)
+    assertCompiles { """checkContains(abcd1, 1)""" }
+    assertCompiles { """checkContains(abcd1, 2)""" }
+    assertCompiles { """checkContains(abcd1, 3)""" }
+    assertCompiles { """checkContains(abcd1, 4)""" }
+    assertCompiles { """checkContains(abcd2, 1)""" }
+    assertCompiles { """checkContains(abcd2, 2)""" }
+    assertCompiles { """checkContains(abcd2, 3)""" }
+    assertCompiles { """checkContains(abcd2, 4)""" }
+    assertCompiles { """checkContains(abcd3, 1)""" }
+    assertCompiles { """checkContains(abcd3, 2)""" }
+    assertCompiles { """checkContains(abcd3, 3)""" }
+    assertCompiles { """checkContains(abcd3, 4)""" }
+    assertCompiles { """checkContains(abcd4, 1)""" }
+    assertCompiles { """checkContains(abcd4, 2)""" }
+    assertCompiles { """checkContains(abcd4, 3)""" }
+    assertCompiles { """checkContains(abcd4, 4)""" }
+    assertCompiles { """checkContains(abcd5, 1)""" }
+    assertCompiles { """checkContains(abcd5, 2)""" }
+    assertCompiles { """checkContains(abcd5, 3)""" }
+    assertCompiles { """checkContains(abcd5, 4)""" }
 
     assert(size(abcd1) == 4)
     assert(size(abcd2) == 4)
@@ -180,22 +180,22 @@ class DenseSetLiteralSpec extends BaseSpec {
     val cd = merge(c, d)
     val dd = merge(d, d)
 
-    checkContains(aa, "fry")
-    checkContains(bb, "leela")
-    checkContains(cc, "bender")
-    checkContains(dd, "zoidberg")
-    checkContains(ab, "fry")
-    checkContains(ab, "leela")
-    checkContains(ac, "fry")
-    checkContains(ac, "bender")
-    checkContains(ad, "fry")
-    checkContains(ad, "zoidberg")
-    checkContains(bc, "leela")
-    checkContains(bc, "bender")
-    checkContains(bd, "leela")
-    checkContains(bd, "zoidberg")
-    checkContains(cd, "bender")
-    checkContains(cd, "zoidberg")
+    assertCompiles { """checkContains(aa, "fry")""" }
+    assertCompiles { """checkContains(bb, "leela")""" }
+    assertCompiles { """checkContains(cc, "bender")""" }
+    assertCompiles { """checkContains(dd, "zoidberg")""" }
+    assertCompiles { """checkContains(ab, "fry")""" }
+    assertCompiles { """checkContains(ab, "leela")""" }
+    assertCompiles { """checkContains(ac, "fry")""" }
+    assertCompiles { """checkContains(ac, "bender")""" }
+    assertCompiles { """checkContains(ad, "fry")""" }
+    assertCompiles { """checkContains(ad, "zoidberg")""" }
+    assertCompiles { """checkContains(bc, "leela")""" }
+    assertCompiles { """checkContains(bc, "bender")""" }
+    assertCompiles { """checkContains(bd, "leela")""" }
+    assertCompiles { """checkContains(bd, "zoidberg")""" }
+    assertCompiles { """checkContains(cd, "bender")""" }
+    assertCompiles { """checkContains(cd, "zoidberg")""" }
 
     assert(size(aa) == 1)
     assert(size(bb) == 1)
@@ -220,43 +220,43 @@ class DenseSetLiteralSpec extends BaseSpec {
     val bcd2 = merge(bc, bd)
     val bcd3 = merge(bd, cd)
 
-    checkContains(abc1, "fry")
-    checkContains(abc1, "leela")
-    checkContains(abc1, "bender")
-    checkContains(abc2, "fry")
-    checkContains(abc2, "leela")
-    checkContains(abc2, "bender")
-    checkContains(abc3, "fry")
-    checkContains(abc3, "leela")
-    checkContains(abc3, "bender")
+    assertCompiles { """checkContains(abc1, "fry")""" }
+    assertCompiles { """checkContains(abc1, "leela")""" }
+    assertCompiles { """checkContains(abc1, "bender")""" }
+    assertCompiles { """checkContains(abc2, "fry")""" }
+    assertCompiles { """checkContains(abc2, "leela")""" }
+    assertCompiles { """checkContains(abc2, "bender")""" }
+    assertCompiles { """checkContains(abc3, "fry")""" }
+    assertCompiles { """checkContains(abc3, "leela")""" }
+    assertCompiles { """checkContains(abc3, "bender")""" }
 
     assert(size(abc1) == 3)
     assert(size(abc2) == 3)
     assert(size(abc3) == 3)
 
-    checkContains(abd1, "fry")
-    checkContains(abc1, "leela")
-    checkContains(abd1, "zoidberg")
-    checkContains(abd2, "fry")
-    checkContains(abd2, "leela")
-    checkContains(abd2, "zoidberg")
-    checkContains(abd3, "fry")
-    checkContains(abd3, "leela")
-    checkContains(abd3, "zoidberg")
+    assertCompiles { """checkContains(abd1, "fry")""" }
+    assertCompiles { """checkContains(abc1, "leela")""" }
+    assertCompiles { """checkContains(abd1, "zoidberg")""" }
+    assertCompiles { """checkContains(abd2, "fry")""" }
+    assertCompiles { """checkContains(abd2, "leela")""" }
+    assertCompiles { """checkContains(abd2, "zoidberg")""" }
+    assertCompiles { """checkContains(abd3, "fry")""" }
+    assertCompiles { """checkContains(abd3, "leela")""" }
+    assertCompiles { """checkContains(abd3, "zoidberg")""" }
 
     assert(size(abd1) == 3)
     assert(size(abd2) == 3)
     assert(size(abd3) == 3)
 
-    checkContains(bcd1, "leela")
-    checkContains(bcd1, "bender")
-    checkContains(bcd1, "zoidberg")
-    checkContains(bcd2, "leela")
-    checkContains(bcd2, "bender")
-    checkContains(bcd2, "zoidberg")
-    checkContains(bcd3, "leela")
-    checkContains(bcd3, "bender")
-    checkContains(bcd3, "zoidberg")
+    assertCompiles { """checkContains(bcd1, "leela")""" }
+    assertCompiles { """checkContains(bcd1, "bender")""" }
+    assertCompiles { """checkContains(bcd1, "zoidberg")""" }
+    assertCompiles { """checkContains(bcd2, "leela")""" }
+    assertCompiles { """checkContains(bcd2, "bender")""" }
+    assertCompiles { """checkContains(bcd2, "zoidberg")""" }
+    assertCompiles { """checkContains(bcd3, "leela")""" }
+    assertCompiles { """checkContains(bcd3, "bender")""" }
+    assertCompiles { """checkContains(bcd3, "zoidberg")""" }
 
     assert(size(bcd1) == 3)
     assert(size(bcd2) == 3)
@@ -268,26 +268,26 @@ class DenseSetLiteralSpec extends BaseSpec {
     val abcd4 = merge(abc1, bcd1)
     val abcd5 = merge(abd1, bcd1)
 
-    checkContains(abcd1, "fry")
-    checkContains(abcd1, "leela")
-    checkContains(abcd1, "bender")
-    checkContains(abcd1, "zoidberg")
-    checkContains(abcd2, "fry")
-    checkContains(abcd2, "leela")
-    checkContains(abcd2, "bender")
-    checkContains(abcd2, "zoidberg")
-    checkContains(abcd3, "fry")
-    checkContains(abcd3, "leela")
-    checkContains(abcd3, "bender")
-    checkContains(abcd3, "zoidberg")
-    checkContains(abcd4, "fry")
-    checkContains(abcd4, "leela")
-    checkContains(abcd4, "bender")
-    checkContains(abcd4, "zoidberg")
-    checkContains(abcd5, "fry")
-    checkContains(abcd5, "leela")
-    checkContains(abcd5, "bender")
-    checkContains(abcd5, "zoidberg")
+    assertCompiles { """checkContains(abcd1, "fry")""" }
+    assertCompiles { """checkContains(abcd1, "leela")""" }
+    assertCompiles { """checkContains(abcd1, "bender")""" }
+    assertCompiles { """checkContains(abcd1, "zoidberg")""" }
+    assertCompiles { """checkContains(abcd2, "fry")""" }
+    assertCompiles { """checkContains(abcd2, "leela")""" }
+    assertCompiles { """checkContains(abcd2, "bender")""" }
+    assertCompiles { """checkContains(abcd2, "zoidberg")""" }
+    assertCompiles { """checkContains(abcd3, "fry")""" }
+    assertCompiles { """checkContains(abcd3, "leela")""" }
+    assertCompiles { """checkContains(abcd3, "bender")""" }
+    assertCompiles { """checkContains(abcd3, "zoidberg")""" }
+    assertCompiles { """checkContains(abcd4, "fry")""" }
+    assertCompiles { """checkContains(abcd4, "leela")""" }
+    assertCompiles { """checkContains(abcd4, "bender")""" }
+    assertCompiles { """checkContains(abcd4, "zoidberg")""" }
+    assertCompiles { """checkContains(abcd5, "fry")""" }
+    assertCompiles { """checkContains(abcd5, "leela")""" }
+    assertCompiles { """checkContains(abcd5, "bender")""" }
+    assertCompiles { """checkContains(abcd5, "zoidberg")""" }
 
     assert(size(abcd1) == 4)
     assert(size(abcd2) == 4)

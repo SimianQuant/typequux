@@ -28,99 +28,112 @@ class NatSpec extends BaseSpec {
   type ConstInt[X] = Int
   type Rep[N <: Nat] = N#Match[ConstInt, String, Any]
 
-  eqv[Rep[_0], String]
-  eqv[Rep[_1], Int]
-  eqv[Rep[_8], Int]
-  assertTypeError { """implicitly[Rep[_0] =:= Int]""" }
-  assertTypeError { """implicitly[Rep[_1] =:= String]""" }
-  assertTypeError { """implicitly[Rep[_8] =:= String]""" }
+  it should "pass rep tests" in {
+    assertCompiles { """eqv[Rep[_0], String]""" }
+    assertCompiles { """eqv[Rep[_1], Int]""" }
+    assertCompiles { """eqv[Rep[_8], Int]""" }
+    assertTypeError { """implicitly[Rep[_0] =:= Int]""" }
+    assertTypeError { """implicitly[Rep[_1] =:= String]""" }
+    assertTypeError { """implicitly[Rep[_8] =:= String]""" }
+  }
 
-  implicitly[_0 Compare _0 =:= EQ]
-  implicitly[_1 Compare _1 =:= EQ]
-  implicitly[_7 Compare _7 =:= EQ]
-  implicitly[_0 Compare _1 =:= LT]
-  implicitly[_0 Compare _7 =:= LT]
-  implicitly[_1 Compare _7 =:= LT]
-  implicitly[_1 Compare _0 =:= GT]
-  implicitly[_7 Compare _0 =:= GT]
-  implicitly[_7 Compare _1 =:= GT]
-  assertTypeError { """implicitly[_0 Compare _0 =:= LT]""" }
-  assertTypeError { """implicitly[_1 Compare _1 =:= LT]""" }
-  assertTypeError { """implicitly[_7 Compare _7 =:= LT]""" }
-  assertTypeError { """implicitly[_0 Compare _1 =:= GT]""" }
-  assertTypeError { """implicitly[_0 Compare _7 =:= GT]""" }
-  assertTypeError { """implicitly[_1 Compare _7 =:= GT]""" }
-  assertTypeError { """implicitly[_1 Compare _0 =:= LT]""" }
-  assertTypeError { """implicitly[_7 Compare _0 =:= LT]""" }
-  assertTypeError { """implicitly[_7 Compare _1 =:= LT]""" }
-  assertTypeError { """implicitly[_0 Compare _0 =:= GT]""" }
-  assertTypeError { """implicitly[_1 Compare _1 =:= GT]""" }
-  assertTypeError { """implicitly[_7 Compare _7 =:= GT]""" }
-  assertTypeError { """implicitly[_0 Compare _1 =:= EQ]""" }
-  assertTypeError { """implicitly[_0 Compare _7 =:= EQ]""" }
-  assertTypeError { """implicitly[_1 Compare _7 =:= EQ]""" }
-  assertTypeError { """implicitly[_1 Compare _0 =:= EQ]""" }
-  assertTypeError { """implicitly[_7 Compare _0 =:= EQ]""" }
-  assertTypeError { """implicitly[_7 Compare _1 =:= EQ]""" }
+  it should "pass comparison tests" in {
+    assertCompiles { """implicitly[_0 Compare _0 =:= EQ]""" }
+    assertCompiles { """implicitly[_1 Compare _1 =:= EQ]""" }
+    assertCompiles { """implicitly[_7 Compare _7 =:= EQ]""" }
+    assertCompiles { """implicitly[_0 Compare _1 =:= LT]""" }
+    assertCompiles { """implicitly[_0 Compare _7 =:= LT]""" }
+    assertCompiles { """implicitly[_1 Compare _7 =:= LT]""" }
+    assertCompiles { """implicitly[_1 Compare _0 =:= GT]""" }
+    assertCompiles { """implicitly[_7 Compare _0 =:= GT]""" }
+    assertCompiles { """implicitly[_7 Compare _1 =:= GT]""" }
 
-  type C = _0#FoldR[Int, AnyVal, Fold[Nat, AnyVal]]
-  implicitly[C =:= Int]
-  assertTypeError { """implicitly[C =:= AnyVal]""" }
-  type D = _0#FoldL[String, AnyRef, Fold[Nat, AnyRef]]
-  implicitly[D =:= String]
-  assertTypeError { """implicitly[D =:= AnyRef]""" }
+    assertTypeError { """implicitly[_0 Compare _0 =:= LT]""" }
+    assertTypeError { """implicitly[_1 Compare _1 =:= LT]""" }
+    assertTypeError { """implicitly[_7 Compare _7 =:= LT]""" }
+    assertTypeError { """implicitly[_0 Compare _1 =:= GT]""" }
+    assertTypeError { """implicitly[_0 Compare _7 =:= GT]""" }
+    assertTypeError { """implicitly[_1 Compare _7 =:= GT]""" }
+    assertTypeError { """implicitly[_1 Compare _0 =:= LT]""" }
+    assertTypeError { """implicitly[_7 Compare _0 =:= LT]""" }
+    assertTypeError { """implicitly[_7 Compare _1 =:= LT]""" }
+    assertTypeError { """implicitly[_0 Compare _0 =:= GT]""" }
+    assertTypeError { """implicitly[_1 Compare _1 =:= GT]""" }
+    assertTypeError { """implicitly[_7 Compare _7 =:= GT]""" }
+    assertTypeError { """implicitly[_0 Compare _1 =:= EQ]""" }
+    assertTypeError { """implicitly[_0 Compare _7 =:= EQ]""" }
+    assertTypeError { """implicitly[_1 Compare _7 =:= EQ]""" }
+    assertTypeError { """implicitly[_1 Compare _0 =:= EQ]""" }
+    assertTypeError { """implicitly[_7 Compare _0 =:= EQ]""" }
+    assertTypeError { """implicitly[_7 Compare _1 =:= EQ]""" }
+  }
 
-  // basic sum tests
-  isTrue[_0 + _0 === _0]
-  isTrue[_0 + _1 === _1]
-  isTrue[_0 + _5 === _5]
-  isTrue[_1 + _0 === _1]
-  isTrue[_5 + _0 === _5]
-  isTrue[_2 + _5 === _7]
-  isTrue[_5 + _2 === _7]
+  it should "pass fold tests" in {
+    type C = _0#FoldR[Int, AnyVal, Fold[Nat, AnyVal]]
+    assertCompiles { """implicitly[C =:= Int]""" }
+    assertTypeError { """implicitly[C =:= AnyVal]""" }
 
-  // basic product tests
-  isTrue[_0 * _0 === _0]
-  isTrue[_1 * _0 === _0]
-  isTrue[_0 * _1 === _0]
-  isTrue[_1 * _1 === _1]
-  isTrue[_1 * _9 === _9]
-  isTrue[_9 * _1 === _9]
-  isTrue[_2 * _2 === _4]
-  isTrue[_2 * _3 === _6]
-  isTrue[_3 * _2 === _6]
-  isTrue[_2 * _4 === _8]
-  isTrue[_4 * _2 === _8]
-  isTrue[_3 * _3 === _9]
+    type D = _0#FoldL[String, AnyRef, Fold[Nat, AnyRef]]
+    assertCompiles { """implicitly[D =:= String]""" }
+    assertTypeError { """implicitly[D =:= AnyRef]""" }
+  }
 
-  // basic factorial tests
-  isTrue[Fact[_0] === _1]
-  isTrue[Fact[_1] === _1]
-  isTrue[Fact[_2] === _2]
-  isTrue[Fact[_3] === _6]
-  isTrue[*[_6, _4] === Fact[_4]]
-  isTrue[*[Fact[_4], _5] === Fact[_5]]
+  it should "pass sum tests" in {
+    assertCompiles { """isTrue[_0 + _0 === _0]""" }
+    assertCompiles { """isTrue[_0 + _1 === _1]""" }
+    assertCompiles { """isTrue[_0 + _5 === _5]""" }
+    assertCompiles { """isTrue[_1 + _0 === _1]""" }
+    assertCompiles { """isTrue[_5 + _0 === _5]""" }
+    assertCompiles { """isTrue[_2 + _5 === _7]""" }
+    assertCompiles { """isTrue[_5 + _2 === _7]""" }
+  }
 
-  // basic exponentiation tests
-  isTrue[_0 ^ _1 === _0]
-  isTrue[_1 ^ _0 === _1]
-  isTrue[_1 ^ _1 === _1]
-  isTrue[_5 ^ _0 === _1]
-  isTrue[_5 ^ _1 === _5]
-  isTrue[_2 ^ _2 === _4]
-  isTrue[_2 ^ _3 === _8]
-  isTrue[_3 ^ _2 === _9]
-  isTrue[_3 ^ _3 === *[_9, _3]]
+  it should "pass product tests" in {
+    assertCompiles { """isTrue[_0 * _0 === _0]""" }
+    assertCompiles { """isTrue[_1 * _0 === _0]""" }
+    assertCompiles { """isTrue[_0 * _1 === _0]""" }
+    assertCompiles { """isTrue[_1 * _1 === _1]""" }
+    assertCompiles { """isTrue[_1 * _9 === _9]""" }
+    assertCompiles { """isTrue[_9 * _1 === _9]""" }
+    assertCompiles { """isTrue[_2 * _2 === _4]""" }
+    assertCompiles { """isTrue[_2 * _3 === _6]""" }
+    assertCompiles { """isTrue[_3 * _2 === _6]""" }
+    assertCompiles { """isTrue[_2 * _4 === _8]""" }
+    assertCompiles { """isTrue[_4 * _2 === _8]""" }
+    assertCompiles { """isTrue[_3 * _3 === _9]""" }
+  }
 
-  // some more tests
-  isTrue[+[_1, *[_8, Succ[_9]]] === Sq[_9]]
-  isTrue[*[Sq[_4], Sq[_4]] === ^[_2, _8]]
+  it should "pass factorial tests" in {
+    assertCompiles { """isTrue[Fact[_0] === _1]""" }
+    assertCompiles { """isTrue[Fact[_1] === _1]""" }
+    assertCompiles { """isTrue[Fact[_2] === _2]""" }
+    assertCompiles { """isTrue[Fact[_3] === _6]""" }
+    assertCompiles { """isTrue[*[_6, _4] === Fact[_4]]""" }
+    assertCompiles { """isTrue[*[Fact[_4], _5] === Fact[_5]]""" }
+  }
 
-  implicitly[NatDiff[_0, _0, _0]]
-  implicitly[NatDiff[_8, _3, _5]]
-  implicitly[NatDiff[_9, _0, _9]]
-  implicitly[NatDiff[_6, _2, _4]]
-  assertTypeError { """implicitly[NatDiff[_0, _1, _1]]""" }
+  it should "pass exponent tests" in {
+    assertCompiles { """isTrue[_0 ^ _1 === _0]""" }
+    assertCompiles { """isTrue[_1 ^ _0 === _1]""" }
+    assertCompiles { """isTrue[_1 ^ _1 === _1]""" }
+    assertCompiles { """isTrue[_5 ^ _0 === _1]""" }
+    assertCompiles { """isTrue[_5 ^ _1 === _5]""" }
+    assertCompiles { """isTrue[_2 ^ _2 === _4]""" }
+    assertCompiles { """isTrue[_2 ^ _3 === _8]""" }
+    assertCompiles { """isTrue[_3 ^ _2 === _9]""" }
+    assertCompiles { """isTrue[_3 ^ _3 === *[_9, _3]]""" }
+    // some more tests
+    assertCompiles { """isTrue[+[_1, *[_8, Succ[_9]]] === Sq[_9]]""" }
+    assertCompiles { """isTrue[*[Sq[_4], Sq[_4]] === ^[_2, _8]]""" }
+  }
+
+  it should "pass difference tests" in {
+    assertCompiles { """implicitly[NatDiff[_0, _0, _0]]""" }
+    assertCompiles { """implicitly[NatDiff[_8, _3, _5]]""" }
+    assertCompiles { """implicitly[NatDiff[_9, _0, _9]]""" }
+    assertCompiles { """implicitly[NatDiff[_6, _2, _4]]""" }
+    assertTypeError { """implicitly[NatDiff[_0, _1, _1]]""" }
+  }
 
   /************************* Property Tests *********************/
   // binary properties
@@ -151,17 +164,20 @@ class NatSpec extends BaseSpec {
                        ev1: MultiplicativeCommutativity[A, B],
                        ev2: TotalOrderAntisymmetry[A, B],
                        ev3: TotalOrderTotality[A, B]) = true
-  binaryLaws[_0, _0]
-  binaryLaws[_1, _9]
-  binaryLaws[_0, _3]
-  binaryLaws[_1, _1]
-  binaryLaws[_0, _1]
-  binaryLaws[_2, _2]
-  binaryLaws[_2, _4]
-  binaryLaws[_2, _8]
-  binaryLaws[_2, _7]
-  binaryLaws[_1, _2]
-  binaryLaws[_3, _3]
+
+  it should "pass binary tests" in {
+    assertCompiles { """binaryLaws[_0, _0]""" }
+    assertCompiles { """binaryLaws[_1, _9]""" }
+    assertCompiles { """binaryLaws[_0, _3]""" }
+    assertCompiles { """binaryLaws[_1, _1]""" }
+    assertCompiles { """binaryLaws[_0, _1]""" }
+    assertCompiles { """binaryLaws[_2, _2]""" }
+    assertCompiles { """binaryLaws[_2, _4]""" }
+    assertCompiles { """binaryLaws[_2, _8]""" }
+    assertCompiles { """binaryLaws[_2, _7]""" }
+    assertCompiles { """binaryLaws[_1, _2]""" }
+    assertCompiles { """binaryLaws[_3, _3]""" }
+  }
 
   // ternary properties
 
@@ -189,27 +205,30 @@ class NatSpec extends BaseSpec {
                                                 ev1: MultiplicativeAssociativity[X, Y, Z],
                                                 ev2: Distributivity[X, Y, Z],
                                                 ev3: TotalOrderTransitivity[X, Y, Z]) = true
-  ternaryLaws[_0, _0, _0]
-  ternaryLaws[_1, _1, _8]
-  ternaryLaws[_0, _2, _9]
-  ternaryLaws[_1, _1, _5]
-  ternaryLaws[_0, _1, _3]
-  ternaryLaws[_0, _1, _4]
-  ternaryLaws[_0, _2, _7]
-  ternaryLaws[_1, _2, _5]
-  ternaryLaws[_1, _2, _7]
-  ternaryLaws[_1, _4, _4]
-  ternaryLaws[_2, _2, _4]
-  ternaryLaws[_0, _3, _6]
-  ternaryLaws[_1, _3, _6]
-  ternaryLaws[_0, _1, _1]
-  ternaryLaws[_0, _0, _5]
-  ternaryLaws[_1, _1, _1]
-  ternaryLaws[_0, _0, _3]
-  ternaryLaws[_0, _4, _4]
-  ternaryLaws[_0, _1, _7]
-  ternaryLaws[_0, _3, _5]
-  ternaryLaws[_0, _1, _6]
+
+  it should "pass ternary tests" in {
+    assertCompiles { """ternaryLaws[_0, _0, _0]""" }
+    assertCompiles { """ternaryLaws[_1, _1, _8]""" }
+    assertCompiles { """ternaryLaws[_0, _2, _9]""" }
+    assertCompiles { """ternaryLaws[_1, _1, _5]""" }
+    assertCompiles { """ternaryLaws[_0, _1, _3]""" }
+    assertCompiles { """ternaryLaws[_0, _1, _4]""" }
+    assertCompiles { """ternaryLaws[_0, _2, _7]""" }
+    assertCompiles { """ternaryLaws[_1, _2, _5]""" }
+    assertCompiles { """ternaryLaws[_1, _2, _7]""" }
+    assertCompiles { """ternaryLaws[_1, _4, _4]""" }
+    assertCompiles { """ternaryLaws[_2, _2, _4]""" }
+    assertCompiles { """ternaryLaws[_0, _3, _6]""" }
+    assertCompiles { """ternaryLaws[_1, _3, _6]""" }
+    assertCompiles { """ternaryLaws[_0, _1, _1]""" }
+    assertCompiles { """ternaryLaws[_0, _0, _5]""" }
+    assertCompiles { """ternaryLaws[_1, _1, _1]""" }
+    assertCompiles { """ternaryLaws[_0, _0, _3]""" }
+    assertCompiles { """ternaryLaws[_0, _4, _4]""" }
+    assertCompiles { """ternaryLaws[_0, _1, _7]""" }
+    assertCompiles { """ternaryLaws[_0, _3, _5]""" }
+    assertCompiles { """ternaryLaws[_0, _1, _6]""" }
+  }
 
   // unary laws
 
@@ -237,16 +256,19 @@ class NatSpec extends BaseSpec {
       ev3: ExpIdentity[A],
       ev4: ExpOne[A]
   ) = true
-  unaryLaws[_0]
-  unaryLaws[_1]
-  unaryLaws[_2]
-  unaryLaws[_3]
-  unaryLaws[_4]
-  unaryLaws[_5]
-  unaryLaws[_6]
-  unaryLaws[_7]
-  unaryLaws[_8]
-  unaryLaws[_9]
+
+  it should "pass unary laws" in {
+    assertCompiles { """unaryLaws[_0]""" }
+    assertCompiles { """unaryLaws[_1]""" }
+    assertCompiles { """unaryLaws[_2]""" }
+    assertCompiles { """unaryLaws[_3]""" }
+    assertCompiles { """unaryLaws[_4]""" }
+    assertCompiles { """unaryLaws[_5]""" }
+    assertCompiles { """unaryLaws[_6]""" }
+    assertCompiles { """unaryLaws[_7]""" }
+    assertCompiles { """unaryLaws[_8]""" }
+    assertCompiles { """unaryLaws[_9]""" }
+  }
 
   "A peano number type" should "evaluate to integers correctly" in {
     assert(toInt[_0] == 0)

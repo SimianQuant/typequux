@@ -25,34 +25,38 @@ class ComparisonSpec extends BaseSpec {
 
   type Rep[X <: Comparison] = X#Match[Int, String, Double, Any]
 
-  eqv[Rep[LT], Int]
-  eqv[Rep[EQ], String]
-  eqv[Rep[GT], Double]
+  it should "pass rep tests" in {
+    assertCompiles { """eqv[Rep[LT], Int]""" }
+    assertCompiles { """eqv[Rep[EQ], String]""" }
+    assertCompiles { """eqv[Rep[GT], Double]""" }
+    assertTypeError { """implicitly[Rep[LT] =:= String]""" }
+    assertTypeError { """implicitly[Rep[EQ] =:= Int]""" }
+    assertTypeError { """implicitly[Rep[GT] =:= Int]""" }
+    assertTypeError { """implicitly[Rep[LT] =:= Double]""" }
+    assertTypeError { """implicitly[Rep[EQ] =:= Double]""" }
+    assertTypeError { """implicitly[Rep[GT] =:= String]""" }
+  }
 
-  assertTypeError { """implicitly[Rep[LT] =:= String]""" }
-  assertTypeError { """implicitly[Rep[EQ] =:= Int]""" }
-  assertTypeError { """implicitly[Rep[GT] =:= Int]""" }
-  assertTypeError { """implicitly[Rep[LT] =:= Double]""" }
-  assertTypeError { """implicitly[Rep[EQ] =:= Double]""" }
-  assertTypeError { """implicitly[Rep[GT] =:= String]""" }
+  it should "pass type-comparison tests" in {
+    assertCompiles { """isTrue[LT#lt]""" }
+    assertCompiles { """isTrue[LT#le]""" }
+    assertCompiles { """isFalse[LT#eq]""" }
+    assertCompiles { """isFalse[LT#gt]""" }
+    assertCompiles { """isFalse[LT#ge]""" }
 
-  isTrue[LT#lt]
-  isTrue[LT#le]
-  isFalse[LT#eq]
-  isFalse[LT#gt]
-  isFalse[LT#ge]
+    assertCompiles { """isFalse[EQ#lt]""" }
+    assertCompiles { """isTrue[EQ#le]""" }
+    assertCompiles { """isTrue[EQ#eq]""" }
+    assertCompiles { """isTrue[EQ#ge]""" }
+    assertCompiles { """isFalse[EQ#gt]""" }
 
-  isFalse[EQ#lt]
-  isTrue[EQ#le]
-  isTrue[EQ#eq]
-  isTrue[EQ#ge]
-  isFalse[EQ#gt]
+    assertCompiles { """isFalse[GT#lt]""" }
+    assertCompiles { """isFalse[GT#le]""" }
+    assertCompiles { """isFalse[GT#eq]""" }
+    assertCompiles { """isTrue[GT#gt]""" }
+    assertCompiles { """isTrue[GT#ge]""" }
 
-  isFalse[GT#lt]
-  isFalse[GT#le]
-  isFalse[GT#eq]
-  isTrue[GT#gt]
-  isTrue[GT#ge]
+  }
 
   "A comparison type" should "have the correct show implementation" in {
     assert(show[EQ] == "eq")

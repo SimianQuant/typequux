@@ -20,187 +20,214 @@ class LiteralHashSpec extends BaseSpec {
   import Dense._
   import LiteralHash._
 
-  // Sanity tests to ensure that there are no silly mistakes in the macros
+  it should "pass unit tests" in {
+    assertCompiles { """forUnit(())""" }
 
-  forUnit(())
-  def unitRes(x: String): Unit = println(x)
-  assertTypeError { """forUnit(unitRes("foo"))""" }
+    def unitRes(x: String): Unit = println(x)
+    assertTypeError { """forUnit(unitRes("foo"))""" }
 
-  forBoolean(true)
-  forBoolean(false)
-  assertTypeError { """forBoolean(util.Random.nextBoolean())""" }
+    def unitTypeTester(x: LiteralHash[Unit])(implicit ev0: IsTrue[x.TypeHash === UnitTypeHash]) = x
+    assertCompiles { """unitTypeTester(())""" }
+  }
 
-  forByte(0)
-  forByte(10)
-  forByte(-5)
-  forByte(Byte.MaxValue)
-  forByte(Byte.MinValue)
-  def randByte(): Byte = (util.Random.nextInt & 127).toByte
-  assertTypeError { """typequux.LiteralHashBuilder.forByte(128)""" }
-  assertTypeError { """typequux.LiteralHashBuilder.forByte(-129)""" }
-  assertTypeError { """forByte(randByte())""" }
+  it should "pass boolean tests" in {
+    assertCompiles { """forBoolean(true)""" }
+    assertCompiles { """forBoolean(false)""" }
+    assertTypeError { """forBoolean(util.Random.nextBoolean())""" }
 
-  LiteralHashDownConverter.int2Byte(0)
-  LiteralHashDownConverter.int2Byte(4)
-  LiteralHashDownConverter.int2Byte(-10)
-  LiteralHashDownConverter.int2Byte(Byte.MaxValue)
-  LiteralHashDownConverter.int2Byte(Byte.MinValue)
-  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(128)""" }
-  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(-129)""" }
-  assertTypeError { """LiteralHashDownConverter.int2Byte(-200)""" }
-  assertTypeError { """LiteralHashDownConverter.int2Byte(500)""" }
-  assertTypeError { """LiteralHashDownConverter.int2Byte(util.Random.nextInt())""" }
+    def booleanTypeTester(x: LiteralHash[Boolean])(implicit ev0: IsTrue[x.TypeHash === BooleanTypeHash]) = x
+    assertCompiles { """booleanTypeTester(true)""" }
+    assertCompiles { """booleanTypeTester(false)""" }
+  }
 
-  forShort(0)
-  forShort(15)
-  forShort(-99)
-  forShort(Short.MaxValue)
-  forShort(Short.MinValue)
-  def randShort(): Short = (util.Random.nextInt & 32767).toShort
-  assertTypeError { """typequux.LiteralHashBuilder.forShort(32768)""" }
-  assertTypeError { """typequux.LiteralHashBuilder.forShort(-32769)""" }
-  assertTypeError { """forShort(randShort())""" }
+  it should "pass byte tests" in {
+    assertCompiles { """forByte(0)""" }
+    assertCompiles { """forByte(10)""" }
+    assertCompiles { """forByte(-5)""" }
+    assertCompiles { """forByte(Byte.MaxValue)""" }
+    assertCompiles { """forByte(Byte.MinValue)""" }
 
-  LiteralHashDownConverter.int2Short(0)
-  LiteralHashDownConverter.int2Short(66)
-  LiteralHashDownConverter.int2Short(-1000)
-  LiteralHashDownConverter.int2Short(32767)
-  LiteralHashDownConverter.int2Short(-32768)
-  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter(32768)""" }
-  assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter(-32769)""" }
-  assertTypeError { """LiteralHashDownConverter.int2Short(-40000)""" }
-  assertTypeError { """LiteralHashDownConverter.int2Short(50000)""" }
-  assertTypeError { """LiteralHashDownConverter.int2Short(util.Random.nextInt())""" }
+    def randByte(): Byte = (util.Random.nextInt & 127).toByte
+    assertTypeError { """typequux.LiteralHashBuilder.forByte(128)""" }
+    assertTypeError { """typequux.LiteralHashBuilder.forByte(-129)""" }
+    assertTypeError { """forByte(randByte())""" }
 
-  forChar('a')
-  forChar('x')
-  assertTypeError { """forChar(util.Random.nextPrintableChar())""" }
+    assertCompiles { """LiteralHashDownConverter.int2Byte(0)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Byte(4)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Byte(-10)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Byte(Byte.MaxValue)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Byte(Byte.MinValue)""" }
+    assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(128)""" }
+    assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter.int2Byte(-129)""" }
+    assertTypeError { """LiteralHashDownConverter.int2Byte(-200)""" }
+    assertTypeError { """LiteralHashDownConverter.int2Byte(500)""" }
+    assertTypeError { """LiteralHashDownConverter.int2Byte(util.Random.nextInt())""" }
+  }
 
-  forInt(0)
-  forInt(16)
-  forInt(-100)
-  forInt(Int.MaxValue)
-  forInt(Int.MinValue)
-  assertTypeError { """forInt(util.Random.nextInt())""" }
+  it should "pass short tests" in {
 
-  forLong(0L)
-  forLong(16L)
-  forLong(-100L)
-  forLong(2147483648L) // integer parsing would fail here
-  forLong(-2147483649L)
-  forLong(Long.MaxValue)
-  forLong(Long.MinValue)
-  assertTypeError { """forLong(util.Random.nextLong())""" }
+    assertCompiles { """forShort(0)""" }
+    assertCompiles { """forShort(15)""" }
+    assertCompiles { """forShort(-99)""" }
+    assertCompiles { """forShort(Short.MaxValue)""" }
+    assertCompiles { """forShort(Short.MinValue)""" }
 
-  forFloat(0f)
-  forFloat(11f)
-  forFloat(-34f)
-  forFloat(Float.PositiveInfinity)
-  forFloat(Float.NegativeInfinity)
-  forFloat(Float.NaN)
-  forFloat(3.402823E38f)
-  forFloat(-3.402823E38f)
-  assertTypeError { """forFloat(util.Random.nextFloat())""" }
+    def randShort(): Short = (util.Random.nextInt & 32767).toShort
 
-  forDouble(0.0)
-  forDouble(234.423)
-  forDouble(-123.234)
-  forDouble(Double.PositiveInfinity)
-  forDouble(Double.NegativeInfinity)
-  forDouble(Double.NaN)
-  forDouble(1.7976931348623157E308)
-  forDouble(-1.7976931348623157E308)
-  assertTypeError { """forDouble(util.Random.nextDouble())""" }
+    assertTypeError { """typequux.LiteralHashBuilder.forShort(32768)""" }
+    assertTypeError { """typequux.LiteralHashBuilder.forShort(-32769)""" }
+    assertTypeError { """forShort(randShort())""" }
 
-  forString("")
-  forString("oogachaka")
-  forString("~!@#$%^&*()_+")
-  assertTypeError { """forString(util.Random.nextString(4))""" }
+    assertCompiles { """LiteralHashDownConverter.int2Short(0)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Short(66)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Short(-1000)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Short(32767)""" }
+    assertCompiles { """LiteralHashDownConverter.int2Short(-32768)""" }
+
+    assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter(32768)""" }
+    assertTypeError { """typequux.LiteralHashBuilder.LiteralHashDownConverter(-32769)""" }
+    assertTypeError { """LiteralHashDownConverter.int2Short(-40000)""" }
+    assertTypeError { """LiteralHashDownConverter.int2Short(50000)""" }
+    assertTypeError { """LiteralHashDownConverter.int2Short(util.Random.nextInt())""" }
+  }
+
+  it should "pass char tests" in {
+    assertCompiles { """forChar('a')""" }
+    assertCompiles { """forChar('x')""" }
+    assertTypeError { """forChar(util.Random.nextPrintableChar())""" }
+
+    def charTypeTester(x: LiteralHash[Char])(implicit ev0: IsTrue[x.TypeHash === CharTypeHash]) = x
+    assertCompiles { """charTypeTester('a')""" }
+    assertCompiles { """charTypeTester('b')""" }
+    assertCompiles { """charTypeTester('~')""" }
+  }
+
+  it should "pass int tests" in {
+    assertCompiles { """forInt(0)""" }
+    assertCompiles { """forInt(16)""" }
+    assertCompiles { """forInt(-100)""" }
+    assertCompiles { """forInt(Int.MaxValue)""" }
+    assertCompiles { """forInt(Int.MinValue)""" }
+    assertTypeError { """forInt(util.Random.nextInt())""" }
+
+    def negativeIntTypeTester(x: LiteralHash[Int])(implicit ev0: IsTrue[x.TypeHash === NegativeIntegerTypeHash]) = x
+    assertCompiles { """negativeIntTypeTester(-2)""" }
+    assertCompiles { """negativeIntTypeTester(-100)""" }
+    assertCompiles { """negativeIntTypeTester(-2147483648)""" }
+
+    def positiveIntTypeTester(x: LiteralHash[Int])(implicit ev0: IsTrue[x.TypeHash === PositiveIntegerTypeHash]) = x
+    assertCompiles { """positiveIntTypeTester(0)""" }
+    assertCompiles { """positiveIntTypeTester(314159)""" }
+    assertCompiles { """positiveIntTypeTester(2147483647)""" }
+  }
+
+  it should "pass long tests" in {
+    assertCompiles { """forLong(0L)""" }
+    assertCompiles { """forLong(16L)""" }
+    assertCompiles { """forLong(-100L)""" }
+    assertCompiles { """forLong(2147483648L)""" } // int parse would fail here
+    assertCompiles { """forLong(-2147483649L)""" }
+    assertCompiles { """forLong(Long.MaxValue)""" }
+    assertCompiles { """forLong(Long.MinValue)""" }
+    assertTypeError { """forLong(util.Random.nextLong())""" }
+
+    def negativeLongTypeTester(x: LiteralHash[Long])(implicit ev0: IsTrue[x.TypeHash === NegativeLongTypeHash]) = x
+    assertCompiles { """negativeLongTypeTester(-1L)""" }
+    assertCompiles { """negativeLongTypeTester(-2718L)""" }
+    assertCompiles { """negativeLongTypeTester(-9223372036854775808L)""" }
+
+    def positiveLongTypeTester(x: LiteralHash[Long])(implicit ev0: IsTrue[x.TypeHash === PositiveLongTypeHash]) = x
+    assertCompiles { """positiveLongTypeTester(0L)""" }
+    assertCompiles { """positiveLongTypeTester(100L)""" }
+    assertCompiles { """positiveLongTypeTester(9223372036854775807L)""" }
+  }
+
+  it should "pass float tests" in {
+    assertCompiles { """forFloat(0f)""" }
+    assertCompiles { """forFloat(11f)""" }
+    assertCompiles { """forFloat(-34f)""" }
+    assertCompiles { """forFloat(Float.PositiveInfinity)""" }
+    assertCompiles { """forFloat(Float.NegativeInfinity)""" }
+    assertCompiles { """forFloat(Float.NaN)""" }
+    assertCompiles { """forFloat(3.402823E38f)""" }
+    assertCompiles { """forFloat(-3.402823E38f)""" }
+    assertTypeError { """forFloat(util.Random.nextFloat())""" }
+
+    def negativeFloatTypeTester(x: LiteralHash[Float])(
+        implicit ev0: IsTrue[x.TypeHash === NegativeEncodedFloatTypeHash]) = x
+    assertCompiles { """negativeFloatTypeTester(-5f)""" }
+    assertCompiles { """negativeFloatTypeTester(-12f)""" }
+    assertCompiles { """negativeFloatTypeTester(-42f)""" }
+
+    def positiveFloatTypeTester(x: LiteralHash[Float])(
+        implicit ev0: IsTrue[x.TypeHash === PositiveEncodedFloatTypeHash]) = x
+    assertCompiles { """positiveFloatTypeTester(0f)""" }
+    assertCompiles { """positiveFloatTypeTester(12.33f)""" }
+    assertCompiles { """positiveFloatTypeTester(130.311f)""" }
+
+  }
+
+  it should "pass double tests" in {
+    assertCompiles { """forDouble(0.0)""" }
+    assertCompiles { """forDouble(234.423)""" }
+    assertCompiles { """forDouble(-123.234)""" }
+    assertCompiles { """forDouble(Double.PositiveInfinity)""" }
+    assertCompiles { """forDouble(Double.NegativeInfinity)""" }
+    assertCompiles { """forDouble(Double.NaN)""" }
+    assertCompiles { """forDouble(1.7976931348623157E308)""" }
+    assertCompiles { """forDouble(-1.7976931348623157E308)""" }
+    assertTypeError { """forDouble(util.Random.nextDouble())""" }
+
+    def negativeDoubleTypeTester(x: LiteralHash[Double])(
+        implicit ev0: IsTrue[x.TypeHash === NegativeEncodedDoubleTypeHash]) = x
+    assertCompiles { """negativeDoubleTypeTester(-12.42)""" }
+    assertCompiles { """negativeDoubleTypeTester(-100.88)""" }
+
+    def positiveDoubleTypeTester(x: LiteralHash[Double])(
+        implicit ev0: IsTrue[x.TypeHash === PositiveEncodedDoubleTypeHash]) = x
+    assertCompiles { """positiveDoubleTypeTester(0)""" }
+    assertCompiles { """positiveDoubleTypeTester(12.4)""" }
+
+  }
+
+  it should "pass string tests" in {
+    assertCompiles { """forString("")""" }
+    assertCompiles { """forString("oogachaka")""" }
+    assertCompiles { """forString("~!@#$%^&*()_+")""" }
+    assertTypeError { """forString(util.Random.nextString(4))""" }
+
+    def stringTypeTester(x: LiteralHash[String])(implicit ev0: IsTrue[x.TypeHash === StringTypeHash]) = x
+    assertCompiles { """stringTypeTester("")""" }
+    assertCompiles { """stringTypeTester("abc")""" }
+    assertCompiles { """stringTypeTester("lambda")""" }
+  }
 
   // Tests to check the type hashing
 
-  def unitTypeTester(x: LiteralHash[Unit])(implicit ev0: IsTrue[x.TypeHash === UnitTypeHash]) = x
-  unitTypeTester(())
-
-  def booleanTypeTester(x: LiteralHash[Boolean])(implicit ev0: IsTrue[x.TypeHash === BooleanTypeHash]) = x
-  booleanTypeTester(true)
-  booleanTypeTester(false)
-
-  {
+  it should "pass downconverter tests" in {
     import LiteralHashDownConverter._
 
     def negativeByteTypeTester(x: LiteralHash[Byte])(implicit ev0: IsTrue[x.TypeHash === NegativeByteTypeHash]) = x
-    negativeByteTypeTester(-2)
-    negativeByteTypeTester(-19)
-    negativeByteTypeTester(-128)
-
     def positiveByteTypeTester(x: LiteralHash[Byte])(implicit ev0: IsTrue[x.TypeHash === PositiveByteTypeHash]) = x
-    positiveByteTypeTester(0)
-    positiveByteTypeTester(10)
-    positiveByteTypeTester(127)
-
     def negativeShortTypeTester(x: LiteralHash[Short])(implicit ev0: IsTrue[x.TypeHash === NegativeShortTypeHash]) = x
-    negativeShortTypeTester(-5)
-    negativeShortTypeTester(-100)
-    negativeShortTypeTester(-32768)
-
     def positiveShortTypeTester(x: LiteralHash[Short])(implicit ev0: IsTrue[x.TypeHash === PositiveShortTypeHash]) = x
-    positiveShortTypeTester(0)
-    positiveShortTypeTester(15)
-    positiveShortTypeTester(32767)
+
+    assertCompiles { """negativeByteTypeTester(-2)""" }
+    assertCompiles { """negativeByteTypeTester(-19)""" }
+    assertCompiles { """negativeByteTypeTester(-128)""" }
+
+    assertCompiles { """positiveByteTypeTester(0)""" }
+    assertCompiles { """positiveByteTypeTester(10)""" }
+    assertCompiles { """positiveByteTypeTester(127)""" }
+
+    assertCompiles { """negativeShortTypeTester(-5)""" }
+    assertCompiles { """negativeShortTypeTester(-100)""" }
+    assertCompiles { """negativeShortTypeTester(-32768)""" }
+
+    assertCompiles { """positiveShortTypeTester(0)""" }
+    assertCompiles { """positiveShortTypeTester(15)""" }
+    assertCompiles { """positiveShortTypeTester(32767)""" }
   }
-
-  def charTypeTester(x: LiteralHash[Char])(implicit ev0: IsTrue[x.TypeHash === CharTypeHash]) = x
-  charTypeTester('a')
-  charTypeTester('b')
-  charTypeTester('~')
-
-  def negativeIntTypeTester(x: LiteralHash[Int])(implicit ev0: IsTrue[x.TypeHash === NegativeIntegerTypeHash]) = x
-  negativeIntTypeTester(-2)
-  negativeIntTypeTester(-100)
-  negativeIntTypeTester(-2147483648)
-
-  def positiveIntTypeTester(x: LiteralHash[Int])(implicit ev0: IsTrue[x.TypeHash === PositiveIntegerTypeHash]) = x
-  positiveIntTypeTester(0)
-  positiveIntTypeTester(314159)
-  positiveIntTypeTester(2147483647)
-
-  def negativeLongTypeTester(x: LiteralHash[Long])(implicit ev0: IsTrue[x.TypeHash === NegativeLongTypeHash]) = x
-  negativeLongTypeTester(-1L)
-  negativeLongTypeTester(-2718L)
-  negativeLongTypeTester(-9223372036854775808L)
-
-  def positiveLongTypeTester(x: LiteralHash[Long])(implicit ev0: IsTrue[x.TypeHash === PositiveLongTypeHash]) = x
-  positiveLongTypeTester(0L)
-  positiveLongTypeTester(100L)
-  positiveLongTypeTester(9223372036854775807L)
-
-  def negativeFloatTypeTester(x: LiteralHash[Float])(
-      implicit ev0: IsTrue[x.TypeHash === NegativeEncodedFloatTypeHash]) = x
-  negativeFloatTypeTester(-5f)
-  negativeFloatTypeTester(-12f)
-  negativeFloatTypeTester(-42f)
-
-  def positiveFloatTypeTester(x: LiteralHash[Float])(
-      implicit ev0: IsTrue[x.TypeHash === PositiveEncodedFloatTypeHash]) = x
-  positiveFloatTypeTester(0f)
-  positiveFloatTypeTester(12.33f)
-  positiveFloatTypeTester(130.311f)
-
-  def negativeDoubleTypeTester(x: LiteralHash[Double])(
-      implicit ev0: IsTrue[x.TypeHash === NegativeEncodedDoubleTypeHash]) = x
-  negativeDoubleTypeTester(-12.42)
-  negativeDoubleTypeTester(-100.88)
-
-  def positiveDoubleTypeTester(x: LiteralHash[Double])(
-      implicit ev0: IsTrue[x.TypeHash === PositiveEncodedDoubleTypeHash]) = x
-  positiveDoubleTypeTester(0)
-  positiveDoubleTypeTester(12.4)
-
-  def stringTypeTester(x: LiteralHash[String])(implicit ev0: IsTrue[x.TypeHash === StringTypeHash]) = x
-  stringTypeTester("")
-  stringTypeTester("abc")
-  stringTypeTester("lambda")
 
   // Functions for tests to check value hashing
 

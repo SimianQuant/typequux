@@ -29,65 +29,67 @@ class BoolSpec extends BaseSpec {
 
   type Rep[A <: Bool] = A#If[Int, String, Any]
 
-  eqv[Rep[True], Int]
-  eqv[Rep[False], String]
-  assertTypeError { """implicitly[Rep[True] =:= String]""" }
-  assertTypeError { """implicitly[Rep[False] =:= Int]""" }
-  assertTypeError { """implicitly[Rep[True]] =:= Long""" }
+  it should "pass rep tests" in {
+    assert(eqv[Rep[True], Int])
+    assert(eqv[Rep[False], String])
+    assertTypeError { """implicitly[Rep[True] =:= String]""" }
+    assertTypeError { """implicitly[Rep[False] =:= Int]""" }
+    assertTypeError { """implicitly[Rep[True]] =:= Long""" }
+  }
 
-  /********** Truth table tests *******************/
-  implicitly[Not[True] =:= False]
-  implicitly[Not[False] =:= True]
-  assertTypeError { """implicitly[Not[True] =:= True]""" }
-  assertTypeError { """implicitly[Not[False] =:= False]""" }
+  it should "pass truth table tests" in {
 
-  implicitly[False || False =:= False]
-  implicitly[False || True =:= True]
-  implicitly[True || False =:= True]
-  implicitly[True || True =:= True]
-  assertTypeError { """implicitly[False || False =:= True]""" }
-  assertTypeError { """implicitly[False || True =:= False]""" }
-  assertTypeError { """implicitly[True || False =:= False]""" }
-  assertTypeError { """implicitly[True || True =:= False]""" }
+    assertCompiles { """implicitly[Not[True] =:= False]""" }
+    assertCompiles { """implicitly[Not[False] =:= True]""" }
+    assertTypeError { """implicitly[Not[True] =:= True]""" }
+    assertTypeError { """implicitly[Not[False] =:= False]""" }
 
-  implicitly[False && False =:= False]
-  implicitly[False && True =:= False]
-  implicitly[True && False =:= False]
-  implicitly[True && True =:= True]
-  assertTypeError { """implicitly[False && False =:= True]""" }
-  assertTypeError { """implicitly[False && True =:= True]""" }
-  assertTypeError { """implicitly[True && False =:= True]""" }
-  assertTypeError { """implicitly[True && True =:= False]""" }
+    assertCompiles { """implicitly[False || False =:= False]""" }
+    assertCompiles { """implicitly[False || True =:= True]""" }
+    assertCompiles { """implicitly[True || False =:= True]""" }
+    assertCompiles { """implicitly[True || True =:= True]""" }
+    assertTypeError { """implicitly[False || False =:= True]""" }
+    assertTypeError { """implicitly[False || True =:= False]""" }
+    assertTypeError { """implicitly[True || False =:= False]""" }
+    assertTypeError { """implicitly[True || True =:= False]""" }
 
-  implicitly[False Xor False =:= False]
-  implicitly[True Xor False =:= True]
-  implicitly[False Xor True =:= True]
-  implicitly[True Xor True =:= False]
-  assertTypeError { """implicitly[False Xor False =:= True]""" }
-  assertTypeError { """implicitly[True Xor False =:= False]""" }
-  assertTypeError { """implicitly[False Xor True =:= False]""" }
-  assertTypeError { """implicitly[True Xor True =:= True]""" }
+    assertCompiles { """implicitly[False && False =:= False]""" }
+    assertCompiles { """implicitly[False && True =:= False]""" }
+    assertCompiles { """implicitly[True && False =:= False]""" }
+    assertCompiles { """implicitly[True && True =:= True]""" }
+    assertTypeError { """implicitly[False && False =:= True]""" }
+    assertTypeError { """implicitly[False && True =:= True]""" }
+    assertTypeError { """implicitly[True && False =:= True]""" }
+    assertTypeError { """implicitly[True && True =:= False]""" }
 
-  implicitly[False ->> False =:= True]
-  implicitly[True ->> False =:= False]
-  implicitly[False ->> True =:= True]
-  implicitly[True ->> True =:= True]
-  assertTypeError { """implicitly[False ->> False =:= False]""" }
-  assertTypeError { """implicitly[True ->> False =:= True]""" }
-  assertTypeError { """implicitly[False ->> True =:= False]""" }
-  assertTypeError { """implicitly[True ->> True =:= False]""" }
+    assertCompiles { """implicitly[False Xor False =:= False]""" }
+    assertCompiles { """implicitly[True Xor False =:= True]""" }
+    assertCompiles { """implicitly[False Xor True =:= True]""" }
+    assertCompiles { """implicitly[True Xor True =:= False]""" }
+    assertTypeError { """implicitly[False Xor False =:= True]""" }
+    assertTypeError { """implicitly[True Xor False =:= False]""" }
+    assertTypeError { """implicitly[False Xor True =:= False]""" }
+    assertTypeError { """implicitly[True Xor True =:= True]""" }
 
-  implicitly[False Eqv False =:= True]
-  implicitly[True Eqv False =:= False]
-  implicitly[False Eqv True =:= False]
-  implicitly[True Eqv True =:= True]
-  assertTypeError { """ implicitly[False Eqv False =:= False]""" }
-  assertTypeError { """ implicitly[True Eqv False =:= True]""" }
-  assertTypeError { """ implicitly[False Eqv True =:= True]""" }
-  assertTypeError { """ implicitly[True Eqv True =:= False]""" }
+    assertCompiles { """implicitly[False ->> False =:= True]""" }
+    assertCompiles { """implicitly[True ->> False =:= False]""" }
+    assertCompiles { """implicitly[False ->> True =:= True]""" }
+    assertCompiles { """implicitly[True ->> True =:= True]""" }
+    assertTypeError { """implicitly[False ->> False =:= False]""" }
+    assertTypeError { """implicitly[True ->> False =:= True]""" }
+    assertTypeError { """implicitly[False ->> True =:= False]""" }
+    assertTypeError { """implicitly[True ->> True =:= False]""" }
 
-  /***************** Laws Test *****************************/
-  // Ternary laws
+    assertCompiles { """implicitly[False Eqv False =:= True]""" }
+    assertCompiles { """implicitly[True Eqv False =:= False]""" }
+    assertCompiles { """implicitly[False Eqv True =:= False]""" }
+    assertCompiles { """implicitly[True Eqv True =:= True]""" }
+    assertTypeError { """ implicitly[False Eqv False =:= False]""" }
+    assertTypeError { """ implicitly[True Eqv False =:= True]""" }
+    assertTypeError { """ implicitly[False Eqv True =:= True]""" }
+    assertTypeError { """ implicitly[True Eqv True =:= False]""" }
+
+  }
 
   class AssociativityOr[A, B, C]
   implicit def toAssociativeOr[A <: Bool, B <: Bool, C <: Bool](
@@ -113,14 +115,17 @@ class BoolSpec extends BaseSpec {
                                                    ev1: AssociativityAnd[A, B, C],
                                                    ev2: DistributivityAndOverOr[A, B, C],
                                                    ev3: DistributivityOrOverAnd[A, B, C]): Boolean = true
-  ternaryLaws[False, False, False]
-  ternaryLaws[False, False, True]
-  ternaryLaws[False, True, False]
-  ternaryLaws[False, True, True]
-  ternaryLaws[True, False, False]
-  ternaryLaws[True, False, True]
-  ternaryLaws[True, True, False]
-  ternaryLaws[True, True, True]
+
+  it should "pass ternary laws " in {
+    assertCompiles { """ternaryLaws[False, False, False]""" }
+    assertCompiles { """ternaryLaws[False, False, True]""" }
+    assertCompiles { """ternaryLaws[False, True, False]""" }
+    assertCompiles { """ternaryLaws[False, True, True]""" }
+    assertCompiles { """ternaryLaws[True, False, False]""" }
+    assertCompiles { """ternaryLaws[True, False, True]""" }
+    assertCompiles { """ternaryLaws[True, True, False]""" }
+    assertCompiles { """ternaryLaws[True, True, True]""" }
+  }
 
   // Binary Laws
 
@@ -154,10 +159,13 @@ class BoolSpec extends BaseSpec {
                                        ev3: Absorption2[A, B],
                                        ev4: DeMorgan1[A, B],
                                        ev5: Demorgan2[A, B]): Boolean = true
-  binaryLaws[False, False]
-  binaryLaws[False, True]
-  binaryLaws[True, False]
-  binaryLaws[True, True]
+
+  it should "pass binary laws" in {
+    assertCompiles { """binaryLaws[False, False]""" }
+    assertCompiles { """binaryLaws[False, True]""" }
+    assertCompiles { """binaryLaws[True, False]""" }
+    assertCompiles { """binaryLaws[True, True]""" }
+  }
 
   // Unary Laws
 
@@ -197,8 +205,11 @@ class BoolSpec extends BaseSpec {
                            ev6: ComplementAnd[A],
                            ev7: ComplementOr[A],
                            ev8: DoubleNegation[A]) = true
-  unaryLaws[True]
-  unaryLaws[False]
+
+  it should "pass unary laws" in {
+    assertCompiles { """unaryLaws[True]""" }
+    assertCompiles { """unaryLaws[False]""" }
+  }
 
   //class CommutativityOr[A <: Bool, B <: Bool]
 
