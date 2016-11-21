@@ -27,4 +27,7 @@ build_script:
   - sbt clean +compile
 
 test_script:
-  - sbt +test
+  - sbt coverage +test
+
+build_success:
+  "sbt coverageReport coveralls"

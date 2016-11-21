@@ -11,6 +11,4 @@ before_install:
 - sudo apt-get -qq update
 - sudo apt-get install -y nodejs
 
-script: "sbt clean coverage test"
-
-after_success: "sbt ++$TRAVIS_SCALA_VERSION coverageReport coveralls"
+script: "sbt clean test"
