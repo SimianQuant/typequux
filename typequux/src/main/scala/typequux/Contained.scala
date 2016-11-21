@@ -62,7 +62,7 @@ final class NotSubType[A, HL] private ()
 /** Marker that all types of HL1 are contained in HL2
   *
   * @author Harshad Deo
-  * @since 0.3
+  * @since 0.2.2
   */
 final class AllContained[HL1, HL2] private ()
 

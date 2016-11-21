@@ -51,14 +51,6 @@ val typequux = crossProject
       "-groups",
       "-implicits"
     ),
-    scalacOptions in (Compile, doc) <++= baseDirectory.map { (bd: File) =>
-      Seq[String](
-        "-sourcepath",
-        bd.getAbsolutePath,
-        "-doc-source-url",
-        "https://github.com/harshad-deo/typequux/tree/master€{FILE_PATH}.scala"
-      )
-    },
     testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD"),
     initialCommands := """| class Witness[T](val x: T)
       | object Witness{
