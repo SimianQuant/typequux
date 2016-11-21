@@ -1,7 +1,5 @@
 import org.scoverage.coveralls.Imports.CoverallsKeys._
 
-coverallsToken := Some("9hEwTXoYLumfUa4DDm76fMp8cvJ86ywab")
-
 val typequux = crossProject
   .crossType(CrossType.Pure)
   .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
@@ -15,6 +13,7 @@ val typequux = crossProject
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,
       "org.scalatest" %%% "scalatest" % "3.0.0" % "test"
     ),
+    coverallsToken := Some("9hEwTXoYLumfUa4DDm76fMp8cvJ86ywab"),
     incOptions := incOptions.value.withLogRecompileOnMacro(false),
     wartremoverErrors ++= {
       import Wart._
