@@ -2,11 +2,12 @@
 
 [![Build Status](https://travis-ci.org/harshad-deo/typequux.svg?branch=master)](https://travis-ci.org/harshad-deo/typequux)
 [![Build status](https://ci.appveyor.com/api/projects/status/kvi1jh1nh1l6k2u8?svg=true)](https://ci.appveyor.com/project/harshad-deo/typequux)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.11)
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.8.svg)](https://www.scala-js.org)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.13.svg)](https://www.scala-js.org)
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a73e78adc99949b29a3ea55f0ee92a41)](https://www.codacy.com/app/subterranean-hominid/typequux?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harshad-deo/typequux&amp;utm_campaign=Badge_Grade)
 [![Gitter](https://badges.gitter.im/harshad-deo/typequux.svg)](https://gitter.im/harshad-deo/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Scaladoc](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12.svg?label=scaladoc)][apilink]
 
 Typelevel programming allows developers to encode several flavours of runtime invariants into the type system. Unfortunately, 
 libraries that support typelevel programming tend to be poorly documented, difficult to understand and difficult to hack. This makes
@@ -15,16 +16,16 @@ them hard to customize to the needs of a specific project/problem.
 TypeQuux provides concise, efficient and easy-to-modify 
 implementations of several typelevel programming primitives. As such, it represents collected wisdom on type-hackery in scala. 
 
-To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package). You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
+To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API][apilink]. You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
 
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.2.2" // scala-jvm
-libraryDependencies += "com.simianquant" %%% "typequux" % "0.2.2" // scala-js/cross
+libraryDependencies += "com.simianquant" %% "typequux" % "0.3.0" // scala-jvm
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.3.0" // scala-js/cross
 ```
 
-Currently, only 2.11 binaries are supported. 
+Currently, 2.11 and 2.12 binaries are supported. 
 
 Currently supported primitives are:
 
@@ -60,3 +61,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+[apilink]: https://oss.sonatype.org/service/local/repositories/releases/archive/com/simianquant/typequux_2.12/0.3.0/typequux_2.12-0.3.0-javadoc.jar/!/typequux/index.html

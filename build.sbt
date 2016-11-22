@@ -96,8 +96,8 @@ val typequux = crossProject
     coverageExcludedPackages := ".*"
   )
 
-lazy val typequuxJS = typequux.js.settings(name := "typequuxJS")
-lazy val typequuxJVM = typequux.jvm.settings(name := "typequuxJVM").aggregate(typequuxJS)
+lazy val typequuxJS = typequux.js
+lazy val typequuxJVM = typequux.jvm.aggregate(typequuxJS)
 
 ghpages.settings
 
