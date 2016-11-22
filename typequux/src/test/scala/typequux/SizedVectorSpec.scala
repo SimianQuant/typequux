@@ -19,7 +19,7 @@ class SizedVectorSpec extends BaseSpec {
 
   import Dense._
 
-  "A SizedVector" should "build properly" in {
+  it should "build properly" in {
 
     val sz1: SizedVector[_1, Int] = SizedVector(1)
     assert(sz1.length == 1)

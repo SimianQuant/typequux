@@ -28,7 +28,7 @@ class DenseSetLiteralSpec extends BaseSpec {
   def checkContains[DS <: DenseSet, T](s: Witness[DS], x: LiteralHash[T])(
       implicit ev: IsTrue[DS#Contains[x.ValueHash]]) = true
 
-  "A dense set" should "work with int witnesses" in {
+  it should "work with int witnesses" in {
 
     val a = build(1)
     val b = build(2)

@@ -26,7 +26,7 @@ class TupleConverterSpec extends BaseSpec {
 
   // the tests have been generated, are not really meant for human parsing beyond a point
 
-  "Tuple Converters" should "convert to H-Lists properly" in {
+  it should "convert to H-Lists properly" in {
     assert(tuple2HList((3 , "ho gaya")) == 3 :+: "ho gaya" :+: HNil)
     assert(tuple2HList((true , 'c')) == true :+: 'c' :+: HNil)
     assert(tuple2HList(('c' , 42)) == 'c' :+: 42 :+: HNil)

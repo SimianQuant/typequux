@@ -39,7 +39,7 @@ class TransformSpec extends BaseSpec {
 
   def unitaryTransformCheckedcon[T](t: T)(implicit ev: Id ~> Id): T = ev(t)
 
-  "A natural transform" should "build singletons properly" in {
+  it should "build singletons properly" in {
     assert(singleton("oogachaka") == List("oogachaka"))
     assert(singleton(4) == List(4))
     assert(singleton(List(1, 2, 3)) == List(List(1, 2, 3)))

@@ -23,7 +23,7 @@ class RecordSpec extends BaseSpec {
   val r2 = r1.add("x", Some("one wants you"))
   val r3 = r1.updated("a", Some(List(1, 2, 3)))
 
-  "A record" should "apply properly" in {
+  it should "apply properly" in {
     assertTypeError { """r1("o")""" }
 
     val r1a: List[Int] = r1("a")

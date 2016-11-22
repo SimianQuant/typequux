@@ -27,7 +27,7 @@ class StringIndexedCollectionSpec extends BaseSpec {
   val m2 = Map("pi" -> 3.14, "e" -> 2.718, "h" -> 6.626, "phi" -> 1.618, "k" -> 1.38)
   val m3 = Map("pi" -> 3.14159, "e" -> 2.718, "h" -> 6.62607, "phi" -> 1.618)
 
-  "A string indexed collection" should "apply correctly" in {
+  it should "apply correctly" in {
     assert(si1("pi") == 3.14)
     assert(si1("e") == 2.718)
     assert(si1("h") == 6.626)

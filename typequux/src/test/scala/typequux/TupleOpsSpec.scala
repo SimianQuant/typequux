@@ -22,7 +22,7 @@ class TupleOpsSpec extends BaseSpec {
   import TupleOps._
   import typequux._
 
-  "TupleOps" should "support proper indexed ops" in {
+  it should "support proper indexed ops" in {
     val t1 = ("str", true, 1, Some(3.14))
     val t2 = ('3', 2, "sdfh")
 
