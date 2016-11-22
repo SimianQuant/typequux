@@ -9,6 +9,7 @@ environment:
   JAVA_OPTS: -Dfile.encoding=UTF8
   nodejs_version: "4.5.0"
   JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+  COVERALLS_REPO_TOKEN: 9hEwTXoYLumfUa4DDm76fMp8cvJ86ywab
 
 install:
   - ps: |
