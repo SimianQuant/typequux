@@ -1,11 +1,10 @@
 val typequux = crossProject
   .crossType(CrossType.Pure)
-  .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.3.0",
-    scalaVersion := "2.11.8",
+    version := "0.3.1-SNAPSHOT",
+    scalaVersion := "2.12.0",
     crossScalaVersions := Seq("2.11.8", "2.12.0"),
     libraryDependencies ++= Seq(
       "org.scala-lang" % "scala-reflect" % scalaVersion.value,
@@ -59,6 +58,7 @@ val typequux = crossProject
       | import typequux._
       | import typequux._""".stripMargin,
     addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16"),
+    sourceDirectory in Pamflet := sourceDirectory.value / "typequux" / "pamflet",
     siteSubdirName in SiteScaladoc := "api",
     previewLaunchBrowser := false,
     publishMavenStyle := true,
@@ -97,7 +97,7 @@ val typequux = crossProject
   )
 
 lazy val typequuxJS = typequux.js
-lazy val typequuxJVM = typequux.jvm.aggregate(typequuxJS)
+lazy val typequuxJVM = typequux.jvm.enablePlugins(SiteScaladocPlugin, PamfletPlugin).aggregate(typequuxJS)
 
 ghpages.settings
 
