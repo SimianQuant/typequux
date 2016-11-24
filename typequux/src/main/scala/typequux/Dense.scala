@@ -582,7 +582,7 @@ object Dense {
     */
   type _22 = D0 :: D1 :: D1 :: D0 :: D1 :: DNil
 
-  /** Builda a value level representation of a dense type.
+  /** Builds a value level [[scala.Long]] representation of a dense type.
     *
     * @tparam D Type to be converted to a value
     *
@@ -590,9 +590,9 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  class DenseRep[D](val v: Long)(implicit ev: D <:< Dense)
+  class DenseRep[D] private (val v: Long)(implicit ev: D <:< Dense)
 
-  /** Contains implicit definitions to build the value level representation of a dense type
+  /** Contains implicit definitions to build the value level representation of a dense type as a [[scala.Long]]
     *
     * @group Implementation
     * @author Harshad Deo
@@ -622,7 +622,49 @@ object Dense {
     implicit def dCons22Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D1 :: T] = new DenseRep((tr.v << 1) | 1)
   }
 
-  /** Builds value level representation of a [[Dense]]
+  /** Builds a value level [[scala.Int]] representation of a dense type
+    *
+    * @tparam D Type to be converted to a value
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.3.1
+    */
+  class DenseIntRep[D] private (val v: Int)(implicit ev: D <:< Dense)
+
+  /** Contains implicit definitional to build a value level representation of a dense type as a [[scala.Int]]
+    *
+    * @group Implementation
+    * @author Harshad Deo
+    * @since 0.3.1
+    */
+  object DenseIntRep {
+
+    /** Implements [[DenseIntRep]] for [[DNil]]
+      *
+      * @author Harshad Deo
+      * @since 0.3.1
+      */
+    implicit object DNil2Rep extends DenseIntRep[DNil](0)
+
+    /** Builds [[DenseIntRep]] for [[DCons]] if the lowest priority bit is 0
+      *
+      * @author Harshad Deo
+      * @since 0.3.1
+      */
+    implicit def dCons02Rep[T <: Dense](implicit tr: DenseIntRep[T]): DenseIntRep[D0 :: T] = new DenseIntRep(tr.v << 1)
+
+    /** Builds [[DenseIntRep]] for [[DCons]] if the lowest priority bit is 1
+      *
+      * @author Harshad Deo
+      * @since 0.3.1
+      */
+    implicit def dCons22Rep[T <: Dense](implicit tr: DenseIntRep[T]): DenseIntRep[D1 :: T] =
+      new DenseIntRep((tr.v << 1) | 1)
+
+  }
+
+  /** Builds value level representation of a [[Dense]] as a [[scala.Long]]
     *
     * @tparam D Dense type to be converted to a value
     *
@@ -631,6 +673,18 @@ object Dense {
     * @since 0.1
     */
   def toLong[D <: Dense](implicit dr: DenseRep[D]): Long = dr.v
+
+  /** Builds value level representation of a [[Dense]] as a [[scala.Int]]
+    *
+    * @tparam D Dense type to be converted to a value
+    *
+    * @group Operations
+    * @author Harshad Deo
+    * @since 0.3.1
+    */
+  def toInt[D <: Dense](implicit dr: DenseIntRep[D]): Int = dr.v
+
+
 }
 
 /** Marker trait for typelevel subtraction of [[Dense]] numbers.
