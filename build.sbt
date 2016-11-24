@@ -3,7 +3,7 @@ val typequux = crossProject
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.3.1-SNAPSHOT",
+    version := "0.3.1",
     scalaVersion := "2.12.0",
     crossScalaVersions := Seq("2.11.8", "2.12.0"),
     libraryDependencies ++= Seq(

@@ -21,8 +21,8 @@ To see what is possible, head on over to the [project site](https://harshad-deo.
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.3.0" // scala-jvm
-libraryDependencies += "com.simianquant" %%% "typequux" % "0.3.0" // scala-js/cross
+libraryDependencies += "com.simianquant" %% "typequux" % "0.3.1" // scala-jvm
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.3.1" // scala-js/cross
 ```
 
 Currently, 2.11 and 2.12 binaries are supported. 
@@ -61,4 +61,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[apilink]: https://oss.sonatype.org/service/local/repositories/releases/archive/com/simianquant/typequux_2.12/0.3.0/typequux_2.12-0.3.0-javadoc.jar/!/typequux/index.html
+[apilink]: https://oss.sonatype.org/service/local/repositories/releases/archive/com/simianquant/typequux_2.12/0.3.1/typequux_2.12-0.3.1-javadoc.jar/!/typequux/index.html
