@@ -16,7 +16,7 @@
 package typequux
 
 import constraint._
-import Dense.DenseRep
+import Dense.DenseIntRep
 
 /** Provides scala collection like operations on string indexed collections like [[Record]] and [[StringIndexedCollection]]
   *
@@ -65,8 +65,7 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def size[L <: Dense](implicit ev0: LengthConstraint[S, L], ev1: DenseRep[L]): Int =
-    ev1.v.toInt
+  def size[L <: Dense](implicit ev0: LengthConstraint[S, L], ev1: DenseIntRep[L]): Int = ev1.v
 
   /** Converts the collection to a map
     *

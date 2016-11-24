@@ -109,7 +109,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def length(implicit ev: DenseRep[N]): Int = ev.v.toInt
+  def length(implicit ev: DenseIntRep[N]): Int = ev.v
 
   /** Straightforward map operation
     * 

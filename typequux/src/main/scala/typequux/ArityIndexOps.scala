@@ -16,7 +16,7 @@
 package typequux
 
 import constraint._
-import Dense.DenseRep
+import Dense.DenseIntRep
 import language.higherKinds
 import typequux._
 
@@ -37,7 +37,7 @@ class ArityIndexOps[Z](z: Z) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def length[L <: Dense](implicit ev0: LengthConstraint[Z, L], ev1: DenseRep[L]): Long = ev1.v
+  def length[L <: Dense](implicit ev0: LengthConstraint[Z, L], ev1: DenseIntRep[L]): Int = ev1.v
 
   /** Reverses the collection
     *
