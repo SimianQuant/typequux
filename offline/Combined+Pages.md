@@ -2550,8 +2550,6 @@ scala> v.backing
 res54: Vector[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 ```
 
-### See Also
-* [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
 String Indexed Collections
 --------------------------
 
