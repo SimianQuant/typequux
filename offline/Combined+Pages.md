@@ -528,11 +528,6 @@ Peano numbers can be shown to satisfy:
 
 11. Total Order
 
-Refer to the [test cases](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/NatSpec.scala) for examples. 
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.Nat)
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Nat.scala)
 Dense Numbers
 -------------
 
