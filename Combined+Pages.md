@@ -726,6 +726,15 @@ res38: Long = 16
 
 scala> Dense.toLong[_16 * _4]
 res39: Long = 64
+
+scala> Dense.toInt[_0]
+res40: Int = 0
+
+scala> Dense.toInt[_16]
+res41: Int = 16
+
+scala> Dense.toInt[_16 * _4]
+res42: Int = 64
 ```
 
 Dense numbers can be shown to satisfy: 
