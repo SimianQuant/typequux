@@ -802,12 +802,12 @@ res6: Set[Boolean] = Set(true)
 
 scala&gt; singletonSet2(&quot;goku&quot;)
 res7: Set[String] = Set(goku)
-</code></pre><h4 id="Conversion+to+monomorphic+function+values">Conversion to monomorphic function values<a href="#Conversion+to+monomorphic+function+values" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>```scala
-scala&gt; Vector(List(1, 2,3), List(100, 200, 100)) map list2Option
+</code></pre><h4 id="Conversion+to+monomorphic+function+values">Conversion to monomorphic function values<a href="#Conversion+to+monomorphic+function+values" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; Vector(List(1, 2,3), List(100, 200, 100)) map list2Option
 res9: scala.collection.immutable.Vector[Option[Int]] = Vector(Some(1), Some(100))
-</p><p>scala&gt; Vector(List(1, 2,3), List(100, 200, 100)) map list2Set
+
+scala&gt; Vector(List(1, 2,3), List(100, 200, 100)) map list2Set
 res10: scala.collection.immutable.Vector[Set[Int]] = Vector(Set(1, 2, 3), Set(100, 200))
-```</p><h2 id="Type-Unions+and+Exclusions">Type-Unions and Exclusions<a href="#Type-Unions+and+Exclusions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type Unions, Type Exclusions, Type Hierarchy Unions and Type Hierarchy Exclusions can be used to get around 
+</code></pre><h2 id="Type-Unions+and+Exclusions">Type-Unions and Exclusions<a href="#Type-Unions+and+Exclusions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type Unions, Type Exclusions, Type Hierarchy Unions and Type Hierarchy Exclusions can be used to get around 
 compramises that arise when building subtype hierarchies. While their usage can break the Liskov Substitution Principle, 
 this is often pragmatically preferrable to the code breaking at runtime. 
 </p><h4 id="Type+Unions">Type Unions<a href="#Type+Unions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Type unions can be used to guarentee that a given type is a member of the supplied HList of types. 
