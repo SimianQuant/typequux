@@ -2551,8 +2551,6 @@ res54: Vector[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 ```
 
 ### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.SizedVector)
-* [Source](https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/SizedVector.scala)
 * [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
 String Indexed Collections
 --------------------------
