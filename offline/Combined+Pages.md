@@ -2932,7 +2932,4 @@ scala> constr4(5, (Some("foo"), None)) // does not compile
 scala> constr4(2, 'c' :+: Some("matt le blanc") :+: Some(List("jon stewart", "jay leno")) :+: None :+: HNil) // does not compile
 ```
 
-There are 40 constraints that ship with the current version of the library. You can check them out in the API link below. 
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.constraint.package)
+There are 40 constraints that ship with the current version of the library. You can check them out in the API.
