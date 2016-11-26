@@ -12,7 +12,7 @@ collected wisdom on type-hackery in scala.
 You can now:
 
 * Head over to the [github page](https://github.com/harshad-deo/typequux) which has instructions on how to set-up a project
-* Peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package)
+* Peruse through the [API](https://harshad-deo.github.io/typequux/api/typequux/index.html)
 * Read the examples below
 
 Happy Hacking!
@@ -76,10 +76,10 @@ For clarity, they are replaced below with `\**\`.
 
 ```scala
 scala> val si1 = SINil.add("name", "goku").add("son", "gohan").add("friend", "krillin") // String Indexed Collection
-si1: /**/
+si1: \**\
 
 scala> val si2 = SINil.add("leader", "Frieza").add("henchmen", "ginyu").add("father", "king cold")
-si2: /**/
+si2: \**\
 
 scala> atExample("name", si1)
 res7: String = goku
@@ -87,16 +87,16 @@ res7: String = goku
 scala> atExample("name", si2) // does not compile
 
 scala> val si3 = SINil.add("house", "Lannister").add("name", "Tyrion").add("aka", "The Imp")
-si3: /**/
+si3: \**\
 
 scala> atExample("name", si3)
 res10: String = Tyrion
 
 scala> val r1 = RNil.add("name", "goku").add("powerlevel", 9000).add("friends", List("krillin", "yamcha")) // Record
-r1: /**/
+r1: \**\
 
 scala> val r2 = RNil.add("show", "futurama").add("coolest", "Zoidberg")
-r2: /**/
+r2: \**\
 
 scala> atExample("name", r1)
 res11: String = goku
@@ -125,7 +125,7 @@ scala> (List(1, 2,3 ), List(1.1, 2.2, 4.4), List(true, false, false, true, true)
 res16: List[(Int, Double, Boolean, String)] = List((1,1.1,true,philip), (2,2.2,false,fry), (3,4.4,false,bender))
 
 scala> (List(1, 2,3 ) :+: List(1.1, 2.2, 4.4) :+: List(true, false, false, true, true) :+: List("philip", "fry", "bender", "leela") :+: HNil).azipped // HLists
-res17: /**/ = List(1 :+: 1.1 :+: true :+: philip :+: HNil, 2 :+: 2.2 :+: false :+: fry :+: HNil, 3 :+: 4.4 :+: false :+: bender :+: HNil)
+res17: \**\ = List(1 :+: 1.1 :+: true :+: philip :+: HNil, 2 :+: 2.2 :+: false :+: fry :+: HNil, 3 :+: 4.4 :+: false :+: bender :+: HNil)
 
 scala> (Stream.from(1), Stream.continually(util.Random.nextBoolean)).zipwith((a: (Int, Boolean)) => if(a._2) a._1 * 100.0 else a._1 / 100.0)
 res19: Stream[Double] = Stream(100.0, ?)
