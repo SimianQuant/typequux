@@ -1293,9 +1293,6 @@ scala> lh2(14, 2)
 res5: Long = 28
 ```
 
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.LiteralHash)
-* [Source](https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/LiteralHash.scala)
 Covariant Heterogenous Lists
 ----------------------------
 

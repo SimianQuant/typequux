@@ -924,8 +924,7 @@ res4: Long = 120
 
 scala&gt; lh2(14, 2)
 res5: Long = 28
-</code></pre><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.LiteralHash">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/LiteralHash.scala">Source</a></li></ul><h2 id="Covariant+Heterogenous+Lists">Covariant Heterogenous Lists<a href="#Covariant+Heterogenous+Lists" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>TypeQuux ships with a rich API for operating on heterogenous lists and subsumes operations typically associated with klists. Operations that would result in runtime errors (mostly) do not compile. All indexed operations (<code>apply</code>, <code>drop</code>, <code>take</code> etc) are 0-based and can be indexed from the left or the right.
+</code></pre><h2 id="Covariant+Heterogenous+Lists">Covariant Heterogenous Lists<a href="#Covariant+Heterogenous+Lists" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>TypeQuux ships with a rich API for operating on heterogenous lists and subsumes operations typically associated with klists. Operations that would result in runtime errors (mostly) do not compile. All indexed operations (<code>apply</code>, <code>drop</code>, <code>take</code> etc) are 0-based and can be indexed from the left or the right.
 </p><p>The type signatures for hlists can be quite long and are not terribly informative in the examples presented below. <code>/**/</code> represents an omitted (for clarity) type signature. 
 </p><h4 id="Covariance">Covariance<a href="#Covariance" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
