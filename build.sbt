@@ -3,7 +3,7 @@ val typequux = crossProject
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.3.1",
+    version := "0.3.2-SNAPSHOT",
     scalaVersion := "2.12.0",
     crossScalaVersions := Seq("2.11.8", "2.12.0"),
     libraryDependencies ++= Seq(
@@ -29,7 +29,7 @@ val typequux = crossProject
       "-deprecation",
       "-unchecked",
       "-explaintypes",
-      //"-Ywarn-unused-import",
+      "-Ywarn-unused-import",
       "-encoding",
       "UTF-8",
       "-feature",
@@ -45,6 +45,10 @@ val typequux = crossProject
       "-Xfuture",
       "-P:linter:disable:UnusedParameter"
     ),
+    scalacOptions in (Compile) ++= Seq(scalaVersion.value match {
+      case x if x.startsWith("2.12.") => "-target:jvm-1.8"
+      case x => "-target:jvm-1.6"
+    }),
     scalacOptions in (Compile, doc) ++= Seq(
       "-author",
       "-groups",

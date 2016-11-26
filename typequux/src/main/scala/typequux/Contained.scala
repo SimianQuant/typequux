@@ -15,8 +15,6 @@
   */
 package typequux
 
-import language.experimental.macros
-import reflect.macros.blackbox
 import typequux._
 
 /** Marker that type A is one of the types of the supplied [[HList]] type
