@@ -7,7 +7,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a73e78adc99949b29a3ea55f0ee92a41)](https://www.codacy.com/app/subterranean-hominid/typequux?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harshad-deo/typequux&amp;utm_campaign=Badge_Grade)
 [![Gitter](https://badges.gitter.im/harshad-deo/typequux.svg)](https://gitter.im/harshad-deo/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Scaladoc](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12.svg?label=scaladoc)][apilink]
 
 Typelevel programming allows developers to encode several flavours of runtime invariants into the type system. Unfortunately, 
 libraries that support typelevel programming tend to be poorly documented, difficult to understand and difficult to hack. This makes
@@ -16,7 +15,7 @@ them hard to customize to the needs of a specific project/problem.
 TypeQuux provides concise, efficient and easy-to-modify 
 implementations of several typelevel programming primitives. As such, it represents collected wisdom on type-hackery in scala. 
 
-To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API][apilink]. You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
+To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/typequux/index.html). You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
 
 To use, add the following line to your `build.sbt` file:
 
