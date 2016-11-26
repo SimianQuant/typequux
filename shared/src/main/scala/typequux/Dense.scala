@@ -684,7 +684,6 @@ object Dense {
     */
   def toInt[D <: Dense](implicit dr: DenseIntRep[D]): Int = dr.v
 
-
 }
 
 /** Marker trait for typelevel subtraction of [[Dense]] numbers.

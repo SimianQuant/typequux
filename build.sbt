@@ -1,5 +1,5 @@
 val typequux = crossProject
-  .crossType(CrossType.Pure)
+  .in(file("."))
   .settings(
     name := "typequux",
     organization := "com.simianquant",
@@ -62,8 +62,6 @@ val typequux = crossProject
       | import typequux._
       | import typequux._""".stripMargin,
     addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16"),
-    sourceDirectory in Pamflet := sourceDirectory.value / "typequux" / "pamflet",
-    siteSubdirName in SiteScaladoc := "api",
     previewLaunchBrowser := false,
     publishMavenStyle := true,
     publishArtifact in Test := false,
@@ -101,10 +99,14 @@ val typequux = crossProject
   )
 
 lazy val typequuxJS = typequux.js
-lazy val typequuxJVM = typequux.jvm.enablePlugins(SiteScaladocPlugin, PamfletPlugin).aggregate(typequuxJS)
+lazy val typequuxJVM =
+  typequux.jvm
+    .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
+    //.aggregate(typequuxJS)
+    .settings(siteSubdirName in SiteScaladoc := "api")
 
 ghpages.settings
 
 git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
 
-onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value
+//onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value
