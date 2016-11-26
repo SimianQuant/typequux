@@ -1,0 +1,36 @@
+body{
+	text-indent: 0
+}
+
+pre {
+    overflow: auto;
+    background-color: #f7f7f7;
+    padding: 16px;
+}
+
+code {
+    overflow: auto;
+    background-color: #f7f7f7;
+    font-size: initial;
+    line-height: 1.45;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.span-16{
+	width: 800px;
+	padding: 0px;
+}
+
+p{
+	width: 800px;
+}
+
+p + p{
+	margin-top: 1em;
+    text-indent: 0em;
+}
+
+.container{
+	align-self: center;
+}

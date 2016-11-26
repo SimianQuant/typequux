@@ -1,0 +1,157 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html>
+      <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <title>TypeQuux — Type Maps</title>
+        
+        <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/blueprint/grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+        <!--[if lt IE 8]>
+          <link rel="stylesheet" href={ relativeBase + "css/blueprint/ie.css" } type="text/css" media="screen, projection"/>
+        <![endif]-->
+        <link rel="stylesheet" href="css/pamflet.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamflet-print.css" type="text/css" media="print"/>
+        <link rel="stylesheet" href="css/pamflet-grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/color_scheme-redmond.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-github.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-monokai.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamfletheight_2em_2em.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.collapse.js"></script>
+        <script type="text/javascript" src="js/pamflet.js"></script>
+        <script type="text/javascript">
+          Pamflet.page.language = 'en';
+        </script>
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><script type="text/javascript" src="js/prettify/lang-scala.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+        
+        
+      </head>
+      <body class="color_scheme-redmond">
+        <a class="page prev nav" href="Type+Sets.html">
+            <span class="space">&nbsp;</span>
+            <span class="flip arrow">❧</span>
+          </a><a class="page next nav" href="Natural+Transformations.html">
+            <span class="space">&nbsp;</span>
+            <span class="arrow">❧</span>
+          </a>
+        <div class="container contentswrapper">
+          <div class="span-16 prepend-1 append-1 contents">
+            <h2 id="Type+Maps">Type Maps<a href="#Type+Maps" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type maps are implemented as binary trees of key-value pairs in which the keys are dense numbers. 
+</p><pre><code class="prettyprint lang-scala">sealed trait DenseMap
+trait EmptyDenseMap extends DenseMap
+trait NonEmptyDenseMap[KT &lt;: Dense, VT, L &lt;: DenseMap, R &lt;: DenseMap] extends DenseMap
+</code></pre><p>You can use the type constructors that are a part of the DenseMap trait or (more conveniently), use the aliases defined in the companion object. Supported operations are: 
+</p><h4 id="Add">Add<a href="#Add" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import typequux._; import Dense._; import DenseMap._
+import typequux._
+import typequux._
+import Dense._
+import DenseMap._
+
+scala&gt; type G = EmptyDenseMap#Add[_5, Int]#Add[_6, String]#Add[_2, List[Int]]#Add[_9, Option[Long]]#Add[_4, Unit]
+defined type alias G
+
+scala&gt; type H = EmptyDenseMap#Add[_2, Int]#Add[_4, List[Int]]#Add[_0, None.type]
+defined type alias H
+</code></pre><h4 id="Contains">Contains<a href="#Contains" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[G Contains _5 =:= True]
+res0: =:=[typequux.DenseMap.Contains[G,typequux.Dense._5],typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[H Contains _7 =:= False]
+res1: =:=[typequux.DenseMap.Contains[H,typequux.Dense._7],typequux.False] = &lt;function1&gt;
+
+scala&gt; implicitly[H Contains _0 =:= True]
+res2: =:=[typequux.DenseMap.Contains[H,typequux.Dense._0],typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Get">Get<a href="#Get" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; implicitly[G Get _2 =:= List[Int]]
+res3: =:=[typequux.DenseMap.Get[G,typequux.Dense._2],List[Int]] = &lt;function1&gt;
+
+scala&gt; implicitly[G Get _4 =:= Unit]
+res4: =:=[typequux.DenseMap.Get[G,typequux.Dense._4],Unit] = &lt;function1&gt;
+
+scala&gt; implicitly[H Get _0 =:= None.type]
+res5: =:=[typequux.DenseMap.Get[H,typequux.Dense._0],None.type] = &lt;function1&gt;
+</code></pre><h4 id="Remove">Remove<a href="#Remove" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; type GR = G Remove _6
+defined type alias GR
+
+scala&gt; implicitly[G Contains _6 =:= True]
+res6: =:=[typequux.DenseMap.Contains[G,typequux.Dense._6],typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[GR Contains _6 =:= False]
+res8: =:=[typequux.DenseMap.Contains[GR,typequux.Dense._6],typequux.False] = &lt;function1&gt;
+</code></pre><h4 id="Union">Union<a href="#Union" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; type J = G Union H
+defined type alias J
+
+scala&gt; implicitly[J Contains _9 =:= True]
+res9: =:=[typequux.DenseMap.Contains[J,typequux.Dense._9],typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[J Contains _0 =:= True]
+res10: =:=[typequux.DenseMap.Contains[J,typequux.Dense._0],typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Keyset">Keyset<a href="#Keyset" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; type GKS = G#Keyset
+defined type alias GKS
+
+scala&gt; type HKS = H#Keyset
+defined type alias HKS
+
+scala&gt; import DenseSet._
+import DenseSet._
+
+scala&gt; type GKST = EmptyDenseSet Include _5 Include _6 Include _2 Include _9 Include _4
+defined type alias GKST
+
+scala&gt; type HKST = EmptyDenseSet Include _2 Include _4 Include _0
+defined type alias HKST
+
+scala&gt; implicitly[GKS Eq GKST =:= True]
+res11: =:=[typequux.DenseSet.Eq[GKS,GKST],typequux.True] = &lt;function1&gt;
+
+scala&gt; implicitly[HKS Eq HKST =:= True]
+res12: =:=[typequux.DenseSet.Eq[HKS,HKST],typequux.True] = &lt;function1&gt;
+</code></pre><h4 id="Size.">Size.<a href="#Size." class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>The type of the dense number is not terribly informative. <code>/**/</code> is a type signature omitted for clarity.
+</p><pre><code class="prettyprint lang-scala">scala&gt; implicitly[G#Size =:= _5]
+res13: /**/ = &lt;function1&gt;
+
+scala&gt; implicitly[H#Size =:= _3]
+res14:/**/ = &lt;function1&gt;
+
+scala&gt; implicitly[J#Size =:= _6]
+res17: /**/ = &lt;function1&gt;
+</code></pre><p>Since the specific type signature of a dense map depends on the path by which it was constructed, <code>=:=</code> should not be used to check whether two dense maps are equivalent. For the same reason, if you take the union of two dense sets that have a different value associated with the same key, the value associated with a key in the resultant map will depend on the history of the two maps. Therefore, it is not possible to establish the sort of general laws regarding the union of two dense maps as it was for dense sets. 
+</p><p>In the library, DenseMaps are used as backing datastructures for StringIndexedCollections and Records.
+</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.DenseMap">API</a>
+</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/DenseMap.scala">Source</a>
+</li><li><a href="https://harshad-deo.github.io/typequux/Type+Sets.html">Type Sets</a>
+</li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a>
+</li><li><a href="https://harshad-deo.github.io/typequux/Records.html">Records</a></li></ul><div class="bottom nav span-16">
+                        <em>Next Page</em>
+                        <span class="arrow">❧</span>
+                        <a href="Natural+Transformations.html"> Natural Transformations </a>                        
+                        
+                      </div><div class="tocwrapper show">
+      <a class="tochead nav" style="display: none" href="#toc">❦</a>
+      <a name="toc"></a>
+      <h4 class="toctitle">Contents</h4>
+      <div class="tocbody">
+      <div><a href="TypeQuux.html">TypeQuux</a></div><ol class="toc"> <li><div><a href="Two+Quick+Examples.html">Two Quick Examples</a></div></li><li><div><a href="Pre+Requisites.html">Pre Requisites</a></div></li><li><div><a href="Usage.html">Usage</a></div><ol class="toc"> <li><div><a href="Church+Encoding+of+Booleans.html">Church Encoding of Booleans</a></div></li><li><div><a href="Peano+Numbers.html">Peano Numbers</a></div></li><li><div><a href="Dense+Numbers.html">Dense Numbers</a></div></li><li><div><a href="Type+Sets.html">Type Sets</a></div></li><li><div class="current">Type Maps</div></li><li><div><a href="Natural+Transformations.html">Natural Transformations</a></div></li><li><div><a href="Type-Unions+and+Exclusions.html">Type-Unions and Exclusions</a></div></li><li><div><a href="Singleton+Types+for+Literals.html">Singleton Types for Literals</a></div></li><li><div><a href="Covariant+Heterogenous+Lists.html">Covariant Heterogenous Lists</a></div></li><li><div><a href="Tuple+Ops.html">Tuple Ops</a></div></li><li><div><a href="Sized+Vectors.html">Sized Vectors</a></div></li><li><div><a href="String+Indexed+Collections.html">String Indexed Collections</a></div></li><li><div><a href="Records.html">Records</a></div></li><li><div><a href="Understanding+Constraints.html">Understanding Constraints</a></div></li> </ol></li><li class="generated"><div><a href="Contents+in+Depth.html">Contents in Depth</a></div></li><li class="generated"><div><a href="Combined+Pages.html">Combined Pages</a></div></li> </ol></div></div>
+          </div>
+        </div>
+        <div class="header">
+          <div class="container">
+        <div class="span-16 prepend-1 append-1">
+          <div class="span-16 top nav">
+            <div class="span-16 title">
+              <span>TypeQuux</span> — Type Maps
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="footer">
+          
+        </div>
+        <a href="http://github.com/harshad-deo/typequux" class="fork nav"><img src="img/fork.png" alt="Fork me on GitHub"/></a>
+        
+      </body>
+    </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html>
+      <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <title>TypeQuux — Type-Unions and Exclusions</title>
+        
+        <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/blueprint/grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/> 
+        <!--[if lt IE 8]>
+          <link rel="stylesheet" href={ relativeBase + "css/blueprint/ie.css" } type="text/css" media="screen, projection"/>
+        <![endif]-->
+        <link rel="stylesheet" href="css/pamflet.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamflet-print.css" type="text/css" media="print"/>
+        <link rel="stylesheet" href="css/pamflet-grid.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <link rel="stylesheet" href="css/color_scheme-redmond.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-github.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/color_scheme-monokai.css" type="text/css" media="screen, projection"/>
+        <link rel="stylesheet" href="css/pamfletheight_2em_2em.css" type="text/css" media="screen and (min-device-width: 800px), projection"/>
+        <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.collapse.js"></script>
+        <script type="text/javascript" src="js/pamflet.js"></script>
+        <script type="text/javascript">
+          Pamflet.page.language = 'en';
+        </script>
+        <script type="text/javascript" src="js/prettify/prettify.js"></script><script type="text/javascript" src="js/prettify/lang-scala.js"></script><link type="text/css" rel="stylesheet" href="css/prettify.css"/><script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+        
+        
+      </head>
+      <body class="color_scheme-redmond">
+        <a class="page prev nav" href="Natural+Transformations.html">
+            <span class="space">&nbsp;</span>
+            <span class="flip arrow">❧</span>
+          </a><a class="page next nav" href="Singleton+Types+for+Literals.html">
+            <span class="space">&nbsp;</span>
+            <span class="arrow">❧</span>
+          </a>
+        <div class="container contentswrapper">
+          <div class="span-16 prepend-1 append-1 contents">
+            <h2 id="Type-Unions+and+Exclusions">Type-Unions and Exclusions<a href="#Type-Unions+and+Exclusions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type Unions, Type Exclusions, Type Hierarchy Unions and Type Hierarchy Exclusions can be used to get around 
+compramises that arise when building subtype hierarchies. While their usage can break the Liskov Substitution Principle, 
+this is often pragmatically preferrable to the code breaking at runtime. 
+</p><h4 id="Type+Unions">Type Unions<a href="#Type+Unions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Type unions can be used to guarentee that a given type is a member of the supplied HList of types. 
+</p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
+import typequux._
+
+scala&gt; import typequux._ // package object
+import typequux._
+
+scala&gt; implicitly[Contained[Int, Int :+: HNil]]
+res0: typequux.Contained[Int,typequux.typequux.:+:[Int,typequux.typequux.HNil]] = typequux.Contained@17a63316
+
+scala&gt; implicitly[Contained[Long, Int :+: String :+: Long :+: HNil]]
+res1: typequux.Contained[Long,typequux.typequux.:+:[Int,typequux.typequux.:+:[String,typequux.typequux.:+:[Long,typequux.typequux.HNil]]]] = typequux.Contained@17f0c710
+
+scala&gt; implicitly[Contained[Option[_], List[_] :+: Option[_] :+: Set[_] :+: HNil]]
+res2: typequux.Contained[Option[_],typequux.HList.HCons[List[_],typequux.HList.HCons[Option[_],typequux.HList.HCons[scala.collection.immutable.Set[_],typequux.typequux.HNil]]]] = typequux.Contained@1edf0567
+
+scala&gt; implicitly[Contained[Double, Int :+: String :+: Long :+: HNil]] // does not compile
+
+scala&gt; :paste
+// Entering paste mode (ctrl-D to finish)
+
+  def containedFunc[T](x: T)(implicit ev: Contained[T, Int :+: String :+: HNil]): Unit = x match{
+    case _: Int =&gt; println(&quot;got int&quot;)
+    case _: String =&gt; println(&quot;got string&quot;)
+  }
+
+
+// Exiting paste mode, now interpreting.
+
+containedFunc: [T](x: T)(implicit ev: typequux.Contained[T,typequux.typequux.:+:[Int,typequux.typequux.:+:[String,typequux.typequux.HNil]]])Unit
+
+scala&gt; containedFunc(42)
+got int
+
+scala&gt; containedFunc(&quot;oogachaka&quot;)
+got string
+
+scala&gt; containedFunc(12.12) // does not compile
+</code></pre><h4 id="Type+Exclusions">Type Exclusions<a href="#Type+Exclusions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Type exclusions can be used to guarentee that a given type is not a member of the supplied HList of types.
+</p><pre><code class="prettyprint lang-scala">scala&gt; implicitly[NotContained[Int, HNil]]
+res7: typequux.NotContained[Int,typequux.typequux.HNil] = typequux.NotContained@fda0097
+
+scala&gt; implicitly[NotContained[Int, String :+: Long :+: HNil]]
+res8: typequux.NotContained[Int,typequux.typequux.:+:[String,typequux.typequux.:+:[Long,typequux.typequux.HNil]]] = typequux.NotContained@26c36dfd
+
+scala&gt; implicitly[NotContained[List[_], Set[_] :+: Option[_] :+: HNil]]
+res9: typequux.NotContained[List[_],typequux.HList.HCons[scala.collection.immutable.Set[_],typequux.HList.HCons[Option[_],typequux.typequux.HNil]]] = typequux.NotContained@c3f3d1a
+
+scala&gt; implicitly[NotContained[String, String :+: Long :+: HNil]] // does not compile
+</code></pre><h4 id="Type+Hierarchy+Unions">Type Hierarchy Unions<a href="#Type+Hierarchy+Unions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Type Hierarchy Unions can be used to guarentee that a given type is a subtype of one of the supplied HList types.
+</p><pre><code class="prettyprint lang-scala">scala&gt; implicitly[SubType[Int, AnyVal :+: AnyRef :+: HNil]]
+res11: typequux.SubType[Int,typequux.typequux.:+:[AnyVal,typequux.typequux.:+:[AnyRef,typequux.typequux.HNil]]] = typequux.SubType@4da701c0
+
+scala&gt; implicitly[SubType[List[Int], List[AnyVal] :+: Set[AnyRef] :+: HNil]] // since lists are covariant
+res12: typequux.SubType[List[Int],typequux.typequux.:+:[List[AnyVal],typequux.typequux.:+:[Set[AnyRef],typequux.typequux.HNil]]] = typequux.SubType@6bfda438
+
+scala&gt; implicitly[SubType[List[Int], Traversable[_] :+: Option[_] :+: HNil]]
+res13: typequux.SubType[List[Int],typequux.HList.HCons[Traversable[_],typequux.HList.HCons[Option[_],typequux.typequux.HNil]]] = typequux.SubType@270e9e6
+
+scala&gt; implicitly[SubType[List[_], Option[_] :+: Array[_] :+: HNil]] // does not compile
+</code></pre><h4 id="Type+Hierarchy+Exclusions">Type Hierarchy Exclusions<a href="#Type+Hierarchy+Exclusions" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><p>Type Hierarchy Exclusions can be used to guarentee that a given type is not a subtype of the supplied HList of types.
+</p><pre><code class="prettyprint lang-scala">scala&gt; implicitly[NotSubType[Int, HNil]]
+res15: typequux.NotSubType[Int,typequux.typequux.HNil] = typequux.NotSubType@7bc345e9
+
+scala&gt;   implicitly[NotSubType[Traversable[_], List[_] :+: Set[_] :+: HNil]]
+res16: typequux.NotSubType[Traversable[_],typequux.HList.HCons[List[_],typequux.HList.HCons[scala.collection.immutable.Set[_],typequux.typequux.HNil]]] = typequux.NotSubType@5f65f7a0
+
+scala&gt; implicitly[NotSubType[Array[Int], Array[Any] :+: List[_] :+: HNil]] // since arrays are invariant
+res17: typequux.NotSubType[Array[Int],typequux.HList.HCons[Array[Any],typequux.HList.HCons[List[_],typequux.typequux.HNil]]] = typequux.NotSubType@13ebb85
+
+scala&gt; implicitly[NotSubType[List[_], Traversable[_] :+: Option[_] :+: HNil]] // does not compile
+</code></pre><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Contained.scala">Source</a>
+</li><li><a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">HList</a></li></ul><div class="bottom nav span-16">
+                        <em>Next Page</em>
+                        <span class="arrow">❧</span>
+                        <a href="Singleton+Types+for+Literals.html"> Singleton Types for Literals </a>                        
+                        
+                      </div><div class="tocwrapper show">
+      <a class="tochead nav" style="display: none" href="#toc">❦</a>
+      <a name="toc"></a>
+      <h4 class="toctitle">Contents</h4>
+      <div class="tocbody">
+      <div><a href="TypeQuux.html">TypeQuux</a></div><ol class="toc"> <li><div><a href="Two+Quick+Examples.html">Two Quick Examples</a></div></li><li><div><a href="Pre+Requisites.html">Pre Requisites</a></div></li><li><div><a href="Usage.html">Usage</a></div><ol class="toc"> <li><div><a href="Church+Encoding+of+Booleans.html">Church Encoding of Booleans</a></div></li><li><div><a href="Peano+Numbers.html">Peano Numbers</a></div></li><li><div><a href="Dense+Numbers.html">Dense Numbers</a></div></li><li><div><a href="Type+Sets.html">Type Sets</a></div></li><li><div><a href="Type+Maps.html">Type Maps</a></div></li><li><div><a href="Natural+Transformations.html">Natural Transformations</a></div></li><li><div class="current">Type-Unions and Exclusions</div></li><li><div><a href="Singleton+Types+for+Literals.html">Singleton Types for Literals</a></div></li><li><div><a href="Covariant+Heterogenous+Lists.html">Covariant Heterogenous Lists</a></div></li><li><div><a href="Tuple+Ops.html">Tuple Ops</a></div></li><li><div><a href="Sized+Vectors.html">Sized Vectors</a></div></li><li><div><a href="String+Indexed+Collections.html">String Indexed Collections</a></div></li><li><div><a href="Records.html">Records</a></div></li><li><div><a href="Understanding+Constraints.html">Understanding Constraints</a></div></li> </ol></li><li class="generated"><div><a href="Contents+in+Depth.html">Contents in Depth</a></div></li><li class="generated"><div><a href="Combined+Pages.html">Combined Pages</a></div></li> </ol></div></div>
+          </div>
+        </div>
+        <div class="header">
+          <div class="container">
+        <div class="span-16 prepend-1 append-1">
+          <div class="span-16 top nav">
+            <div class="span-16 title">
+              <span>TypeQuux</span> — Type-Unions and Exclusions
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="footer">
+          
+        </div>
+        <a href="http://github.com/harshad-deo/typequux" class="fork nav"><img src="img/fork.png" alt="Fork me on GitHub"/></a>
+        
+      </body>
+    </html>
