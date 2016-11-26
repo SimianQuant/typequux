@@ -2004,9 +2004,7 @@ rc4: /**/
 
 scala&gt; rc4.toMap
 res17: Map[String,Int] = Map(i -&gt; 42)
-</code></pre><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Record">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Record.scala">Source</a>
-</li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a></li></ul><h2 id="Understanding+Constraints">Understanding Constraints<a href="#Understanding+Constraints" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Constraints are composable typeclasses that abstract over the specifics of primitives likes HLists and Records to encode an 
+</code></pre><h2 id="Understanding+Constraints">Understanding Constraints<a href="#Understanding+Constraints" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Constraints are composable typeclasses that abstract over the specifics of primitives likes HLists and Records to encode an 
 invariant associated with a problem. They are the central conceptual abstraction of operations on the primitives that ship
 with TypeQuux and play the major role in supporting the claim that the library is <em>hackable</em>.
 </p><p>As an example, consider the <code>TakeConstraint</code> (<a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/constraint/TakeConstraint.scala">source</a>):

@@ -2790,10 +2790,6 @@ scala> rc4.toMap
 res17: Map[String,Int] = Map(i -> 42)
 ```
 
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.Record)
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Record.scala)
-* [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
 Understanding Constraints
 -----------
 
