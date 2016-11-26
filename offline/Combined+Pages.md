@@ -2797,7 +2797,7 @@ Constraints are composable typeclasses that abstract over the specifics of primi
 invariant associated with a problem. They are the central conceptual abstraction of operations on the primitives that ship
 with TypeQuux and play the major role in supporting the claim that the library is *hackable*.
 
-As an example, consider the `TakeConstraint` ([source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/constraint/TakeConstraint.scala)):
+As an example, consider the `TakeConstraint`:
 
 ```scala
 trait TakeConstraint[N, HL, R] {

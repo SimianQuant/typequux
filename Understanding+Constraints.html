@@ -44,7 +44,7 @@
             <h2 id="Understanding+Constraints">Understanding Constraints<a href="#Understanding+Constraints" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Constraints are composable typeclasses that abstract over the specifics of primitives likes HLists and Records to encode an 
 invariant associated with a problem. They are the central conceptual abstraction of operations on the primitives that ship
 with TypeQuux and play the major role in supporting the claim that the library is <em>hackable</em>.
-</p><p>As an example, consider the <code>TakeConstraint</code> (<a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/constraint/TakeConstraint.scala">source</a>):
+</p><p>As an example, consider the <code>TakeConstraint</code>:
 </p><pre><code class="prettyprint lang-scala">trait TakeConstraint[N, HL, R] {
   def apply(hl: HL): R
 }
