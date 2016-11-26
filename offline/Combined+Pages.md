@@ -363,11 +363,6 @@ Church booleans can be shown to satisfy the following laws:
 
 19. De Morgan 2: `||[Not[A], Not[B]] =:= Not[A && B]`
 
-Refer to the [test cases](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/BoolSpec.scala) for the proofs. 
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.Bool)
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Bool.scala)
 Peano Numbers
 -------------
 
