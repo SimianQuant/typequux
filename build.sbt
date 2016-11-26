@@ -103,10 +103,12 @@ lazy val typequuxJVM =
   typequux.jvm
     .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
     //.aggregate(typequuxJS)
-    .settings(siteSubdirName in SiteScaladoc := "api")
+    .settings(
+      siteSubdirName in SiteScaladoc := "api"
+    )
 
 ghpages.settings
 
 git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
 
-//onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value
+onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value
