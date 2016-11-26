@@ -11,6 +11,10 @@ environment:
   JAVA_HOME: C:\Program Files\Java\jdk1.8.0
   COVERALLS_REPO_TOKEN: 9hEwTXoYLumfUa4DDm76fMp8cvJ86ywab
 
+branches:
+  except:
+    - native
+
 install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem

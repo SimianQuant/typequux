@@ -1,5 +1,9 @@
 language: scala
 
+branches:
+  except:
+    - native
+
 scala:
   - 2.11.8
   - 2.12.0
