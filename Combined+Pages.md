@@ -1836,8 +1836,6 @@ res109: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
 ```
 
 ### See also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.HList)
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/HList.scala)
 * [Records](https://harshad-deo.github.io/typequux/Records.html)
 * [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html)
 

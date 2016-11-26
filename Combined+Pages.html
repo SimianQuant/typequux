@@ -1338,9 +1338,7 @@ hlc4: /**/ = Some(foo) :+: Some(Set(1, 2, 3)) :+: None :+: HNil
 
 scala&gt; hlc4.toList
 res109: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
-</code></pre><h3 id="See+also">See also<a href="#See+also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.HList">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/HList.scala">Source</a>
-</li><li><a href="https://harshad-deo.github.io/typequux/Records.html">Records</a>
+</code></pre><h3 id="See+also">See also<a href="#See+also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/Records.html">Records</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Understanding+Constraints.html">Constraints</a>
 </li></ul><h2 id="Tuple+Ops">Tuple Ops<a href="#Tuple+Ops" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Tuples support the same operations as hlists. This is achieved by converting the tuple to an hlist, performing the corresponding operation on the hlist and converting back the result. Therefore the performance of an operation on a tuple will be strictly worse than that of the operation on the corresponding hlist. However, tuples <em>are</em> a part of the standard scala library, will be more interoperable with the rest of your codebase and code that uses tuples is, by virtue of familiarity, easier to parse. So unless profiling shows that an hlist-style operation is the bottleneck (which will almost never be the case), feel free to use the operations listed. 
 </p><p>As with hlists, all indexed operations (<code>apply</code>, <code>drop</code>, <code>take</code> etc) are 0-based and can be indexed from the left or the right. The type signatures for the tuples aren’t terribly informative in the examples presented below. For clarity, <code>/**/</code> represents an omitted type signature. 
