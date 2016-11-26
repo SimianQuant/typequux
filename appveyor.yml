@@ -2,6 +2,10 @@
 version: '{build}'
 os: Windows Server 2012
 
+branches:
+  except:
+    - native
+
 #  To make the extended ascii characters work on Windows
 #  we need to set string encoding for jvm to utf-8 on windows
 environment:
