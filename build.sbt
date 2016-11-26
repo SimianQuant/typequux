@@ -103,12 +103,10 @@ lazy val typequuxJVM =
   typequux.jvm
     .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
     .settings(
-      siteSubdirName in SiteScaladoc := "api"
+      siteSubdirName in SiteScaladoc := "api",
+      ghpages.settings,
+      git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
     )
-
-ghpages.settings
-
-git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
 
 
 
