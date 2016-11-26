@@ -775,11 +775,6 @@ Dense numbers can be shown to satisfy:
 
 18. Total Order
 
-Refer to the [test cases](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSpec.scala) for examples
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.Dense)
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Dense.scala)
 Type Sets
 ---------
 

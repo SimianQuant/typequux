@@ -566,9 +566,7 @@ res42: Int = 64
 </li><li>Exponent Zero: <code>^[A, _0] =:= _1</code>
 </li><li>Exponent One: <code>^[_1, A] =:= _1</code>
 </li><li>Total Order
-</li></ol><p>Refer to the <a href="https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSpec.scala">test cases</a> for examples
-</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.Dense">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Dense.scala">Source</a></li></ul><h2 id="Type+Sets">Type Sets<a href="#Type+Sets" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type sets are implemented as binary trees of dense numbers. 
+</li></ol><h2 id="Type+Sets">Type Sets<a href="#Type+Sets" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type sets are implemented as binary trees of dense numbers. 
 </p><pre><code class="prettyprint lang-scala">sealed trait DenseSet 
 trait EmptyDenseSet extends DenseSet
 trait NonEmptyDenseSet[V &lt;: Dense, L &lt;: DenseSet, R &lt;: DenseSet] extends DenseSet
