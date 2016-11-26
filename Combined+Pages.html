@@ -747,9 +747,7 @@ scala&gt; implicitly[J#Size =:= _6]
 res17: /**/ = &lt;function1&gt;
 </code></pre><p>Since the specific type signature of a dense map depends on the path by which it was constructed, <code>=:=</code> should not be used to check whether two dense maps are equivalent. For the same reason, if you take the union of two dense sets that have a different value associated with the same key, the value associated with a key in the resultant map will depend on the history of the two maps. Therefore, it is not possible to establish the sort of general laws regarding the union of two dense maps as it was for dense sets. 
 </p><p>In the library, DenseMaps are used as backing datastructures for StringIndexedCollections and Records.
-</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.DenseMap">API</a>
-</li><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/DenseMap.scala">Source</a>
-</li><li><a href="https://harshad-deo.github.io/typequux/Type+Sets.html">Type Sets</a>
+</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/Type+Sets.html">Type Sets</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Records.html">Records</a></li></ul><h2 id="Natural+Transformations">Natural Transformations<a href="#Natural+Transformations" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Ordinary scala functions are monomorphic, which is to say that they transform values of one type to those of another type. 
 The requirements of several problems are however to transform contexts, form example, from a <code>List</code> to an <code>Option</code>, or from 
