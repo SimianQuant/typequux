@@ -62,7 +62,13 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     previewLaunchBrowser := false,
     publishMavenStyle := true,
     publishArtifact in Test := false,
-    publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
+    publishTo := {
+      val nexus = "https://oss.sonatype.org/"
+      if (isSnapshot.value)
+        Some("snapshots" at nexus + "content/repositories/snapshots")
+      else
+        Some("releases" at nexus + "service/local/staging/deploy/maven2")
+    },
     pomIncludeRepository := { _ =>
       false
     },
