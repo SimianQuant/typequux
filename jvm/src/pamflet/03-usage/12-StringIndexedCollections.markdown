@@ -87,8 +87,3 @@ res11: Map[String,Int] = Map(goku -> 32000, piccolo -> 3500, krillin -> 1770, ti
 scala> pl4.toMap
 res12: Map[String,Int] = Map(goku -> 150000000, piccolo -> 3500, krillin -> 1770)
 ```
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.StringIndexedCollection)
-* [Source](https://github.com/harshad-deo/typequux/tree/master/src/main/scala/typequux/StringIndexedCollection.scala)
-* [Records](https://harshad-deo.github.io/typequux/Records.html)

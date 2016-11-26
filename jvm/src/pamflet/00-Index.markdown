@@ -12,7 +12,7 @@ collected wisdom on type-hackery in scala.
 You can now:
 
 * Head over to the [github page](https://github.com/harshad-deo/typequux) which has instructions on how to set-up a project
-* Peruse through the [API](https://harshad-deo.github.io/typequux/api/#typequux.package)
+* Peruse through the [API](https://harshad-deo.github.io/typequux/api/typequux/index.html)
 * Read the examples below
 
 Happy Hacking!

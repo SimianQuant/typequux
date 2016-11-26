@@ -80,5 +80,3 @@ scala> Vector(List(1, 2,3), List(100, 200, 100)) map list2Set
 res10: scala.collection.immutable.Vector[Set[Int]] = Vector(Set(1, 2, 3), Set(100, 200))
 ```
 
-### See Also
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Transform.scala)

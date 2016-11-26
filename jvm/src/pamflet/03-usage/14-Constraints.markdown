@@ -5,7 +5,7 @@ Constraints are composable typeclasses that abstract over the specifics of primi
 invariant associated with a problem. They are the central conceptual abstraction of operations on the primitives that ship
 with TypeQuux and play the major role in supporting the claim that the library is *hackable*.
 
-As an example, consider the `TakeConstraint` ([source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/constraint/TakeConstraint.scala)):
+As an example, consider the `TakeConstraint`:
 
 ```scala
 trait TakeConstraint[N, HL, R] {
@@ -140,7 +140,4 @@ scala> constr4(5, (Some("foo"), None)) // does not compile
 scala> constr4(2, 'c' :+: Some("matt le blanc") :+: Some(List("jon stewart", "jay leno")) :+: None :+: HNil) // does not compile
 ```
 
-There are 40 constraints that ship with the current version of the library. You can check them out in the API link below. 
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.constraint.package)
+There are 40 constraints that ship with the current version of the library. You can check them out in the API.

@@ -99,7 +99,3 @@ res17: typequux.NotSubType[Array[Int],typequux.HList.HCons[Array[Any],typequux.H
 
 scala> implicitly[NotSubType[List[_], Traversable[_] :+: Option[_] :+: HNil]] // does not compile
 ```
-
-### See Also
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Contained.scala)
-* [HList](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html)

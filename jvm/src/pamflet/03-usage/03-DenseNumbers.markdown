@@ -196,6 +196,15 @@ res38: Long = 16
 
 scala> Dense.toLong[_16 * _4]
 res39: Long = 64
+
+scala> Dense.toInt[_0]
+res40: Int = 0
+
+scala> Dense.toInt[_16]
+res41: Int = 16
+
+scala> Dense.toInt[_16 * _4]
+res42: Int = 64
 ```
 
 Dense numbers can be shown to satisfy: 
@@ -235,9 +244,3 @@ Dense numbers can be shown to satisfy:
 17. Exponent One: `^[_1, A] =:= _1`
 
 18. Total Order
-
-Refer to the [test cases](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSpec.scala) for examples
-
-### See Also
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.Dense)
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/Dense.scala)
