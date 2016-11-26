@@ -665,10 +665,7 @@ res26: =:=[typequux.DenseSet.Eq[Eqv1,Eqv2],typequux.True] = &lt;function1&gt;
 </p><ol><li>Union Identity: <code>True =:= Eq[X, X Union X]</code>
 </li><li>Union Commutativity: <code>True =:= Eq[X Union Y, Y Union X]</code>
 </li><li>Union Associativity: <code>True =:= Eq[Union[X, Union[Y, Z]], Union[Union[X, Y], Z]]</code>
-</li></ol><p>Refer to the <a href="https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSetSpec.scala">test cases</a> for examples. Dense sets can be combined with singleton types for literals to do some interesting things. See the <a href="https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSetLiteralSpec.scala">test cases</a> for the same. 
-</p><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/DenseSet.scala">Source</a>
-</li><li><a href="https://harshad-deo.github.io/typequux/api/#typequux.DenseSet">API</a>
-</li><li><a href="https://harshad-deo.github.io/typequux/Church+Encoding+of+Booleans.html">Church Booleans</a>
+</li></ol><h3 id="See+Also">See Also<a href="#See+Also" class="header-link"><span class="header-link-content">&nbsp;</span></a></h3><ul><li><a href="https://harshad-deo.github.io/typequux/Church+Encoding+of+Booleans.html">Church Booleans</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Dense+Numbers.html">Dense Numbers</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Type+Maps.html">Type Maps</a>
 </li><li><a href="https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html">Singleton Types for Literals</a></li></ul><h2 id="Type+Maps">Type Maps<a href="#Type+Maps" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><p>Type maps are implemented as binary trees of key-value pairs in which the keys are dense numbers. 

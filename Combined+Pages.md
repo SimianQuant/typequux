@@ -919,11 +919,7 @@ Dense sets can be shown to satisfy:
 2. Union Commutativity: `True =:= Eq[X Union Y, Y Union X]`
 3. Union Associativity: `True =:= Eq[Union[X, Union[Y, Z]], Union[Union[X, Y], Z]]`
 
-Refer to the [test cases](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSetSpec.scala) for examples. Dense sets can be combined with singleton types for literals to do some interesting things. See the [test cases](https://github.com/harshad-deo/typequux/blob/master/src/test/scala/typequux/DenseSetLiteralSpec.scala) for the same. 
-
 ### See Also
-* [Source](https://github.com/harshad-deo/typequux/blob/master/src/main/scala/typequux/DenseSet.scala)
-* [API](https://harshad-deo.github.io/typequux/api/#typequux.DenseSet)
 * [Church Booleans](https://harshad-deo.github.io/typequux/Church+Encoding+of+Booleans.html)
 * [Dense Numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html)
 * [Type Maps](https://harshad-deo.github.io/typequux/Type+Maps.html)
