@@ -1,14 +1,14 @@
-val typequux = crossProject
+import sbtcross.{crossProject, CrossType}
+
+val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("."))
   .settings(
     name := "typequux",
     organization := "com.simianquant",
     version := "0.3.2-SNAPSHOT",
-    scalaVersion := "2.12.0",
-    crossScalaVersions := Seq("2.11.8", "2.12.0"),
+    scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
-      "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-      "org.scalatest" %%% "scalatest" % "3.0.0" % "test"
+      "org.scala-lang" % "scala-reflect" % scalaVersion.value
     ),
     incOptions := incOptions.value.withLogRecompileOnMacro(false),
     wartremoverErrors ++= {
@@ -43,12 +43,9 @@ val typequux = crossProject
       "-Ywarn-nullary-override",
       "-Ywarn-nullary-unit",
       "-Xfuture",
-      "-P:linter:disable:UnusedParameter"
+      "-P:linter:disable:UnusedParameter",
+      "-target:jvm-1.6"
     ),
-    scalacOptions in (Compile) ++= Seq(scalaVersion.value match {
-      case x if x.startsWith("2.12.") => "-target:jvm-1.8"
-      case x => "-target:jvm-1.6"
-    }),
     scalacOptions in (Compile, doc) ++= Seq(
       "-author",
       "-groups",
@@ -107,7 +104,6 @@ lazy val typequuxJVM =
       ghpages.settings,
       git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
     )
+lazy val typequuxNative = typequux.native
 
-
-
-onLoad in Global := (Command.process("project typequuxJS", _: State)) compose (onLoad in Global).value
+onLoad in Global := (Command.process("project typequuxNative", _: State)) compose (onLoad in Global).value
