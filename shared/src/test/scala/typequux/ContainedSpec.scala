@@ -124,9 +124,9 @@ class ContainedSpec extends BaseSpec {
       """implicitly[AllContained[List[_] :+: Array[_] :+: Int :+: HNil, Int :+: Array[_] :+: Boolean :+: Int :+: String :+: List[_] :+: HNil]]"""
     }
 
-    assertTypeError("""AllContained[Int :+: HNil, HNil]""")
-    assertTypeError("""AllContained[Int :+: HNil, String :+: HNil]""")
-    assertTypeError("""AllContained[Int :+: String :+: HNil, Int :+: HNil]""")
+    assertTypeError("""implicitly[AllContained[Int :+: HNil, HNil]]""")
+    assertTypeError("""implicitly[AllContained[Int :+: HNil, String :+: HNil]]""")
+    assertTypeError("""implicitly[AllContained[Int :+: String :+: HNil, Int :+: HNil]]""")
 
   }
 

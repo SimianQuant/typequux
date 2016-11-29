@@ -224,6 +224,6 @@ object AllContained {
                                                           ev1: AllContained[TL, HL]): AllContained[H :+: TL, HL] =
     new AllContained[H :+: TL, HL]
 
-  implicit def allContainedDegenerate[H1, H2](implicit ev: H1 =:= H1): AllContained[H1, H2] = new AllContained[H1, H2]
+ implicit def allContainedDegenerate[H1, H2](implicit ev: H1 =:= H2): AllContained[H1, H2] = new AllContained[H1, H2]
 
 }

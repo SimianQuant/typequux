@@ -29,7 +29,7 @@ val typequux = crossProject
       "-deprecation",
       "-unchecked",
       "-explaintypes",
-      "-Ywarn-unused-import",
+      //"-Ywarn-unused-import",
       "-encoding",
       "UTF-8",
       "-feature",
@@ -60,7 +60,8 @@ val typequux = crossProject
       |   def apply[T](x: T): Witness[T] = new Witness(x)
       | }
       | import typequux._
-      | import typequux._""".stripMargin,
+      | import typequux._
+      | """.stripMargin,
     addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16"),
     previewLaunchBrowser := false,
     publishMavenStyle := true,
