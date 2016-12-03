@@ -496,4 +496,22 @@ class DenseSetSpec extends BaseSpec {
     assertCompiles { """implicitly[UnionAssociativity[U3, U4, U5]]""" }
   }
 
+  it should "pass toSet tests" in {
+    assert(toSet[EmptyDenseSet] === Set.empty[Long])
+    assert(toSet[EmptyDenseSet#Include[Dense._0]] === Set(0))
+    assert(toSet[EmptyDenseSet#Include[Dense._2]] === Set(2))
+    assert(toSet[EmptyDenseSet#Include[Dense._7]] === Set(7))
+    assert(toSet[EmptyDenseSet#Include[Dense._11]] === Set(11))
+    assert(toSet[EmptyDenseSet#Include[Dense._3]] === Set(3))
+    assert(toSet[EmptyDenseSet#Include[_0]#Include[_3]#Include[_11]] === Set(0, 3, 11))
+    assert(toSet[EmptyDenseSet#Include[_11]#Include[_0]#Include[_3]] === Set(0, 3, 11))
+    assert(toSet[EmptyDenseSet#Include[_3]#Include[_11]#Include[_0]] === Set(0, 3, 11))
+    assert(
+      toSet[EmptyDenseSet#Include[_0]#Include[_1]#Include[_2]#Include[_3]#Include[_4]#Include[_5]#Include[_6]#Include[
+        _7]] === Set(0, 1, 2, 3, 4, 5, 6, 7))
+    assert(toSet[EmptyDenseSet#Include[_0]#Include[_1]#Include[_0]#Include[_2]] === Set(0, 1, 2))
+    assert(toSet[EmptyDenseSet#Include[_0]#Include[_1]#Include[_0]#Include[_2]#Include[_2]] === Set(0, 1, 2))
+    assert(toSet[EmptyDenseSet#Include[_0]#Include[_1]#Include[_0]#Include[_2]#Include[_0]] === Set(0, 1, 2))
+  }
+
 }
