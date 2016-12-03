@@ -3,7 +3,7 @@ val typequux = crossProject
   .settings(
     name := "typequux",
     organization := "com.simianquant",
-    version := "0.3.2",
+    version := "0.3.3-SNAPSHOT",
     scalaVersion := "2.12.0",
     crossScalaVersions := Seq("2.11.8", "2.12.0"),
     libraryDependencies ++= Seq(
@@ -55,10 +55,11 @@ val typequux = crossProject
       "-implicits"
     ),
     testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD"),
-    initialCommands := """| class Witness[T](val x: T)
-      | object Witness{
-      |   def apply[T](x: T): Witness[T] = new Witness(x)
+    initialCommands := """| class Witness1[T](val x: T)
+      | object Witness1{
+      |   def apply[T](x: T): Witness1[T] = new Witness1(x)
       | }
+      | class Witness2[T]
       | import typequux._
       | import typequux._
       | """.stripMargin,
@@ -108,7 +109,5 @@ lazy val typequuxJVM =
       ghpages.settings,
       git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
     )
-
-
 
 onLoad in Global := (Command.process("project typequuxJS", _: State)) compose (onLoad in Global).value

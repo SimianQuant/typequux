@@ -16,8 +16,11 @@
 package typequux
 
 import Bool._
+import collection.immutable.BitSet
 import Dense._
 import language.higherKinds
+import language.experimental.macros
+import reflect.macros.whitebox.Context
 import typequux._
 
 /** Typelevel set of [[Dense]] numbers, implemented as a binary tree
@@ -147,4 +150,102 @@ object DenseSet {
     * @since 0.1
     */
   type Eq[A <: DenseSet, B <: DenseSet] = &&[A#Size === B#Size, Union[A, B]#Size === B#Size]
+
+  /** Builds a value level [[scala.collection.immutable.Set]] representation of a dense set type
+  *
+  * @tparam DS Type of the dense set for which the representation is being constructed
+  *
+  * @group Implementation
+  * @author Harshad Deo
+  * @since 0.3.3
+  */
+  class DenseSetRep[DS] private (val rep: Set[Long])(implicit ev: DS <:< DenseSet)
+
+  /** Contains implicit definitions to build a [[DenseSetRep]]
+  *
+  * @group Implementation
+  * @author Harshad Deo
+  * @since 0.3.3
+  */
+  object DenseSetRep {
+
+    /** Representation for [[EmptyDenseSet]]. Is the base case to build a [[DenseSetRep]]
+    *
+    * @author Harshad Deo
+    * @since 0.3.3
+    */
+    implicit object EmptyToRep extends DenseSetRep[EmptyDenseSet](Set.empty)
+
+    /** Builds a representation for [[NonEmptyDenseSet]]. Is the induction case to build a [[DenseSetRep]]
+    *
+    * @author Harshad Deo
+    * @since 0.3.3
+    */
+    implicit def nomEmptyToRep[V <: Dense, L <: DenseSet, R <: DenseSet](
+        implicit ev0: Dense.DenseRep[V],
+        ev1: DenseSetRep[L],
+        ev2: DenseSetRep[R]): DenseSetRep[NonEmptyDenseSet[V, L, R]] =
+      new DenseSetRep[NonEmptyDenseSet[V, L, R]](ev1.rep ++ ev2.rep + ev0.v)
+  }
+
+  /** Method to convert a [[DenseSet]] type to a value-level set
+  *
+  * @group Operations
+  * @author Harshad Deo
+  * @since 0.3.3
+  */
+  def toSet[DS <: DenseSet](implicit ev: DenseSetRep[DS]): Set[Long] = ev.rep
+
+}
+
+/** Marker trait for typelevel difference of [[DenseSet]]
+  *
+  * @tparam M Minuend
+  * @tparam S Subtrahend
+  * @tparam D Difference
+  *
+  * @author Harshad Deo
+  * @since 0.3.3
+  */
+trait DenseSetDiff[M, S, D]
+
+/** Contains implicit definitions to construct [[DenseSetDiff]]
+*
+* @author Harshad Deo
+* @since 0.3.3
+*/
+object DenseSetDiff {
+
+  /** Difference when the subtrahend is empty. Represents the base case for [[DenseSetDiff]]
+  *
+  * @tparam M Minuend
+  *
+  * @author Harshad Deo
+  * @since 0.3.3
+  */
+  implicit def denseSetDiffBase[M <: DenseSet]: DenseSetDiff[M, EmptyDenseSet, M] =
+    new DenseSetDiff[M, EmptyDenseSet, M] {}
+
+  /** Difference when the subtrahend is non-empty. Represents the induction case for [[DenseSetDiff]]
+  *
+  * @tparam M Minuend
+  * @tparam L Left-pivot of the subtrahend
+  * @tparam R Right-pivot of the subtrahend
+  * @tparam V Pivot value of the subtrahend
+  * @tparam DIFF1 Difference between the minuend and the left pivot
+  * @tparam DIFF2 Difference between the DIFF1 and the right
+  *
+  * @author Harshad Deo
+  * @since 0.3.3
+  */
+  implicit def denseSetDiffInduction[M <: DenseSet,
+                                     L <: DenseSet,
+                                     R <: DenseSet,
+                                     V <: Dense,
+                                     DIFF1 <: DenseSet,
+                                     DIFF2 <: DenseSet](
+      implicit ev0: DenseSetDiff[M, L, DIFF1],
+      ev1: DenseSetDiff[DIFF1, R, DIFF2]): DenseSetDiff[M, DenseSet.NonEmptyDenseSet[V, L, R], DIFF2#Remove[V]] =
+    new DenseSetDiff[M, DenseSet.NonEmptyDenseSet[V, L, R], DIFF2#Remove[V]] {}
+
 }
