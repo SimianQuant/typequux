@@ -516,7 +516,8 @@ class DenseSetSpec extends BaseSpec {
 
   it should "pass subtraction tests" in {
     class W[T]
-    def diffRep[X1, X2, X3](w1: W[X1], w2: W[X2])(implicit ev0: DenseSetDiff[X1, X2, X3], ev1: DenseSetRep[X3]) = ev1.rep
+    def diffRep[X1, X2, X3](w1: W[X1], w2: W[X2])(implicit ev0: DenseSetDiff[X1, X2, X3], ev1: DenseSetRep[X3]) =
+      ev1.rep
 
     assert(diffRep(new W[EmptyDenseSet], new W[EmptyDenseSet]) === Set.empty)
     assert(diffRep(new W[EmptyDenseSet], new W[EmptyDenseSet#Include[Dense._1]]) === Set.empty)
@@ -525,70 +526,187 @@ class DenseSetSpec extends BaseSpec {
     assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet]) === Set(1, 2))
     assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._0]], new W[EmptyDenseSet]) === Set(1, 0))
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._1]#Include[Dense._3]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._2]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
-   
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet]) === Set(1, 2, 3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._4]]) === Set(1, 2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._4]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]]) === Set(1, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._4]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]]) === Set(4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._4]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._4]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]]) === Set(1))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]]) === Set.empty)
+
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet]) === Set(1, 2, 3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._4]]) === Set(1, 2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._4]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]]) === Set(1, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._4]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]]) === Set(4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._4]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._4]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set(1))
+    assert(
+      diffRep(
+        new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]],
+        new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set.empty)
 
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._4]#Include[Dense._3]], new W[EmptyDenseSet]) === Set(1, 2, 3, 4))
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._4]#Include[Dense._3]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3, 4))
@@ -709,22 +827,55 @@ class DenseSetSpec extends BaseSpec {
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._4]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set(1))
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._1]#Include[Dense._4]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set.empty)
 
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet]) === Set(1, 2, 3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._4]]) === Set(1, 2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._4]]) === Set(2, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]]) === Set(1, 4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._4]]) === Set(1, 3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]]) === Set(1, 2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]]) === Set(4))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._4]]) === Set(3))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._4]]) === Set(2))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set(1))
-    assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set.empty)
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet]) === Set(1, 2, 3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]]) === Set(1, 3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._3]]) === Set(1, 2, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._4]]) === Set(1, 2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]]) === Set(3, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]]) === Set(2, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._4]]) === Set(2, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]]) === Set(1, 4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._4]]) === Set(1, 3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]]) === Set(1, 2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]]) === Set(4))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._4]]) === Set(3))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._4]]) === Set(2))
+    assert(
+      diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+              new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set(1))
+    assert(
+      diffRep(
+        new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._1]#Include[Dense._4]],
+        new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set.empty)
 
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._4]#Include[Dense._1]], new W[EmptyDenseSet]) === Set(1, 2, 3, 4))
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._2]#Include[Dense._4]#Include[Dense._1]], new W[EmptyDenseSet#Include[Dense._1]]) === Set(2, 3, 4))
@@ -776,7 +927,6 @@ class DenseSetSpec extends BaseSpec {
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._3]#Include[Dense._4]]) === Set(2))
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set(1))
     // assert(diffRep(new W[EmptyDenseSet#Include[Dense._3]#Include[Dense._4]#Include[Dense._1]#Include[Dense._2]], new W[EmptyDenseSet#Include[Dense._1]#Include[Dense._2]#Include[Dense._3]#Include[Dense._4]]) === Set.empty)
-
 
   }
 
