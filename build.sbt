@@ -120,7 +120,7 @@ lazy val typequuxJVM =
 
 lazy val typequuxNative = typequux.native
 
-lazy val typequuxJS = typequux.js
+lazy val typequuxJS = typequux.js.settings(coverageExcludedPackages := ".*")
 
 lazy val testSettings = commonShared ++ Seq(
     name := "typequuxTests",
@@ -141,8 +141,7 @@ lazy val typequuxTests = crossProject(JSPlatform, JVMPlatform)
     fork := true
   )
   .jsSettings(
-    scalaJSStage in Test := FullOptStage,
-    coverageExcludedPackages := ".*"
+    scalaJSStage in Test := FullOptStage
   )
 
 lazy val typequuxTestsJVM = typequuxTests.jvm
