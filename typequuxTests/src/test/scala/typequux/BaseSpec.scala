@@ -13,9 +13,10 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux
+package typequuxTests
 
 import org.scalatest.FlatSpec
+import typequux._
 import typequux._
 
 /**

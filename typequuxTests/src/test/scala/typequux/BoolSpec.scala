@@ -13,9 +13,10 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux
+package typequuxTests
 
-import typequux._
+import typequux.Bool
+import typequux.typequux._
 
 /**
   * Specifications for church encodings of booleans

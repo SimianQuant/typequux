@@ -13,14 +13,15 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux
+package typequuxTests
 
 import language.implicitConversions
+import typequux._
+import typequux._
 
 class TupleOpsSpec extends BaseSpec {
 
   import TupleOps._
-  import typequux._
 
   it should "support proper indexed ops" in {
     val t1 = ("str", true, 1, Some(3.14))

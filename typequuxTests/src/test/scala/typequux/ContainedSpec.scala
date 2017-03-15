@@ -13,11 +13,12 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux
+package typequuxTests
+
+import typequux.{AllContained, Contained, NotContained, NotSubType, SubType}
+import typequux.typequux._
 
 class ContainedSpec extends BaseSpec {
-
-  import typequux._
 
   it should "pass contains tests" in {
     assertCompiles { """implicitly[Contained[Int, Int :+: HNil]]""" }

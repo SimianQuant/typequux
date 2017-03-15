@@ -13,11 +13,12 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux
+package typequuxTests
+
+import typequux._
+import typequux._
 
 class HListSpec extends BaseSpec {
-
-  import typequux._
 
   // basic sanity tests
   val x = "str" :+: true :+: 1 :+: Some(3.14) :+: HNil

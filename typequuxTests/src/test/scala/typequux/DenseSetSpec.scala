@@ -13,11 +13,12 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   */
-package typequux
+package typequuxTests
 
-import Dense._
-import DenseSet._
-import typequux._
+import typequux.{Dense, DenseSet, DenseSetDiff}
+import typequux.Dense._
+import typequux.DenseSet._
+import typequux.typequux.EmptyDenseSet
 
 class DenseSetSpec extends BaseSpec {
 
