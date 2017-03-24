@@ -142,7 +142,8 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   )
   .jsSettings(testSettings)
   .jsSettings(
-    scalaJSStage in Test := FullOptStage
+    scalaJSStage in Test := FullOptStage,
+    coverageExcludedPackages := ".*"
   )
   .nativeSettings(
     libraryDependencies += "com.simianquant" %% "sntb" % "0.1" % "test"
