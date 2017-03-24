@@ -15,7 +15,6 @@
   */
 package typequuxtests
 
-import org.scalatest.FlatSpec
 import typequux._
 import typequux._
 
@@ -25,7 +24,7 @@ import typequux._
   * @author Harshad Deo
   * @since 0.1
   */
-abstract class BaseSpec extends FlatSpec {
+abstract class BaseSpec extends TestSpecBridge {
 
   def eqv[A, B](implicit ev: A =:= B): Boolean = true
   def eqt[A, B](a: A, b: B)(implicit ev: A =:= B): (A, B) = (a, b)

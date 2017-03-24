@@ -133,7 +133,7 @@ lazy val testSettings = commonShared ++ Seq(
 
 lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("typequuxtests"))
-  .settings(sharedSettings)
+  .settings(commonShared)
   .dependsOn(typequux)
   .aggregate(typequux)
   .jvmSettings(testSettings)
@@ -143,6 +143,9 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .jsSettings(testSettings)
   .jsSettings(
     scalaJSStage in Test := FullOptStage
+  )
+  .nativeSettings(
+    libraryDependencies += "com.simianquant" %% "sntb" % "0.1" % "test"
   )
 
 lazy val typequuxtestsJVM = typequuxtests.jvm

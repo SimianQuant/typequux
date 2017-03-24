@@ -293,7 +293,7 @@ class HListSpec extends BaseSpec {
   // no truncation
   val v: (Int, Int) :+: (String, Char) :+: (List[Char], String) :+: HNil = rz zip sz.tail
 
-  "An HList" should "zip correctly" in {
+  it should "zip correctly" in {
     assert(t == (3, '3') :+: ("ai4", 2) :+: (List('r', 'H'), 'j') :+: HNil)
     assert(u == ('3', 3) :+: (2, "ai4") :+: ('j', List('r', 'H')) :+: HNil)
     assert(v == (3, 2) :+: ("ai4", 'j') :+: (List('r', 'H'), "sdfh") :+: HNil)
