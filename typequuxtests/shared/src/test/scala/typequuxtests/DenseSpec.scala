@@ -560,7 +560,7 @@ class DenseSpec extends BaseSpec {
     assertCompiles { """unaryLaws[_22]""" }
   }
 
-  "A dense number type" should "evaluate to long correctly" in {
+  it should "evaluate to long correctly" in {
     assert(toLong[_0] == 0l)
     assert(toLong[_1] == 1l)
     assert(toLong[_2] == 2l)
@@ -586,7 +586,7 @@ class DenseSpec extends BaseSpec {
     assert(toLong[_22] == 22l)
   }
 
-  "A dense number type" should "evaluate to int correctly" in {
+  it should "evaluate to int correctly" in {
     assert(toInt[_0] == 0)
     assert(toInt[_1] == 1)
     assert(toInt[_2] == 2)

@@ -131,15 +131,16 @@ lazy val testSettings = commonShared ++ Seq(
     testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
   )
 
-lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform)
-  .crossType(CrossType.Pure)
+lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("typequuxtests"))
-  .settings(testSettings)
+  .settings(sharedSettings)
   .dependsOn(typequux)
   .aggregate(typequux)
+  .jvmSettings(testSettings)
   .jvmSettings(
     fork := true
   )
+  .jsSettings(testSettings)
   .jsSettings(
     scalaJSStage in Test := FullOptStage
   )
@@ -147,5 +148,7 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform)
 lazy val typequuxtestsJVM = typequuxtests.jvm
 
 lazy val typequuxtestsJS = typequuxtests.js.aggregate(typequuxtestsJVM)
+
+lazy val typequuxtestsNative = typequuxtests.native
 
 onLoad in Global := (Command.process("project typequuxtestsJS", _: State)) compose (onLoad in Global).value

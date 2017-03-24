@@ -214,7 +214,7 @@ class BoolSpec extends BaseSpec {
 
   //class CommutativityOr[A <: Bool, B <: Bool]
 
-  "A boolean type " should "evaluate to values correctly" in {
+  it should "evaluate to values correctly" in {
     assert(toBoolean[True] == true)
     assert(toBoolean[False] == false)
   }

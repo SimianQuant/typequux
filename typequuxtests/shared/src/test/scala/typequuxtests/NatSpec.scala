@@ -271,7 +271,7 @@ class NatSpec extends BaseSpec {
     assertCompiles { """unaryLaws[_9]""" }
   }
 
-  "A peano number type" should "evaluate to integers correctly" in {
+  it should "evaluate to integers correctly" in {
     assert(toInt[_0] == 0)
     assert(toInt[_1] == 1)
     assert(toInt[_2] == 2)

@@ -59,7 +59,7 @@ class ComparisonSpec extends BaseSpec {
 
   }
 
-  "A comparison type" should "have the correct show implementation" in {
+  it should "have the correct show implementation" in {
     assert(show[EQ] == "eq")
     assert(show[LT] == "lt")
     assert(show[GT] == "gt")

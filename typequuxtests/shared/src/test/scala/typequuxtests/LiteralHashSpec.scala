@@ -244,16 +244,16 @@ class LiteralHashSpec extends BaseSpec {
   def intValueTest(x: LiteralHash[Int])(implicit ev0: DenseRep[x.ValueHash]) = ev0.v.toInt == (x.value & Int.MaxValue)
   def longValueTest(x: LiteralHash[Long])(implicit ev0: DenseRep[x.ValueHash]) = ev0.v == (x.value & Long.MaxValue)
 
-  "A literal hash for unit" should "have a value equal to zero" in {
+  it should "have a value equal to zero for unit" in {
     assert(unitValueTest(()))
   }
 
-  "A literal hash for boolean" should "evaluate correctly" in {
+  it should "evaluate boolean correctly" in {
     assert(booleanValueTest(true))
     assert(booleanValueTest(false))
   }
 
-  "A literal hash for bytes" should "evaluate correctly" in {
+  it should "evaluate bytes correctly" in {
     import LiteralHashDownConverter._
     assert(byteValueTest(0))
     assert(byteValueTest(56))
@@ -262,7 +262,7 @@ class LiteralHashSpec extends BaseSpec {
     assert(byteValueTest(-128))
   }
 
-  "A literal hash for short" should "evaluate correctly" in {
+  it should "evaluate short correctly" in {
     import LiteralHashDownConverter._
     assert(shortValueTest(0))
     assert(shortValueTest(100))
@@ -271,14 +271,14 @@ class LiteralHashSpec extends BaseSpec {
     assert(shortValueTest(-32768))
   }
 
-  "A literal hash for int" should "evaluate correctly" in {
+  it should "evaluate int correctly" in {
     assert(intValueTest(0))
     assert(intValueTest(100))
     assert(intValueTest(10000000))
     assert(intValueTest(-100000))
   }
 
-  "A literal hash for long" should "evaluate correctly" in {
+  it should "evaluate long correctly" in {
     assert(longValueTest(0L))
     assert(longValueTest(13L))
     assert(longValueTest(-9223372036854775808L))
@@ -293,14 +293,14 @@ class LiteralHashSpec extends BaseSpec {
   def intMultiplicationTest(a: LiteralHash[Int], b: LiteralHash[Int])(
       implicit ev0: DenseRep[a.ValueHash * b.ValueHash]) = (a.value * b.value) == ev0.v
 
-  "Literal hashes for ints" should "add correctly" in {
+  it should "add ints correctly" in {
     assert(intAdditionTest(0, 2))
     assert(intAdditionTest(12, 99))
     assert(intAdditionTest(55, 0))
     assert(intAdditionTest(0, 0))
   }
 
-  it should "multiply correctly" in {
+  it should "multiply ints correctly" in {
     assert(intMultiplicationTest(0, 0))
     assert(intMultiplicationTest(0, 77))
     assert(intMultiplicationTest(12, 0))

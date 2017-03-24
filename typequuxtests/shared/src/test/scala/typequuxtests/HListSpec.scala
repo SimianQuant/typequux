@@ -199,7 +199,7 @@ class HListSpec extends BaseSpec {
     assert(d2 == 1 :+: true :+: HNil)
   }
 
-  "An HList" should "index correctly" in {
+  it should "index correctly" in {
     val p = 3 :+: true :+: "asdf" :+: false :+: 'k' :+: () :+: 13 :+: 9.3 :+: HNil
 
     val b2: Boolean = p(3)
