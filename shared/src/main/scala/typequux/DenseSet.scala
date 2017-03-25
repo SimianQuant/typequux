@@ -115,7 +115,7 @@ object DenseSet {
                                                           L#Union[R],
                                                           NonEmptyDenseSet[V, L, R#Remove[X]],
                                                           DenseSet]
-    override type Union[X <: DenseSet] = L#Union[R]#Union[X]#Include[V]
+    override type Union[X <: DenseSet] = FoldL[X, DenseSet, UnionFold]
     override type Size = _1 + L#Size + R#Size
     override type FoldL[Init <: Type, Type, F <: Fold[Dense, Type]] = R#FoldL[F#Apply[V, L#FoldL[Init, Type, F]], Type, F]
   }
