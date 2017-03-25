@@ -2,7 +2,7 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.5.0-SNAPSHOT",
+  version := "0.5.0",
   scalaVersion := "2.11.8",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
@@ -154,8 +154,8 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
 
 lazy val typequuxtestsJVM = typequuxtests.jvm
 
-lazy val typequuxtestsJS = typequuxtests.js.aggregate(typequuxtestsJVM)
+lazy val typequuxtestsJS = typequuxtests.js
 
 lazy val typequuxtestsNative = typequuxtests.native
 
-onLoad in Global := (Command.process("project typequuxtestsJS", _: State)) compose (onLoad in Global).value
+//onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value
