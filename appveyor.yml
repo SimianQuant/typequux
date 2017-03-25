@@ -35,4 +35,4 @@ test_script:
   - sbt coverage +test
 
 after_test:
-  "sbt 'project typequuxtestsJVM' coverageAggregate coverageReport coveralls"
+  - sbt "project typequuxtestsJVM" coverageAggregate coverageReport coveralls
