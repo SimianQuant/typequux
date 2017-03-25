@@ -85,29 +85,6 @@ sealed trait Nat {
   */
 object Nat {
 
-  /** Typeclass for typelevel and valuelevel fold
-    *
-    * @group Implementation
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  trait Fold[-Elem, Value] {
-
-    /** Typelevel Fold
-      *
-      * @author Harshad Deo
-      * @since 0.1
-      */
-    type Apply[E <: Elem, Acc <: Value] <: Value
-
-    /** Valuelevel fold
-      *
-      * @author Harshad Deo
-      * @since 0.1
-      */
-    def apply[N <: Elem, Acc <: Value](n: N, acc: Acc): Apply[N, Acc]
-  }
-
   /** Represents zero in peano encoding of natural numbers
     *
     * @group Implementation
