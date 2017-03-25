@@ -19,7 +19,6 @@ import language.higherKinds
 
 /** Typeclass for typelevel and valuelevel fold
   *
-  * @group Implementation
   * @author Harshad Deo
   * @since 0.1
   */
@@ -38,4 +37,26 @@ trait Fold[-Elem, Value] {
     * @since 0.1
     */
   def apply[N <: Elem, Acc <: Value](n: N, acc: Acc): Apply[N, Acc]
+}
+
+/** Typeclass for typelevel and valuelevel fold for a tuple arg
+  *
+  * @author Harshad Deo
+  * @since 0.6.0
+  */
+trait Fold2[-Elem1, -Elem2, Value] {
+
+  /** Typelevel Fold
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  type Apply[E1 <: Elem1, E2 <: Elem2, Acc <: Value] <: Value
+
+  /** Valuelevel fold
+    *
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  def apply[N1 <: Elem1, N2 <: Elem2, Acc <: Value](n1: N1, n2: N2, acc: Acc): Apply[N1, N2, Acc]
 }
