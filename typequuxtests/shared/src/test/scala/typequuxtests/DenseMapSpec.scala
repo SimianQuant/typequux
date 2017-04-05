@@ -16,13 +16,12 @@
 package typequuxtests
 
 import typequux.{Dense, DenseMap, DenseSet}
-import typequux.typequux.{EmptyDenseMap, EmptyDenseSet}
 
 class DenseMapSpec extends BaseSpec {
 
   import Dense._
   import DenseMap._
-  import DenseSet.Eq
+  import DenseSet.{EmptyDenseSet, Eq}
   import util.Try
 
   /**************************** Unit Tests ****************************/

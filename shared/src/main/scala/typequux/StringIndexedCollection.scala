@@ -17,6 +17,7 @@ package typequux
 
 import constraint._
 import Dense._
+import DenseMap.EmptyDenseMap
 import language.implicitConversions
 import typequux._
 

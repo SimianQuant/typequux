@@ -23,6 +23,7 @@ import typequux._
   */
 class NatSpec extends BaseSpec {
 
+  import Comparison.{EQ, GT, LT}
   import Nat._
 
   /**************** Unit Tests *****************/

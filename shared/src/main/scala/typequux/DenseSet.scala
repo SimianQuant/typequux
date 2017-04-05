@@ -86,7 +86,7 @@ object DenseSet {
     * @author Harshad Deo
     * @since 0.1
     */
-  object EmptyDenseSet extends DenseSet {
+  trait EmptyDenseSet extends DenseSet {
     override type Contains[X <: Dense] = False
     override type Include[X <: Dense] = NonEmptyDenseSet[X, EmptyDenseSet, EmptyDenseSet]
     override type Remove[X <: Dense] = EmptyDenseSet
@@ -240,8 +240,8 @@ object DenseSetDiff {
     * @author Harshad Deo
     * @since 0.3.3
     */
-  implicit def denseSetDiffBase[M <: DenseSet]: DenseSetDiff[M, EmptyDenseSet, M] =
-    new DenseSetDiff[M, EmptyDenseSet, M] {}
+  implicit def denseSetDiffBase[M <: DenseSet]: DenseSetDiff[M, DenseSet.EmptyDenseSet, M] =
+    new DenseSetDiff[M, DenseSet.EmptyDenseSet, M] {}
 
   /** Difference when the subtrahend is non-empty. Represents the induction case for [[DenseSetDiff]]
     *

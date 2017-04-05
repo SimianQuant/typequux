@@ -16,6 +16,7 @@
 package typequuxtests
 
 import typequux.{Bool, Dense, DenseDiff}
+import typequux.Comparison.{EQ, GT, LT}
 import typequux.typequux._
 
 /**

@@ -16,6 +16,7 @@
 package typequux
 
 import Dense._
+import DenseSet.EmptyDenseSet
 import language.higherKinds
 import typequux._
 
@@ -92,7 +93,7 @@ object DenseMap {
     * @author Harshad Deo
     * @since 0.1
     */
-  object EmptyDenseMap extends DenseMap {
+  trait EmptyDenseMap extends DenseMap {
     override type Contains[K <: Dense] = False
     override type Add[K <: Dense, V] = NonEmptyDenseMap[K, V, EmptyDenseMap, EmptyDenseMap]
     override type Remove[K <: Dense] = EmptyDenseMap

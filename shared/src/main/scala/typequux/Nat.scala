@@ -92,7 +92,7 @@ object Nat {
     * @author Harshad Deo
     * @since 0.1
     */
-  object Nat0 extends Nat {
+  trait Nat0 extends Nat {
     override type Match[NonZero[N <: Nat] <: Up, IfZero <: Up, Up] = IfZero
     override type Compare[N <: Nat] = N#Match[Nat.ConstLt, EQ, Comparison]
     override type FoldR[Init <: Type, Type, F <: Fold[Nat, Type]] = Init

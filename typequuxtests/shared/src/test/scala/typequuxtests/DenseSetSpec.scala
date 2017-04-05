@@ -18,7 +18,6 @@ package typequuxtests
 import typequux.{Dense, DenseSet, DenseSetDiff}
 import typequux.Dense._
 import typequux.DenseSet._
-import typequux.typequux.EmptyDenseSet
 
 class DenseSetSpec extends BaseSpec {
 

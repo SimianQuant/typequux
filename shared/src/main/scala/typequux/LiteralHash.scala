@@ -563,7 +563,7 @@ object LiteralHash {
     }
 
     private[this] def fromBinary[T: c.WeakTypeTag](binRep: List[Boolean]): c.Tree = {
-      binRep.foldLeft[Tree](tq"typequux.DNil")((acc, v) =>
+      binRep.foldLeft[Tree](tq"Dense.DNil")((acc, v) =>
         if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
     }
   }

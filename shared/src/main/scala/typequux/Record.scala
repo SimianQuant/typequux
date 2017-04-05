@@ -17,6 +17,7 @@ package typequux
 
 import constraint._
 import Dense._
+import DenseMap.EmptyDenseMap
 import language.experimental.macros
 import language.implicitConversions
 import reflect.macros.whitebox.Context

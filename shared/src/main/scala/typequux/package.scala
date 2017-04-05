@@ -19,12 +19,6 @@ package object typequux {
   type True = Bool.True.type
   type False = Bool.False.type
 
-  type Nat0 = Nat.Nat0.type
-  type DNil = Dense.DNil.type
-
-  type EmptyDenseMap = DenseMap.EmptyDenseMap.type
-  type EmptyDenseSet = DenseSet.EmptyDenseSet.type
-
   type :+:[H, T <: HList] = HList.HCons[H, T]
 
   val HNil = HList.HN0 // scalastyle:ignore

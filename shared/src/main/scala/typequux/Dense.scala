@@ -273,7 +273,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  object DNil extends Dense {
+  trait DNil extends Dense {
 
     override type tail = Nothing
     override type digit = Nothing
