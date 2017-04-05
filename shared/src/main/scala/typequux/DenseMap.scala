@@ -75,6 +75,8 @@ sealed trait DenseMap {
     * @since 0.1
     */
   type Size <: Dense
+
+  type FoldL[Init <: Type, Type, F <: Fold2[Dense, Any, Type]] <: Type
 }
 
 /** Contains implementation traits for [[DenseMap]] and typeconstructor aliases that make usage more pleasant.
@@ -98,6 +100,7 @@ object DenseMap {
     override type Union[X <: DenseMap] = X
     override type Keyset = EmptyDenseSet
     override type Size = Dense._0
+    override type FoldL[Init <: Type, Type, F <: Fold2[Dense, Any, Type]] = Init
   }
 
   /** Non empty typelevel map, implemented as a binary tree.
@@ -122,9 +125,14 @@ object DenseMap {
                                                            NonEmptyDenseMap[KT, VT, L, R#Remove[K]],
                                                            DenseMap]
     override type Get[K <: Dense] = K#Compare[KT]#Match[L#Get[K], VT, R#Get[K], Any]
-    override type Union[X <: DenseMap] = L#Union[R]#Union[X]#Add[KT, VT]
+    override type Union[X <: DenseMap] = FoldL[X, DenseMap, UnionFold]
     override type Keyset = DenseSet.NonEmptyDenseSet[KT, L#Keyset, R#Keyset]
     override type Size = _1 + L#Size + R#Size
+    type FoldL[Init <: Type, Type, F <: Fold2[Dense, Any, Type]] = R#FoldL[F#Apply[KT, VT, L#FoldL[Init, Type, F]], Type, F]
+  }
+
+  trait UnionFold extends Fold2[Dense, Any, DenseMap]{
+    override type Apply[K <: Dense, V, Acc <: DenseMap] = Acc#Add[K, V]
   }
 
   /** Alias to check if a key is present in the map
