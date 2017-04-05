@@ -16,7 +16,7 @@
 package typequuxtests
 
 import typequux.{AllContained, Contained, NotContained, NotSubType, SubType}
-import typequux.typequux._
+import typequux.typequux.{:+:, HNil}
 
 class ContainedSpec extends BaseSpec {
 

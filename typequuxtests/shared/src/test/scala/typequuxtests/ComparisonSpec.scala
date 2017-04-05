@@ -16,8 +16,7 @@
 package typequuxtests
 
 import typequux.Comparison
-import typequux.Comparison._
-import typequux.typequux._
+import typequux.typequux.{EQ, GT, LT}
 
 /**
   * Specification for typelevel comparison
@@ -60,8 +59,8 @@ class ComparisonSpec extends BaseSpec {
   }
 
   it should "have the correct show implementation" in {
-    assert(show[EQ] == "eq")
-    assert(show[LT] == "lt")
-    assert(show[GT] == "gt")
+    assert(Comparison.show[EQ] == "eq")
+    assert(Comparison.show[LT] == "lt")
+    assert(Comparison.show[GT] == "gt")
   }
 }

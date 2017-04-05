@@ -15,8 +15,7 @@
   */
 package typequuxtests
 
-import typequux._
-import typequux._
+import typequux.typequux.{True, False}
 
 /**
   * Set of common utility methods used in the rest of the tests

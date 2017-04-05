@@ -16,7 +16,7 @@
 package typequuxtests
 
 import typequux.Bool
-import typequux.typequux._
+import typequux.typequux.{True, False}
 
 /**
   * Specifications for church encodings of booleans
