@@ -73,7 +73,8 @@ object StringIndexedCollection {
     * @author Harshad Deo
     * @since 0.1
     */
-  object SIN0 extends StringIndexedCollection[Nothing]
+  final class SINil extends StringIndexedCollection[Nothing]
+  val SINil = new SINil
 
   /** Converts a [[StringIndexedCollection]] to an [[SiOps]] object
     *
