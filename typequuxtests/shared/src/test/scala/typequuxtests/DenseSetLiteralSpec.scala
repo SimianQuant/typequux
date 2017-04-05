@@ -16,7 +16,6 @@
 package typequuxtests
 
 import typequux._
-import typequux._
 
 class DenseSetLiteralSpec extends BaseSpec {
 
