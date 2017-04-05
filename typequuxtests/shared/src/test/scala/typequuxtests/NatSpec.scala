@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux._
+import typequux.{Bool, Comparison, Fold, Nat, NatDiff}
 
 /**
   * Specifications for Peano numbers

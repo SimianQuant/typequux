@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux._
+import typequux.{Dense, LiteralHash}
 
 class LiteralHashSpec extends BaseSpec {
 
