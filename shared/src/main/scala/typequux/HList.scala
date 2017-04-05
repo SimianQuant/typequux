@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Bool.True
 import collection.generic.CanBuildFrom
 import constraint._
 import Dense._

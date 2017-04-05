@@ -162,7 +162,7 @@ object Bool {
     * @author Harshad Deo
     * @since 0.1
     */
-  object True extends Bool {
+  final class True extends Bool {
     override type If[T <: Up, F <: Up, Up] = T
   }
 
@@ -172,7 +172,7 @@ object Bool {
     * @author Harshad Deo
     * @since 0.1
     */
-  object False extends Bool {
+  final class False extends Bool {
     override type If[T <: Up, F <: Up, Up] = F
   }
 

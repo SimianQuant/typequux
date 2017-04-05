@@ -16,6 +16,7 @@
 package typequux
 
 import annotation.tailrec
+import Bool.True
 import Dense._
 import language.experimental.macros
 import reflect.macros.whitebox.Context

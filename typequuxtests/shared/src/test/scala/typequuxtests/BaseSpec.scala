@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux.typequux.{True, False}
+import typequux.Bool.{False, True}
 
 /**
   * Set of common utility methods used in the rest of the tests

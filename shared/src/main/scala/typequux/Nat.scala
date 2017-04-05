@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Bool.{False, True}
 import Comparison.{EQ, GT, LT}
 import language.higherKinds
 import Nat._
@@ -92,7 +93,7 @@ object Nat {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait Nat0 extends Nat {
+  final class Nat0 extends Nat {
     override type Match[NonZero[N <: Nat] <: Up, IfZero <: Up, Up] = IfZero
     override type Compare[N <: Nat] = N#Match[Nat.ConstLt, EQ, Comparison]
     override type FoldR[Init <: Type, Type, F <: Fold[Nat, Type]] = Init
@@ -107,7 +108,7 @@ object Nat {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait Succ[N <: Nat] extends Nat {
+  final class Succ[N <: Nat] extends Nat {
     override type Match[NonZero[M <: Nat] <: Up, IfZero <: Up, Up] = NonZero[N]
     override type Compare[M <: Nat] = M#Match[N#Compare, GT, Comparison]
     override type FoldR[Init <: Type, Type, F <: Fold[Nat, Type]] = F#Apply[Succ[N], N#FoldR[Init, Type, F]]

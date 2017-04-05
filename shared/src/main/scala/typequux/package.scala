@@ -16,9 +16,7 @@
 package typequux
 
 package object typequux {
-  type True = Bool.True.type
-  type False = Bool.False.type
-
+  
   type :+:[H, T <: HList] = HList.HCons[H, T]
 
   val HNil = HList.HN0 // scalastyle:ignore

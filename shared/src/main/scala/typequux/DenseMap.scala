@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Bool.{False, True}
 import Dense._
 import DenseSet.EmptyDenseSet
 import language.higherKinds

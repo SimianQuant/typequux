@@ -15,8 +15,8 @@
   */
 package typequux
 
+import Bool.{False, True}
 import language.higherKinds
-import typequux._
 
 /** Typelevel encoding of the result of a comparison
   *
@@ -80,7 +80,7 @@ object Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait LT extends Comparison {
+  final class LT extends Comparison {
     override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfLt
   }
 
@@ -89,7 +89,7 @@ object Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait GT extends Comparison {
+  final class GT extends Comparison {
     override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfGt
   }
 
@@ -98,7 +98,7 @@ object Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait EQ extends Comparison {
+  final class EQ extends Comparison {
     override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfEq
   }
 

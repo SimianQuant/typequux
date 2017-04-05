@@ -15,10 +15,10 @@
   */
 package typequux
 
+import Bool.{False, True}
 import Comparison.{EQ, GT, LT}
 import Dense._
 import language.higherKinds
-import typequux._
 
 /** Typelevel representation of dense numbers, stored as a list of [[Dense.Digit]]
   *
@@ -215,7 +215,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait D0 extends Digit {
+  final class D0 extends Digit {
     override type Match[IfOne <: Up, IfZero <: Up, Up] = IfZero
     override type Compare[D <: Digit] = D#Match[LT, EQ, Comparison]
   }
@@ -226,7 +226,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait D1 extends Digit {
+  final class D1 extends Digit {
     override type Match[IfOne <: Up, IfZero <: Up, Up] = IfOne
     override type Compare[D <: Digit] = D#Match[EQ, GT, Comparison]
   }
@@ -240,7 +240,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait DCons[d <: Digit, T <: Dense] extends Dense {
+  final class DCons[d <: Digit, T <: Dense] extends Dense {
 
     override type digit = d
     override type tail = T
@@ -273,7 +273,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  trait DNil extends Dense {
+  final class DNil extends Dense {
 
     override type tail = Nothing
     override type digit = Nothing
