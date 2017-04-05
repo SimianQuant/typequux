@@ -19,10 +19,6 @@ package object typequux {
   type True = Bool.True.type
   type False = Bool.False.type
 
-  type LT = Comparison.LT.type
-  type EQ = Comparison.EQ.type
-  type GT = Comparison.GT.type
-
   type Nat0 = Nat.Nat0.type
   type DNil = Dense.DNil.type
 

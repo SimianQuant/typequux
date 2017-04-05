@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Comparison.{EQ, GT, LT}
 import Dense._
 import language.higherKinds
 import typequux._

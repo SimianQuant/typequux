@@ -80,7 +80,7 @@ object Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  object LT extends Comparison {
+  trait LT extends Comparison {
     override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfLt
   }
 
@@ -89,7 +89,7 @@ object Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  object GT extends Comparison {
+  trait GT extends Comparison {
     override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfGt
   }
 
@@ -98,7 +98,7 @@ object Comparison {
     * @author Harshad Deo
     * @since 0.1
     */
-  object EQ extends Comparison {
+  trait EQ extends Comparison {
     override type Match[IfLt <: Up, IfEq <: Up, IfGt <: Up, Up] = IfEq
   }
 

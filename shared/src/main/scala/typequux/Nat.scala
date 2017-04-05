@@ -15,6 +15,7 @@
   */
 package typequux
 
+import Comparison.{EQ, GT, LT}
 import language.higherKinds
 import Nat._
 import typequux._

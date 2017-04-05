@@ -16,7 +16,7 @@
 package typequuxtests
 
 import typequux.Comparison
-import typequux.typequux.{EQ, GT, LT}
+import typequux.Comparison.{EQ, GT, LT}
 
 /**
   * Specification for typelevel comparison
