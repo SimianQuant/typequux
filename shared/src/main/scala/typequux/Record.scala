@@ -72,7 +72,8 @@ object Record {
     * @author Harshad Deo
     * @since 0.1
     */
-  case object RN0 extends Record
+  final class RNil extends Record
+  final val RNil = new RNil
 
   /** Converts a class to a record, by keeping track of all vals, case accessors and getters
     *

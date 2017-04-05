@@ -22,9 +22,6 @@ package object typequux {
   val HNil = HList.HN0 // scalastyle:ignore
   type HNil = HNil.type
 
-  val RNil = Record.RN0 // scalastyle:ignore
-  type RNil = RNil.type
-
   val SINil = StringIndexedCollection.SIN0 // scalastyle:ignore
   type SINil = SINil.type
 
