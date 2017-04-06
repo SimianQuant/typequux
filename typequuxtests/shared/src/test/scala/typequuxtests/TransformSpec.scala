@@ -15,13 +15,11 @@
   */
 package typequuxtests
 
-import typequux._
-
 import language.higherKinds
+import typequux.~>
+import typequux.Typequux.Id
 
 class TransformSpec extends BaseSpec {
-
-  import typequux.Id
 
   val singleton = new (Id ~> List) {
     override def apply[T](x: T) = List(x)

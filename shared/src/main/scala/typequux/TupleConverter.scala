@@ -15,7 +15,7 @@
   */
 package typequux
 
-import typequux._
+import HList.{:+:, HNil}
 
 /** Conversion from Tuple to [[HList]]
   *

@@ -16,7 +16,7 @@
 package typequux
 
 import language.{higherKinds, implicitConversions}
-import typequux._
+import Typequux.Id
 
 // scalastyle:off class.names
 

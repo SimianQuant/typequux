@@ -22,7 +22,7 @@ import Dense._
 import language.experimental.macros
 import language.{higherKinds, implicitConversions}
 import reflect.macros.whitebox.Context
-import typequux._
+import Typequux.Id
 
 /** Sequentially indexed arbitrary arity type in which each element can be of a different type
   *
@@ -58,9 +58,16 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  case object HN0 extends HList {
+  final class HNil extends HList {
     override def toString: String = "HNil"
   }
+
+
+  // aliases
+
+  type :+:[H, T <: HList] = HCons[H, T]
+  val :+: = HCons
+  val HNil = new HNil
 
   /** Arbitrary arity zipper in which the elements share common context that is a subtype of Traversable and
     * has strict evaluation semantics (not a [[scala.collection.immutable.Stream]])
@@ -1508,7 +1515,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def :+:[A](a: A): A :+: B = HList.HCons(a, b) // scalastyle:ignore
+  def :+:[A](a: A): HList.HCons[A, B] = HList.HCons(a, b) // scalastyle:ignore
 
   /** Prepends an hlist to this one
     *

@@ -16,8 +16,8 @@
 package typequux.constraint
 
 import language.higherKinds
-import typequux._
-import typequux._
+import typequux.~>
+import typequux.Typequux.Id
 
 /** Typeclass to remove all elements of an object from their context, for example converting.
   *

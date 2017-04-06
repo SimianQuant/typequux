@@ -26,7 +26,7 @@ lazy val commonShared = Seq(
     "-deprecation",
     "-unchecked",
     "-explaintypes",
-    //"-Ywarn-unused-import",
+    "-Ywarn-unused-import",
     "-encoding",
     "UTF-8",
     "-feature",
@@ -98,7 +98,7 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
       | }
       | class Witness2[T]
       | import typequux._
-      | import typequux._
+      | import Typequux._
       | """.stripMargin,
     fork := true
   )

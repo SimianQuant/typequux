@@ -19,10 +19,10 @@ import Bool.{False, True}
 import constraint._
 import Dense._
 import DenseMap.EmptyDenseMap
+import HList.{:+:, HNil}
 import language.experimental.macros
 import language.implicitConversions
 import reflect.macros.whitebox.Context
-import typequux._
 
 /** String indexed collection in which the elements can have different types.
   * Uses [[HList]] and [[DenseMap]] as backing datastructures

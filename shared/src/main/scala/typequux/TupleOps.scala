@@ -16,8 +16,9 @@
 package typequux
 
 import constraint._
+import HList.{:+:, HNil}
 import language.{higherKinds, implicitConversions}
-import typequux._
+import Typequux.Id
 
 /** Provides scala collection-like operations on tuples.
   *

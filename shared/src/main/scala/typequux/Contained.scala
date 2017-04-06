@@ -15,7 +15,7 @@
   */
 package typequux
 
-import typequux._
+import HList.{:+:, HNil}
 
 /** Marker that type A is one of the types of the supplied [[HList]] type
   *

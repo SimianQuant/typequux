@@ -15,13 +15,15 @@
   */
 package typequux
 
-package object typequux {
+object Typequux {
   
-  type :+:[H, T <: HList] = HList.HCons[H, T]
+  type :+:[H, T <: HList] = HList.:+:[H, T]
 
-  val HNil = HList.HN0 // scalastyle:ignore
-  type HNil = HNil.type
+  val HNil = HList.HNil // scalastyle:ignore
+  type HNil = HList.HNil
 
   type Id[X] = X
-  val :+: = HList.HCons // scalastyle:ignore
+  val :+: = HList.:+: // scalastyle:ignore
+
+  // TODO add RINil and SINil
 }
