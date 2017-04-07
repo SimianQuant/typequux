@@ -30,9 +30,8 @@ install:
   - cmd: SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4g
 build_script:
   - sbt "project typequuxtestsJVM" clean +compile
+  - sbt "project typequuxtestsJS" clean +compile
 
 test_script:
   - sbt "project typequuxtestsJVM" coverage +test
-
-after_test:
-  - sbt "project typequuxtestsJVM" coverageAggregate coverageReport coveralls
+  - sbt "project typequuxtestsJS" +test
