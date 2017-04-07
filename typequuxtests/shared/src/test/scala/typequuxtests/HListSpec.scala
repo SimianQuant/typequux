@@ -15,8 +15,9 @@
   */
 package typequuxtests
 
-import typequux._
-import Typequux._
+import typequux.~>
+import typequux.HList.{:+:, HNil}
+import typequux.Typequux.Id
 
 class HListSpec extends BaseSpec {
 

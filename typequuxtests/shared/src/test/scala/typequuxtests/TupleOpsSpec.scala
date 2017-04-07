@@ -16,8 +16,8 @@
 package typequuxtests
 
 import language.implicitConversions
-import typequux._
-import Typequux._
+import typequux.{~>, TupleOps}
+import typequux.Typequux.Id
 
 class TupleOpsSpec extends BaseSpec {
 

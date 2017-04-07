@@ -1441,7 +1441,7 @@ object HList {
       }
       val lt = allTypes(tp.typeArgs)
       val lb = lub(lt)
-      q"new constraint.LubConstraint[$tp, $lb]{}"
+      q"new typequux.constraint.LubConstraint[$tp, $lb]{}"
     }
   }
 

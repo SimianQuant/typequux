@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux.{constraint, Record}
+import typequux.Record
 import typequux.Record.RNil
 
 class RecordSpec extends BaseSpec {

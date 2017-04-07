@@ -15,7 +15,7 @@
   */
 package typequux.constraint
 
-import typequux._
+import typequux.Dense
 
 /**
   * Marker trait for typelevel length.

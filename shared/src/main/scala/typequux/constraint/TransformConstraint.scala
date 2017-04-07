@@ -16,7 +16,8 @@
 package typequux.constraint
 
 import language.higherKinds
-import typequux._
+
+import typequux.~>
 
 /** Typeclass to apply a natural transformation to an object.
   *
