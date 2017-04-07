@@ -29,10 +29,10 @@ install:
   - cmd: SET PATH=C:\sbt\sbt\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4g
 build_script:
-  - sbt clean +compile
+  - sbt "project typequuxtestsJVM" clean +compile
 
 test_script:
-  - sbt coverage +test
+  - sbt "project typequuxtestsJVM" coverage +test
 
 after_test:
   - sbt "project typequuxtestsJVM" coverageAggregate coverageReport coveralls
