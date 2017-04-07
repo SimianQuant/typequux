@@ -16,12 +16,8 @@
 package typequux
 
 import Bool._
-import collection.immutable.BitSet
 import Dense._
 import language.higherKinds
-import language.experimental.macros
-import reflect.macros.whitebox.Context
-import typequux._
 
 /** Typelevel set of [[Dense]] numbers, implemented as a binary tree
   *

@@ -20,7 +20,6 @@ import Bool.True
 import Dense._
 import language.experimental.macros
 import reflect.macros.whitebox.Context
-import typequux._
 
 /** Sequantially indexed immutable collection of fixed size in which all elements are of the same type. 
   * Uses [[scala.collection.immutable.Vector]] as a backing datastructure. 

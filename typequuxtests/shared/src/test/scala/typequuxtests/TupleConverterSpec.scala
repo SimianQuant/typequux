@@ -16,7 +16,7 @@
 package typequuxtests
 
 import typequux.{HList, HList2TupleConverter, Tuple2HListConverter}
-import typequux.HList.{:+:, HNil}
+import typequux.HList.HNil
 
 // format: OFF
 

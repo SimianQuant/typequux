@@ -16,7 +16,6 @@
 package typequux
 
 import language.higherKinds
-import typequux._
 
 /** Church encodings of booleans.
   *

@@ -19,7 +19,6 @@ import Bool.{False, True}
 import Comparison.{EQ, GT, LT}
 import language.higherKinds
 import Nat._
-import typequux._
 
 /** Peano encoding of natural numbers
   *

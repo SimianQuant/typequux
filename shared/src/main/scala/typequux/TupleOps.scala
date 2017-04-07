@@ -16,7 +16,7 @@
 package typequux
 
 import constraint._
-import HList.{:+:, HNil}
+import HList.:+:
 import language.{higherKinds, implicitConversions}
 import Typequux.Id
 

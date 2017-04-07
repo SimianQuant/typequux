@@ -20,7 +20,6 @@ import constraint._
 import Dense._
 import DenseMap.EmptyDenseMap
 import language.implicitConversions
-import typequux._
 
 /** String indexed collection in which all the elements are of the same type.
   * Uses [[scala.collection.immutable.Vector]] and [[DenseMap]] as backing datastructures

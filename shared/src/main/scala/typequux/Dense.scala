@@ -15,7 +15,7 @@
   */
 package typequux
 
-import Bool.{False, True}
+import Bool.True
 import Comparison.{EQ, GT, LT}
 import Dense._
 import language.higherKinds
