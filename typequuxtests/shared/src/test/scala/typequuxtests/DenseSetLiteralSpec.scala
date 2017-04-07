@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux.{Dense, DenseSet, LiteralHash}
+import typequux.{Dense, DenseSet}
 
 class DenseSetLiteralSpec extends BaseSpec {
 
@@ -24,10 +24,10 @@ class DenseSetLiteralSpec extends BaseSpec {
 
   class Witness[T <: DenseSet]
 
-  def build[T](f: LiteralHash[T]) = new Witness[EmptyDenseSet#Include[f.ValueHash]]
+  def build[T](f: typequux.LiteralHash[T]) = new Witness[EmptyDenseSet#Include[f.ValueHash]]
   def merge[DS1 <: DenseSet, DS2 <: DenseSet](a: Witness[DS1], b: Witness[DS2]) = new Witness[DS1#Union[DS2]]
   def size[D <: DenseSet](c: Witness[D])(implicit ev: DenseRep[D#Size]) = ev.v
-  def checkContains[DS <: DenseSet, T](s: Witness[DS], x: LiteralHash[T])(
+  def checkContains[DS <: DenseSet, T](s: Witness[DS], x: typequux.LiteralHash[T])(
       implicit ev: IsTrue[DS#Contains[x.ValueHash]]) = true
 
   it should "work with int witnesses" in {

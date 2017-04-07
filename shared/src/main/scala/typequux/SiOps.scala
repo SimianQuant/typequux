@@ -15,7 +15,6 @@
   */
 package typequux
 
-import constraint._
 import Dense.DenseIntRep
 
 /** Provides scala collection like operations on string indexed collections like [[Record]] and [[StringIndexedCollection]]
@@ -34,7 +33,7 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def apply[T](lh: LiteralHash[String])(implicit ev: AtConstraint[lh.ValueHash, S, T]): T = ev(s)
+  def apply[T](lh: LiteralHash[String])(implicit ev: constraint.AtConstraint[lh.ValueHash, S, T]): T = ev(s)
 
   /** Update the element at the index
     *
@@ -44,7 +43,7 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: UpdatedConstraint[lh.ValueHash, S, U, R]): R =
+  def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: constraint.UpdatedConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u)
 
   /** Add the element at the given index
@@ -55,7 +54,7 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def add[U, R](lh: LiteralHash[String], u: U)(implicit ev: SIAddConstraint[lh.ValueHash, S, U, R]): R =
+  def add[U, R](lh: LiteralHash[String], u: U)(implicit ev: constraint.SIAddConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u, lh.value)
 
   /** Size of the collection
@@ -65,7 +64,7 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def size[L <: Dense](implicit ev0: LengthConstraint[S, L], ev1: DenseIntRep[L]): Int = ev1.v
+  def size[L <: Dense](implicit ev0: constraint.LengthConstraint[S, L], ev1: DenseIntRep[L]): Int = ev1.v
 
   /** Converts the collection to a map
     *
@@ -74,5 +73,5 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def toMap[R](implicit ev: ToMapConstraint[S, R]): R = ev(s)
+  def toMap[R](implicit ev: constraint.ToMapConstraint[S, R]): R = ev(s)
 }

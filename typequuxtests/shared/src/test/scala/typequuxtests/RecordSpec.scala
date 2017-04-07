@@ -15,8 +15,8 @@
   */
 package typequuxtests
 
-import typequux._
-import Record.RNil
+import typequux.{constraint, Record}
+import typequux.Record.RNil
 
 class RecordSpec extends BaseSpec {
 
@@ -107,11 +107,9 @@ class RecordSpec extends BaseSpec {
 
     case class Demo3(a: String, b: Long)
 
-    import Record._
-
-    val r1 = class2Record(new Demo1(42))
-    val r2 = class2Record(new Demo2("me", 42))
-    val r3 = class2Record(Demo3("oogachaka", 42L))
+    val r1 = Record.class2Record(new Demo1(42))
+    val r2 = Record.class2Record(new Demo2("me", 42))
+    val r3 = Record.class2Record(Demo3("oogachaka", 42L))
 
     assertTypeError { """r1("a")""" }
     assertTypeError { """r2("b")""" }

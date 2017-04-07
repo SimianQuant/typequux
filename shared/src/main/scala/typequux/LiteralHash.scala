@@ -314,9 +314,9 @@ object LiteralHash {
       x match {
         case q"${ y: Unit }" =>
           q"""
-        new LiteralHash[Unit]{
-          override type TypeHash = LiteralHash.UnitTypeHash
-          override type ValueHash = Dense._0
+        new typequux.LiteralHash[Unit]{
+          override type TypeHash = typequux.LiteralHash.UnitTypeHash
+          override type ValueHash = typequux.Dense._0
           override val value = $y
         }
         """
@@ -327,10 +327,10 @@ object LiteralHash {
     def forBoolean(x: Tree): Tree = {
       x match {
         case q"${ y: Boolean }" =>
-          val valueHash = if (y) tq"Dense._1" else tq"Dense._0"
+          val valueHash = if (y) tq"typequux.Dense._1" else tq"typequux.Dense._0"
           q"""
-        new LiteralHash[Boolean]{
-          override type TypeHash = LiteralHash.BooleanTypeHash
+        new typequux.LiteralHash[Boolean]{
+          override type TypeHash = typequux.LiteralHash.BooleanTypeHash
           override type ValueHash = $valueHash
           override val value = $y
         }
@@ -362,9 +362,9 @@ object LiteralHash {
 
     private[this] def resolveByte(y: Byte): Tree = {
       val valueHash = fromBinary(toBinary(y & 127))
-      val typeHash = if (y < 0) tq"LiteralHash.NegativeByteTypeHash" else tq"LiteralHash.PositiveByteTypeHash"
+      val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeByteTypeHash" else tq"typequux.LiteralHash.PositiveByteTypeHash"
       q"""
-    new LiteralHash[Byte]{
+    new typequux.LiteralHash[Byte]{
       override type TypeHash = $typeHash
       override type ValueHash = $valueHash
       override val value = $y
@@ -395,9 +395,9 @@ object LiteralHash {
 
     private[this] def resolveShort(y: Short): Tree = {
       val valueHash = fromBinary(toBinary(y & 32767))
-      val typeHash = if (y < 0) tq"LiteralHash.NegativeShortTypeHash" else tq"LiteralHash.PositiveShortTypeHash"
+      val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeShortTypeHash" else tq"typequux.LiteralHash.PositiveShortTypeHash"
       q"""
-    new LiteralHash[Short]{
+    new typequux.LiteralHash[Short]{
       override type TypeHash = $typeHash
       override type ValueHash = $valueHash
       override val value = $y
@@ -409,8 +409,8 @@ object LiteralHash {
       def resolve(y: Char): Tree = {
         val valueHash = fromBinary(toBinary(char2Long(y)))
         q"""
-      new LiteralHash[Char]{
-        override type TypeHash = LiteralHash.CharTypeHash
+      new typequux.LiteralHash[Char]{
+        override type TypeHash = typequux.LiteralHash.CharTypeHash
         override type ValueHash = $valueHash
         override val value = $y
       }
@@ -425,9 +425,9 @@ object LiteralHash {
     def forInt(x: Tree): Tree = {
       def resolve(y: Int): c.Tree = {
         val valueHash = fromBinary(toBinary(y & Int.MaxValue))
-        val typeHash = if (y < 0) tq"LiteralHash.NegativeIntegerTypeHash" else tq"LiteralHash.PositiveIntegerTypeHash"
+        val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeIntegerTypeHash" else tq"typequux.LiteralHash.PositiveIntegerTypeHash"
         q"""
-      new LiteralHash[Int]{
+      new typequux.LiteralHash[Int]{
         override type TypeHash = $typeHash
         override type ValueHash = $valueHash
         override val value = $y
@@ -442,7 +442,7 @@ object LiteralHash {
 
     def forLong(x: Tree): Tree = {
       def resolve(y: Long): c.Tree = {
-        val typeHash = if (y < 0) tq"LiteralHash.NegativeLongTypeHash" else tq"LiteralHash.PositiveLongTypeHash"
+        val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeLongTypeHash" else tq"typequux.LiteralHash.PositiveLongTypeHash"
         val valueHash = fromBinary(toBinary(y & Long.MaxValue))
         q"""
       new LiteralHash[Long]{
@@ -463,13 +463,13 @@ object LiteralHash {
         val intRep = java.lang.Float.floatToRawIntBits(y)
         val typeHash =
           if (intRep < 0) {
-            tq"LiteralHash.NegativeEncodedFloatTypeHash"
+            tq"typequux.LiteralHash.NegativeEncodedFloatTypeHash"
           } else {
-            tq"LiteralHash.PositiveEncodedFloatTypeHash"
+            tq"typequux.LiteralHash.PositiveEncodedFloatTypeHash"
           }
         val valueHash = fromBinary(toBinary(intRep & Int.MaxValue))
         q"""
-      new LiteralHash[Float]{
+      new typequux.LiteralHash[Float]{
         override type TypeHash = $typeHash
         override type ValueHash = $valueHash
         override val value = $y
@@ -487,13 +487,13 @@ object LiteralHash {
         val longRep = java.lang.Double.doubleToRawLongBits(y)
         val typeHash =
           if (longRep < 0) {
-            tq"LiteralHash.NegativeEncodedDoubleTypeHash"
+            tq"typequux.LiteralHash.NegativeEncodedDoubleTypeHash"
           } else {
-            tq"LiteralHash.PositiveEncodedDoubleTypeHash"
+            tq"typequux.LiteralHash.PositiveEncodedDoubleTypeHash"
           }
         val valueHash = fromBinary(toBinary(longRep & Long.MaxValue))
         q"""
-      new LiteralHash[Double]{
+      new typequux.LiteralHash[Double]{
         override type TypeHash = $typeHash
         override type ValueHash = $valueHash
         override val value = $y
@@ -515,8 +515,8 @@ object LiteralHash {
         val binRep = toBinary(hc1.toLong)
         val valueHash = fromBinary(binRep)
         q"""
-      new LiteralHash[String]{
-        override type TypeHash = LiteralHash.StringTypeHash
+      new typequux.LiteralHash[String]{
+        override type TypeHash = typequux.LiteralHash.StringTypeHash
         override type ValueHash = $valueHash
         override val value = $y
       }
@@ -563,8 +563,8 @@ object LiteralHash {
     }
 
     private[this] def fromBinary[T: c.WeakTypeTag](binRep: List[Boolean]): c.Tree = {
-      binRep.foldLeft[Tree](tq"Dense.DNil")((acc, v) =>
-        if (v) tq"Dense.::[Dense.D1, $acc]" else tq"Dense.::[Dense.D0, $acc]")
+      binRep.foldLeft[Tree](tq"typequux.Dense.DNil")((acc, v) =>
+        if (v) tq"typequux.Dense.::[typequux.Dense.D1, $acc]" else tq"typequux.Dense.::[typequux.Dense.D0, $acc]")
     }
   }
 }

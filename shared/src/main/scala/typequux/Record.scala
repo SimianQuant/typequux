@@ -75,6 +75,16 @@ object Record {
   final class RNil extends Record
   final val RNil = new RNil
 
+  /** Converts a [[Record]] to an [[SiOps]] object
+    *
+    * @tparam R Type of the record to be converted
+    *
+    * @group Ops Converter
+    * @author Harshad Deo
+    * @since 0.1
+    */
+  implicit def record2Ops[R](r: R)(implicit ev: R <:< Record): SiOps[R] = new SiOps(r)
+
   /** Converts a class to a record, by keeping track of all vals, case accessors and getters
     *
     * @tparam T Type to be converted to a record
@@ -94,19 +104,9 @@ object Record {
       val methods = theType.members.filter(symbolPredicate).map(_.asMethod)
       val methodPredicate: MethodSymbol => Boolean = x => x.isVal || x.isGetter || x.isCaseAccessor
       val values = methods.filter(methodPredicate)
-      values.foldLeft[Tree](q"RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
+      values.foldLeft[Tree](q"typequux.Record.RNil")((acc, curr) => q"""$acc.add(${curr.name.toString}, $x.$curr)""")
     }
   }
-
-  /** Converts a [[Record]] to an [[SiOps]] object
-    *
-    * @tparam R Type of the record to be converted
-    *
-    * @group Ops Converter
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def record2Ops[R <: Record](r: R): SiOps[R] = new SiOps(r)
 
   /** Builds [[constraint.SIAddConstraint]] for empty [[Record]]
     *

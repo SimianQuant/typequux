@@ -283,13 +283,13 @@ object SizedVector {
     def build[T: c.WeakTypeTag](inp: Tree*): Tree = {
       val vh = fromBinary(toBinary(inp.length))
       val lh = q"""
-      new LiteralHash[Int]{
-        override type TypeHash = LiteralHash.PositiveIntegerTypeHash
+      new typequux.LiteralHash[Int]{
+        override type TypeHash = typequux.LiteralHash.PositiveIntegerTypeHash
         override type ValueHash = $vh
         override val value = ${inp.length}
       }
       """
-      q"""SizedVector.from($lh, Vector(${inp :_ *})).fold(???)(identity)"""
+      q"""typequux.SizedVector.from($lh, Vector(${inp :_ *})).fold(???)(identity)"""
     }
 
     private[this] def toBinary(z: Int): List[Boolean] = {
@@ -320,12 +320,12 @@ object SizedVector {
     }
 
     private[this] def fromBinary(binRep: List[Boolean]): c.Tree = {
-      binRep.foldLeft[Tree](tq"Dense.DNil")(
+      binRep.foldLeft[Tree](tq"typequux.Dense.DNil")(
           (acc, v) =>
             if (v) {
-          tq"Dense.::[Dense.D1, $acc]"
+          tq"typequux.Dense.::[typequux.Dense.D1, $acc]"
         } else {
-          tq"Dense.::[Dense.D0, $acc]"
+          tq"typequux.Dense.::[typequux.Dense.D0, $acc]"
       })
     }
   }

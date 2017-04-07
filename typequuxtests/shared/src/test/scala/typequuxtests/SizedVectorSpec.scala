@@ -15,11 +15,11 @@
   */
 package typequuxtests
 
-import typequux._
+import typequux.{Dense, SizedVector}
 
 class SizedVectorSpec extends BaseSpec {
 
-  import Dense._
+    import Dense._
 
   it should "build properly" in {
 
