@@ -33,5 +33,5 @@ build_script:
   - sbt "project typequuxtestsJS" clean +compile
 
 test_script:
-  - sbt "project typequuxtestsJVM" coverage +test
+  - sbt "project typequuxtestsJVM" +test
   - sbt "project typequuxtestsJS" +test

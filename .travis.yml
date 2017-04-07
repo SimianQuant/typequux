@@ -24,7 +24,7 @@ script:
   - sbt clean 'project typequuxtestsJVM'  +test
   - sbt clean 'project typequuxtestsJS'  +test
   - sbt clean 'project typequuxtestsNative' test:run
-  - sbt clean 'project typequuxtestsJVM' coverage test coverageReport && sbt coverageAggregate
+  - sbt clean 'project typequuxtestsJVM' coverage test coverageReport && sbt 'project typequuxtestsJVM' coverageAggregate
 
 after_success:
-  - sbt coveralls
+  - sbt 'project typequuxtestsJVM' coveralls
