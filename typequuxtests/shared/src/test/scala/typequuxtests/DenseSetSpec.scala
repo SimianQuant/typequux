@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux.{Dense, DenseSet, DenseSetDiff}
+import typequux.{Dense, DenseSet}
 import typequux.Dense._
 import typequux.DenseSet._
 
@@ -515,9 +515,9 @@ class DenseSetSpec extends BaseSpec {
   }
 
   it should "pass subtraction tests" in {
-    class W[T]
-    def diffRep[X1, X2, X3](w1: W[X1], w2: W[X2])(implicit ev0: DenseSetDiff[X1, X2, X3], ev1: DenseSetRep[X3]) =
-      ev1.rep
+    class W[T <: DenseSet]
+
+    def diffRep[X1 <: DenseSet, X2 <: DenseSet](w1: W[X1], w2: W[X2])(implicit ev0: DenseSetRep[X1#Diff[X2]]) = ev0.rep
 
     assert(diffRep(new W[EmptyDenseSet], new W[EmptyDenseSet]) === Set.empty)
     assert(diffRep(new W[EmptyDenseSet], new W[EmptyDenseSet#Include[Dense._1]]) === Set.empty)

@@ -54,6 +54,13 @@ sealed trait DenseSet {
     */
   type Union[X <: DenseSet] <: DenseSet
 
+  /** Set difference
+    *
+    * @author Harshad Deo
+    * @since 0.6.1
+    */
+  type Diff[X <: DenseSet] <: DenseSet
+
   /** Size of the set (count of the elements present in it)
     *
     * @author Harshad Deo
@@ -87,6 +94,7 @@ object DenseSet {
     override type Include[X <: Dense] = NonEmptyDenseSet[X, EmptyDenseSet, EmptyDenseSet]
     override type Remove[X <: Dense] = EmptyDenseSet
     override type Union[X <: DenseSet] = X
+    override type Diff[X <: DenseSet] = EmptyDenseSet
     override type Size = Dense._0
     override type FoldL[Init <: Type, Type, F <: Fold[Dense, Type]] = Init
   }
@@ -112,6 +120,7 @@ object DenseSet {
                                                           NonEmptyDenseSet[V, L, R#Remove[X]],
                                                           DenseSet]
     override type Union[X <: DenseSet] = FoldL[X, DenseSet, UnionFold]
+    override type Diff[X <: DenseSet] = FoldL[EmptyDenseSet, DenseSet, DifferenceFold[X]]
     override type Size = _1 + L#Size + R#Size
     override type FoldL[Init <: Type, Type, F <: Fold[Dense, Type]] =
       R#FoldL[F#Apply[V, L#FoldL[Init, Type, F]], Type, F]
@@ -119,6 +128,10 @@ object DenseSet {
 
   trait UnionFold extends Fold[Dense, DenseSet] {
     override type Apply[E <: Dense, Acc <: DenseSet] = Acc#Include[E]
+  }
+
+  trait DifferenceFold[Arg <: DenseSet] extends Fold[Dense, DenseSet] {
+    override type Apply[E <: Dense, Acc <: DenseSet] = Arg#Contains[E]#If[Acc, Acc#Include[E], DenseSet]
   }
 
   trait AllContainedFold[Arg <: DenseSet] extends Fold[Dense, Bool] {
@@ -210,57 +223,5 @@ object DenseSet {
     * @since 0.3.3
     */
   def toSet[DS <: DenseSet](implicit ev: DenseSetRep[DS]): Set[Long] = ev.rep
-
-}
-
-/** Marker trait for typelevel difference of [[DenseSet]]
-  *
-  * @tparam M Minuend
-  * @tparam S Subtrahend
-  * @tparam D Difference
-  *
-  * @author Harshad Deo
-  * @since 0.3.3
-  */
-trait DenseSetDiff[M, S, D]
-
-/** Contains implicit definitions to construct [[DenseSetDiff]]
-  *
-  * @author Harshad Deo
-  * @since 0.3.3
-  */
-object DenseSetDiff {
-
-  /** Difference when the subtrahend is empty. Represents the base case for [[DenseSetDiff]]
-    *
-    * @tparam M Minuend
-    *
-    * @author Harshad Deo
-    * @since 0.3.3
-    */
-  implicit def denseSetDiffBase[M <: DenseSet]: DenseSetDiff[M, DenseSet.EmptyDenseSet, M] =
-    new DenseSetDiff[M, DenseSet.EmptyDenseSet, M] {}
-
-  /** Difference when the subtrahend is non-empty. Represents the induction case for [[DenseSetDiff]]
-    *
-    * @tparam M Minuend
-    * @tparam L Left-pivot of the subtrahend
-    * @tparam R Right-pivot of the subtrahend
-    * @tparam V Pivot value of the subtrahend
-    * @tparam DIFF1 Difference between the minuend and the left pivot
-    * @tparam DIFF2 Difference between the DIFF1 and the right
-    *
-    * @author Harshad Deo
-    * @since 0.3.3
-    */
-  implicit def denseSetDiffInduction[M <: DenseSet,
-                                     L <: DenseSet,
-                                     R <: DenseSet,
-                                     V <: Dense,
-                                     DIFF1 <: DenseSet,
-                                     DIFF2 <: DenseSet](
-      implicit ev0: DenseSetDiff[M, L, DIFF1],
-      ev1: DenseSetDiff[DIFF1, R, DIFF2]): DenseSetDiff[M, DenseSet.NonEmptyDenseSet[V, L, R], DIFF2#Remove[V]] =
-    new DenseSetDiff[M, DenseSet.NonEmptyDenseSet[V, L, R], DIFF2#Remove[V]] {}
 
 }
