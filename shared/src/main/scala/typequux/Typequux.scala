@@ -16,7 +16,17 @@
 package typequux
 
 object Typequux {
-  
+
+  type True = Bool.True
+  type False = Bool.False
+
+  type LT = Comparison.LT
+  type GT = Comparison.GT
+  type EQ = Comparison.EQ
+
+  type EmptyDenseSet = DenseSet.EmptyDenseSet
+  type EmptyDenseMap = DenseMap.EmptyDenseMap
+
   type :+:[H, T <: HList] = HList.:+:[H, T]
 
   val HNil = HList.HNil // scalastyle:ignore
@@ -25,5 +35,9 @@ object Typequux {
   type Id[X] = X
   val :+: = HList.:+: // scalastyle:ignore
 
-  // TODO add RINil and SINil
+  val RNil = Record.RNil // scalastyle:ignore
+  type RNil = Record.RNil
+
+  val SINil = StringIndexedCollection.SINil // scalastyle:ignore
+  type SINil = StringIndexedCollection.SINil
 }

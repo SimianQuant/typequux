@@ -43,7 +43,8 @@ class SiOps[S](s: S) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def updated[U, R](lh: LiteralHash[String], u: U)(implicit ev: constraint.UpdatedConstraint[lh.ValueHash, S, U, R]): R =
+  def updated[U, R](lh: LiteralHash[String], u: U)(
+      implicit ev: constraint.UpdatedConstraint[lh.ValueHash, S, U, R]): R =
     ev(s, u)
 
   /** Add the element at the given index

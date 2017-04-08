@@ -362,7 +362,8 @@ object LiteralHash {
 
     private[this] def resolveByte(y: Byte): Tree = {
       val valueHash = fromBinary(toBinary(y & 127))
-      val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeByteTypeHash" else tq"typequux.LiteralHash.PositiveByteTypeHash"
+      val typeHash =
+        if (y < 0) tq"typequux.LiteralHash.NegativeByteTypeHash" else tq"typequux.LiteralHash.PositiveByteTypeHash"
       q"""
     new typequux.LiteralHash[Byte]{
       override type TypeHash = $typeHash
@@ -395,7 +396,8 @@ object LiteralHash {
 
     private[this] def resolveShort(y: Short): Tree = {
       val valueHash = fromBinary(toBinary(y & 32767))
-      val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeShortTypeHash" else tq"typequux.LiteralHash.PositiveShortTypeHash"
+      val typeHash =
+        if (y < 0) tq"typequux.LiteralHash.NegativeShortTypeHash" else tq"typequux.LiteralHash.PositiveShortTypeHash"
       q"""
     new typequux.LiteralHash[Short]{
       override type TypeHash = $typeHash
@@ -425,7 +427,9 @@ object LiteralHash {
     def forInt(x: Tree): Tree = {
       def resolve(y: Int): c.Tree = {
         val valueHash = fromBinary(toBinary(y & Int.MaxValue))
-        val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeIntegerTypeHash" else tq"typequux.LiteralHash.PositiveIntegerTypeHash"
+        val typeHash =
+          if (y < 0) tq"typequux.LiteralHash.NegativeIntegerTypeHash"
+          else tq"typequux.LiteralHash.PositiveIntegerTypeHash"
         q"""
       new typequux.LiteralHash[Int]{
         override type TypeHash = $typeHash
@@ -442,7 +446,8 @@ object LiteralHash {
 
     def forLong(x: Tree): Tree = {
       def resolve(y: Long): c.Tree = {
-        val typeHash = if (y < 0) tq"typequux.LiteralHash.NegativeLongTypeHash" else tq"typequux.LiteralHash.PositiveLongTypeHash"
+        val typeHash =
+          if (y < 0) tq"typequux.LiteralHash.NegativeLongTypeHash" else tq"typequux.LiteralHash.PositiveLongTypeHash"
         val valueHash = fromBinary(toBinary(y & Long.MaxValue))
         q"""
       new LiteralHash[Long]{

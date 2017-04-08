@@ -62,7 +62,6 @@ object HList {
     override def toString: String = "HNil"
   }
 
-
   // aliases
 
   type :+:[H, T <: HList] = HCons[H, T]

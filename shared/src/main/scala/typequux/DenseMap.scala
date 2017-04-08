@@ -129,10 +129,11 @@ object DenseMap {
     override type Union[X <: DenseMap] = FoldL[X, DenseMap, UnionFold]
     override type Keyset = DenseSet.NonEmptyDenseSet[KT, L#Keyset, R#Keyset]
     override type Size = _1 + L#Size + R#Size
-    type FoldL[Init <: Type, Type, F <: Fold2[Dense, Any, Type]] = R#FoldL[F#Apply[KT, VT, L#FoldL[Init, Type, F]], Type, F]
+    type FoldL[Init <: Type, Type, F <: Fold2[Dense, Any, Type]] =
+      R#FoldL[F#Apply[KT, VT, L#FoldL[Init, Type, F]], Type, F]
   }
 
-  trait UnionFold extends Fold2[Dense, Any, DenseMap]{
+  trait UnionFold extends Fold2[Dense, Any, DenseMap] {
     override type Apply[K <: Dense, V, Acc <: DenseMap] = Acc#Add[K, V]
   }
 

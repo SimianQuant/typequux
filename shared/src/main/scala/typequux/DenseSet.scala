@@ -62,10 +62,10 @@ sealed trait DenseSet {
   type Size <: Dense
 
   /** Fold over the set
-  *
-  * @author Harshad Deo
-  * @since 0.6
-  */
+    *
+    * @author Harshad Deo
+    * @since 0.6
+    */
   type FoldL[Init <: Type, Type, F <: Fold[Dense, Type]] <: Type
 }
 
@@ -113,14 +113,15 @@ object DenseSet {
                                                           DenseSet]
     override type Union[X <: DenseSet] = FoldL[X, DenseSet, UnionFold]
     override type Size = _1 + L#Size + R#Size
-    override type FoldL[Init <: Type, Type, F <: Fold[Dense, Type]] = R#FoldL[F#Apply[V, L#FoldL[Init, Type, F]], Type, F]
+    override type FoldL[Init <: Type, Type, F <: Fold[Dense, Type]] =
+      R#FoldL[F#Apply[V, L#FoldL[Init, Type, F]], Type, F]
   }
 
   trait UnionFold extends Fold[Dense, DenseSet] {
     override type Apply[E <: Dense, Acc <: DenseSet] = Acc#Include[E]
   }
 
-  trait AllContainedFold[Arg <: DenseSet] extends Fold[Dense, Bool]{
+  trait AllContainedFold[Arg <: DenseSet] extends Fold[Dense, Bool] {
     override type Apply[E <: Dense, Acc <: Bool] = Acc#If[Arg#Contains[E], False, Bool]
   }
 
@@ -162,7 +163,8 @@ object DenseSet {
     * @author Harshad Deo
     * @since 0.1
     */
-  type Eq[A <: DenseSet, B <: DenseSet] = &&[A#FoldL[True, Bool, AllContainedFold[B]], B#FoldL[True, Bool, AllContainedFold[A]]]
+  type Eq[A <: DenseSet, B <: DenseSet] =
+    &&[A#FoldL[True, Bool, AllContainedFold[B]], B#FoldL[True, Bool, AllContainedFold[A]]]
 
   /** Builds a value level [[scala.collection.immutable.Set]] representation of a dense set type
     *
