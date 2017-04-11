@@ -2,7 +2,7 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.1",
+  version := "0.6.2-SNAPSHOT",
   scalaVersion := "2.11.8",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
@@ -26,7 +26,7 @@ lazy val commonShared = Seq(
     "-deprecation",
     "-unchecked",
     "-explaintypes",
-    "-Ywarn-unused-import",
+    //"-Ywarn-unused-import",
     "-encoding",
     "UTF-8",
     "-feature",
