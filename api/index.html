@@ -1,160 +1,48 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           <title></title>
           <meta name="description" content="" />
           <meta name="keywords" content="" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="lib/index.css" media="screen" type="text/css" rel="stylesheet" />
-      <link href="lib/template.css" media="screen" type="text/css" rel="stylesheet" />
-      <link href="lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
       <script type="text/javascript" src="lib/jquery.js"></script>
-      <script type="text/javascript" src="lib/jquery.panzoom.min.js"></script>
-      <script type="text/javascript" src="lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="lib/jquery.layout.js"></script>
       <script type="text/javascript" src="lib/index.js"></script>
-      <script type="text/javascript" src="index.js"></script>
       <script type="text/javascript" src="lib/scheduler.js"></script>
-      <script type="text/javascript" src="lib/template.js"></script>
-      <script type="text/javascript" src="lib/tools.tooltip.js"></script>
-      
-      <script type="text/javascript">
-        /* this variable can be used by the JS to determine the path to the root document */
-        var toRoot = '';
-      </script>
     
         </head>
         <body>
-      <div id="search">
-        <span id="doc-title"><span id="doc-version"></span></span>
-        <span class="close-results"><span class="left">&lt;</span> Back</span>
-        <div id="textfilter">
-          <span class="input">
-            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
-            <i class="clear material-icons"></i>
-            <i id="search-icon" class="material-icons"></i>
-          </span>
-        </div>
+      <div id="library">
+        <img class="class icon" alt="class icon" src="lib/class.png" />
+        <img class="trait icon" alt="trait icon" src="lib/trait.png" />
+        <img class="object icon" alt="trait icon" src="lib/object.png" />
+        <img class="package icon" alt="trait icon" src="lib/package.png" />
+      </div>
+      <div id="browser" class="ui-layout-west">
+      <div class="ui-west-center">
+      <div id="filter">
+          <div id="textfilter"></div>
+          <div id="letters"><a target="template" href="index/index-_.html">#</a><a target="template" href="index/index-a.html">A</a><a target="template" href="index/index-b.html">B</a><a target="template" href="index/index-c.html">C</a><a target="template" href="index/index-d.html">D</a><a target="template" href="index/index-e.html">E</a><a target="template" href="index/index-f.html">F</a><a target="template" href="index/index-g.html">G</a><a target="template" href="index/index-h.html">H</a><a target="template" href="index/index-i.html">I</a><span>J</span><a target="template" href="index/index-k.html">K</a><a target="template" href="index/index-l.html">L</a><a target="template" href="index/index-m.html">M</a><a target="template" href="index/index-n.html">N</a><span>O</span><a target="template" href="index/index-p.html">P</a><span>Q</span><a target="template" href="index/index-r.html">R</a><a target="template" href="index/index-s.html">S</a><a target="template" href="index/index-t.html">T</a><a target="template" href="index/index-u.html">U</a><a target="template" href="index/index-v.html">V</a><span>W</span><a target="template" href="index/index-x.html">X</a><a target="template" href="index/index-y.html">Y</a><a target="template" href="index/index-z.html">Z</a> – <span>deprecated</span></div>
+      </div>
+      <div class="pack" id="tpl">
+            
+            <ol class="templates"></ol>
+            <ol class="packages"> <li class="pack" title="typequux">
+            <a class="tplshow" href="typequux/package.html" target="template">typequux</a>
+            <ol class="templates"><li title="typequux.AllContained"><a class="tplshow" href="typequux/AllContained$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/AllContained.html" target="template"><span class="class">(class)</span><span class="tplLink">AllContained</span></a></li><li title="typequux.ArityIndexOps"><div class="placeholder"></div><a class="tplshow" href="typequux/ArityIndexOps.html" target="template"><span class="class">(class)</span><span class="tplLink">ArityIndexOps</span></a></li><li title="typequux.ArityZipOps"><div class="placeholder"></div><a class="tplshow" href="typequux/ArityZipOps.html" target="template"><span class="class">(class)</span><span class="tplLink">ArityZipOps</span></a></li><li title="typequux.Bool"><a class="tplshow" href="typequux/Bool$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Bool.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Bool</span></a></li><li title="typequux.Comparison"><a class="tplshow" href="typequux/Comparison$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Comparison.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Comparison</span></a></li><li title="typequux.Contained"><a class="tplshow" href="typequux/Contained$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Contained.html" target="template"><span class="class">(class)</span><span class="tplLink">Contained</span></a></li><li title="typequux.Dense"><a class="tplshow" href="typequux/Dense$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Dense.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Dense</span></a></li><li title="typequux.DenseDiff"><a class="tplshow" href="typequux/DenseDiff$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/DenseDiff.html" target="template"><span class="trait">(trait)</span><span class="tplLink">DenseDiff</span></a></li><li title="typequux.DenseMap"><a class="tplshow" href="typequux/DenseMap$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/DenseMap.html" target="template"><span class="trait">(trait)</span><span class="tplLink">DenseMap</span></a></li><li title="typequux.DenseSet"><a class="tplshow" href="typequux/DenseSet$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/DenseSet.html" target="template"><span class="trait">(trait)</span><span class="tplLink">DenseSet</span></a></li><li title="typequux.Fold"><div class="placeholder"></div><a class="tplshow" href="typequux/Fold.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Fold</span></a></li><li title="typequux.Fold2"><div class="placeholder"></div><a class="tplshow" href="typequux/Fold2.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Fold2</span></a></li><li title="typequux.HList"><a class="tplshow" href="typequux/HList$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/HList.html" target="template"><span class="trait">(trait)</span><span class="tplLink">HList</span></a></li><li title="typequux.HList2TupleConverter"><a class="tplshow" href="typequux/HList2TupleConverter$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/HList2TupleConverter.html" target="template"><span class="trait">(trait)</span><span class="tplLink">HList2TupleConverter</span></a></li><li title="typequux.HListOps"><div class="placeholder"></div><a class="tplshow" href="typequux/HListOps.html" target="template"><span class="class">(class)</span><span class="tplLink">HListOps</span></a></li><li title="typequux.LiteralHash"><a class="tplshow" href="typequux/LiteralHash$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/LiteralHash.html" target="template"><span class="trait">(trait)</span><span class="tplLink">LiteralHash</span></a></li><li title="typequux.LowPriorityHList2TupleConverter"><div class="placeholder"></div><a class="tplshow" href="typequux/LowPriorityHList2TupleConverter.html" target="template"><span class="trait">(trait)</span><span class="tplLink">LowPriorityHList2TupleConverter</span></a></li><li title="typequux.Nat"><a class="tplshow" href="typequux/Nat$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Nat.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Nat</span></a></li><li title="typequux.NatDiff"><a class="tplshow" href="typequux/NatDiff$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/NatDiff.html" target="template"><span class="trait">(trait)</span><span class="tplLink">NatDiff</span></a></li><li title="typequux.NotContained"><a class="tplshow" href="typequux/NotContained$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/NotContained.html" target="template"><span class="class">(class)</span><span class="tplLink">NotContained</span></a></li><li title="typequux.NotSubType"><a class="tplshow" href="typequux/NotSubType$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/NotSubType.html" target="template"><span class="class">(class)</span><span class="tplLink">NotSubType</span></a></li><li title="typequux.Record"><a class="tplshow" href="typequux/Record$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Record.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Record</span></a></li><li title="typequux.SiOps"><div class="placeholder"></div><a class="tplshow" href="typequux/SiOps.html" target="template"><span class="class">(class)</span><span class="tplLink">SiOps</span></a></li><li title="typequux.SizedVector"><a class="tplshow" href="typequux/SizedVector$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/SizedVector.html" target="template"><span class="class">(class)</span><span class="tplLink">SizedVector</span></a></li><li title="typequux.StringIndexedCollection"><a class="tplshow" href="typequux/StringIndexedCollection$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/StringIndexedCollection.html" target="template"><span class="trait">(trait)</span><span class="tplLink">StringIndexedCollection</span></a></li><li title="typequux.SubType"><a class="tplshow" href="typequux/SubType$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/SubType.html" target="template"><span class="class">(class)</span><span class="tplLink">SubType</span></a></li><li title="typequux.Tuple2HListConverter"><a class="tplshow" href="typequux/Tuple2HListConverter$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/Tuple2HListConverter.html" target="template"><span class="trait">(trait)</span><span class="tplLink">Tuple2HListConverter</span></a></li><li title="typequux.TupleIndexOps"><div class="placeholder"></div><a class="tplshow" href="typequux/TupleIndexOps.html" target="template"><span class="class">(class)</span><span class="tplLink">TupleIndexOps</span></a></li><li title="typequux.TupleOps"><a class="tplshow" href="typequux/TupleOps$.html" target="template"><span class="object">(object)</span><div class="placeholder"></div><span class="tplLink">TupleOps</span></a></li><li title="typequux.Typequux"><a class="tplshow" href="typequux/Typequux$.html" target="template"><span class="object">(object)</span><div class="placeholder"></div><span class="tplLink">Typequux</span></a></li><li title="typequux.~&gt;"><a class="tplshow" href="typequux/$tilde$greater$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/$tilde$greater.html" target="template"><span class="trait">(trait)</span><span class="tplLink">~&gt;</span></a></li></ol>
+            <ol class="packages"> <li class="pack" title="typequux.constraint">
+            <a class="tplshow" href="typequux/constraint/package.html" target="template">typequux.constraint</a>
+            <ol class="templates"><li title="typequux.constraint.AppendConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/AppendConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">AppendConstraint</span></a></li><li title="typequux.constraint.ApplyConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ApplyConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ApplyConstraint</span></a></li><li title="typequux.constraint.AtConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/AtConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">AtConstraint</span></a></li><li title="typequux.constraint.AtRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/AtRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">AtRightConstraint</span></a></li><li title="typequux.constraint.ConsConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ConsConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ConsConstraint</span></a></li><li title="typequux.constraint.CountConstraint"><a class="tplshow" href="typequux/constraint/CountConstraint$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/constraint/CountConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">CountConstraint</span></a></li><li title="typequux.constraint.DownTransformConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/DownTransformConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">DownTransformConstraint</span></a></li><li title="typequux.constraint.DropConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/DropConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">DropConstraint</span></a></li><li title="typequux.constraint.DropRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/DropRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">DropRightConstraint</span></a></li><li title="typequux.constraint.ExistsConstraint"><a class="tplshow" href="typequux/constraint/ExistsConstraint$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/constraint/ExistsConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ExistsConstraint</span></a></li><li title="typequux.constraint.ExternalUnzipConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ExternalUnzipConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ExternalUnzipConstraint</span></a></li><li title="typequux.constraint.ExternalZipConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ExternalZipConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ExternalZipConstraint</span></a></li><li title="typequux.constraint.FoldLeftConstraint"><a class="tplshow" href="typequux/constraint/FoldLeftConstraint$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/constraint/FoldLeftConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">FoldLeftConstraint</span></a></li><li title="typequux.constraint.ForallConstraint"><a class="tplshow" href="typequux/constraint/ForallConstraint$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/constraint/ForallConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ForallConstraint</span></a></li><li title="typequux.constraint.ForeachConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ForeachConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ForeachConstraint</span></a></li><li title="typequux.constraint.IndexFlatMapConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/IndexFlatMapConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">IndexFlatMapConstraint</span></a></li><li title="typequux.constraint.IndexFlatMapRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/IndexFlatMapRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">IndexFlatMapRightConstraint</span></a></li><li title="typequux.constraint.IndexMapConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/IndexMapConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">IndexMapConstraint</span></a></li><li title="typequux.constraint.IndexMapRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/IndexMapRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">IndexMapRightConstraint</span></a></li><li title="typequux.constraint.InsertConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/InsertConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">InsertConstraint</span></a></li><li title="typequux.constraint.InsertMConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/InsertMConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">InsertMConstraint</span></a></li><li title="typequux.constraint.InsertMRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/InsertMRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">InsertMRightConstraint</span></a></li><li title="typequux.constraint.InsertRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/InsertRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">InsertRightConstraint</span></a></li><li title="typequux.constraint.InternalZipConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/InternalZipConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">InternalZipConstraint</span></a></li><li title="typequux.constraint.LengthConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/LengthConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">LengthConstraint</span></a></li><li title="typequux.constraint.ListBuilderConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ListBuilderConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ListBuilderConstraint</span></a></li><li title="typequux.constraint.LubConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/LubConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">LubConstraint</span></a></li><li title="typequux.constraint.RemoveConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/RemoveConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">RemoveConstraint</span></a></li><li title="typequux.constraint.RemoveRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/RemoveRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">RemoveRightConstraint</span></a></li><li title="typequux.constraint.ReverseConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ReverseConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ReverseConstraint</span></a></li><li title="typequux.constraint.SIAddConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/SIAddConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">SIAddConstraint</span></a></li><li title="typequux.constraint.SplitAtConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/SplitAtConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">SplitAtConstraint</span></a></li><li title="typequux.constraint.SplitAtRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/SplitAtRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">SplitAtRightConstraint</span></a></li><li title="typequux.constraint.TakeConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/TakeConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">TakeConstraint</span></a></li><li title="typequux.constraint.TakeRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/TakeRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">TakeRightConstraint</span></a></li><li title="typequux.constraint.ToListConstraint"><a class="tplshow" href="typequux/constraint/ToListConstraint$.html" target="template"><span class="object">(object)</span></a><a class="tplshow" href="typequux/constraint/ToListConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ToListConstraint</span></a></li><li title="typequux.constraint.ToMapConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/ToMapConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">ToMapConstraint</span></a></li><li title="typequux.constraint.TransformConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/TransformConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">TransformConstraint</span></a></li><li title="typequux.constraint.UpdatedConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/UpdatedConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">UpdatedConstraint</span></a></li><li title="typequux.constraint.UpdatedRightConstraint"><div class="placeholder"></div><a class="tplshow" href="typequux/constraint/UpdatedRightConstraint.html" target="template"><span class="trait">(trait)</span><span class="tplLink">UpdatedRightConstraint</span></a></li></ol>
+            <ol class="packages"> </ol>
+          </li></ol>
+          </li></ol>
+          </div></div><script src="index.js"></script>
     </div>
-      <div id="search-results">
-        <div id="search-progress">
-          <div id="progress-fill"></div>
-        </div>
-        <div id="results-content">
-          <div id="entity-results"></div>
-          <div id="member-results"></div>
-        </div>
-      </div>
-      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
-        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
-          <div id="subpackage-spacer">
-            <div id="packages">
-              <h1>Packages</h1>
-              <ul>
-                <li name="_root_.root" visbl="pub" class="indented0 current" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="_root_"></a><a id="root:_root_"></a>
-      <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <span class="name">root</span>
-      </span>
-      
-      
-    </li><li name="_root_.typequux" visbl="pub" class="indented1 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="typequux"></a><a id="typequux:typequux"></a>
-      <span class="permalink">
-      <a href="index.html#typequux" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="typequux/index.html">
-              <span class="name">typequux</span>
-            </a>
-      </span>
-      
-      
-    </li>
-              </ul>
-            </div>
-          </div>
-          <div id="content">
-            <body class="package value">
-      <div id="definition">
-        <div class="big-circle package">p</div>
-        
-        <h1>root package<span class="permalink">
-      <a href="index.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span></h1>
-        
-      </div>
-
-      <h4 id="signature" class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <span class="name">root</span>
-      </span>
-      </h4>
-
-      
-          <div id="comment" class="fullcommenttop"></div>
-        
-
-      
-
-      <div id="template">
-        <div id="allMembers">
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-        </div>
-
-        <div id="inheritedMembers">
-        
-        
-        </div>
-
-        <div id="groupedMembers">
-        <div class="group" name="Ungrouped">
-              <h3>Ungrouped</h3>
-              
-            </div>
-        </div>
-
-      </div>
-
-      <div id="tooltip"></div>
-
-      <div id="footer">  </div>
-    </body>
-          </div>
-        </div>
+      <div id="content" class="ui-layout-center">
+        <iframe id="template" name="template" src="package.html"></iframe>
       </div>
     </body>
       </html>

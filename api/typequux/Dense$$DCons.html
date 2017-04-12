@@ -1,629 +1,513 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title></title>
-          <meta name="description" content="" />
-          <meta name="keywords" content="" />
+          <title>DCons - typequux.Dense.DCons</title>
+          <meta name="description" content="DCons - typequux.Dense.DCons" />
+          <meta name="keywords" content="DCons typequux.Dense.DCons" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
-      <link href="../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../lib/jquery.js"></script>
-      <script type="text/javascript" src="../lib/jquery.panzoom.min.js"></script>
-      <script type="text/javascript" src="../lib/jquery.mousewheel.min.js"></script>
-      <script type="text/javascript" src="../lib/index.js"></script>
-      <script type="text/javascript" src="../index.js"></script>
-      <script type="text/javascript" src="../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../lib/template.js"></script>
       <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
-        /* this variable can be used by the JS to determine the path to the root document */
-        var toRoot = '../';
-      </script>
+         if(top === self) {
+            var url = '../index.html';
+            var hash = 'typequux.Dense$$DCons';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
     
         </head>
-        <body>
-      <div id="search">
-        <span id="doc-title"><span id="doc-version"></span></span>
-        <span class="close-results"><span class="left">&lt;</span> Back</span>
-        <div id="textfilter">
-          <span class="input">
-            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
-            <i class="clear material-icons"></i>
-            <i id="search-icon" class="material-icons"></i>
-          </span>
-        </div>
-    </div>
-      <div id="search-results">
-        <div id="search-progress">
-          <div id="progress-fill"></div>
-        </div>
-        <div id="results-content">
-          <div id="entity-results"></div>
-          <div id="member-results"></div>
-        </div>
-      </div>
-      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
-        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
-          <div id="subpackage-spacer">
-            <div id="packages">
-              <h1>Packages</h1>
-              <ul>
-                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="_root_"></a><a id="root:_root_"></a>
-      <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="../index.html">
-              <span class="name">root</span>
-            </a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
-    </li><li name="_root_.typequux" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="typequux"></a><a id="typequux:typequux"></a>
-      <span class="permalink">
-      <a href="index.html#typequux" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="index.html">
-              <span class="name">typequux</span>
-            </a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
-    </li><li name="typequux.Dense" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Dense"></a><a id="Dense:Dense"></a>
-      <span class="permalink">
-      <a href="../typequux/index.html#Dense" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a title="Contains implementation for Dense and typeconstructor aliases that make usage more pleasant" href="Dense$.html">
-              <span class="name">Dense</span>
-            </a>
-      </span>
-      
-      <p class="shortcomment cmt">Contains implementation for <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a> and typeconstructor aliases that make usage more pleasant</p><div class="fullcomment"><div class="comment cmt"><p>Contains implementation for <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a> and typeconstructor aliases that make usage more pleasant</p><p>The operations can be shown to satisfy:</p><p>1. Additive commutativity: <code> +[A, B] =:= +[B, A]  </code></p><p>2. Additive associativity: <code> +[A, +[B, C]] =:= +[+[A, B], C] </code></p><p>3. Additive identity: <code> +[A, _0] =:= A =:= +[_0, A] </code></p><p>4. Multiplicative commutativity: <code> *[A, B] =:= *[B, A] </code></p><p>5. Multiplicative associativity: <code> *[A, *[B, C]] =:= *[*[A, B], C] </code></p><p>6. Multiplicative identity: <code> *[A, _1] =:= A =:= *[_1, A] </code></p><p>7. Distributivity: <code> *[A, +[B, C]] =:= +[*[A, B], *[A, C]] </code></p><p>8. Zero exponent: <code> ^[A, _0] =:= _1 </code></p><p>9. One exponent: <code> ^[_1, A] =:= _1 </code></p><p>10. Exponent Identity: <code> ^[A, _1] =:= A </code></p><p>11. Exponent combination 1: <code> *[^[A, B], ^[A, C]] =:= ^[A, *[B, C]] </code></p><p>12. Exponent combination 2: <code> ^[^[A, B], C] =:= ^[A, *[B, C]] </code></p><p>13. Exponent combination 3: <code> ^[*[A, B], C] =:= *[^[A, C], ^[B, C]] </code></p><p>14. Total Order
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="typequux">typequux</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="trait" href="Dense$$D0.html" title="Represents a 0 in the dense encoding of a natural number
-"></a>
-                        <a href="Dense$$D0.html" title="Represents a 0 in the dense encoding of a natural number
-">
-                          D0
-                        </a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="trait" href="Dense$$D1.html" title="Represents a 1 in the dense encoding of a natural number
-"></a>
-                        <a href="Dense$$D1.html" title="Represents a 1 in the dense encoding of a natural number
-">
-                          D1
-                        </a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="trait" href="" title="Non-zero dense number."></a>
-                        <a href="" title="Non-zero dense number.">
-                          DCons
-                        </a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="object" href="Dense$$DNil$.html" title="Dense Zero
-"></a>
-                        <a href="Dense$$DNil$.html" title="Dense Zero
-">
-                          DNil
-                        </a>
-                      </li><li class="current-entities indented2">
-                        <a class="object" href="Dense$$DenseIntRep$.html" title="Contains implicit definitional to build a value level representation of a dense type as a scala.Int
-"></a>
-                        <a class="class" href="Dense$$DenseIntRep.html" title="Builds a value level scala.Int representation of a dense type
-"></a>
-                        <a href="Dense$$DenseIntRep.html" title="Builds a value level scala.Int representation of a dense type
-">
-                          DenseIntRep
-                        </a>
-                      </li><li class="current-entities indented2">
-                        <a class="object" href="Dense$$DenseRep$.html" title="Contains implicit definitions to build the value level representation of a dense type as a scala.Long
-"></a>
-                        <a class="class" href="Dense$$DenseRep.html" title="Builds a value level scala.Long representation of a dense type."></a>
-                        <a href="Dense$$DenseRep.html" title="Builds a value level scala.Long representation of a dense type.">
-                          DenseRep
-                        </a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="trait" href="Dense$$Digit.html" title="Represents a digit in the dense encoding of a natural number
-"></a>
-                        <a href="Dense$$Digit.html" title="Represents a digit in the dense encoding of a natural number
-">
-                          Digit
-                        </a>
-                      </li>
-              </ul>
-            </div>
-          </div>
-          <div id="content">
-            <body class="trait type">
+        <body class="type">
       <div id="definition">
-        <div class="big-circle trait">t</div>
-        <p id="owner"><a href="index.html" class="extype" name="typequux">typequux</a>.<a href="Dense$.html" class="extype" name="typequux.Dense">Dense</a></p>
-        <h1>DCons<span class="permalink">
-      <a href="../typequux/Dense$$DCons.html" title="Permalink">
-        <i class="material-icons"></i>
+        <img alt="Class" src="../lib/class_big.png" />
+        <p id="owner"><a href="package.html" class="extype" name="typequux">typequux</a>.<a href="Dense$.html" class="extype" name="typequux.Dense">Dense</a></p>
+        <h1>DCons</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="Dense$.html" class="extype" name="typequux.Dense">package Dense</a>
+          </div></span></h3><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
-    </span></h1>
-        <h3><span class="morelinks"></span></h3>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
         <span class="name">DCons</span><span class="tparams">[<span name="d">d &lt;: <a href="Dense$$Digit.html" class="extype" name="typequux.Dense.Digit">Digit</a></span>, <span name="T">T &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> extends <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>
       </span>
       </h4>
-
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Non-zero dense number. The digit is the least significant bit
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">d</dt><dd class="cmt"><p>Lowest priority bit</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>Rest of the bits, in decreasing order of priority</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl><div class="toggleContainer block">
-          <span class="toggle">
-            Linear Supertypes
-          </span>
-          <div class="superTypes hiddenContent"><a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>, <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
       <div id="mbrsel">
-        <div class="toggle"></div>
-        <div id="memberfilter">
-          <i class="material-icons arrow"></i>
-          <span class="input">
-            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
-          </span>
-          <i class="clear material-icons"></i>
-        </div>
-        <div id="filterby">
-          <div id="order">
-            <span class="filtertype">Ordering</span>
-            <ol>
-              <li class="group out"><span>Grouped</span></li>
-              <li class="alpha in"><span>Alphabetic</span></li>
-              <li class="inherit out"><span>By Inheritance</span></li>
-            </ol>
-          </div>
-          <div class="ancestors">
-                  <span class="filtertype">Inherited<br />
-                  </span>
-                  <ol id="linearization">
-                    <li class="in" name="typequux.Dense.DCons"><span>DCons</span></li><li class="in" name="typequux.Dense"><span>Dense</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
-                  </ol>
-                </div><div class="ancestors">
-                  <span class="filtertype">Implicitly<br />
-                  </span>
-                  <ol id="implicits"> <li class="in" name="scala.Predef.any2stringadd" data-hidden="true"><span>by any2stringadd</span></li><li class="in" name="scala.Predef.StringFormat" data-hidden="true"><span>by StringFormat</span></li><li class="in" name="scala.Predef.Ensuring" data-hidden="true"><span>by Ensuring</span></li><li class="in" name="scala.Predef.ArrowAssoc" data-hidden="true"><span>by ArrowAssoc</span></li>
-                  </ol>
-                </div><div class="ancestors">
-              <span class="filtertype"></span>
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
               <ol>
-                <li class="hideall out"><span>Hide All</span></li>
-                <li class="showall in"><span>Show All</span></li>
+                <li class="group out"><span>Grouped</span></li>
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
-          <div id="visbl">
-              <span class="filtertype">Visibility</span>
-              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
-            </div>
-        </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="typequux.Dense.DCons"><span>DCons</span></li><li class="in" name="typequux.Dense"><span>Dense</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+                <span class="filtertype">Implicitly<br />
+                </span>
+                <ol id="implicits"> <li class="in" name="scala.Predef.any2stringadd" data-hidden="true"><span>by any2stringadd</span></li><li class="in" name="scala.Predef.StringFormat" data-hidden="true"><span>by StringFormat</span></li><li class="in" name="scala.Predef.Ensuring" data-hidden="true"><span>by Ensuring</span></li><li class="in" name="scala.Predef.ArrowAssoc" data-hidden="true"><span>by ArrowAssoc</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
       </div>
 
       <div id="template">
         <div id="allMembers">
-        
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="typequux.Dense.DCons#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():typequux.Dense.DCons[d,T]"></a>
+      <a id="&lt;init&gt;:DCons[d,T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DCons</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@&lt;init&gt;():typequux.Dense.DCons[d,T]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p>
+    </li></ol>
+            </div>
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="typequux.Dense.DCons.Add" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Add[b&lt;:typequux.Dense]=b#Match[DCons.this.AddNz[b],typequux.Dense.::[d,T],typequux.Dense]"></a><a id="Add[b&lt;:Dense]:Add[b]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Add[b&lt;:typequux.Dense]=b#Match[DCons.this.AddNz[b],typequux.Dense.::[d,T],typequux.Dense]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+              <ol><li name="typequux.Dense.DCons.Add" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Add[b&lt;:typequux.Dense]=b#Match[DCons.this.AddNz[b],typequux.Dense.::[d,T],typequux.Dense]"></a>
+      <a id="Add[b&lt;:Dense]:Add[b]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Add</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Match">Add.b.Match</span>[<a href="#AddNz[b&lt;:typequux.Dense]=d#Match[DCons.this.Add1[b],typequux.Dense.::[b#digit,T#Add[b#tail]],typequux.Dense]" class="extmbr" name="typequux.Dense.DCons.AddNz">AddNz</a>[<span class="extype" name="typequux.Dense.DCons.Add.b">b</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">Add</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.Match">Add.b.Match</span>[<a href="#AddNz[b&lt;:typequux.Dense]=d#Match[DCons.this.Add1[b],typequux.Dense.::[b#digit,T#Add[b#tail]],typequux.Dense]" class="extmbr" name="typequux.Dense.DCons.AddNz">AddNz</a>[<span class="extype" name="typequux.Dense.DCons.Add.b">b</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Add[b&lt;:typequux.Dense]=b#Match[DCons.this.AddNz[b],typequux.Dense.::[d,T],typequux.Dense]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Add to the number
 </p><div class="fullcomment"><div class="comment cmt"><p>Add to the number
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Add1" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Add1[b&lt;:typequux.Dense]=b#digit#Match[typequux.Dense.::[typequux.Dense.D0,T#Add[b#tail]#Inc],typequux.Dense.::[d,T#Add[b#tail]],typequux.Dense]"></a><a id="Add1[b&lt;:Dense]:Add1[b]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Add1[b&lt;:typequux.Dense]=b#digit#Match[typequux.Dense.::[typequux.Dense.D0,T#Add[b#tail]#Inc],typequux.Dense.::[d,T#Add[b#tail]],typequux.Dense]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Add1" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Add1[b&lt;:typequux.Dense]=b#digit#Match[typequux.Dense.::[typequux.Dense.D0,T#Add[b#tail]#Inc],typequux.Dense.::[d,T#Add[b#tail]],typequux.Dense]"></a>
+      <a id="Add1[b&lt;:Dense]:Add1[b]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Add1</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Digit.Match">Dense.digit.Match</span>[<a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.Inc">Dense.Add.Inc</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.Add">T.Add</span>[<span class="extype" name="typequux.Dense.tail">Add1.b.tail</span>]], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">Add1</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.Digit.Match">Dense.digit.Match</span>[<a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.Inc">Dense.Add.Inc</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.Add">T.Add</span>[<span class="extype" name="typequux.Dense.tail">Add1.b.tail</span>]], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Add1[b&lt;:typequux.Dense]=b#digit#Match[typequux.Dense.::[typequux.Dense.D0,T#Add[b#tail]#Inc],typequux.Dense.::[d,T#Add[b#tail]],typequux.Dense]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li><li name="typequux.Dense.DCons.AddNz" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="AddNz[b&lt;:typequux.Dense]=d#Match[DCons.this.Add1[b],typequux.Dense.::[b#digit,T#Add[b#tail]],typequux.Dense]"></a><a id="AddNz[b&lt;:Dense]:AddNz[b]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#AddNz[b&lt;:typequux.Dense]=d#Match[DCons.this.Add1[b],typequux.Dense.::[b#digit,T#Add[b#tail]],typequux.Dense]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.AddNz" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AddNz[b&lt;:typequux.Dense]=d#Match[DCons.this.Add1[b],typequux.Dense.::[b#digit,T#Add[b#tail]],typequux.Dense]"></a>
+      <a id="AddNz[b&lt;:Dense]:AddNz[b]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">AddNz</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="#Add1[b&lt;:typequux.Dense]=b#digit#Match[typequux.Dense.::[typequux.Dense.D0,T#Add[b#tail]#Inc],typequux.Dense.::[d,T#Add[b#tail]],typequux.Dense]" class="extmbr" name="typequux.Dense.DCons.Add1">Add1</a>[<span class="extype" name="typequux.Dense.DCons.AddNz.b">b</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<span class="extype" name="typequux.Dense.digit">AddNz.b.digit</span>, <span class="extype" name="typequux.Dense.Add">T.Add</span>[<span class="extype" name="typequux.Dense.tail">AddNz.b.tail</span>]], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">AddNz</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="#Add1[b&lt;:typequux.Dense]=b#digit#Match[typequux.Dense.::[typequux.Dense.D0,T#Add[b#tail]#Inc],typequux.Dense.::[d,T#Add[b#tail]],typequux.Dense]" class="extmbr" name="typequux.Dense.DCons.Add1">Add1</a>[<span class="extype" name="typequux.Dense.DCons.AddNz.b">b</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<span class="extype" name="typequux.Dense.digit">AddNz.b.digit</span>, <span class="extype" name="typequux.Dense.Add">T.Add</span>[<span class="extype" name="typequux.Dense.tail">AddNz.b.tail</span>]], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@AddNz[b&lt;:typequux.Dense]=d#Match[DCons.this.Add1[b],typequux.Dense.::[b#digit,T#Add[b#tail]],typequux.Dense]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li><li name="typequux.Dense.Compare" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Compare[B&lt;:typequux.Dense]=Dense.this.CompareC[B,typequux.typequux.EQ]"></a><a id="Compare[B&lt;:Dense]:Compare[B]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Compare[B&lt;:typequux.Dense]=Dense.this.CompareC[B,typequux.typequux.EQ]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.Compare" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Compare[B&lt;:typequux.Dense]=Dense.this.CompareC[B,typequux.Comparison.EQ]"></a>
+      <a id="Compare[B&lt;:Dense]:Compare[B]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Compare</span><span class="tparams">[<span name="B">B &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <a href="#CompareC[B&lt;:typequux.Dense,Carry&lt;:typequux.Comparison]=B#Match[T#CompareC[B#tail,DCons.this.NewCarry[Carry,B#digit]],typequux.typequux.GT,typequux.Comparison]" class="extmbr" name="typequux.Dense.DCons.CompareC">CompareC</a>[<span class="extype" name="typequux.Dense.Compare.B">B</span>, <span class="extype" name="typequux.typequux.EQ">EQ</span>]</span>
+        <span class="name">Compare</span><span class="tparams">[<span name="B">B &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <a href="#CompareC[B&lt;:typequux.Dense,Carry&lt;:typequux.Comparison]=B#Match[T#CompareC[B#tail,DCons.this.NewCarry[Carry,B#digit]],typequux.Comparison.GT,typequux.Comparison]" class="extmbr" name="typequux.Dense.DCons.CompareC">CompareC</a>[<span class="extype" name="typequux.Dense.Compare.B">B</span>, <a href="Comparison$$EQ.html" class="extype" name="typequux.Comparison.EQ">EQ</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Compare[B&lt;:typequux.Dense]=Dense.this.CompareC[B,typequux.Comparison.EQ]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Compares with the other dense number
 </p><div class="fullcomment"><div class="comment cmt"><p>Compares with the other dense number
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.CompareC" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CompareC[B&lt;:typequux.Dense,Carry&lt;:typequux.Comparison]=B#Match[T#CompareC[B#tail,DCons.this.NewCarry[Carry,B#digit]],typequux.typequux.GT,typequux.Comparison]"></a><a id="CompareC[B&lt;:Dense,Carry&lt;:Comparison]:CompareC[B,Carry]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#CompareC[B&lt;:typequux.Dense,Carry&lt;:typequux.Comparison]=B#Match[T#CompareC[B#tail,DCons.this.NewCarry[Carry,B#digit]],typequux.typequux.GT,typequux.Comparison]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.CompareC" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CompareC[B&lt;:typequux.Dense,Carry&lt;:typequux.Comparison]=B#Match[T#CompareC[B#tail,DCons.this.NewCarry[Carry,B#digit]],typequux.Comparison.GT,typequux.Comparison]"></a>
+      <a id="CompareC[B&lt;:Dense,Carry&lt;:Comparison]:CompareC[B,Carry]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">CompareC</span><span class="tparams">[<span name="B">B &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="Carry">Carry &lt;: <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Match">CompareC.B.Match</span>[<span class="extype" name="typequux.Dense.CompareC">T.CompareC</span>[<span class="extype" name="typequux.Dense.tail">CompareC.B.tail</span>, <a href="#NewCarry[prev&lt;:typequux.Comparison,od&lt;:typequux.Dense.Digit]=d#Compare[od]#Match[typequux.typequux.LT,prev,typequux.typequux.GT,typequux.Comparison]" class="extmbr" name="typequux.Dense.DCons.NewCarry">NewCarry</a>[<span class="extype" name="typequux.Dense.DCons.CompareC.Carry">Carry</span>, <span class="extype" name="typequux.Dense.digit">CompareC.B.digit</span>]], <span class="extype" name="typequux.typequux.GT">GT</span>, <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a>]</span>
+        <span class="name">CompareC</span><span class="tparams">[<span name="B">B &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="Carry">Carry &lt;: <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.Match">CompareC.B.Match</span>[<span class="extype" name="typequux.Dense.CompareC">T.CompareC</span>[<span class="extype" name="typequux.Dense.tail">CompareC.B.tail</span>, <a href="#NewCarry[prev&lt;:typequux.Comparison,od&lt;:typequux.Dense.Digit]=d#Compare[od]#Match[typequux.Comparison.LT,prev,typequux.Comparison.GT,typequux.Comparison]" class="extmbr" name="typequux.Dense.DCons.NewCarry">NewCarry</a>[<span class="extype" name="typequux.Dense.DCons.CompareC.Carry">Carry</span>, <span class="extype" name="typequux.Dense.digit">CompareC.B.digit</span>]], <a href="Comparison$$GT.html" class="extype" name="typequux.Comparison.GT">GT</a>, <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@CompareC[B&lt;:typequux.Dense,Carry&lt;:typequux.Comparison]=B#Match[T#CompareC[B#tail,DCons.this.NewCarry[Carry,B#digit]],typequux.Comparison.GT,typequux.Comparison]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Dec" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Dec=d#Match[T#Match[typequux.Dense.::[typequux.Dense.D0,T],typequux.typequux.DNil,typequux.Dense],typequux.Dense.::[typequux.Dense.D1,T#Dec],typequux.Dense]"></a><a id="Dec:Dec"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Dec=d#Match[T#Match[typequux.Dense.::[typequux.Dense.D0,T],typequux.typequux.DNil,typequux.Dense],typequux.Dense.::[typequux.Dense.D1,T#Dec],typequux.Dense]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Dec" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Dec=d#Match[T#Match[typequux.Dense.::[typequux.Dense.D0,T],typequux.Dense.DNil,typequux.Dense],typequux.Dense.::[typequux.Dense.D1,T#Dec],typequux.Dense]"></a>
+      <a id="Dec:Dec"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Dec</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<span class="extype" name="typequux.Dense.Match">T.Match</span>[<a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <span class="extype" name="typequux.typequux.DNil">DNil</span>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.Dense.Dec">T.Dec</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">Dec</span><span class="result"> = <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<span class="extype" name="typequux.Dense.Match">T.Match</span>[<a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.Dense.Dec">T.Dec</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Dec=d#Match[T#Match[typequux.Dense.::[typequux.Dense.D0,T],typequux.Dense.DNil,typequux.Dense],typequux.Dense.::[typequux.Dense.D1,T#Dec],typequux.Dense]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Decrement the number
 </p><div class="fullcomment"><div class="comment cmt"><p>Decrement the number
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.ExpHelper" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ExpHelper[arg&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#ExpHelper[arg#Sq,d#Match[typequux.Dense.*[res,arg],res,typequux.Dense]]"></a><a id="ExpHelper[arg&lt;:Dense,res&lt;:Dense]:ExpHelper[arg,res]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ExpHelper[arg&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#ExpHelper[arg#Sq,d#Match[typequux.Dense.*[res,arg],res,typequux.Dense]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.ExpHelper" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ExpHelper[arg&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#ExpHelper[arg#Sq,d#Match[typequux.Dense.*[res,arg],res,typequux.Dense]]"></a>
+      <a id="ExpHelper[arg&lt;:Dense,res&lt;:Dense]:ExpHelper[arg,res]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">ExpHelper</span><span class="tparams">[<span name="arg">arg &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="res">res &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.ExpHelper">T.ExpHelper</span>[<span class="extype" name="typequux.Dense.Sq">ExpHelper.arg.Sq</span>, <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="Dense$.html#*[A&lt;:typequux.Dense,B&lt;:typequux.Dense]=B#Match[_42.Karatsuba[B,typequux.Dense.DNil.type],typequux.Dense.DNil.type,typequux.Dense](forSome{val_42:A})" class="extmbr" name="typequux.Dense.*">*</a>[<span class="extype" name="typequux.Dense.DCons.ExpHelper.res">res</span>, <span class="extype" name="typequux.Dense.DCons.ExpHelper.arg">arg</span>], <span class="extype" name="typequux.Dense.DCons.ExpHelper.res">res</span>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]]</span>
+        <span class="name">ExpHelper</span><span class="tparams">[<span name="arg">arg &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="res">res &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.ExpHelper">T.ExpHelper</span>[<span class="extype" name="typequux.Dense.Sq">ExpHelper.arg.Sq</span>, <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="Dense$.html#*[A&lt;:typequux.Dense,B&lt;:typequux.Dense]=B#Match[_42.Karatsuba[B,typequux.Dense.DNil],typequux.Dense.DNil,typequux.Dense](forSome{val_42:A})" class="extmbr" name="typequux.Dense.*">*</a>[<span class="extype" name="typequux.Dense.DCons.ExpHelper.res">res</span>, <span class="extype" name="typequux.Dense.DCons.ExpHelper.arg">arg</span>], <span class="extype" name="typequux.Dense.DCons.ExpHelper.res">res</span>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ExpHelper[arg&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#ExpHelper[arg#Sq,d#Match[typequux.Dense.*[res,arg],res,typequux.Dense]]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Inc" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Inc=d#Match[typequux.Dense.::[typequux.Dense.D0,T#Inc],typequux.Dense.::[typequux.Dense.D1,T],typequux.Dense]"></a><a id="Inc:Inc"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Inc=d#Match[typequux.Dense.::[typequux.Dense.D0,T#Inc],typequux.Dense.::[typequux.Dense.D1,T],typequux.Dense]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Inc" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Inc=d#Match[typequux.Dense.::[typequux.Dense.D0,T#Inc],typequux.Dense.::[typequux.Dense.D1,T],typequux.Dense]"></a>
+      <a id="Inc:Inc"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Inc</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.Inc">T.Inc</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">Inc</span><span class="result"> = <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.Inc">T.Inc</span>], <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Inc=d#Match[typequux.Dense.::[typequux.Dense.D0,T#Inc],typequux.Dense.::[typequux.Dense.D1,T],typequux.Dense]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Increment the number
 </p><div class="fullcomment"><div class="comment cmt"><p>Increment the number
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Karatsuba" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Karatsuba[x&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#Karatsuba[x#ShiftL,d#Match[typequux.Dense.+[x,res],res,typequux.Dense]]"></a><a id="Karatsuba[x&lt;:Dense,res&lt;:Dense]:Karatsuba[x,res]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Karatsuba[x&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#Karatsuba[x#ShiftL,d#Match[typequux.Dense.+[x,res],res,typequux.Dense]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Karatsuba" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Karatsuba[x&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#Karatsuba[x#ShiftL,d#Match[typequux.Dense.+[x,res],res,typequux.Dense]]"></a>
+      <a id="Karatsuba[x&lt;:Dense,res&lt;:Dense]:Karatsuba[x,res]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Karatsuba</span><span class="tparams">[<span name="x">x &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="res">res &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Karatsuba">T.Karatsuba</span>[<span class="extype" name="typequux.Dense.ShiftL">Karatsuba.x.ShiftL</span>, <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="Dense$.html#+[A&lt;:typequux.Dense,B&lt;:typequux.Dense]=A#Add[B]" class="extmbr" name="typequux.Dense.+">+</a>[<span class="extype" name="typequux.Dense.DCons.Karatsuba.x">x</span>, <span class="extype" name="typequux.Dense.DCons.Karatsuba.res">res</span>], <span class="extype" name="typequux.Dense.DCons.Karatsuba.res">res</span>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]]</span>
+        <span class="name">Karatsuba</span><span class="tparams">[<span name="x">x &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="res">res &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.Karatsuba">T.Karatsuba</span>[<span class="extype" name="typequux.Dense.ShiftL">Karatsuba.x.ShiftL</span>, <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="Dense$.html#+[A&lt;:typequux.Dense,B&lt;:typequux.Dense]=A#Add[B]" class="extmbr" name="typequux.Dense.+">+</a>[<span class="extype" name="typequux.Dense.DCons.Karatsuba.x">x</span>, <span class="extype" name="typequux.Dense.DCons.Karatsuba.res">res</span>], <span class="extype" name="typequux.Dense.DCons.Karatsuba.res">res</span>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Karatsuba[x&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#Karatsuba[x#ShiftL,d#Match[typequux.Dense.+[x,res],res,typequux.Dense]]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Len" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="Len=typequux.Dense.+[typequux.Dense._1,T#Len]"></a><a id="Len:Len"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Len=typequux.Dense.+[typequux.Dense._1,T#Len]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Len" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Len=typequux.Dense.+[typequux.Dense._1,T#Len]"></a>
+      <a id="Len:Len"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Len</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Match">Dense.Len.Match</span>[<span class="extype" name="typequux.Dense.Digit.Match">Dense.digit.Match</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.Inc">Dense.tail.Inc</span>], <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.Dense.tail">Dense.Len.tail</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>], <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil$.html" class="extype" name="typequux.Dense.DNil">DNil</a>.type], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">Len</span><span class="result"> = <span class="extype" name="typequux.Dense.Match">Dense.Len.Match</span>[<span class="extype" name="typequux.Dense.Digit.Match">Dense.digit.Match</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <span class="extype" name="typequux.Dense.Inc">Dense.tail.Inc</span>], <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.Dense.tail">Dense.Len.tail</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>], <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Len=typequux.Dense.+[typequux.Dense._1,T#Len]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Match" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Match[NonZero&lt;:Up,IfZero&lt;:Up,Up]=NonZero"></a><a id="Match[NonZero&lt;:Up,IfZero&lt;:Up,Up]:Match[NonZero,IfZero,Up]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Match[NonZero&lt;:Up,IfZero&lt;:Up,Up]=NonZero" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Match" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Match[NonZero&lt;:Up,IfZero&lt;:Up,Up]=NonZero"></a>
+      <a id="Match[NonZero&lt;:Up,IfZero&lt;:Up,Up]:Match[NonZero,IfZero,Up]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Match</span><span class="tparams">[<span name="NonZero">NonZero &lt;: <span class="extype" name="typequux.Dense.DCons.Match.Up">Up</span></span>, <span name="IfZero">IfZero &lt;: <span class="extype" name="typequux.Dense.DCons.Match.Up">Up</span></span>, <span name="Up">Up</span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.DCons.Match.NonZero">NonZero</span></span>
+        <span class="name">Match</span><span class="tparams">[<span name="NonZero">NonZero &lt;: <span class="extype" name="typequux.Dense.DCons.Match.Up">Up</span></span>, <span name="IfZero">IfZero &lt;: <span class="extype" name="typequux.Dense.DCons.Match.Up">Up</span></span>, <span name="Up">Up</span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.DCons.Match.NonZero">NonZero</span></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Match[NonZero&lt;:Up,IfZero&lt;:Up,Up]=NonZero" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Typeconstructor for querying whether this is zero
 </p><div class="fullcomment"><div class="comment cmt"><p>Typeconstructor for querying whether this is zero
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.Mult" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Mult[b&lt;:typequux.Dense]=b#Match[Dense.this.Karatsuba[b,typequux.typequux.DNil],typequux.typequux.DNil,typequux.Dense]"></a><a id="Mult[b&lt;:Dense]:Mult[b]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Mult[b&lt;:typequux.Dense]=b#Match[Dense.this.Karatsuba[b,typequux.typequux.DNil],typequux.typequux.DNil,typequux.Dense]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.Mult" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Mult[b&lt;:typequux.Dense]=b#Match[Dense.this.Karatsuba[b,typequux.Dense.DNil],typequux.Dense.DNil,typequux.Dense]"></a>
+      <a id="Mult[b&lt;:Dense]:Mult[b]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Mult</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Match">Dense.Mult.b.Match</span>[<a href="#Karatsuba[x&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#Karatsuba[x#ShiftL,d#Match[typequux.Dense.+[x,res],res,typequux.Dense]]" class="extmbr" name="typequux.Dense.DCons.Karatsuba">Karatsuba</a>[<span class="extype" name="typequux.Dense.Mult.b">b</span>, <span class="extype" name="typequux.typequux.DNil">DNil</span>], <span class="extype" name="typequux.typequux.DNil">DNil</span>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
+        <span class="name">Mult</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Dense.Match">Dense.Mult.b.Match</span>[<a href="#Karatsuba[x&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#Karatsuba[x#ShiftL,d#Match[typequux.Dense.+[x,res],res,typequux.Dense]]" class="extmbr" name="typequux.Dense.DCons.Karatsuba">Karatsuba</a>[<span class="extype" name="typequux.Dense.Mult.b">b</span>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>], <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Mult[b&lt;:typequux.Dense]=b#Match[Dense.this.Karatsuba[b,typequux.Dense.DNil],typequux.Dense.DNil,typequux.Dense]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Multiply with the number
 </p><div class="fullcomment"><div class="comment cmt"><p>Multiply with the number
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.NewCarry" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="NewCarry[prev&lt;:typequux.Comparison,od&lt;:typequux.Dense.Digit]=d#Compare[od]#Match[typequux.typequux.LT,prev,typequux.typequux.GT,typequux.Comparison]"></a><a id="NewCarry[prev&lt;:Comparison,od&lt;:Digit]:NewCarry[prev,od]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#NewCarry[prev&lt;:typequux.Comparison,od&lt;:typequux.Dense.Digit]=d#Compare[od]#Match[typequux.typequux.LT,prev,typequux.typequux.GT,typequux.Comparison]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.NewCarry" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="NewCarry[prev&lt;:typequux.Comparison,od&lt;:typequux.Dense.Digit]=d#Compare[od]#Match[typequux.Comparison.LT,prev,typequux.Comparison.GT,typequux.Comparison]"></a>
+      <a id="NewCarry[prev&lt;:Comparison,od&lt;:Digit]:NewCarry[prev,od]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NewCarry</span><span class="tparams">[<span name="prev">prev &lt;: <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a></span>, <span name="od">od &lt;: <a href="Dense$$Digit.html" class="extype" name="typequux.Dense.Digit">Digit</a></span>]</span><span class="result alias"> = <span class="extype" name="typequux.Comparison.Match">Digit.Compare.Match</span>[<span class="extype" name="typequux.typequux.LT">LT</span>, <span class="extype" name="typequux.Dense.DCons.NewCarry.prev">prev</span>, <span class="extype" name="typequux.typequux.GT">GT</span>, <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a>]</span>
+        <span class="name">NewCarry</span><span class="tparams">[<span name="prev">prev &lt;: <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a></span>, <span name="od">od &lt;: <a href="Dense$$Digit.html" class="extype" name="typequux.Dense.Digit">Digit</a></span>]</span><span class="result"> = <span class="extype" name="typequux.Comparison.Match">Digit.Compare.Match</span>[<a href="Comparison$$LT.html" class="extype" name="typequux.Comparison.LT">LT</a>, <span class="extype" name="typequux.Dense.DCons.NewCarry.prev">prev</span>, <a href="Comparison$$GT.html" class="extype" name="typequux.Comparison.GT">GT</a>, <a href="Comparison.html" class="extype" name="typequux.Comparison">Comparison</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@NewCarry[prev&lt;:typequux.Comparison,od&lt;:typequux.Dense.Digit]=d#Compare[od]#Match[typequux.Comparison.LT,prev,typequux.Comparison.GT,typequux.Comparison]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
-    </li><li name="typequux.Dense.DCons.ShiftL" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="ShiftL=typequux.Dense.::[typequux.Dense.D0,typequux.Dense.DCons[d,T]]"></a><a id="ShiftL:ShiftL"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ShiftL=typequux.Dense.::[typequux.Dense.D0,typequux.Dense.DCons[d,T]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.ShiftL" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="ShiftL=typequux.Dense.::[typequux.Dense.D0,typequux.Dense.DCons[d,T]]"></a>
+      <a id="ShiftL:ShiftL"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">ShiftL</span><span class="result alias"> = <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]]</span>
+        <span class="name">ShiftL</span><span class="result"> = <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ShiftL=typequux.Dense.::[typequux.Dense.D0,typequux.Dense.DCons[d,T]]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Unsigned left shift
 </p><div class="fullcomment"><div class="comment cmt"><p>Unsigned left shift
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.ShiftR" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="ShiftR=DCons.this.tail"></a><a id="ShiftR:ShiftR"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ShiftR=DCons.this.tail" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.ShiftR" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="ShiftR=DCons.this.tail"></a>
+      <a id="ShiftR:ShiftR"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">ShiftR</span><span class="result alias"> = <span class="extype" name="typequux.Dense.DCons.T">T</span></span>
+        <span class="name">ShiftR</span><span class="result"> = <span class="extype" name="typequux.Dense.DCons.T">T</span></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ShiftR=DCons.this.tail" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Unsigned right shift
 </p><div class="fullcomment"><div class="comment cmt"><p>Unsigned right shift
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.Sq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="Sq=typequux.Dense.*[typequux.Dense.::[d,T],typequux.Dense.::[d,T]]"></a><a id="Sq:Sq"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#Sq=typequux.Dense.*[typequux.Dense.::[d,T],typequux.Dense.::[d,T]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.Sq" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="Sq=typequux.Dense.*[typequux.Dense.::[d,T],typequux.Dense.::[d,T]]"></a>
+      <a id="Sq:Sq"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Sq</span><span class="result alias"> = <span class="extype" name="typequux.Dense.Karatsuba">T.Karatsuba</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]], <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense$$DNil$.html" class="extype" name="typequux.Dense.DNil">DNil</a>.type, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]]</span>
+        <span class="name">Sq</span><span class="result"> = <span class="extype" name="typequux.Dense.Karatsuba">T.Karatsuba</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]], <span class="extype" name="typequux.Dense.Digit.Match">d.Match</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>, <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@Sq=typequux.Dense.*[typequux.Dense.::[d,T],typequux.Dense.::[d,T]]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Square the number
 </p><div class="fullcomment"><div class="comment cmt"><p>Square the number
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.YodaExp" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Operations">
-      <a id="YodaExp[b&lt;:typequux.Dense]=Dense.this.ExpHelper[b,typequux.Dense._1]"></a><a id="YodaExp[b&lt;:Dense]:YodaExp[b]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#YodaExp[b&lt;:typequux.Dense]=Dense.this.ExpHelper[b,typequux.Dense._1]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.YodaExp" visbl="pub" data-isabs="false" fullComment="yes" group="Operations">
+      <a id="YodaExp[b&lt;:typequux.Dense]=Dense.this.ExpHelper[b,typequux.Dense._1]"></a>
+      <a id="YodaExp[b&lt;:Dense]:YodaExp[b]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">YodaExp</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result alias"> = <a href="#ExpHelper[arg&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#ExpHelper[arg#Sq,d#Match[typequux.Dense.*[res,arg],res,typequux.Dense]]" class="extmbr" name="typequux.Dense.DCons.ExpHelper">ExpHelper</a>[<span class="extype" name="typequux.Dense.YodaExp.b">b</span>, <a href="Dense$.html#_1=typequux.Dense.::[typequux.Dense.D1,typequux.typequux.DNil]" class="extmbr" name="typequux.Dense._1">_1</a>]</span>
+        <span class="name">YodaExp</span><span class="tparams">[<span name="b">b &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="result"> = <a href="#ExpHelper[arg&lt;:typequux.Dense,res&lt;:typequux.Dense]=T#ExpHelper[arg#Sq,d#Match[typequux.Dense.*[res,arg],res,typequux.Dense]]" class="extmbr" name="typequux.Dense.DCons.ExpHelper">ExpHelper</a>[<span class="extype" name="typequux.Dense.YodaExp.b">b</span>, <a href="Dense$.html#_1=typequux.Dense.::[typequux.Dense.D1,typequux.Dense.DNil]" class="extmbr" name="typequux.Dense._1">_1</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@YodaExp[b&lt;:typequux.Dense]=Dense.this.ExpHelper[b,typequux.Dense._1]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Yoda exponent - to the power of the base, raise the exponent (this is the base).</p><div class="fullcomment"><div class="comment cmt"><p>Yoda exponent - to the power of the base, raise the exponent (this is the base).
 Implemented this way for efficiency
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.digit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Representation">
-      <a id="digit=d"></a><a id="digit:digit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#digit=d" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.digit" visbl="pub" data-isabs="false" fullComment="yes" group="Representation">
+      <a id="digit=d"></a>
+      <a id="digit:digit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">digit</span><span class="result alias"> = <span class="extype" name="typequux.Dense.DCons.d">d</span></span>
+        <span class="name">digit</span><span class="result"> = <span class="extype" name="typequux.Dense.DCons.d">d</span></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@digit=d" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Lowest priority bit
 </p><div class="fullcomment"><div class="comment cmt"><p>Lowest priority bit
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.Dense.DCons">DCons</a> → <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></dd><dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Dense.DCons.tail" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Representation">
-      <a id="tail=T"></a><a id="tail:tail"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#tail=T" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.Dense.DCons.tail" visbl="pub" data-isabs="false" fullComment="yes" group="Representation">
+      <a id="tail=T"></a>
+      <a id="tail:tail"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">tail</span><span class="result alias"> = <span class="extype" name="typequux.Dense.DCons.T">T</span></span>
+        <span class="name">tail</span><span class="result"> = <span class="extype" name="typequux.Dense.DCons.T">T</span></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@tail=T" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Rest of the bits, stored in reverse order or priority
 </p><div class="fullcomment"><div class="comment cmt"><p>Rest of the bits, stored in reverse order or priority
 </p></div><div class="comment cmt">
@@ -635,48 +519,46 @@ Implemented this way for efficiency
 
         
 
-        <div class="values members">
+        <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol>
-                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#!=(x$1:Any):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html###():Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="##():Int"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Predef.any2stringadd#+" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="+(other:String):String"></a><a id="+(String):String"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#+(other:String):String" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@##():Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Predef.any2stringadd#+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="+(other:String):String"></a>
+      <a id="+(String):String"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -684,19 +566,20 @@ Implemented this way for efficiency
       <span class="symbol">
         <span title="gt4s: $plus" class="implicit">+</span><span class="params">(<span name="other">other: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@+(other:String):String" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.any2stringadd">any2stringadd</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method any2stringadd in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>any2stringadd</dd></dl></div>
-    </li><li name="scala.Predef.ArrowAssoc#-&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="-&gt;[B](y:B):(A,B)"></a><a id="-&gt;[B](B):(DCons[d,T],B)"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#-&gt;[B](y:B):(A,B)" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.ArrowAssoc#-&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="-&gt;[B](y:B):(A,B)"></a>
+      <a id="-&gt;[B](B):(DCons[d,T],B)"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -704,8 +587,12 @@ Implemented this way for efficiency
       <span class="symbol">
         <span title="gt4s: $minus$greater" class="implicit">-&gt;</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span>)</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@-&gt;[B](y:B):(A,B)" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method ArrowAssoc in scala.Predef.
             
@@ -713,29 +600,27 @@ Implemented this way for efficiency
                 <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#==(x$1:Any):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="asInstanceOf[T0]:T0"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#asInstanceOf[T0]:T0" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -743,23 +628,28 @@ Implemented this way for efficiency
       <span class="symbol">
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#clone():Object" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@clone():Object" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -767,133 +657,140 @@ Implemented this way for efficiency
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A"></a><a id="ensuring((DCons[d,T])⇒Boolean,⇒Any):DCons[d,T]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A"></a>
+      <a id="ensuring((DCons[d,T])⇒Boolean,⇒Any):DCons[d,T]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:A=&gt;Boolean):A"></a><a id="ensuring((DCons[d,T])⇒Boolean):DCons[d,T]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ensuring(cond:A=&gt;Boolean):A" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean):A"></a>
+      <a id="ensuring((DCons[d,T])⇒Boolean):DCons[d,T]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ensuring(cond:A=&gt;Boolean):A" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:Boolean,msg:=&gt;Any):A"></a><a id="ensuring(Boolean,⇒Any):DCons[d,T]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ensuring(cond:Boolean,msg:=&gt;Any):A" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean,msg:=&gt;Any):A"></a>
+      <a id="ensuring(Boolean,⇒Any):DCons[d,T]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ensuring(cond:Boolean,msg:=&gt;Any):A" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:Boolean):A"></a><a id="ensuring(Boolean):DCons[d,T]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ensuring(cond:Boolean):A" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean):A"></a>
+      <a id="ensuring(Boolean):DCons[d,T]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ensuring(cond:Boolean):A" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#eq(x$1:AnyRef):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#equals(x$1:Any):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#finalize():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@finalize():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -901,13 +798,10 @@ Implemented this way for efficiency
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.Predef.StringFormat#formatted" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="formatted(fmtstr:String):String"></a><a id="formatted(String):String"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#formatted(fmtstr:String):String" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.StringFormat#formatted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="formatted(fmtstr:String):String"></a>
+      <a id="formatted(String):String"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -915,8 +809,12 @@ Implemented this way for efficiency
       <span class="symbol">
         <span class="implicit">formatted</span><span class="params">(<span name="fmtstr">fmtstr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@formatted(fmtstr:String):String" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.StringFormat">StringFormat</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method StringFormat in scala.Predef.
             
@@ -924,13 +822,10 @@ Implemented this way for efficiency
                 <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#getClass():Class[_]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -938,95 +833,101 @@ Implemented this way for efficiency
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#hashCode():Int" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@hashCode():Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#isInstanceOf[T0]:Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#ne(x$1:AnyRef):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#notify():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@notify():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#notifyAll():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -1034,15 +935,16 @@ Implemented this way for efficiency
       <span class="symbol">
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#toString():String" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -1050,23 +952,28 @@ Implemented this way for efficiency
       <span class="symbol">
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@toString():String" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#wait():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@wait():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -1074,21 +981,22 @@ Implemented this way for efficiency
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -1096,21 +1004,22 @@ Implemented this way for efficiency
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#wait(x$1:Long):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -1118,13 +1027,10 @@ Implemented this way for efficiency
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.Predef.ArrowAssoc#→" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="→[B](y:B):(A,B)"></a><a id="→[B](B):(DCons[d,T],B)"></a>
-      <span class="permalink">
-      <a href="../typequux/Dense$$DCons.html#→[B](y:B):(A,B)" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.Predef.ArrowAssoc#→" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="→[B](y:B):(A,B)"></a>
+      <a id="→[B](B):(DCons[d,T],B)"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -1132,14 +1038,17 @@ Implemented this way for efficiency
       <span class="symbol">
         <span title="gt4s: $u2192" class="implicit">→</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>], <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span>)</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.Dense$$DCons@→[B](y:B):(A,B)" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>] to
             <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="typequux.Dense.DCons">DCons</a>[<span class="extype" name="typequux.Dense.DCons.d">d</span>, <span class="extype" name="typequux.Dense.DCons.T">T</span>]] performed by method ArrowAssoc in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>ArrowAssoc</dd></dl></div>
-    </li>
-              </ol>
+    </li></ol>
             </div>
 
         
@@ -1151,9 +1060,9 @@ Implemented this way for efficiency
         <div class="parent" name="typequux.Dense">
               <h3>Inherited from <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></h3>
             </div><div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         <div class="conversion" name="scala.Predef.any2stringadd">
               <h3>Inherited by implicit conversion any2stringadd from
@@ -1192,9 +1101,7 @@ Implemented this way for efficiency
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-    </body>
-          </div>
-        </div>
-      </div>
+
+
     </body>
       </html>

@@ -1,347 +1,44 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title></title>
-          <meta name="description" content="" />
-          <meta name="keywords" content="" />
+          <title>LiteralHash - typequux.LiteralHash</title>
+          <meta name="description" content="LiteralHash - typequux.LiteralHash" />
+          <meta name="keywords" content="LiteralHash typequux.LiteralHash" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
-      <link href="../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../lib/jquery.js"></script>
-      <script type="text/javascript" src="../lib/jquery.panzoom.min.js"></script>
-      <script type="text/javascript" src="../lib/jquery.mousewheel.min.js"></script>
-      <script type="text/javascript" src="../lib/index.js"></script>
-      <script type="text/javascript" src="../index.js"></script>
-      <script type="text/javascript" src="../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../lib/template.js"></script>
       <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
-        /* this variable can be used by the JS to determine the path to the root document */
-        var toRoot = '../';
-      </script>
+         if(top === self) {
+            var url = '../index.html';
+            var hash = 'typequux.LiteralHash$';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
     
         </head>
-        <body>
-      <div id="search">
-        <span id="doc-title"><span id="doc-version"></span></span>
-        <span class="close-results"><span class="left">&lt;</span> Back</span>
-        <div id="textfilter">
-          <span class="input">
-            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
-            <i class="clear material-icons"></i>
-            <i id="search-icon" class="material-icons"></i>
-          </span>
-        </div>
-    </div>
-      <div id="search-results">
-        <div id="search-progress">
-          <div id="progress-fill"></div>
-        </div>
-        <div id="results-content">
-          <div id="entity-results"></div>
-          <div id="member-results"></div>
-        </div>
-      </div>
-      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
-        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
-          <div id="subpackage-spacer">
-            <div id="packages">
-              <h1>Packages</h1>
-              <ul>
-                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="_root_"></a><a id="root:_root_"></a>
-      <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="../index.html">
-              <span class="name">root</span>
-            </a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
-    </li><li name="_root_.typequux" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="typequux"></a><a id="typequux:typequux"></a>
-      <span class="permalink">
-      <a href="index.html#typequux" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="index.html">
-              <span class="name">typequux</span>
-            </a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
-    </li><li name="typequux.constraint" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="constraint"></a><a id="constraint:constraint"></a>
-      <span class="permalink">
-      <a href="../typequux/index.html#constraint" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="constraint/index.html">
-              <span class="name">constraint</span>
-            </a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="typequux">typequux</a></dd></dl></div>
-    </li><li class="current-entities indented1">
-                        <a class="object" href="AllContained$.html" title=""></a>
-                        <a class="class" href="AllContained.html" title="Marker that all types of HL1 are contained in HL2
-"></a>
-                        <a href="AllContained.html" title="Marker that all types of HL1 are contained in HL2
-">
-                          AllContained
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="class" href="ArityIndexOps.html" title="Provides scala collection like operations on sequantially indexed arbitrary arity types, like HList and tuple
-"></a>
-                        <a href="ArityIndexOps.html" title="Provides scala collection like operations on sequantially indexed arbitrary arity types, like HList and tuple
-">
-                          ArityIndexOps
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="class" href="ArityZipOps.html" title="Provided arbitrary arity zips for sequentially indexed arbitrary arity types, like HList or Tuples
-"></a>
-                        <a href="ArityZipOps.html" title="Provided arbitrary arity zips for sequentially indexed arbitrary arity types, like HList or Tuples
-">
-                          ArityZipOps
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Bool$.html" title="Contains implementation for Bool and typeconstructor aliases that make usage more pleasant"></a>
-                        <a class="trait" href="Bool.html" title="Church encodings of booleans."></a>
-                        <a href="Bool.html" title="Church encodings of booleans.">
-                          Bool
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Comparison$.html" title="Contains implementation for Comparison
-"></a>
-                        <a class="trait" href="Comparison.html" title="Typelevel encoding of the result of a comparison
-"></a>
-                        <a href="Comparison.html" title="Typelevel encoding of the result of a comparison
-">
-                          Comparison
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Contained$.html" title="Contains implicit definitions to build a Contained marker."></a>
-                        <a class="class" href="Contained.html" title="Marker that type A is one of the types of the supplied HList type
-"></a>
-                        <a href="Contained.html" title="Marker that type A is one of the types of the supplied HList type
-">
-                          Contained
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Dense$.html" title="Contains implementation for Dense and typeconstructor aliases that make usage more pleasant"></a>
-                        <a class="trait" href="Dense.html" title="Typelevel representation of dense numbers, stored as a list of Dense.Digit
-"></a>
-                        <a href="Dense.html" title="Typelevel representation of dense numbers, stored as a list of Dense.Digit
-">
-                          Dense
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="DenseDiff$.html" title="Contains implicit definitions to build a DenseDiff marker
-"></a>
-                        <a class="trait" href="DenseDiff.html" title="Marker trait for typelevel subtraction of Dense numbers."></a>
-                        <a href="DenseDiff.html" title="Marker trait for typelevel subtraction of Dense numbers.">
-                          DenseDiff
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="DenseMap$.html" title="Contains implementation traits for DenseMap and typeconstructor aliases that make usage more pleasant."></a>
-                        <a class="trait" href="DenseMap.html" title="Typelevel map in which the keys are Dense numbers."></a>
-                        <a href="DenseMap.html" title="Typelevel map in which the keys are Dense numbers.">
-                          DenseMap
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="DenseSet$.html" title="Contains implementation traits for DenseSet and typeconstructor aliases that make usage more pleasant."></a>
-                        <a class="trait" href="DenseSet.html" title="Typelevel set of Dense numbers, implemented as a binary tree
-"></a>
-                        <a href="DenseSet.html" title="Typelevel set of Dense numbers, implemented as a binary tree
-">
-                          DenseSet
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="HList$.html" title="Contains implementations for HList and implicit definitions to build the constraint typeclasses
-necessary for operations."></a>
-                        <a class="trait" href="HList.html" title="Sequentially indexed arbitrary arity type in which each element can be of a different type
-"></a>
-                        <a href="HList.html" title="Sequentially indexed arbitrary arity type in which each element can be of a different type
-">
-                          HList
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="HList2TupleConverter$.html" title="Provides implicit definitions to convert Tuple2-18 to HList."></a>
-                        <a class="trait" href="HList2TupleConverter.html" title="Conversions from HList to Tuple
-"></a>
-                        <a href="HList2TupleConverter.html" title="Conversions from HList to Tuple
-">
-                          HList2TupleConverter
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="class" href="HListOps.html" title="Common operations on HList
-"></a>
-                        <a href="HListOps.html" title="Common operations on HList
-">
-                          HListOps
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="" title="Contains implicit conversions to convert literals to their corresponding LiteralHash
-"></a>
-                        <a class="trait" href="LiteralHash.html" title="Typelevel representation of a compile time constant literal."></a>
-                        <a href="LiteralHash.html" title="Typelevel representation of a compile time constant literal.">
-                          LiteralHash
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="trait" href="LowPriorityHList2TupleConverter.html" title="Provided implicit definition to convert HList to Tuple1."></a>
-                        <a href="LowPriorityHList2TupleConverter.html" title="Provided implicit definition to convert HList to Tuple1.">
-                          LowPriorityHList2TupleConverter
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Nat$.html" title="Contains implementation traits for Nat and typeconstructor aliases that make usage more pleasant."></a>
-                        <a class="trait" href="Nat.html" title="Peano encoding of natural numbers
-"></a>
-                        <a href="Nat.html" title="Peano encoding of natural numbers
-">
-                          Nat
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="NatDiff$.html" title="Contains implicit definitions to build a NatDiff marker
-"></a>
-                        <a class="trait" href="NatDiff.html" title="Marker trait for typelevel subtraction of Nat
-"></a>
-                        <a href="NatDiff.html" title="Marker trait for typelevel subtraction of Nat
-">
-                          NatDiff
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="NotContained$.html" title="Contains implicit definitions to build a NotContained marker."></a>
-                        <a class="class" href="NotContained.html" title="Marker that type A is not one of the types of the supplied HList type
-"></a>
-                        <a href="NotContained.html" title="Marker that type A is not one of the types of the supplied HList type
-">
-                          NotContained
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="NotSubType$.html" title="Containt implicit definitions to build a NotSubType marker
-"></a>
-                        <a class="class" href="NotSubType.html" title="Marker that type A is not a subtype of the types of the supplied HList type
-"></a>
-                        <a href="NotSubType.html" title="Marker that type A is not a subtype of the types of the supplied HList type
-">
-                          NotSubType
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Record$.html" title="Contains implementations of Record and implicit definitions for building typeclasses necessary
-for the operations on records
-"></a>
-                        <a class="trait" href="Record.html" title="String indexed collection in which the elements can have different types."></a>
-                        <a href="Record.html" title="String indexed collection in which the elements can have different types.">
-                          Record
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="class" href="SiOps.html" title="Provides scala collection like operations on string indexed collections like Record and StringIndexedCollection
-"></a>
-                        <a href="SiOps.html" title="Provides scala collection like operations on string indexed collections like Record and StringIndexedCollection
-">
-                          SiOps
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="SizedVector$.html" title="Implements methods to construct SizedVector objects
-"></a>
-                        <a class="class" href="SizedVector.html" title="Sequantially indexed immutable collection of fixed size in which all elements are of the same type."></a>
-                        <a href="SizedVector.html" title="Sequantially indexed immutable collection of fixed size in which all elements are of the same type.">
-                          SizedVector
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="StringIndexedCollection$.html" title="Contains implementations of StringIndexedCollection  and implicit definitions for building typeclasses necessary
-for the operations on string indexed collections
-"></a>
-                        <a class="trait" href="StringIndexedCollection.html" title="String indexed collection in which all the elements are of the same type."></a>
-                        <a href="StringIndexedCollection.html" title="String indexed collection in which all the elements are of the same type.">
-                          StringIndexedCollection
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="SubType$.html" title="Containt implicit definitions to build a SubType marker
-"></a>
-                        <a class="class" href="SubType.html" title="Marker that type A is a subtype of one of the types of the supplied HList type
-"></a>
-                        <a href="SubType.html" title="Marker that type A is a subtype of one of the types of the supplied HList type
-">
-                          SubType
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="Tuple2HListConverter$.html" title="Provides implicit definitions to convert Tuple2-22 to HList
-"></a>
-                        <a class="trait" href="Tuple2HListConverter.html" title="Conversion from Tuple to HList
-"></a>
-                        <a href="Tuple2HListConverter.html" title="Conversion from Tuple to HList
-">
-                          Tuple2HListConverter
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="class" href="TupleIndexOps.html" title="Provides scala collection-like operations on tuples."></a>
-                        <a href="TupleIndexOps.html" title="Provides scala collection-like operations on tuples.">
-                          TupleIndexOps
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <span class="separator"></span>
-                        <a class="object" href="TupleOps$.html" title="Provides implicit definitions to build constraint typeclasses for tuples."></a>
-                        <a href="TupleOps$.html" title="Provides implicit definitions to build constraint typeclasses for tuples.">
-                          TupleOps
-                        </a>
-                      </li><li class="current-entities indented1">
-                        <a class="object" href="$tilde$greater$.html" title="Contains implicit conversions and values that provide several utility methods
-"></a>
-                        <a class="trait" href="$tilde$greater.html" title="Proxy for natural transformations between contexts
-"></a>
-                        <a href="$tilde$greater.html" title="Proxy for natural transformations between contexts
-">
-                          ~&gt;
-                        </a>
-                      </li>
-              </ul>
-            </div>
-          </div>
-          <div id="content">
-            <body class="object value">
+        <body class="value">
       <div id="definition">
-        <a href="LiteralHash.html" title="See companion trait"><div class="big-circle object-companion-trait">o</div></a>
-        <p id="owner"><a href="index.html" class="extype" name="typequux">typequux</a></p>
-        <h1><a href="LiteralHash.html" title="See companion trait">LiteralHash</a><span class="permalink">
-      <a href="../typequux/LiteralHash$.html" title="Permalink">
-        <i class="material-icons"></i>
+        <a href="LiteralHash.html" title="See companion trait"><img alt="Object/Trait" src="../lib/object_to_trait_big.png" /></a>
+        <p id="owner"><a href="package.html" class="extype" name="typequux">typequux</a></p>
+        <h1><a href="LiteralHash.html" title="See companion trait">LiteralHash</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="LiteralHash.html" title="See companion trait">trait LiteralHash</a>
+            | <a href="package.html" class="extype" name="typequux">package typequux</a>
+          </div></span></h3><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
-    </span></h1>
-        <h3><span class="morelinks"><div>
-            Companion <a href="LiteralHash.html" title="See companion trait">trait LiteralHash</a>
-          </div></span></h3>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
@@ -353,56 +50,44 @@ for the operations on string indexed collections
         <span class="name">LiteralHash</span>
       </span>
       </h4>
-
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Contains implicit conversions to convert literals to their corresponding LiteralHash
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl><div class="toggleContainer block">
-          <span class="toggle">
-            Linear Supertypes
-          </span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
       <div id="mbrsel">
-        <div class="toggle"></div>
-        <div id="memberfilter">
-          <i class="material-icons arrow"></i>
-          <span class="input">
-            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
-          </span>
-          <i class="clear material-icons"></i>
-        </div>
-        <div id="filterby">
-          <div id="order">
-            <span class="filtertype">Ordering</span>
-            <ol>
-              <li class="group out"><span>Grouped</span></li>
-              <li class="alpha in"><span>Alphabetic</span></li>
-              <li class="inherit out"><span>By Inheritance</span></li>
-            </ol>
-          </div>
-          <div class="ancestors">
-                  <span class="filtertype">Inherited<br />
-                  </span>
-                  <ol id="linearization">
-                    <li class="in" name="typequux.LiteralHash"><span>LiteralHash</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
-                  </ol>
-                </div><div class="ancestors">
-              <span class="filtertype"></span>
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
               <ol>
-                <li class="hideall out"><span>Hide All</span></li>
-                <li class="showall in"><span>Show All</span></li>
+                <li class="group out"><span>Grouped</span></li>
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
               </ol>
             </div>
-          <div id="visbl">
-              <span class="filtertype">Visibility</span>
-              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
-            </div>
-        </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="typequux.LiteralHash"><span>LiteralHash</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
       </div>
 
       <div id="template">
@@ -411,336 +96,352 @@ for the operations on string indexed collections
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="typequux.LiteralHash.BooleanTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="BooleanTypeHash=typequux.Dense._2"></a><a id="BooleanTypeHash:BooleanTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#BooleanTypeHash=typequux.Dense._2" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+              <ol><li name="typequux.LiteralHash.BooleanTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="BooleanTypeHash=typequux.Dense._2"></a>
+      <a id="BooleanTypeHash:BooleanTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">BooleanTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]</span>
+        <span class="name">BooleanTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@BooleanTypeHash=typequux.Dense._2" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Booleans
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Booleans
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.CharTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="CharTypeHash=typequux.Dense._7"></a><a id="CharTypeHash:CharTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#CharTypeHash=typequux.Dense._7" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.CharTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="CharTypeHash=typequux.Dense._7"></a>
+      <a id="CharTypeHash:CharTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">CharTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]</span>
+        <span class="name">CharTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@CharTypeHash=typequux.Dense._7" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Char
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Char
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.NegativeByteTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="NegativeByteTypeHash=typequux.Dense._3"></a><a id="NegativeByteTypeHash:NegativeByteTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#NegativeByteTypeHash=typequux.Dense._3" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.NegativeByteTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="NegativeByteTypeHash=typequux.Dense._3"></a>
+      <a id="NegativeByteTypeHash:NegativeByteTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NegativeByteTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]</span>
+        <span class="name">NegativeByteTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@NegativeByteTypeHash=typequux.Dense._3" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Negative Bytes
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Negative Bytes
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.NegativeEncodedDoubleTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="NegativeEncodedDoubleTypeHash=typequux.Dense._14"></a><a id="NegativeEncodedDoubleTypeHash:NegativeEncodedDoubleTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#NegativeEncodedDoubleTypeHash=typequux.Dense._14" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.NegativeEncodedDoubleTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="NegativeEncodedDoubleTypeHash=typequux.Dense._14"></a>
+      <a id="NegativeEncodedDoubleTypeHash:NegativeEncodedDoubleTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NegativeEncodedDoubleTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">NegativeEncodedDoubleTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@NegativeEncodedDoubleTypeHash=typequux.Dense._14" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Doubles whose long encoding is negative
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Doubles whose long encoding is negative
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.NegativeEncodedFloatTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="NegativeEncodedFloatTypeHash=typequux.Dense._12"></a><a id="NegativeEncodedFloatTypeHash:NegativeEncodedFloatTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#NegativeEncodedFloatTypeHash=typequux.Dense._12" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.NegativeEncodedFloatTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="NegativeEncodedFloatTypeHash=typequux.Dense._12"></a>
+      <a id="NegativeEncodedFloatTypeHash:NegativeEncodedFloatTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NegativeEncodedFloatTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">NegativeEncodedFloatTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@NegativeEncodedFloatTypeHash=typequux.Dense._12" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Floats whose integer encoding is negative
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Floats whose integer encoding is negative
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.NegativeIntegerTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="NegativeIntegerTypeHash=typequux.Dense._8"></a><a id="NegativeIntegerTypeHash:NegativeIntegerTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#NegativeIntegerTypeHash=typequux.Dense._8" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.NegativeIntegerTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="NegativeIntegerTypeHash=typequux.Dense._8"></a>
+      <a id="NegativeIntegerTypeHash:NegativeIntegerTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NegativeIntegerTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">NegativeIntegerTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@NegativeIntegerTypeHash=typequux.Dense._8" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Negative Integer
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Negative Integer
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.NegativeLongTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="NegativeLongTypeHash=typequux.Dense._10"></a><a id="NegativeLongTypeHash:NegativeLongTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#NegativeLongTypeHash=typequux.Dense._10" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.NegativeLongTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="NegativeLongTypeHash=typequux.Dense._10"></a>
+      <a id="NegativeLongTypeHash:NegativeLongTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NegativeLongTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">NegativeLongTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@NegativeLongTypeHash=typequux.Dense._10" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Negative Long
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Negative Long
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.NegativeShortTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="NegativeShortTypeHash=typequux.Dense._5"></a><a id="NegativeShortTypeHash:NegativeShortTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#NegativeShortTypeHash=typequux.Dense._5" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.NegativeShortTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="NegativeShortTypeHash=typequux.Dense._5"></a>
+      <a id="NegativeShortTypeHash:NegativeShortTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">NegativeShortTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]</span>
+        <span class="name">NegativeShortTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@NegativeShortTypeHash=typequux.Dense._5" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Negative Short
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Negative Short
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.PositiveByteTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="PositiveByteTypeHash=typequux.Dense._4"></a><a id="PositiveByteTypeHash:PositiveByteTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#PositiveByteTypeHash=typequux.Dense._4" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.PositiveByteTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="PositiveByteTypeHash=typequux.Dense._4"></a>
+      <a id="PositiveByteTypeHash:PositiveByteTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">PositiveByteTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]</span>
+        <span class="name">PositiveByteTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@PositiveByteTypeHash=typequux.Dense._4" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Positive Bytes
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Positive Bytes
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.PositiveEncodedDoubleTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="PositiveEncodedDoubleTypeHash=typequux.Dense._15"></a><a id="PositiveEncodedDoubleTypeHash:PositiveEncodedDoubleTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#PositiveEncodedDoubleTypeHash=typequux.Dense._15" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.PositiveEncodedDoubleTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="PositiveEncodedDoubleTypeHash=typequux.Dense._15"></a>
+      <a id="PositiveEncodedDoubleTypeHash:PositiveEncodedDoubleTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">PositiveEncodedDoubleTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">PositiveEncodedDoubleTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@PositiveEncodedDoubleTypeHash=typequux.Dense._15" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for doubles whose long encoding is positive
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for doubles whose long encoding is positive
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.PositiveEncodedFloatTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="PositiveEncodedFloatTypeHash=typequux.Dense._13"></a><a id="PositiveEncodedFloatTypeHash:PositiveEncodedFloatTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#PositiveEncodedFloatTypeHash=typequux.Dense._13" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.PositiveEncodedFloatTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="PositiveEncodedFloatTypeHash=typequux.Dense._13"></a>
+      <a id="PositiveEncodedFloatTypeHash:PositiveEncodedFloatTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">PositiveEncodedFloatTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">PositiveEncodedFloatTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@PositiveEncodedFloatTypeHash=typequux.Dense._13" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Floats whose integer encoding is positive
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Floats whose integer encoding is positive
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.PositiveIntegerTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="PositiveIntegerTypeHash=typequux.Dense._9"></a><a id="PositiveIntegerTypeHash:PositiveIntegerTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#PositiveIntegerTypeHash=typequux.Dense._9" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.PositiveIntegerTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="PositiveIntegerTypeHash=typequux.Dense._9"></a>
+      <a id="PositiveIntegerTypeHash:PositiveIntegerTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">PositiveIntegerTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">PositiveIntegerTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@PositiveIntegerTypeHash=typequux.Dense._9" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Positive Integer
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Positive Integer
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.PositiveLongTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="PositiveLongTypeHash=typequux.Dense._11"></a><a id="PositiveLongTypeHash:PositiveLongTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#PositiveLongTypeHash=typequux.Dense._11" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.PositiveLongTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="PositiveLongTypeHash=typequux.Dense._11"></a>
+      <a id="PositiveLongTypeHash:PositiveLongTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">PositiveLongTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]</span>
+        <span class="name">PositiveLongTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@PositiveLongTypeHash=typequux.Dense._11" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Positive Long
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Positive Long
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.PositiveShortTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="PositiveShortTypeHash=typequux.Dense._6"></a><a id="PositiveShortTypeHash:PositiveShortTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#PositiveShortTypeHash=typequux.Dense._6" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.PositiveShortTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="PositiveShortTypeHash=typequux.Dense._6"></a>
+      <a id="PositiveShortTypeHash:PositiveShortTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">PositiveShortTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]</span>
+        <span class="name">PositiveShortTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@PositiveShortTypeHash=typequux.Dense._6" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Positive Short
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Positive Short
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.StringTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="StringTypeHash=typequux.Dense._16"></a><a id="StringTypeHash:StringTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#StringTypeHash=typequux.Dense._16" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.StringTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="StringTypeHash=typequux.Dense._16"></a>
+      <a id="StringTypeHash:StringTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">StringTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]]]]]</span>
+        <span class="name">StringTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D0.html" class="extype" name="typequux.Dense.D0">D0</a>, <a href="Dense$.html#::[H&lt;:typequux.Dense.Digit,T&lt;:typequux.Dense]=typequux.Dense.DCons[H,T]" class="extmbr" name="typequux.Dense.::">::</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]]]]]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@StringTypeHash=typequux.Dense._16" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for strings
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for strings
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash.UnitTypeHash" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Type Hashes">
-      <a id="UnitTypeHash=typequux.Dense._1"></a><a id="UnitTypeHash:UnitTypeHash"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#UnitTypeHash=typequux.Dense._1" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash.UnitTypeHash" visbl="pub" data-isabs="false" fullComment="yes" group="Type Hashes">
+      <a id="UnitTypeHash=typequux.Dense._1"></a>
+      <a id="UnitTypeHash:UnitTypeHash"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">UnitTypeHash</span><span class="result alias"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <span class="extype" name="typequux.typequux.DNil">DNil</span>]</span>
+        <span class="name">UnitTypeHash</span><span class="result"> = <a href="Dense$$DCons.html" class="extype" name="typequux.Dense.DCons">DCons</a>[<a href="Dense$$D1.html" class="extype" name="typequux.Dense.D1">D1</a>, <a href="Dense$$DNil.html" class="extype" name="typequux.Dense.DNil">DNil</a>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@UnitTypeHash=typequux.Dense._1" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Type hash for Unit
 </p><div class="fullcomment"><div class="comment cmt"><p>Type hash for Unit
 </p></div><div class="comment cmt">
@@ -752,64 +453,86 @@ for the operations on string indexed collections
 
         
 
-        <div class="values members">
+        <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol>
-                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#!=(x$1:Any):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html###():Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="##():Int"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#==(x$1:Any):Boolean" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@##():Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="typequux.LiteralHash.LiteralHashDownConverter" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="LiteralHashDownConverter"></a>
+      <a id="LiteralHashDownConverter:LiteralHashDownConverter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LiteralHash$$LiteralHashDownConverter$.html"><span class="name">LiteralHashDownConverter</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@LiteralHashDownConverter" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a> and
+<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Short" class="extype" target="_top">scala.Short</a> literals can't be directly written.</p><div class="fullcomment"><div class="comment cmt"><p>Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a> and
+<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Short" class="extype" target="_top">scala.Short</a> literals can't be directly written. They are dangerous and should be used with caution.
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#asInstanceOf[T0]:T0" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -817,23 +540,28 @@ for the operations on string indexed collections
       <span class="symbol">
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#clone():Object" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@clone():Object" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -841,53 +569,56 @@ for the operations on string indexed collections
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#equals(x$1:Any):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#finalize():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@finalize():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -895,181 +626,186 @@ for the operations on string indexed collections
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="typequux.LiteralHash#forBoolean" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forBoolean(x:Boolean):typequux.LiteralHash[Boolean]"></a><a id="forBoolean(Boolean):LiteralHash[Boolean]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forBoolean(x:Boolean):typequux.LiteralHash[Boolean]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forBoolean" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forBoolean(x:Boolean):typequux.LiteralHash[Boolean]"></a>
+      <a id="forBoolean(Boolean):LiteralHash[Boolean]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forBoolean</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a>]</span>
+        <span class="name">forBoolean</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">scala.Boolean</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">scala.Boolean</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forBoolean(x:Boolean):typequux.LiteralHash[Boolean]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">scala.Boolean</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">scala.Boolean</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forByte" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forByte(x:Byte):typequux.LiteralHash[Byte]"></a><a id="forByte(Byte):LiteralHash[Byte]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forByte(x:Byte):typequux.LiteralHash[Byte]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forByte" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forByte(x:Byte):typequux.LiteralHash[Byte]"></a>
+      <a id="forByte(Byte):LiteralHash[Byte]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forByte</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Byte" class="extype" target="_top">Byte</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Byte" class="extype" target="_top">Byte</a>]</span>
+        <span class="name">forByte</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Byte" class="extype" target="_top">Byte</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Byte" class="extype" target="_top">Byte</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forByte(x:Byte):typequux.LiteralHash[Byte]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forChar" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forChar(x:Char):typequux.LiteralHash[Char]"></a><a id="forChar(Char):LiteralHash[Char]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forChar(x:Char):typequux.LiteralHash[Char]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forChar" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forChar(x:Char):typequux.LiteralHash[Char]"></a>
+      <a id="forChar(Char):LiteralHash[Char]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forChar</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Char" class="extype" target="_top">Char</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Char" class="extype" target="_top">Char</a>]</span>
+        <span class="name">forChar</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Char" class="extype" target="_top">Char</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Char" class="extype" target="_top">Char</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Char" class="extype" target="_top">scala.Char</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Char" class="extype" target="_top">scala.Char</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forChar(x:Char):typequux.LiteralHash[Char]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Char" class="extype" target="_top">scala.Char</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Char" class="extype" target="_top">scala.Char</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forDouble" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forDouble(x:Double):typequux.LiteralHash[Double]"></a><a id="forDouble(Double):LiteralHash[Double]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forDouble(x:Double):typequux.LiteralHash[Double]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forDouble" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forDouble(x:Double):typequux.LiteralHash[Double]"></a>
+      <a id="forDouble(Double):LiteralHash[Double]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forDouble</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Double" class="extype" target="_top">Double</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Double" class="extype" target="_top">Double</a>]</span>
+        <span class="name">forDouble</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Double" class="extype" target="_top">Double</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Double" class="extype" target="_top">Double</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Double" class="extype" target="_top">scala.Double</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Double" class="extype" target="_top">scala.Double</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forDouble(x:Double):typequux.LiteralHash[Double]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Double" class="extype" target="_top">scala.Double</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Double" class="extype" target="_top">scala.Double</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forFloat" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forFloat(x:Float):typequux.LiteralHash[Float]"></a><a id="forFloat(Float):LiteralHash[Float]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forFloat(x:Float):typequux.LiteralHash[Float]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forFloat" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forFloat(x:Float):typequux.LiteralHash[Float]"></a>
+      <a id="forFloat(Float):LiteralHash[Float]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forFloat</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Float" class="extype" target="_top">Float</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Float" class="extype" target="_top">Float</a>]</span>
+        <span class="name">forFloat</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Float" class="extype" target="_top">Float</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Float" class="extype" target="_top">Float</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Float" class="extype" target="_top">scala.Float</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Float" class="extype" target="_top">scala.Float</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forFloat(x:Float):typequux.LiteralHash[Float]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Float" class="extype" target="_top">scala.Float</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Float" class="extype" target="_top">scala.Float</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forInt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forInt(x:Int):typequux.LiteralHash[Int]"></a><a id="forInt(Int):LiteralHash[Int]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forInt(x:Int):typequux.LiteralHash[Int]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forInt" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forInt(x:Int):typequux.LiteralHash[Int]"></a>
+      <a id="forInt(Int):LiteralHash[Int]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forInt</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
+        <span class="name">forInt</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">scala.Int</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">scala.Int</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forInt(x:Int):typequux.LiteralHash[Int]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">scala.Int</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">scala.Int</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forLong" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forLong(x:Long):typequux.LiteralHash[Long]"></a><a id="forLong(Long):LiteralHash[Long]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forLong(x:Long):typequux.LiteralHash[Long]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forLong" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forLong(x:Long):typequux.LiteralHash[Long]"></a>
+      <a id="forLong(Long):LiteralHash[Long]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forLong</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">Long</a>]</span>
+        <span class="name">forLong</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">scala.Long</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">scala.Long</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forLong(x:Long):typequux.LiteralHash[Long]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">scala.Long</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">scala.Long</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forShort" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forShort(x:Short):typequux.LiteralHash[Short]"></a><a id="forShort(Short):LiteralHash[Short]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forShort(x:Short):typequux.LiteralHash[Short]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forShort" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forShort(x:Short):typequux.LiteralHash[Short]"></a>
+      <a id="forShort(Short):LiteralHash[Short]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forShort</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Short" class="extype" target="_top">Short</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Short" class="extype" target="_top">Short</a>]</span>
+        <span class="name">forShort</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Short" class="extype" target="_top">Short</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Short" class="extype" target="_top">Short</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Short" class="extype" target="_top">scala.Short</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Short" class="extype" target="_top">scala.Short</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forShort(x:Short):typequux.LiteralHash[Short]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Short" class="extype" target="_top">scala.Short</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Short" class="extype" target="_top">scala.Short</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forString(x:String):typequux.LiteralHash[String]"></a><a id="forString(String):LiteralHash[String]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forString(x:String):typequux.LiteralHash[String]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forString" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forString(x:String):typequux.LiteralHash[String]"></a>
+      <a id="forString(String):LiteralHash[String]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
@@ -1077,41 +813,43 @@ for the operations on string indexed collections
       <span class="symbol">
         <span class="name">forString</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forString(x:String):typequux.LiteralHash[String]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">Converter for Strings
 </p><div class="fullcomment"><div class="comment cmt"><p>Converter for Strings
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.LiteralHash#forUnit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="forUnit(x:Unit):typequux.LiteralHash[Unit]"></a><a id="forUnit(Unit):LiteralHash[Unit]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#forUnit(x:Unit):typequux.LiteralHash[Unit]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="typequux.LiteralHash#forUnit" visbl="pub" data-isabs="false" fullComment="yes" group="Builder">
+      <a id="forUnit(x:Unit):typequux.LiteralHash[Unit]"></a>
+      <a id="forUnit(Unit):LiteralHash[Unit]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">forUnit</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a>]</span>
+        <span class="name">forUnit</span><span class="params">(<span name="x">x: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>)</span><span class="result">: <a href="LiteralHash.html" class="extype" name="typequux.LiteralHash">LiteralHash</a>[<a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a>]</span>
       </span>
-      
-      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">scala.Unit</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">scala.Unit</a>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@forUnit(x:Unit):typequux.LiteralHash[Unit]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">scala.Unit</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Converter for <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">scala.Unit</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#getClass():Class[_]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -1119,95 +857,101 @@ for the operations on string indexed collections
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#hashCode():Int" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@hashCode():Int" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#isInstanceOf[T0]:Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#notify():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@notify():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#notifyAll():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -1215,15 +959,16 @@ for the operations on string indexed collections
       <span class="symbol">
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#toString():String" title="Permalink">
-        <i class="material-icons"></i>
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -1231,23 +976,28 @@ for the operations on string indexed collections
       <span class="symbol">
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@toString():String" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#wait():Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@wait():Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -1255,21 +1005,22 @@ for the operations on string indexed collections
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -1277,21 +1028,22 @@ for the operations on string indexed collections
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#wait(x$1:Long):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      
+      </h4><span class="permalink">
+      <a href="../index.html#typequux.LiteralHash$@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -1299,33 +1051,7 @@ for the operations on string indexed collections
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="typequux.LiteralHash.LiteralHashDownConverter" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Builder">
-      <a id="LiteralHashDownConverter"></a><a id="LiteralHashDownConverter:LiteralHashDownConverter"></a>
-      <span class="permalink">
-      <a href="../typequux/LiteralHash$.html#LiteralHashDownConverter" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a title="Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since scala.Byte and
-scala.Short literals can't be directly written." href="LiteralHash$$LiteralHashDownConverter$.html">
-              <span class="name">LiteralHashDownConverter</span>
-            </a>
-      </span>
-      
-      <p class="shortcomment cmt">Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a> and
-<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Short" class="extype" target="_top">scala.Short</a> literals can't be directly written.</p><div class="fullcomment"><div class="comment cmt"><p>Provides implicit conversions from ints to LiteralHash[Byte] and LiteralHash[Short], since <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Byte" class="extype" target="_top">scala.Byte</a> and
-<a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Short" class="extype" target="_top">scala.Short</a> literals can't be directly written. They are dangerous and should be used with caution.
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li>
-              </ol>
+    </li></ol>
             </div>
 
         
@@ -1335,9 +1061,9 @@ scala.Short literals can't be directly written." href="LiteralHash$$LiteralHashD
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.0/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>
@@ -1360,9 +1086,7 @@ scala.Short literals can't be directly written." href="LiteralHash$$LiteralHashD
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-    </body>
-          </div>
-        </div>
-      </div>
+
+
     </body>
       </html>
