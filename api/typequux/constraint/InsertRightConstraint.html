@@ -1,42 +1,391 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>InsertRightConstraint - typequux.constraint.InsertRightConstraint</title>
-          <meta name="description" content="InsertRightConstraint - typequux.constraint.InsertRightConstraint" />
-          <meta name="keywords" content="InsertRightConstraint typequux.constraint.InsertRightConstraint" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
-      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../lib/index.js"></script>
+      <script type="text/javascript" src="../../index.js"></script>
+      <script type="text/javascript" src="../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../lib/template.js"></script>
       <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
-         if(top === self) {
-            var url = '../../index.html';
-            var hash = 'typequux.constraint.InsertRightConstraint';
-            var anchor = window.location.hash;
-            var anchor_opt = '';
-            if (anchor.length >= 1)
-              anchor_opt = '@' + anchor.substring(1);
-            window.location.href = url + '#' + hash + anchor_opt;
-         }
-   	  </script>
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../';
+      </script>
     
         </head>
-        <body class="type">
-      <div id="definition">
-        <img alt="Trait" src="../../lib/trait_big.png" />
-        <p id="owner"><a href="../package.html" class="extype" name="typequux">typequux</a>.<a href="package.html" class="extype" name="typequux.constraint">constraint</a></p>
-        <h1>InsertRightConstraint</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="typequux.constraint">package constraint</a>
-          </div></span></h3><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html">
+              <span class="name">root</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.typequux" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="typequux"></a><a id="typequux:typequux"></a>
+      <span class="permalink">
+      <a href="index.html#typequux" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html">
+              <span class="name">typequux</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="typequux.constraint" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="constraint"></a><a id="constraint:constraint"></a>
+      <span class="permalink">
+      <a href="../typequux/index.html#constraint" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html">
+              <span class="name">constraint</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="typequux">typequux</a></dd></dl></div>
+    </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="AppendConstraint.html" title="Typeclass to append two objects."></a>
+                        <a href="AppendConstraint.html" title="Typeclass to append two objects.">
+                          AppendConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ApplyConstraint.html" title="Typeclass for function application."></a>
+                        <a href="ApplyConstraint.html" title="Typeclass for function application.">
+                          ApplyConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="AtConstraint.html" title="Typeclass to get an element given an index."></a>
+                        <a href="AtConstraint.html" title="Typeclass to get an element given an index.">
+                          AtConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="AtRightConstraint.html" title="Typeclass to get an element from an object that supports sequential indexing, like HList and Tuples."></a>
+                        <a href="AtRightConstraint.html" title="Typeclass to get an element from an object that supports sequential indexing, like HList and Tuples.">
+                          AtRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ConsConstraint.html" title="Typeclass to add an element at the head of an object."></a>
+                        <a href="ConsConstraint.html" title="Typeclass to add an element at the head of an object.">
+                          ConsConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="CountConstraint$.html" title="Companion object for the CountConstraint trait."></a>
+                        <a class="trait" href="CountConstraint.html" title="Typeclass to count the number of elements satisfying a given predicate, given that each element of the object
+can be converted implicitly to a common class C."></a>
+                        <a href="CountConstraint.html" title="Typeclass to count the number of elements satisfying a given predicate, given that each element of the object
+can be converted implicitly to a common class C.">
+                          CountConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="DownTransformConstraint.html" title="Typeclass to remove all elements of an object from their context, for example converting."></a>
+                        <a href="DownTransformConstraint.html" title="Typeclass to remove all elements of an object from their context, for example converting.">
+                          DownTransformConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="DropConstraint.html" title="Typeclass to remove a type-indexed number of elements from the left of a sequentially indexed object, like
+a HList or a tuple."></a>
+                        <a href="DropConstraint.html" title="Typeclass to remove a type-indexed number of elements from the left of a sequentially indexed object, like
+a HList or a tuple.">
+                          DropConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="DropRightConstraint.html" title="Typeclass to remove a type-indexed number of elements from the right of a sequentially indexed object, like
+a HList or a tuple."></a>
+                        <a href="DropRightConstraint.html" title="Typeclass to remove a type-indexed number of elements from the right of a sequentially indexed object, like
+a HList or a tuple.">
+                          DropRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="ExistsConstraint$.html" title="Companion object for ExistsConstraint."></a>
+                        <a class="trait" href="ExistsConstraint.html" title="Typeclass to check if an element satisfies a given predicate given that each element of the object can be
+implicitly converted to a type C."></a>
+                        <a href="ExistsConstraint.html" title="Typeclass to check if an element satisfies a given predicate given that each element of the object can be
+implicitly converted to a type C.">
+                          ExistsConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ExternalUnzipConstraint.html" title="Typeclass to unzip the elements of an object into two object, for example an HList of Tuple2s into two HLists."></a>
+                        <a href="ExternalUnzipConstraint.html" title="Typeclass to unzip the elements of an object into two object, for example an HList of Tuple2s into two HLists.">
+                          ExternalUnzipConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ExternalZipConstraint.html" title="Typeclass to zip the elements of two objects, as opposed to zipping all the elements of one object, which
+is done by the InternalZipConstraint typeclass."></a>
+                        <a href="ExternalZipConstraint.html" title="Typeclass to zip the elements of two objects, as opposed to zipping all the elements of one object, which
+is done by the InternalZipConstraint typeclass.">
+                          ExternalZipConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="FoldLeftConstraint$.html" title="Companion object for the FoldLeftConstraint trait."></a>
+                        <a class="trait" href="FoldLeftConstraint.html" title="Typeclass to implement a fold-left style on an object, given that all elements of the object can be implicitly
+converted to a type C."></a>
+                        <a href="FoldLeftConstraint.html" title="Typeclass to implement a fold-left style on an object, given that all elements of the object can be implicitly
+converted to a type C.">
+                          FoldLeftConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="ForallConstraint$.html" title="Companion object for the ForallConstraint trait."></a>
+                        <a class="trait" href="ForallConstraint.html" title="Typeclass to check whether a given predicate holds for all elements of an object, given that each element of
+the object can be implicitly converted to a type C."></a>
+                        <a href="ForallConstraint.html" title="Typeclass to check whether a given predicate holds for all elements of an object, given that each element of
+the object can be implicitly converted to a type C.">
+                          ForallConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ForeachConstraint.html" title="Typeclass to apply an operation to each element of an object, given that all elements of the object can be
+implicitly converted to a common class C."></a>
+                        <a href="ForeachConstraint.html" title="Typeclass to apply an operation to each element of an object, given that all elements of the object can be
+implicitly converted to a common class C.">
+                          ForeachConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="IndexFlatMapConstraint.html" title="Typeclass to map an object at a type-index and then &quot;flatten&quot; the result, conceptually similar to a flatmap
+By convention, indices are 0-based from the left (beginning)."></a>
+                        <a href="IndexFlatMapConstraint.html" title="Typeclass to map an object at a type-index and then &quot;flatten&quot; the result, conceptually similar to a flatmap
+By convention, indices are 0-based from the left (beginning).">
+                          IndexFlatMapConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="IndexFlatMapRightConstraint.html" title="Typeclass to map an object at a type-index and then &quot;flatten&quot; the result, conceptually similar to a flatmap
+By convention, indices are 0-based from the right (end)."></a>
+                        <a href="IndexFlatMapRightConstraint.html" title="Typeclass to map an object at a type-index and then &quot;flatten&quot; the result, conceptually similar to a flatmap
+By convention, indices are 0-based from the right (end).">
+                          IndexFlatMapRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="IndexMapConstraint.html" title="Typeclass to map an object at a type-index, conceptually similar to a map."></a>
+                        <a href="IndexMapConstraint.html" title="Typeclass to map an object at a type-index, conceptually similar to a map.">
+                          IndexMapConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="IndexMapRightConstraint.html" title="Typeclass to map an object at a type-index, conceptually similar to a map."></a>
+                        <a href="IndexMapRightConstraint.html" title="Typeclass to map an object at a type-index, conceptually similar to a map.">
+                          IndexMapRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="InsertConstraint.html" title="Typeclass to insert an element at a specified type-index."></a>
+                        <a href="InsertConstraint.html" title="Typeclass to insert an element at a specified type-index.">
+                          InsertConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="InsertMConstraint.html" title="Typeclass to insert multiple elements at a specified type-index."></a>
+                        <a href="InsertMConstraint.html" title="Typeclass to insert multiple elements at a specified type-index.">
+                          InsertMConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="InsertMRightConstraint.html" title="Typeclass to insert multiple elements at a specified type-index."></a>
+                        <a href="InsertMRightConstraint.html" title="Typeclass to insert multiple elements at a specified type-index.">
+                          InsertMRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="" title="Typeclass to insert an element at a specified type-index."></a>
+                        <a href="" title="Typeclass to insert an element at a specified type-index.">
+                          InsertRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="InternalZipConstraint.html" title="Typeclass to zip all the elements of an object together, equivalent to an arbitrary-arity zip."></a>
+                        <a href="InternalZipConstraint.html" title="Typeclass to zip all the elements of an object together, equivalent to an arbitrary-arity zip.">
+                          InternalZipConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="LengthConstraint.html" title="Marker trait for typelevel length."></a>
+                        <a href="LengthConstraint.html" title="Marker trait for typelevel length.">
+                          LengthConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ListBuilderConstraint.html" title="Typeclass to convert an object to a list."></a>
+                        <a href="ListBuilderConstraint.html" title="Typeclass to convert an object to a list.">
+                          ListBuilderConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="LubConstraint.html" title="Marker trait for the Lease Uppper Bound Type for all elements of an object."></a>
+                        <a href="LubConstraint.html" title="Marker trait for the Lease Uppper Bound Type for all elements of an object.">
+                          LubConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="RemoveConstraint.html" title="Typeclass to remove an element at a specified type-index."></a>
+                        <a href="RemoveConstraint.html" title="Typeclass to remove an element at a specified type-index.">
+                          RemoveConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="RemoveRightConstraint.html" title="Typeclass to remove an element at a specified type-index."></a>
+                        <a href="RemoveRightConstraint.html" title="Typeclass to remove an element at a specified type-index.">
+                          RemoveRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ReverseConstraint.html" title="Typeclass to reverse a sequentially indexed object, like a HList or a tuple."></a>
+                        <a href="ReverseConstraint.html" title="Typeclass to reverse a sequentially indexed object, like a HList or a tuple.">
+                          ReverseConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="SIAddConstraint.html" title="Typeclass to add an element at a string indexed collection, like a StringIndexedCollection or a Record."></a>
+                        <a href="SIAddConstraint.html" title="Typeclass to add an element at a string indexed collection, like a StringIndexedCollection or a Record.">
+                          SIAddConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="SplitAtConstraint.html" title="Typeclass to split a sequentially indexed collection (like a HList or a tuple) at a specified index."></a>
+                        <a href="SplitAtConstraint.html" title="Typeclass to split a sequentially indexed collection (like a HList or a tuple) at a specified index.">
+                          SplitAtConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="SplitAtRightConstraint.html" title="Typeclass to split a sequentially indexed collection (like a HList or a tuple) at a specified index."></a>
+                        <a href="SplitAtRightConstraint.html" title="Typeclass to split a sequentially indexed collection (like a HList or a tuple) at a specified index.">
+                          SplitAtRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="TakeConstraint.html" title="Typeclass to take a type-indexed number of elements from the left of a sequentially indexed object, like
+a HList or a tuple."></a>
+                        <a href="TakeConstraint.html" title="Typeclass to take a type-indexed number of elements from the left of a sequentially indexed object, like
+a HList or a tuple.">
+                          TakeConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="TakeRightConstraint.html" title="Typeclass to take a type-indexed number of elements from the right of a sequentially indexed object, like
+a HList or a tuple."></a>
+                        <a href="TakeRightConstraint.html" title="Typeclass to take a type-indexed number of elements from the right of a sequentially indexed object, like
+a HList or a tuple.">
+                          TakeRightConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="ToListConstraint$.html" title="Companion object for ToListConstraint."></a>
+                        <a class="trait" href="ToListConstraint.html" title="Typeclass to convert an object into a list, default implementation is provided in the companion object."></a>
+                        <a href="ToListConstraint.html" title="Typeclass to convert an object into a list, default implementation is provided in the companion object.">
+                          ToListConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ToMapConstraint.html" title="Typeclass to convert an object, such as a Record or a StringIndexedCollection to a map."></a>
+                        <a href="ToMapConstraint.html" title="Typeclass to convert an object, such as a Record or a StringIndexedCollection to a map.">
+                          ToMapConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="TransformConstraint.html" title="Typeclass to apply a natural transformation to an object."></a>
+                        <a href="TransformConstraint.html" title="Typeclass to apply a natural transformation to an object.">
+                          TransformConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="UpdatedConstraint.html" title="Typeclass to update an element at a given type index."></a>
+                        <a href="UpdatedConstraint.html" title="Typeclass to update an element at a given type index.">
+                          UpdatedConstraint
+                        </a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="UpdatedRightConstraint.html" title="Typeclass to update an element at a given type index."></a>
+                        <a href="UpdatedRightConstraint.html" title="Typeclass to update an element at a given type index.">
+                          UpdatedRightConstraint
+                        </a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="trait type">
+      <div id="definition">
+        <div class="big-circle trait">t</div>
+        <p id="owner"><a href="../index.html" class="extype" name="typequux">typequux</a>.<a href="index.html" class="extype" name="typequux.constraint">constraint</a></p>
+        <h1>InsertRightConstraint<span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
       </div>
 
       <h4 id="signature" class="signature">
@@ -45,52 +394,64 @@
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">InsertRightConstraint</span><span class="tparams">[<span name="N">N</span>, <span name="HL">HL</span>, <span name="T">T</span>, <span name="R">R</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <span class="name">InsertRightConstraint</span><span class="tparams">[<span name="N">N</span>, <span name="HL">HL</span>, <span name="T">T</span>, <span name="R">R</span>]</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
       </h4>
+
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Typeclass to insert an element at a specified type-index. By convention, indices are 0-based from the right (end).
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">N</dt><dd class="cmt"><p>Index at which the element is to be inserted</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the object in which the insertion is taking place</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>Type of the object being inserted</p></dd><dt class="tparam">R</dt><dd class="cmt"><p>Type of the result</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl><div class="toggleContainer block">
-          <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
       <div id="mbrsel">
-        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
-        <div id="order">
-              <span class="filtertype">Ordering</span>
-              <ol>
-                
-                <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By Inheritance</span></li>
-              </ol>
-            </div>
-        <div id="ancestors">
-                <span class="filtertype">Inherited<br />
-                </span>
-                <ol id="linearization">
-                  <li class="in" name="typequux.constraint.InsertRightConstraint"><span>InsertRightConstraint</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
-                </ol>
-              </div><div id="ancestors">
-                <span class="filtertype">Implicitly<br />
-                </span>
-                <ol id="implicits"> <li class="in" name="scala.Predef.any2stringadd" data-hidden="true"><span>by any2stringadd</span></li><li class="in" name="scala.Predef.StringFormat" data-hidden="true"><span>by StringFormat</span></li><li class="in" name="scala.Predef.Ensuring" data-hidden="true"><span>by Ensuring</span></li><li class="in" name="scala.Predef.ArrowAssoc" data-hidden="true"><span>by ArrowAssoc</span></li>
-                </ol>
-              </div><div id="ancestors">
-            <span class="filtertype"></span>
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
             <ol>
-              <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show All</span></li>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
             </ol>
           </div>
-        <div id="visbl">
-            <span class="filtertype">Visibility</span>
-            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
-          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="typequux.constraint.InsertRightConstraint"><span>InsertRightConstraint</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+                  <span class="filtertype">Implicitly<br />
+                  </span>
+                  <ol id="implicits"> <li class="in" name="scala.Predef.any2stringadd" data-hidden="true"><span>by any2stringadd</span></li><li class="in" name="scala.Predef.StringFormat" data-hidden="true"><span>by StringFormat</span></li><li class="in" name="scala.Predef.Ensuring" data-hidden="true"><span>by Ensuring</span></li><li class="in" name="scala.Predef.ArrowAssoc" data-hidden="true"><span>by ArrowAssoc</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
       </div>
 
       <div id="template">
@@ -99,12 +460,15 @@
 
         
 
-        <div id="values" class="values members">
+        <div class="values members">
               <h3>Abstract Value Members</h3>
-              <ol><li name="typequux.constraint.InsertRightConstraint#apply" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
-      <a id="apply(hl:HL,t:T):R"></a>
-      <a id="apply(HL,T):R"></a>
-      <h4 class="signature">
+              <ol><li name="typequux.constraint.InsertRightConstraint#apply" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="apply(hl:HL,t:T):R"></a><a id="apply(HL,T):R"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#apply(hl:HL,t:T):R" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">abstract </span>
         <span class="kind">def</span>
@@ -112,55 +476,53 @@
       <span class="symbol">
         <span class="name">apply</span><span class="params">(<span name="hl">hl: <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span></span>, <span name="t">t: <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span></span>)</span><span class="result">: <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@apply(hl:HL,t:T):R" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       
     </li></ol>
             </div>
 
-        <div id="values" class="values members">
+        <div class="values members">
               <h3>Concrete Value Members</h3>
-              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="!=(x$1:Any):Boolean"></a>
-      <a id="!=(Any):Boolean"></a>
-      <h4 class="signature">
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="##():Int"></a>
-      <a id="##():Int"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@##():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Predef.any2stringadd#+" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="+(other:String):String"></a><a id="+(String):String"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#+(other:String):String" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Predef.any2stringadd#+" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="+(other:String):String"></a>
-      <a id="+(String):String"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -168,20 +530,19 @@
       <span class="symbol">
         <span title="gt4s: $plus" class="implicit">+</span><span class="params">(<span name="other">other: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@+(other:String):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.any2stringadd">any2stringadd</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method any2stringadd in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>any2stringadd</dd></dl></div>
-    </li><li name="scala.Predef.ArrowAssoc#-&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="-&gt;[B](y:B):(A,B)"></a>
-      <a id="-&gt;[B](B):(InsertRightConstraint[N,HL,T,R],B)"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.ArrowAssoc#-&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="-&gt;[B](y:B):(A,B)"></a><a id="-&gt;[B](B):(InsertRightConstraint[N,HL,T,R],B)"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#-&gt;[B](y:B):(A,B)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -189,12 +550,8 @@
       <span class="symbol">
         <span title="gt4s: $minus$greater" class="implicit">-&gt;</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>], <span class="extype" name="scala.Predef.ArrowAssoc.-&gt;.B">B</span>)</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@-&gt;[B](y:B):(A,B)" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method ArrowAssoc in scala.Predef.
             
@@ -202,27 +559,29 @@
                 <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="==(x$1:Any):Boolean"></a>
-      <a id="==(Any):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="asInstanceOf[T0]:T0"></a>
-      <a id="asInstanceOf[T0]:T0"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -230,28 +589,23 @@
       <span class="symbol">
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="clone():Object"></a>
-      <a id="clone():AnyRef"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@clone():Object" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -259,140 +613,133 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A"></a>
-      <a id="ensuring((InsertRightConstraint[N,HL,T,R])⇒Boolean,⇒Any):InsertRightConstraint[N,HL,T,R]"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A"></a><a id="ensuring((InsertRightConstraint[N,HL,T,R])⇒Boolean,⇒Any):InsertRightConstraint[N,HL,T,R]"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@ensuring(cond:A=&gt;Boolean,msg:=&gt;Any):A" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:A=&gt;Boolean):A"></a>
-      <a id="ensuring((InsertRightConstraint[N,HL,T,R])⇒Boolean):InsertRightConstraint[N,HL,T,R]"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:A=&gt;Boolean):A"></a><a id="ensuring((InsertRightConstraint[N,HL,T,R])⇒Boolean):InsertRightConstraint[N,HL,T,R]"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#ensuring(cond:A=&gt;Boolean):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: (<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]) ⇒ <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@ensuring(cond:A=&gt;Boolean):A" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:Boolean,msg:=&gt;Any):A"></a>
-      <a id="ensuring(Boolean,⇒Any):InsertRightConstraint[N,HL,T,R]"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean,msg:=&gt;Any):A"></a><a id="ensuring(Boolean,⇒Any):InsertRightConstraint[N,HL,T,R]"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#ensuring(cond:Boolean,msg:=&gt;Any):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="msg">msg: ⇒ <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@ensuring(cond:Boolean,msg:=&gt;Any):A" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ensuring(cond:Boolean):A"></a>
-      <a id="ensuring(Boolean):InsertRightConstraint[N,HL,T,R]"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.Ensuring#ensuring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ensuring(cond:Boolean):A"></a><a id="ensuring(Boolean):InsertRightConstraint[N,HL,T,R]"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#ensuring(cond:Boolean):A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
+        <span class="implicit">ensuring</span><span class="params">(<span name="cond">cond: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>)</span><span class="result">: <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@ensuring(cond:Boolean):A" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.Ensuring">Ensuring</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method Ensuring in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>Ensuring</dd></dl></div>
-    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="eq(x$1:AnyRef):Boolean"></a>
-      <a id="eq(AnyRef):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
-      <a id="finalize():Unit"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@finalize():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -400,10 +747,13 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.Predef.StringFormat#formatted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="formatted(fmtstr:String):String"></a>
-      <a id="formatted(String):String"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.StringFormat#formatted" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="formatted(fmtstr:String):String"></a><a id="formatted(String):String"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#formatted(fmtstr:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -411,12 +761,8 @@
       <span class="symbol">
         <span class="implicit">formatted</span><span class="params">(<span name="fmtstr">fmtstr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@formatted(fmtstr:String):String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.StringFormat">StringFormat</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method StringFormat in scala.Predef.
             
@@ -424,10 +770,13 @@
                 <span class="name">@inline</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
-      <a id="getClass():Class[_]"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -435,101 +784,95 @@
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <a id="hashCode():Int"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@hashCode():Int" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
-      <a id="isInstanceOf[T0]:Boolean"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ne(x$1:AnyRef):Boolean"></a>
-      <a id="ne(AnyRef):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
-      <a id="notify():Unit"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@notify():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="notifyAll():Unit"></a>
-      <a id="notifyAll():Unit"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
-      <a id="synchronized[T0](⇒T0):T0"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -537,16 +880,15 @@
       <span class="symbol">
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <a id="toString():String"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -554,28 +896,23 @@
       <span class="symbol">
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@toString():String" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
-      <a id="wait():Unit"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@wait():Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -583,22 +920,21 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
-      <a id="wait(Long,Int):Unit"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -606,22 +942,21 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long):Unit"></a>
-      <a id="wait(Long):Unit"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -629,10 +964,13 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.Predef.ArrowAssoc#→" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="→[B](y:B):(A,B)"></a>
-      <a id="→[B](B):(InsertRightConstraint[N,HL,T,R],B)"></a>
-      <h4 class="signature">
+    </li><li name="scala.Predef.ArrowAssoc#→" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="→[B](y:B):(A,B)"></a><a id="→[B](B):(InsertRightConstraint[N,HL,T,R],B)"></a>
+      <span class="permalink">
+      <a href="../../typequux/constraint/InsertRightConstraint.html#→[B](y:B):(A,B)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -640,17 +978,14 @@
       <span class="symbol">
         <span title="gt4s: $u2192" class="implicit">→</span><span class="tparams">[<span name="B">B</span>]</span><span class="params">(<span name="y">y: <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span></span>)</span><span class="result">: (<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>], <span class="extype" name="scala.Predef.ArrowAssoc.→.B">B</span>)</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../../index.html#typequux.constraint.InsertRightConstraint@→[B](y:B):(A,B)" title="Permalink" target="_top">
-        <img src="../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit information</dt><dd>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt class="implicit">Implicit</dt><dd>
             This member is added by an implicit conversion from <a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>] to
             <span class="extype" name="scala.Predef.ArrowAssoc">ArrowAssoc</span>[<a href="" class="extype" name="typequux.constraint.InsertRightConstraint">InsertRightConstraint</a>[<span class="extype" name="typequux.constraint.InsertRightConstraint.N">N</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.HL">HL</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.T">T</span>, <span class="extype" name="typequux.constraint.InsertRightConstraint.R">R</span>]] performed by method ArrowAssoc in scala.Predef.
             
           </dd><dt>Definition Classes</dt><dd>ArrowAssoc</dd></dl></div>
-    </li></ol>
+    </li>
+              </ol>
             </div>
 
         
@@ -660,9 +995,9 @@
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.8/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         <div class="conversion" name="scala.Predef.any2stringadd">
               <h3>Inherited by implicit conversion any2stringadd from
@@ -695,7 +1030,9 @@
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-
-
+    </body>
+          </div>
+        </div>
+      </div>
     </body>
       </html>
