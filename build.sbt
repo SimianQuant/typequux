@@ -2,8 +2,8 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.2-SNAPSHOT",
-  scalaVersion := "2.11.8",
+  version := "0.6.2",
+  scalaVersion := "2.12.1",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
@@ -46,7 +46,7 @@ lazy val commonShared = Seq(
     case x if x.startsWith("2.12.") => "-target:jvm-1.8"
     case x => "-target:jvm-1.6"
   }),
-  scalacOptions in (Compile, doc) ++= Seq(
+  scalacOptions in (Compile, doc) ++= Seq(  
     "-author",
     "-groups",
     "-implicits"
@@ -107,6 +107,7 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
+    scalaVersion := "2.11.8",
     nativeMode := "release",
     coverageExcludedPackages := ".*"
   )
@@ -148,6 +149,7 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
+    scalaVersion := "2.11.8",
     libraryDependencies += "com.simianquant" %% "sntb" % "0.1" % "test",
     coverageExcludedPackages := ".*"
   )
