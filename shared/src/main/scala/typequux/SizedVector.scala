@@ -17,6 +17,7 @@ package typequux
 
 import annotation.tailrec
 import Bool.True
+import collection.immutable.VectorBuilder
 import Dense._
 import language.experimental.macros
 import reflect.macros.whitebox.Context
@@ -250,6 +251,25 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def unzip[U, V](implicit ev: T <:< (U, V)): (SizedVector[N, U], SizedVector[N, V]) = {
     val (l, r) = backing.unzip
     (new SizedVector[N, U](l), new SizedVector[N, V](r))
+  }
+
+  def traverse[U, V, R](f: T => Either[U, V])(acc: (U, Iterable[U]) => R): Either[R, SizedVector[N, V]] = {
+    val vb = new VectorBuilder[V]
+    vb.sizeHint(backing.length)
+    val errors = backing.foldLeft(List.empty[U]){
+      case (acc, elem) => f(elem) match {
+        case Left(res) => res :: acc
+        case Right(res) =>
+          if(acc.isEmpty){
+            vb += res
+          }
+          acc
+      }
+    }
+    errors.reverse match {
+      case h :: t => Left(acc(h, t))
+      case _ => Right(new SizedVector[N, V](vb.result))
+    }
   }
 
   override def toString: String = s"SizedVector(${backing.mkString(", ")})"
