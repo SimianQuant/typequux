@@ -2,7 +2,7 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.2",
+  version := "0.6.3-SNAPSHOT",
   scalaVersion := "2.12.1",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
@@ -46,7 +46,7 @@ lazy val commonShared = Seq(
     case x if x.startsWith("2.12.") => "-target:jvm-1.8"
     case x => "-target:jvm-1.6"
   }),
-  scalacOptions in (Compile, doc) ++= Seq(  
+  scalacOptions in (Compile, doc) ++= Seq(
     "-author",
     "-groups",
     "-implicits"

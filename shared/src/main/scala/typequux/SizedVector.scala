@@ -229,6 +229,15 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def zip[U, N1 <: Dense](that: SizedVector[N1, U]): SizedVector[Min[N, N1], (T, U)] =
     new SizedVector[Min[N, N1], (T, U)](backing zip that.backing)
 
+  /** Zips with a SizedVector of the same size
+  *
+  * @tparam U Element type of the argument
+  * 
+  * @author Harshad Deo
+  * @since 0.6.3
+  */
+  def symzip[U](that: SizedVector[N, U]): SizedVector[N, (T, U)] = new SizedVector[N, (T, U)](backing zip that.backing)
+
   /** Unzips the collection, if the element type is a Tuple2
     * 
     * @tparam U Element type of the first collection produced by unzipping
