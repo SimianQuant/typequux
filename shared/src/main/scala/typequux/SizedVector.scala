@@ -105,6 +105,20 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def flatten[D <: Dense, U](implicit ev: T <:< SizedVector[D, U]): SizedVector[*[D, N], U] =
     new SizedVector[*[D, N], U](backing.flatMap(t => t.backing))
 
+  /** If the element type is another SizedVector, transposes the collection
+  *
+  * @tparam D Size of the element
+  * @tparam U Element type of the element
+  *
+  * @author Harshad Deo
+  * @since 0.6.3
+  */
+  def transpose[D <: Dense, U](implicit ev: T <:< SizedVector[D, U]): SizedVector[D, SizedVector[N, U]] = {
+    val backingMat = backing map (_.backing)
+    val tr = backingMat.transpose.map(z => new SizedVector[N, U](z))
+    new SizedVector[D, SizedVector[N, U]](tr)
+  }
+
   /** Value level length of this
     * 
     * @author Harshad Deo
