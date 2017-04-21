@@ -305,6 +305,19 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   */
 object SizedVector {
 
+  /** Builds a [[SizedVector]] of a statically known size type from another sequence
+    *
+    * @tparam T Elment type of the sequence
+    *
+    * @author Harshad Deo
+    * @since 0.6.3
+    */  
+  def from[SZ <: Dense, T](v: Seq[T])(implicit dr: Dense.DenseIntRep[SZ]): Option[SizedVector[SZ, T]] = if(dr.v == v.length) {
+    Some(new SizedVector[SZ, T](v.toVector))
+  }else {
+    None
+  }
+
   /** Builds a [[SizedVector]] of a statically known size from another sequence
     *
     * @tparam T Elment type of the sequence
