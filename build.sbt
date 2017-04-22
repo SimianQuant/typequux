@@ -13,7 +13,6 @@ lazy val commonShared = Seq(
     Seq(Any2StringAdd,
         EitherProjectionPartial,
         Enumeration,
-        IsInstanceOf,
         ListOps,
         Option2Iterable,
         OptionPartial,

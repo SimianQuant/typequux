@@ -47,8 +47,13 @@ object Contained {
   def containedImpl[A: c.WeakTypeTag, HL: c.WeakTypeTag](c: Context): c.Tree = {
     import c.universe._
 
-    val tp1 = implicitly[c.WeakTypeTag[A]].tpe
-    val tp2 = implicitly[c.WeakTypeTag[HL]].tpe
+    def processType(tp: Type) = tp match {
+      case z: TypeRef => z.dealias
+      case _ => tp
+    }
+
+    val tp1 = processType(implicitly[c.WeakTypeTag[A]].tpe)
+    val tp2 = processType(implicitly[c.WeakTypeTag[HL]].tpe)
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
       case a :: b :: Nil => a :: allTypes(b.typeArgs)
@@ -56,10 +61,11 @@ object Contained {
     }
 
     val at = allTypes(tp2.typeArgs)
+
     if (at.exists(_ =:= tp1)) {
-      q"new Contained[$tp1, $tp2]"
+      q"new typequux.Contained[$tp1, $tp2]"
     } else {
-      c.abort(c.enclosingPosition, "Cannot construct an instance of Contained for the supplied types")
+      c.abort(c.enclosingPosition, s"Type ${show(tp1)} is not contained in ${show(tp2)}")
     }
   }
 
@@ -224,6 +230,8 @@ object NotSubType {
 
 object AllContained {
 
+  implicit def allContainedDegenerate[H1, H2](implicit ev: H1 =:= H1): AllContained[H1, H2] = new AllContained[H1, H2]
+
   /** Constructs an instance [[AllContained]] by delegating to the macro
     *
     * @author Harshad Deo
@@ -234,8 +242,13 @@ object AllContained {
   def allContainedImpl[HL1: c.WeakTypeTag, HL2: c.WeakTypeTag](c: Context): c.Tree = {
     import c.universe._
 
-    val tp1 = implicitly[c.WeakTypeTag[HL1]].tpe
-    val tp2 = implicitly[c.WeakTypeTag[HL2]].tpe
+    def processType(tp: Type) = tp match {
+      case z: TypeRef => z.dealias
+      case _ => tp
+    }
+
+    val tp1 = processType(implicitly[c.WeakTypeTag[HL1]].tpe)
+    val tp2 = processType(implicitly[c.WeakTypeTag[HL2]].tpe)
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
       case a :: b :: Nil => a :: allTypes(b.typeArgs)
@@ -252,7 +265,7 @@ object AllContained {
     }
 
     if (res) {
-      q"new AllContained[$tp1, $tp2]"
+      q"new typequux.AllContained[$tp1, $tp2]"
     } else {
       c.abort(c.enclosingPosition, "Cannot construct an instance of AllContained for the supplied types")
     }
