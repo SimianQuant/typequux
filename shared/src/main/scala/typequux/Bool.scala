@@ -182,7 +182,7 @@ object Bool {
     * @author Harshad Deo
     * @since 0.1
     */
-  sealed class BoolRep[+B <: Bool](val v: Boolean)
+  final class BoolRep[B <: Bool] private (val v: Boolean) extends AnyVal
 
   /** Provides implicits for converting typelevel booleans to value level booleans
     *
@@ -195,16 +195,17 @@ object Bool {
     /** Implements [[BoolRep]] in case of [[True]]
       *
       * @author Harshad Deo
-      * @since 0.1
+      * @since 0.6.4
       */
-    implicit object TrueRep extends BoolRep[True](true)
+    implicit val trueBoolRep: BoolRep[True] = new BoolRep(true)
 
     /** Implements [[BoolRep]] in case of [[False]]
       *
       * @author Harshad Deo
-      * @since 0.1
+      * @since 0.6.4
       */
-    implicit object FalseRep extends BoolRep[False](false)
+    implicit val falseBoolRep: BoolRep[False] = new BoolRep(false)
+
   }
 
   /** Method to convert a typelevel boolean to its value representation
