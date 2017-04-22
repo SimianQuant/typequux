@@ -54,7 +54,7 @@ lazy val commonShared = Seq(
   addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16")
 )
 
-lazy val crossVersions = Seq("2.11.8", "2.12.1")
+lazy val crossVersions = Seq("2.11.11", "2.12.1")
 
 lazy val sharedSettings = commonShared ++ Seq(
     name := "typequux",
