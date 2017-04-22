@@ -1,4 +1,4 @@
 -J-Xmx12G
 -J-XX:+UseConcMarkSweepGC
 -J-XX:+CMSClassUnloadingEnabled
--J-XX:ReservedCodeCacheSize=1000000Kb
+-J-XX:ReservedCodeCacheSize=250000Kb

@@ -2,7 +2,7 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.3",
+  version := "0.6.4-SNAPSHOT",
   scalaVersion := "2.11.8",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
@@ -91,6 +91,7 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .settings(sharedSettings)
   .jvmSettings(
     crossScalaVersions := crossVersions,
+    scalaVersion := "2.12.1",
     initialCommands := """| class Witness1[T](val x: T)
       | object Witness1{
       |   def apply[T](x: T): Witness1[T] = new Witness1(x)
@@ -165,17 +166,19 @@ commands += Command.command("testall") { state =>
 }
 
 commands += Command.command("releaselocal") { state =>
-  "testall" :: 
-  "typequuxNative/publishLocal" ::
-  "project typequuxJVM" :: "+publishLocal" ::
-  "project typequuxJS" :: "+publishLocal" ::
-  state
+  "testall" ::
+    "project typequuxNative" :: "publishLocal" ::
+      "project typequuxJVM" :: "+publishLocal" ::
+        "project typequuxJS" :: "+publishLocal" ::
+          state
 }
 
 commands += Command.command("release") { state =>
-  "testall" :: 
-  "typequuxNative/publishSigned" ::
-  "project typequuxJVM" :: "+publishSigned" ::
-  "project typequuxJS" :: "+publishSigned" ::
-  state
+  "testall" ::
+    "project typequuxNative" :: "publishSigned" ::
+      "project typequuxJS" :: "+publishSigned" ::
+        "project typequuxJVM" :: "+publishSigned" ::
+          "sonatypeRelease" ::
+            "ghpagesPushSite" ::
+              state
 }
