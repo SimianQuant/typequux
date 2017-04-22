@@ -15,6 +15,9 @@
   */
 package typequux
 
+import language.experimental.macros
+import reflect.macros.blackbox.Context
+
 import HList.{:+:, HNil}
 
 /** Marker that type A is one of the types of the supplied [[HList]] type
@@ -62,7 +65,7 @@ final class NotSubType[A, HL] private ()
   * @author Harshad Deo
   * @since 0.2.2
   */
-final class AllContained[HL1, HL2] private ()
+final class AllContained[HL1, HL2]
 
 /** Contains implicit definitions to build a [[Contained]] marker.
   *
@@ -218,12 +221,32 @@ object NotSubType {
 
 object AllContained {
 
-  implicit def baseCase[HL <: HList]: AllContained[HNil, HL] = new AllContained[HNil, HL]
+  implicit def buildAllContained[HL1 <: HList, HL2 <: HList]: AllContained[HL1, HL2] = macro allContainedImpl[HL1, HL2]
 
-  implicit def inductionCase[H, TL <: HList, HL <: HList](implicit ev0: Contained[H, HL],
-                                                          ev1: AllContained[TL, HL]): AllContained[H :+: TL, HL] =
-    new AllContained[H :+: TL, HL]
+  def allContainedImpl[HL1: c.WeakTypeTag, HL2: c.WeakTypeTag](c: Context): c.Tree = {
+    import c.universe._
 
-  implicit def allContainedDegenerate[H1, H2](implicit ev: H1 =:= H2): AllContained[H1, H2] = new AllContained[H1, H2]
+    val tp1 = implicitly[c.WeakTypeTag[HL1]].tpe
+    val tp2 = implicitly[c.WeakTypeTag[HL2]].tpe
 
+    def allTypes(xs: List[Type]): List[Type] = xs match {
+      case a :: b :: Nil => a :: allTypes(b.typeArgs)
+      case _ => Nil
+    }
+
+    val at1 = allTypes(tp1.typeArgs)
+    val at2 = allTypes(tp2.typeArgs)
+
+    val res = at1 forall { zl =>
+      at2.exists { zr =>
+        zl =:= zr
+      }
+    }
+
+    if(res){
+      q"new AllContained[$tp1, $tp2]"
+    }else {
+      c.abort(c.enclosingPosition, "Cannot construct an instance of AllContained for the supplied types")
+    }
+  }
 }
