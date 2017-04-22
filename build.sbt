@@ -2,8 +2,8 @@ import sbtcrossproject.{crossProject, CrossType}
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.3-SNAPSHOT",
-  scalaVersion := "2.12.1",
+  version := "0.6.3",
+  scalaVersion := "2.11.8",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
@@ -53,7 +53,7 @@ lazy val commonShared = Seq(
   addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16")
 )
 
-lazy val crossVersions = Seq("2.11.11", "2.12.1")
+lazy val crossVersions = Seq("2.11.8", "2.12.1")
 
 lazy val sharedSettings = commonShared ++ Seq(
     name := "typequux",
@@ -106,7 +106,6 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
-    scalaVersion := "2.11.8",
     nativeMode := "release",
     coverageExcludedPackages := ".*"
   )
@@ -137,7 +136,6 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("typequuxtests"))
   .settings(commonShared)
   .dependsOn(typequux)
-  .aggregate(typequux)
   .jvmSettings(testSettings)
   .jvmSettings(
     fork := true
@@ -148,7 +146,6 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
-    scalaVersion := "2.11.8",
     libraryDependencies += "com.simianquant" %% "sntb" % "0.1" % "test",
     coverageExcludedPackages := ".*"
   )
@@ -159,4 +156,26 @@ lazy val typequuxtestsJS = typequuxtests.js
 
 lazy val typequuxtestsNative = typequuxtests.native
 
-//onLoad in Global := (Command.process("project typequuxJVM", _: State)) compose (onLoad in Global).value
+commands += Command.command("testall") { state =>
+  "typequuxJVM/clean" :: "typequuxJS/clean" :: "typequuxNative/clean" ::
+    "project typequuxtestsNative" :: "clean" :: "test:run" ::
+      "project typequuxtestsJVM" :: "clean" :: "+test" ::
+        "project typequuxtestsJS" :: "clean" :: "+test" ::
+          state
+}
+
+commands += Command.command("releaselocal") { state =>
+  "testall" :: 
+  "typequuxNative/publishLocal" ::
+  "project typequuxJVM" :: "+publishLocal" ::
+  "project typequuxJS" :: "+publishLocal" ::
+  state
+}
+
+commands += Command.command("release") { state =>
+  "testall" :: 
+  "typequuxNative/publishSigned" ::
+  "project typequuxJVM" :: "+publishSigned" ::
+  "project typequuxJS" :: "+publishSigned" ::
+  state
+}
