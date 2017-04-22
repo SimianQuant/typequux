@@ -1180,6 +1180,27 @@ into a simple SizedVector
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">D</dt><dd class="cmt"><p>Size of the subcollection to the right of the split index</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
+    </li><li name="typequux.SizedVector#symzip" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="symzip[U](that:typequux.SizedVector[N,U]):typequux.SizedVector[N,(T,U)]"></a><a id="symzip[U](SizedVector[N,U]):SizedVector[N,(T,U)]"></a>
+      <span class="permalink">
+      <a href="../typequux/SizedVector.html#symzip[U](that:typequux.SizedVector[N,U]):typequux.SizedVector[N,(T,U)]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">symzip</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span name="that">that: <a href="" class="extype" name="typequux.SizedVector">SizedVector</a>[<span class="extype" name="typequux.SizedVector.N">N</span>, <span class="extype" name="typequux.SizedVector.symzip.U">U</span>]</span>)</span><span class="result">: <a href="" class="extype" name="typequux.SizedVector">SizedVector</a>[<span class="extype" name="typequux.SizedVector.N">N</span>, (<span class="extype" name="typequux.SizedVector.T">T</span>, <span class="extype" name="typequux.SizedVector.symzip.U">U</span>)]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Zips with a SizedVector of the same size
+</p><div class="fullcomment"><div class="comment cmt"><p>Zips with a SizedVector of the same size
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="paramcmts block"><dt class="tparam">U</dt><dd class="cmt"><p>Element type of the argument</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.3</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -1254,6 +1275,43 @@ into a simple SizedVector
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="typequux.SizedVector">SizedVector</a> → AnyRef → Any</dd></dl></div>
+    </li><li name="typequux.SizedVector#transpose" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="transpose[D&lt;:typequux.Dense,U](implicitev:&lt;:&lt;[T,typequux.SizedVector[D,U]]):typequux.SizedVector[D,typequux.SizedVector[N,U]]"></a><a id="transpose[D&lt;:Dense,U](&lt;:&lt;[T,SizedVector[D,U]]):SizedVector[D,SizedVector[N,U]]"></a>
+      <span class="permalink">
+      <a href="../typequux/SizedVector.html#transpose[D&lt;:typequux.Dense,U](implicitev:&lt;:&lt;[T,typequux.SizedVector[D,U]]):typequux.SizedVector[D,typequux.SizedVector[N,U]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">transpose</span><span class="tparams">[<span name="D">D &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="U">U</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="typequux.SizedVector.T">T</span>, <a href="" class="extype" name="typequux.SizedVector">SizedVector</a>[<span class="extype" name="typequux.SizedVector.transpose.D">D</span>, <span class="extype" name="typequux.SizedVector.transpose.U">U</span>]]</span>)</span><span class="result">: <a href="" class="extype" name="typequux.SizedVector">SizedVector</a>[<span class="extype" name="typequux.SizedVector.transpose.D">D</span>, <a href="" class="extype" name="typequux.SizedVector">SizedVector</a>[<span class="extype" name="typequux.SizedVector.N">N</span>, <span class="extype" name="typequux.SizedVector.transpose.U">U</span>]]</span>
+      </span>
+      
+      <p class="shortcomment cmt">If the element type is another SizedVector, transposes the collection
+</p><div class="fullcomment"><div class="comment cmt"><p>If the element type is another SizedVector, transposes the collection
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="paramcmts block"><dt class="tparam">D</dt><dd class="cmt"><p>Size of the element</p></dd><dt class="tparam">U</dt><dd class="cmt"><p>Element type of the element</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.3</p></dd></dl></div>
+    </li><li name="typequux.SizedVector#traverse" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="traverse[U,V,R](f:T=&gt;Either[U,V])(acc:(U,Iterable[U])=&gt;R):Either[R,typequux.SizedVector[N,V]]"></a><a id="traverse[U,V,R]((T)⇒Either[U,V])((U,Iterable[U])⇒R):Either[R,SizedVector[N,V]]"></a>
+      <span class="permalink">
+      <a href="../typequux/SizedVector.html#traverse[U,V,R](f:T=&gt;Either[U,V])(acc:(U,Iterable[U])=&gt;R):Either[R,typequux.SizedVector[N,V]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">traverse</span><span class="tparams">[<span name="U">U</span>, <span name="V">V</span>, <span name="R">R</span>]</span><span class="params">(<span name="f">f: (<span class="extype" name="typequux.SizedVector.T">T</span>) ⇒ <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="typequux.SizedVector.traverse.U">U</span>, <span class="extype" name="typequux.SizedVector.traverse.V">V</span>]</span>)</span><span class="params">(<span name="acc">acc: (<span class="extype" name="typequux.SizedVector.traverse.U">U</span>, <span class="extype" name="scala.Iterable">Iterable</span>[<span class="extype" name="typequux.SizedVector.traverse.U">U</span>]) ⇒ <span class="extype" name="typequux.SizedVector.traverse.R">R</span></span>)</span><span class="result">: <span class="extype" name="scala.Either">Either</span>[<span class="extype" name="typequux.SizedVector.traverse.R">R</span>, <a href="" class="extype" name="typequux.SizedVector">SizedVector</a>[<span class="extype" name="typequux.SizedVector.N">N</span>, <span class="extype" name="typequux.SizedVector.traverse.V">V</span>]]</span>
+      </span>
+      
+      
     </li><li name="typequux.SizedVector#unzip" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="unzip[U,V](implicitev:&lt;:&lt;[T,(U,V)]):(typequux.SizedVector[N,U],typequux.SizedVector[N,V])"></a><a id="unzip[U,V](&lt;:&lt;[T,(U,V)]):(SizedVector[N,U],SizedVector[N,V])"></a>
       <span class="permalink">

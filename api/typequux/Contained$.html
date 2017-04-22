@@ -502,6 +502,27 @@ for the operations on string indexed collections
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="typequux.Contained#buildContained" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="buildContained[A,HL&lt;:typequux.HList]:typequux.Contained[A,HL]"></a><a id="buildContained[A,HL&lt;:HList]:Contained[A,HL]"></a>
+      <span class="permalink">
+      <a href="../typequux/Contained$.html#buildContained[A,HL&lt;:typequux.HList]:typequux.Contained[A,HL]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">buildContained</span><span class="tparams">[<span name="A">A</span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="result">: <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>[<span class="extype" name="typequux.Contained.buildContained.A">A</span>, <span class="extype" name="typequux.Contained.buildContained.HL">HL</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Constructs an instance <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a> by delegating to the macro
+</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an instance <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a> by delegating to the macro
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.3</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -524,6 +545,22 @@ for the operations on string indexed collections
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="typequux.Contained#containedImpl" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="containedImpl[A,HL](c:scala.reflect.macros.blackbox.Context)(implicitevidence$1:c.WeakTypeTag[A],implicitevidence$2:c.WeakTypeTag[HL]):c.Tree"></a><a id="containedImpl[A,HL](Context)(scala.reflect.macros.blackbox.Context.WeakTypeTag[A],scala.reflect.macros.blackbox.Context.WeakTypeTag[HL]):scala.reflect.macros.blackbox.Context.Tree"></a>
+      <span class="permalink">
+      <a href="../typequux/Contained$.html#containedImpl[A,HL](c:scala.reflect.macros.blackbox.Context)(implicitevidence$1:c.WeakTypeTag[A],implicitevidence$2:c.WeakTypeTag[HL]):c.Tree" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">containedImpl</span><span class="tparams">[<span name="A">A</span>, <span name="HL">HL</span>]</span><span class="params">(<span name="c">c: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.reflect.macros.blackbox.Context" class="extype" target="_top">Context</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.macros.Aliases.WeakTypeTag">scala.reflect.macros.blackbox.Context.WeakTypeTag</span>[<span class="extype" name="typequux.Contained.containedImpl.A">A</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.macros.Aliases.WeakTypeTag">scala.reflect.macros.blackbox.Context.WeakTypeTag</span>[<span class="extype" name="typequux.Contained.containedImpl.HL">HL</span>]</span>)</span><span class="result">: <span class="extype" name="scala.reflect.macros.Aliases.Tree">scala.reflect.macros.blackbox.Context.Tree</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -610,48 +647,6 @@ for the operations on string indexed collections
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="typequux.Contained#inHead" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="inHead[A,H,T&lt;:typequux.HList](implicitev0:=:=[A,H],implicitev1:typequux.NotContained[A,T]):typequux.Contained[A,typequux.HList.:+:[H,T]]"></a><a id="inHead[A,H,T&lt;:HList](=:=[A,H],NotContained[A,T]):Contained[A,:+:[H,T]]"></a>
-      <span class="permalink">
-      <a href="../typequux/Contained$.html#inHead[A,H,T&lt;:typequux.HList](implicitev0:=:=[A,H],implicitev1:typequux.NotContained[A,T]):typequux.Contained[A,typequux.HList.:+:[H,T]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">inHead</span><span class="tparams">[<span name="A">A</span>, <span name="H">H</span>, <span name="T">T &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <span class="extype" name="scala.Predef.=:=">=:=</span>[<span class="extype" name="typequux.Contained.inHead.A">A</span>, <span class="extype" name="typequux.Contained.inHead.H">H</span>]</span>, <span name="ev1">ev1: <a href="NotContained.html" class="extype" name="typequux.NotContained">NotContained</a>[<span class="extype" name="typequux.Contained.inHead.A">A</span>, <span class="extype" name="typequux.Contained.inHead.T">T</span>]</span>)</span><span class="result">: <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>[<span class="extype" name="typequux.Contained.inHead.A">A</span>, <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Contained.inHead.H">H</span>, <span class="extype" name="typequux.Contained.inHead.T">T</span>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Base case for <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Base case for <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>Type being checked for inclusion</p></dd><dt class="tparam">H</dt><dd class="cmt"><p>Type of the head of the HList</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>Type of the tail of the HList</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Contained#inTail" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="inTail[A,H,T&lt;:typequux.HList](implicitev:typequux.Contained[A,T]):typequux.Contained[A,typequux.HList.:+:[H,T]]"></a><a id="inTail[A,H,T&lt;:HList](Contained[A,T]):Contained[A,:+:[H,T]]"></a>
-      <span class="permalink">
-      <a href="../typequux/Contained$.html#inTail[A,H,T&lt;:typequux.HList](implicitev:typequux.Contained[A,T]):typequux.Contained[A,typequux.HList.:+:[H,T]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">inTail</span><span class="tparams">[<span name="A">A</span>, <span name="H">H</span>, <span name="T">T &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>[<span class="extype" name="typequux.Contained.inTail.A">A</span>, <span class="extype" name="typequux.Contained.inTail.T">T</span>]</span>)</span><span class="result">: <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>[<span class="extype" name="typequux.Contained.inTail.A">A</span>, <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Contained.inTail.H">H</span>, <span class="extype" name="typequux.Contained.inTail.T">T</span>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Induction case for <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Induction case for <a href="Contained.html" class="extype" name="typequux.Contained">Contained</a>
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>Type being checked for inclusion</p></dd><dt class="tparam">H</dt><dd class="cmt"><p>Type of the head of the HList</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>Type of the tail of the HList</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
