@@ -28,7 +28,42 @@ import HList.{:+:, HNil}
   * @author Harshad Deo
   * @since 0.1
   */
-final class Contained[A, HL] private ()
+final class Contained[A, HL]
+
+/** Contains implicit definitions to build a [[Contained]] marker.
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
+object Contained {
+
+  /** Constructs an instance [[Contained]] by delegating to the macro
+    *
+    * @author Harshad Deo
+    * @since 0.6.3
+    */
+  implicit def buildContained[A, HL <: HList]: Contained[A, HL] = macro containedImpl[A, HL]
+
+  def containedImpl[A: c.WeakTypeTag, HL: c.WeakTypeTag](c: Context): c.Tree = {
+    import c.universe._
+
+    val tp1 = implicitly[c.WeakTypeTag[A]].tpe
+    val tp2 = implicitly[c.WeakTypeTag[HL]].tpe
+
+    def allTypes(xs: List[Type]): List[Type] = xs match {
+      case a :: b :: Nil => a :: allTypes(b.typeArgs)
+      case _ => Nil
+    }
+
+    val at = allTypes(tp2.typeArgs)
+    if (at.exists(_ =:= tp1)) {
+      q"new Contained[$tp1, $tp2]"
+    } else {
+      c.abort(c.enclosingPosition, "Cannot construct an instance of Contained for the supplied types")
+    }
+  }
+
+}
 
 /** Marker that type A is not one of the types of the supplied [[HList]] type
   *
@@ -39,65 +74,6 @@ final class Contained[A, HL] private ()
   * @since 0.1
   */
 final class NotContained[A, HL] private ()
-
-/** Marker that type A is a subtype of one of the types of the supplied [[HList]] type
-  *
-  * @tparam A Type under consideration
-  * @tparam HL HList of types to check against
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-final class SubType[A, HL] private ()
-
-/** Marker that type A is not a subtype of the types of the supplied [[HList]] type
-  *
-  * @tparam A Type under consideration
-  * @tparam HL HList of types to check against
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-final class NotSubType[A, HL] private ()
-
-/** Marker that all types of HL1 are contained in HL2
-  *
-  * @author Harshad Deo
-  * @since 0.2.2
-  */
-final class AllContained[HL1, HL2]
-
-/** Contains implicit definitions to build a [[Contained]] marker.
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-object Contained {
-
-  /** Base case for [[Contained]]
-    *
-    * @tparam A Type being checked for inclusion
-    * @tparam H Type of the head of the HList
-    * @tparam T Type of the tail of the HList
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def inHead[A, H, T <: HList](implicit ev0: A =:= H, ev1: NotContained[A, T]): Contained[A, H :+: T] =
-    new Contained[A, H :+: T]
-
-  /** Induction case for [[Contained]]
-    *
-    * @tparam A Type being checked for inclusion
-    * @tparam H Type of the head of the HList
-    * @tparam T Type of the tail of the HList
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def inTail[A, H, T <: HList](implicit ev: Contained[A, T]): Contained[A, H :+: T] =
-    new Contained[A, H :+: T]
-}
 
 /** Contains implicit definitions to build a [[NotContained]] marker.
   *
@@ -142,6 +118,33 @@ object NotContained {
                                                    ev1: NotContained[A, T]): NotContained[A, H :+: T] =
     new NotContained[A, H :+: T]
 }
+
+/** Marker that type A is a subtype of one of the types of the supplied [[HList]] type
+  *
+  * @tparam A Type under consideration
+  * @tparam HL HList of types to check against
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
+final class SubType[A, HL] private ()
+
+/** Marker that type A is not a subtype of the types of the supplied [[HList]] type
+  *
+  * @tparam A Type under consideration
+  * @tparam HL HList of types to check against
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
+final class NotSubType[A, HL] private ()
+
+/** Marker that all types of HL1 are contained in HL2
+  *
+  * @author Harshad Deo
+  * @since 0.2.2
+  */
+final class AllContained[HL1, HL2]
 
 /** Containt implicit definitions to build a [[SubType]] marker
   *
@@ -221,6 +224,11 @@ object NotSubType {
 
 object AllContained {
 
+  /** Constructs an instance [[AllContained]] by delegating to the macro
+    *
+    * @author Harshad Deo
+    * @since 0.6.3
+    */
   implicit def buildAllContained[HL1 <: HList, HL2 <: HList]: AllContained[HL1, HL2] = macro allContainedImpl[HL1, HL2]
 
   def allContainedImpl[HL1: c.WeakTypeTag, HL2: c.WeakTypeTag](c: Context): c.Tree = {
@@ -243,9 +251,9 @@ object AllContained {
       }
     }
 
-    if(res){
+    if (res) {
       q"new AllContained[$tp1, $tp2]"
-    }else {
+    } else {
       c.abort(c.enclosingPosition, "Cannot construct an instance of AllContained for the supplied types")
     }
   }
