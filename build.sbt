@@ -1,5 +1,33 @@
 import sbtcrossproject.{crossProject, CrossType}
 
+lazy val testAllCommand =  Command.command("testall") { state =>
+  "typequuxJVM/clean" :: "typequuxJS/clean" :: "typequuxNative/clean" ::
+    "project typequuxtestsNative" :: "clean" :: "test:run" ::
+      "project typequuxtestsJVM" :: "clean" :: "+test" ::
+        "project typequuxtestsJS" :: "clean" :: "+test" ::
+          state
+}
+
+lazy val releaseLocalCommand =  Command.command("releaselocal") { state =>
+  "testall" ::
+    "project typequuxNative" :: "publishLocal" ::
+      "project typequuxJVM" :: "+publishLocal" ::
+        "project typequuxJS" :: "+publishLocal" ::
+          state
+}
+
+lazy val releaseCommand =  Command.command("release") { state =>
+  "testall" ::
+    "project typequuxNative" :: "publishSigned" ::
+      "project typequuxJS" :: "+publishSigned" ::
+        "project typequuxJVM" :: "+publishSigned" ::
+          "sonatypeRelease" ::
+            "ghpagesPushSite" ::
+              state
+}
+
+lazy val additionalCommands = Seq(testAllCommand, releaseLocalCommand, releaseCommand)
+
 lazy val commonShared = Seq(
   organization := "com.simianquant",
   version := "0.6.4-SNAPSHOT",
@@ -8,6 +36,7 @@ lazy val commonShared = Seq(
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
   ),
+  commands ++= additionalCommands,
   wartremoverErrors ++= {
     import Wart._
     Seq(Any2StringAdd,
@@ -157,28 +186,4 @@ lazy val typequuxtestsJS = typequuxtests.js
 
 lazy val typequuxtestsNative = typequuxtests.native
 
-commands += Command.command("testall") { state =>
-  "typequuxJVM/clean" :: "typequuxJS/clean" :: "typequuxNative/clean" ::
-    "project typequuxtestsNative" :: "clean" :: "test:run" ::
-      "project typequuxtestsJVM" :: "clean" :: "+test" ::
-        "project typequuxtestsJS" :: "clean" :: "+test" ::
-          state
-}
-
-commands += Command.command("releaselocal") { state =>
-  "testall" ::
-    "project typequuxNative" :: "publishLocal" ::
-      "project typequuxJVM" :: "+publishLocal" ::
-        "project typequuxJS" :: "+publishLocal" ::
-          state
-}
-
-commands += Command.command("release") { state =>
-  "testall" ::
-    "project typequuxNative" :: "publishSigned" ::
-      "project typequuxJS" :: "+publishSigned" ::
-        "project typequuxJVM" :: "+publishSigned" ::
-          "sonatypeRelease" ::
-            "ghpagesPushSite" ::
-              state
-}
+commands ++= additionalCommands

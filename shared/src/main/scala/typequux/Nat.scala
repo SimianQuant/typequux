@@ -341,9 +341,7 @@ object Nat {
     * @author Harshad Deo
     * @since 0.1
     */
-  sealed class NatRep[N <: Nat](val v: Int) {
-    def succ: NatRep[Succ[N]] = new NatRep(v + 1)
-  }
+  final class NatRep[N <: Nat] private (val v: Int) extends AnyVal 
 
   /** Provides implicit definitions to build a value level representation of a [[Nat]]
     *
@@ -358,14 +356,14 @@ object Nat {
       * @author Harshad Deo
       * @since 0.1
       */
-    implicit object NatRep0 extends NatRep[Nat0](0)
+    implicit val natRep0: NatRep[Nat0] = new NatRep[Nat0](0)
 
     /** Builds [[NatRep]] for [[Succ]]
       *
       * @author Harshad Deo
       * @since 0.1
       */
-    implicit def natRepSucc[N <: Nat](implicit ev: NatRep[N]): NatRep[Succ[N]] = ev.succ
+    implicit def natRepSucc[N <: Nat](implicit ev: NatRep[N]): NatRep[Succ[N]] = new NatRep(ev.v + 1)
   }
 
   /** Builds a value level representation of a [[Nat]]

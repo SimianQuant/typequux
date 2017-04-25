@@ -592,7 +592,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  class DenseRep[D] private (val v: Long)(implicit ev: D <:< Dense)
+  final class DenseRep[D] private (val v: Long) extends AnyVal
 
   /** Contains implicit definitions to build the value level representation of a dense type as a [[scala.Long]]
     *
@@ -607,7 +607,7 @@ object Dense {
       * @author Harshad Deo
       * @since 0.1
       */
-    implicit object DNil2Rep extends DenseRep[DNil](0)
+    implicit val DNil2Rep: DenseRep[DNil] = new DenseRep[DNil](0l)
 
     /** Builds [[DenseRep]] for [[DCons]] if the lowest priority bit is 0
       *
@@ -632,7 +632,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.3.1
     */
-  class DenseIntRep[D] private (val v: Int)(implicit ev: D <:< Dense)
+  final class DenseIntRep[D] private (val v: Int) extends AnyVal
 
   /** Contains implicit definitional to build a value level representation of a dense type as a [[scala.Int]]
     *
@@ -647,7 +647,7 @@ object Dense {
       * @author Harshad Deo
       * @since 0.3.1
       */
-    implicit object DNil2Rep extends DenseIntRep[DNil](0)
+    implicit val dNil2Rep: DenseIntRep[DNil] = new DenseIntRep[DNil](0)
 
     /** Builds [[DenseIntRep]] for [[DCons]] if the lowest priority bit is 0
       *
