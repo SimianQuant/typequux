@@ -1,14 +1,19 @@
 import sbtcrossproject.{crossProject, CrossType}
 
-lazy val testAllCommand =  Command.command("testall") { state =>
-  "typequuxJVM/clean" :: "typequuxJS/clean" :: "typequuxNative/clean" ::
-    "project typequuxtestsNative" :: "clean" :: "test:run" ::
-      "project typequuxtestsJVM" :: "clean" :: "+test" ::
-        "project typequuxtestsJS" :: "clean" :: "+test" ::
-          state
+lazy val testAllCommand = Command.command("testall") { state =>
+  "project typequuxtestsNative" :: "clean" :: "test:run" ::
+    "project typequuxtestsJVM" :: "clean" :: "+test" ::
+      "project typequuxtestsJS" :: "clean" :: "+test" ::
+        state
 }
 
-lazy val releaseLocalCommand =  Command.command("releaselocal") { state =>
+lazy val runcoverageCommand = Command.command("runcoverage") { state =>
+    "project typequuxtestsJVM" :: "clean" :: "coverage" :: "test" ::
+      "project typequuxJVM" :: "coverageReport" ::
+        state
+}
+
+lazy val releaseLocalCommand = Command.command("releaselocal") { state =>
   "testall" ::
     "project typequuxNative" :: "publishLocal" ::
       "project typequuxJVM" :: "+publishLocal" ::
@@ -16,7 +21,7 @@ lazy val releaseLocalCommand =  Command.command("releaselocal") { state =>
           state
 }
 
-lazy val releaseCommand =  Command.command("release") { state =>
+lazy val releaseCommand = Command.command("release") { state =>
   "testall" ::
     "project typequuxNative" :: "publishSigned" ::
       "project typequuxJS" :: "+publishSigned" ::
@@ -26,7 +31,7 @@ lazy val releaseCommand =  Command.command("release") { state =>
               state
 }
 
-lazy val additionalCommands = Seq(testAllCommand, releaseLocalCommand, releaseCommand)
+lazy val additionalCommands = Seq(testAllCommand, runcoverageCommand, releaseLocalCommand, releaseCommand)
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
@@ -166,8 +171,10 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("typequuxtests"))
   .settings(commonShared)
   .dependsOn(typequux)
+  .aggregate(typequux)
   .jvmSettings(testSettings)
   .jvmSettings(
+    scalaVersion := "2.12.1",
     fork := true
   )
   .jsSettings(testSettings)

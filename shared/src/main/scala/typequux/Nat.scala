@@ -341,7 +341,7 @@ object Nat {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class NatRep[N <: Nat] private (val v: Int) extends AnyVal 
+  final class NatRep[N <: Nat] private (val v: Int) extends AnyVal
 
   /** Provides implicit definitions to build a value level representation of a [[Nat]]
     *
