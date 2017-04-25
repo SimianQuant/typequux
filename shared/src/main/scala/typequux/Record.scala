@@ -164,7 +164,7 @@ object Record {
     * @since 0.1
     */
   implicit def rAtConstraint[MP <: DenseMap, HL <: HList, N <: Dense, L <: Dense, D, A](
-      implicit ev0: True =:= MP#Contains[N],
+      implicit ev0: TrueConstraint[MP#Contains[N]],
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
@@ -210,7 +210,7 @@ object Record {
     * @since 0.1
     */
   implicit def rUpdatedConstraint[N <: Dense, MP <: DenseMap, HL <: HList, L <: Dense, D, U, HR <: HList](
-      implicit ev0: True =:= MP#Contains[N],
+      implicit ev0: TrueConstraint[MP#Contains[N]],
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],

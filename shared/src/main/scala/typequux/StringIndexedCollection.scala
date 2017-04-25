@@ -134,7 +134,7 @@ object StringIndexedCollection {
     * @since 0.1
     */
   implicit def buildSiAtConstraint[MP <: DenseMap, T, N <: Dense](
-      implicit ev0: True =:= MP#Contains[N],
+      implicit ev0: TrueConstraint[MP#Contains[N]],
       ev1: MP#Get[N] <:< Dense,
       ev2: DenseIntRep[MP#Get[N]]): AtConstraint[N, NonEmptySI[MP, T], T] =
     new AtConstraint[N, NonEmptySI[MP, T], T] {
@@ -173,7 +173,7 @@ object StringIndexedCollection {
     * @since 0.1
     */
   implicit def buildSIUpdatedConstraint[N <: Dense, MP <: DenseMap, T, U >: T](
-      implicit ev0: True =:= MP#Contains[N],
+      implicit ev0: TrueConstraint[MP#Contains[N]],
       ev1: MP#Get[N] <:< Dense,
       ev2: DenseIntRep[MP#Get[N]]): UpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] =
     new UpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] {

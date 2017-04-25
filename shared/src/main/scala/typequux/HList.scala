@@ -318,7 +318,7 @@ object HList {
       * @since 0.1
       */
     implicit def toPIndexerN[N <: Dense, H, TL <: HList, Before <: HList, At, After <: HList](
-        implicit ev0: >[N, _0] =:= True,
+        implicit ev0: TrueConstraint[>[N, _0]],
         ev1: PIndexer[N#Dec, TL, Before, At, After]): PIndexer[N, H :+: TL, H :+: Before, At, After] =
       new PIndexer[N, H :+: TL, H :+: Before, At, After] {
         override def apply(hl: H :+: TL) = {

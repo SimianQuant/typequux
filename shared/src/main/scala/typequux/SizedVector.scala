@@ -18,6 +18,7 @@ package typequux
 import annotation.tailrec
 import Bool.True
 import collection.immutable.VectorBuilder
+import constraint.TrueConstraint
 import Dense._
 import language.experimental.macros
 import reflect.macros.whitebox.Context
@@ -49,7 +50,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def apply(i: LiteralHash[Int])(implicit ev0: True =:= <[i.ValueHash, N]): T = backing(i.value)
+  def apply(i: LiteralHash[Int])(implicit ev0: TrueConstraint[<[i.ValueHash, N]]): T = backing(i.value)
 
   /** Drops the first i elements from this
     *
@@ -59,8 +60,8 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.1
     */
   def drop[D <: Dense](i: LiteralHash[Int])(implicit ev0: DenseDiff[N, i.ValueHash, D],
-                                            ev1: True =:= >[D, _0],
-                                            ev2: True =:= >[i.ValueHash, _0]): SizedVector[D, T] =
+                                            ev1: TrueConstraint[>[D, _0]],
+                                            ev2: TrueConstraint[>[i.ValueHash, _0]]): SizedVector[D, T] =
     new SizedVector[D, T](backing drop i.value)
 
   /** Drops the last i elements from this
@@ -71,8 +72,8 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.1
     */
   def dropRight[D <: Dense](i: LiteralHash[Int])(implicit ev0: DenseDiff[N, i.ValueHash, D],
-                                                 ev1: True =:= >[D, _0],
-                                                 ev2: True =:= >[i.ValueHash, _0]): SizedVector[D, T] =
+                                                 ev1: TrueConstraint[>[D, _0]],
+                                                 ev2: TrueConstraint[>[i.ValueHash, _0]]): SizedVector[D, T] =
     new SizedVector[D, T](backing dropRight i.value)
 
   /** Prepends the element to this
@@ -159,8 +160,8 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.1
     */
   def slice[D <: Dense](start: LiteralHash[Int], end: LiteralHash[Int])(
-      implicit ev0: True =:= <[start.ValueHash, end.ValueHash],
-      ev1: True =:= <=[end.ValueHash, N],
+      implicit ev0: TrueConstraint[<[start.ValueHash, end.ValueHash]],
+      ev1: TrueConstraint[<=[end.ValueHash, N]],
       ev2: DenseDiff[end.ValueHash, start.ValueHash, D]): SizedVector[D, T] =
     new SizedVector[D, T](backing.slice(start.value, end.value))
 
@@ -197,8 +198,8 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.1
     */
   def splitAt[D <: Dense](i: LiteralHash[Int])(
-      implicit ev0: True =:= <[i.ValueHash, N],
-      ev1: True =:= >[i.ValueHash, _0],
+      implicit ev0: TrueConstraint[<[i.ValueHash, N]],
+      ev1: TrueConstraint[>[i.ValueHash, _0]],
       ev2: DenseDiff[N, i.ValueHash, D]): (SizedVector[i.ValueHash, T], SizedVector[D, T]) = {
     val (l, r) = backing.splitAt(i.value)
     (new SizedVector[i.ValueHash, T](l), new SizedVector[D, T](r))
@@ -210,7 +211,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.1
     */
   def take(i: LiteralHash[Int])(
-      implicit ev0: True =:= >[i.ValueHash, _0], ev1: True =:= <[i.ValueHash, N]): SizedVector[i.ValueHash, T] =
+      implicit ev0: TrueConstraint[>[i.ValueHash, _0]], ev1: TrueConstraint[<[i.ValueHash, N]]): SizedVector[i.ValueHash, T] =
     new SizedVector[i.ValueHash, T](backing take i.value)
 
   /** Takes the last i elements
@@ -219,7 +220,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.1
     */
   def takeRight(i: LiteralHash[Int])(
-      implicit ev0: True =:= >[i.ValueHash, _0], ev1: True =:= <[i.ValueHash, N]): SizedVector[i.ValueHash, T] =
+      implicit ev0: TrueConstraint[>[i.ValueHash, _0]], ev1: TrueConstraint[<[i.ValueHash, N]]): SizedVector[i.ValueHash, T] =
     new SizedVector[i.ValueHash, T](backing takeRight i.value)
 
   /** Updates the element at the index
@@ -229,7 +230,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def updated[B >: T](i: LiteralHash[Int], b: B)(implicit ev: True =:= <[i.ValueHash, N]): SizedVector[N, B] =
+  def updated[B >: T](i: LiteralHash[Int], b: B)(implicit ev: TrueConstraint[<[i.ValueHash, N]]): SizedVector[N, B] =
     new SizedVector[N, B](backing.updated(i.value, b))
 
   /** Zips with the other SizedVector. The size of the resultant collection is equal to the minimum of the 
@@ -326,7 +327,7 @@ object SizedVector {
     * @since 0.1
     */
   def from[T](sz: LiteralHash[Int], v: Seq[T])(
-      implicit ev: True =:= >[sz.ValueHash, _0]): Option[SizedVector[sz.ValueHash, T]] = {
+      implicit ev: TrueConstraint[>[sz.ValueHash, _0]]): Option[SizedVector[sz.ValueHash, T]] = {
     if (sz.value == v.length) {
       Some(new SizedVector[sz.ValueHash, T](v.toVector))
     } else {
