@@ -250,6 +250,8 @@ class SizedVectorSpec extends BaseSpec {
     assertTypeError { """ v.slice(0, 0)""" }
     assertTypeError { """ v.slice(5, 2)""" }
     assertTypeError { """ v.slice(2, 11)""" }
+    assertTypeError { """v.slice(-2, 3)""" }
+    assertTypeError { """v.slice(2, -3)""" }
 
     val s1 = v.slice(2, 6)
     val s2 = v.slice(0, 5)
@@ -258,6 +260,16 @@ class SizedVectorSpec extends BaseSpec {
     assert(s1 == SizedVector(3, 4, 5, 6))
     assert(s2 == SizedVector(1, 2, 3, 4, 5))
     assert(s3 == SizedVector(4, 5, 6, 7, 8, 9, 10))
+
+    assertTypeError { """v.slice[_0, _0]""" }
+    assertTypeError { """v.slice[_3, _0]""" }
+    assertTypeError { """v.slice[_11, _0]""" }
+    assertTypeError { """v.slice[_4, _10]""" }
+
+    assert(v.slice[_0, _3] == SizedVector(1, 2, 3))
+    assert(v.slice[_4, _2] == SizedVector(5, 6))
+    assert(v.slice[_3, _5] == SizedVector(4, 5, 6, 7, 8))
+    assert(v.slice[_0, _3] == SizedVector(1, 2, 3))
   }
 
   it should "sort properly" in {

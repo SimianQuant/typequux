@@ -23,8 +23,8 @@ import Dense._
 import language.experimental.macros
 import reflect.macros.whitebox.Context
 
-/** Sequantially indexed immutable collection of fixed size in which all elements are of the same type. 
-  * Uses [[scala.collection.immutable.Vector]] as a backing datastructure. 
+/** Sequantially indexed immutable collection of fixed size in which all elements are of the same type.
+  * Uses [[scala.collection.immutable.Vector]] as a backing datastructure.
   *
   * @tparam N Size of the collection
   * @tparam T Element type of the collection
@@ -38,7 +38,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     *
     * @tparam N1 Size of the argument
     * @tparam U Element type of the argument
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -55,7 +55,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   /** Drops the first i elements from this
     *
     * @tparam D Size of the resultant collection
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -67,7 +67,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   /** Drops the last i elements from this
     *
     * @tparam D Size of the resultant collection
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -79,16 +79,16 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   /** Prepends the element to this
     *
     * @tparam U Type of the element being prepended
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
   def +:[U >: T](elem: U): SizedVector[N + _1, U] = new SizedVector[N + _1, U](elem +: backing)
 
   /** Appends an element to this
-    * 
+    *
     * @tparam U Type of the element being appended
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -99,7 +99,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     *
     * @tparam D Size of the element
     * @tparam U Element type of the element
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -107,13 +107,13 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     new SizedVector[*[D, N], U](backing.flatMap(t => t.backing))
 
   /** If the element type is another SizedVector, transposes the collection
-  *
-  * @tparam D Size of the element
-  * @tparam U Element type of the element
-  *
-  * @author Harshad Deo
-  * @since 0.6.3
-  */
+    *
+    * @tparam D Size of the element
+    * @tparam U Element type of the element
+    *
+    * @author Harshad Deo
+    * @since 0.6.3
+    */
   def transpose[D <: Dense, U](implicit ev: T <:< SizedVector[D, U]): SizedVector[D, SizedVector[N, U]] = {
     val backingMat = backing map (_.backing)
     val tr = backingMat.transpose.map(z => new SizedVector[N, U](z))
@@ -121,14 +121,14 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   }
 
   /** Value level length of this
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
   def length(implicit ev: DenseIntRep[N]): Int = ev.v
 
   /** Straightforward map operation
-    * 
+    *
     * @tparam U Element type of the resultant collection
     *
     * @author Harshad Deo
@@ -137,16 +137,16 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def map[U](f: T => U): SizedVector[N, U] = new SizedVector[N, U](backing map f)
 
   /** Parallel map operation
-  *
-  * @tparam U Element type of resultant collection
-  *
-  * @author Harshad Deo
-  * @since 0.6.2
-  */
+    *
+    * @tparam U Element type of resultant collection
+    *
+    * @author Harshad Deo
+    * @since 0.6.2
+    */
   def parmap[U](f: T => U): SizedVector[N, U] = new SizedVector[N, U](backing.par.map(f).toVector)
 
   /** Reverses this
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
@@ -155,18 +155,34 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   /** Subsequence between the two indices
     *
     * @tparam D Length of the resulting sequence
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
   def slice[D <: Dense](start: LiteralHash[Int], end: LiteralHash[Int])(
       implicit ev0: TrueConstraint[<[start.ValueHash, end.ValueHash]],
       ev1: TrueConstraint[<=[end.ValueHash, N]],
-      ev2: DenseDiff[end.ValueHash, start.ValueHash, D]): SizedVector[D, T] =
+      ev2: DenseDiff[end.ValueHash, start.ValueHash, D],
+      ev3: TrueConstraint[start.TypeHash === LiteralHash.PositiveIntegerTypeHash],
+      ev4: TrueConstraint[end.TypeHash === LiteralHash.PositiveIntegerTypeHash]): SizedVector[D, T] =
     new SizedVector[D, T](backing.slice(start.value, end.value))
 
+    /** Subsequence between the two type indices
+    *
+    * @tparam ST Starting point of the slice
+    * @tparam SZ Size of the slice
+    *
+    * @author Harshad Deo
+    * @since 0.6.4
+    */
+  def slice[ST <: Dense, SZ <: Dense](implicit ev0: TrueConstraint[SZ > _0],
+                                      ev2: TrueConstraint[ST + SZ < N],
+                                      ev3: DenseIntRep[ST],
+                                      ev4: DenseIntRep[SZ]): SizedVector[SZ, T] =
+    new SizedVector(backing.slice(ev3.v, ev3.v + ev4.v))
+
   /** Sorts according to the transformation function
-    * 
+    *
     * @tparam B Element type according to which the sorting executed
     *
     * @author Harshad Deo
@@ -175,14 +191,14 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def sortBy[B](f: T => B)(implicit ev: math.Ordering[B]): SizedVector[N, T] = new SizedVector[N, T](backing sortBy f)
 
   /** Sorts according to the comparator
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
   def sortWith(lt: (T, T) => Boolean): SizedVector[N, T] = new SizedVector[N, T](backing sortWith lt)
 
   /** Sorts according to the implicit ordering defined on B
-    * 
+    *
     * @tparam B Type on which the sorting is defined
     *
     * @author Harshad Deo
@@ -191,7 +207,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def sorted[B >: T](implicit ev: math.Ordering[B]): SizedVector[N, T] = new SizedVector[N, T](backing.sorted(ev))
 
   /** Splits the collection at the specified inded
-    * 
+    *
     * @tparam D Size of the subcollection to the right of the split index
     *
     * @author Harshad Deo
@@ -206,36 +222,36 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   }
 
   /** Takes the first i elements
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  def take(i: LiteralHash[Int])(
-      implicit ev0: TrueConstraint[>[i.ValueHash, _0]], ev1: TrueConstraint[<[i.ValueHash, N]]): SizedVector[i.ValueHash, T] =
+  def take(i: LiteralHash[Int])(implicit ev0: TrueConstraint[>[i.ValueHash, _0]],
+                                ev1: TrueConstraint[<[i.ValueHash, N]]): SizedVector[i.ValueHash, T] =
     new SizedVector[i.ValueHash, T](backing take i.value)
 
   /** Takes the last i elements
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
-  def takeRight(i: LiteralHash[Int])(
-      implicit ev0: TrueConstraint[>[i.ValueHash, _0]], ev1: TrueConstraint[<[i.ValueHash, N]]): SizedVector[i.ValueHash, T] =
+  def takeRight(i: LiteralHash[Int])(implicit ev0: TrueConstraint[>[i.ValueHash, _0]],
+                                     ev1: TrueConstraint[<[i.ValueHash, N]]): SizedVector[i.ValueHash, T] =
     new SizedVector[i.ValueHash, T](backing takeRight i.value)
 
   /** Updates the element at the index
     *
     * @tparam B Type of the replacement element
-    * 
+    *
     * @author Harshad Deo
     * @since 0.1
     */
   def updated[B >: T](i: LiteralHash[Int], b: B)(implicit ev: TrueConstraint[<[i.ValueHash, N]]): SizedVector[N, B] =
     new SizedVector[N, B](backing.updated(i.value, b))
 
-  /** Zips with the other SizedVector. The size of the resultant collection is equal to the minimum of the 
+  /** Zips with the other SizedVector. The size of the resultant collection is equal to the minimum of the
     * sizes of the input collections
-    * 
+    *
     * @tparam U Element type of the argument
     * @tparam N1 Size of the argument
     *
@@ -246,16 +262,16 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     new SizedVector[Min[N, N1], (T, U)](backing zip that.backing)
 
   /** Zips with a SizedVector of the same size
-  *
-  * @tparam U Element type of the argument
-  * 
-  * @author Harshad Deo
-  * @since 0.6.3
-  */
+    *
+    * @tparam U Element type of the argument
+    *
+    * @author Harshad Deo
+    * @since 0.6.3
+    */
   def symzip[U](that: SizedVector[N, U]): SizedVector[N, (T, U)] = new SizedVector[N, (T, U)](backing zip that.backing)
 
   /** Unzips the collection, if the element type is a Tuple2
-    * 
+    *
     * @tparam U Element type of the first collection produced by unzipping
     * @tparam V Element type of the second collection produced by unzipping
     *
@@ -271,15 +287,16 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def traverse[U, V, R](f: T => Either[U, V])(acc: (U, Iterable[U]) => R): Either[R, SizedVector[N, V]] = {
     val vb = new VectorBuilder[V]
     vb.sizeHint(backing.length)
-    val errors = backing.foldLeft(List.empty[U]){
-      case (acc, elem) => f(elem) match {
-        case Left(res) => res :: acc
-        case Right(res) =>
-          if(acc.isEmpty){
-            vb += res
-          }
-          acc
-      }
+    val errors = backing.foldLeft(List.empty[U]) {
+      case (acc, elem) =>
+        f(elem) match {
+          case Left(res) => res :: acc
+          case Right(res) =>
+            if (acc.isEmpty) {
+              vb += res
+            }
+            acc
+        }
     }
     errors.reverse match {
       case h :: t => Left(acc(h, t))
@@ -312,13 +329,14 @@ object SizedVector {
     *
     * @author Harshad Deo
     * @since 0.6.3
-    */  
-  def from[SZ <: Dense, T](v: Seq[T])(implicit dr: Dense.DenseIntRep[SZ], 
-    ev: TrueConstraint[>[SZ, _0]]): Option[SizedVector[SZ, T]] = if(dr.v == v.length) {
-    Some(new SizedVector[SZ, T](v.toVector))
-  }else {
-    None
-  }
+    */
+  def from[SZ <: Dense, T](v: Seq[T])(implicit dr: Dense.DenseIntRep[SZ],
+                                      ev: TrueConstraint[>[SZ, _0]]): Option[SizedVector[SZ, T]] =
+    if (dr.v == v.length) {
+      Some(new SizedVector[SZ, T](v.toVector))
+    } else {
+      None
+    }
 
   /** Builds a [[SizedVector]] of a statically known size from another sequence
     *
