@@ -502,6 +502,27 @@ for the operations on string indexed collections
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="typequux.SubType#buildSubtype" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="buildSubtype[A,HL&lt;:typequux.HList]:typequux.SubType[A,HL]"></a><a id="buildSubtype[A,HL&lt;:HList]:SubType[A,HL]"></a>
+      <span class="permalink">
+      <a href="../typequux/SubType$.html#buildSubtype[A,HL&lt;:typequux.HList]:typequux.SubType[A,HL]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">buildSubtype</span><span class="tparams">[<span name="A">A</span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="result">: <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>[<span class="extype" name="typequux.SubType.buildSubtype.A">A</span>, <span class="extype" name="typequux.SubType.buildSubtype.HL">HL</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Constructs an instance <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a> by delegating to the macro
+</p><div class="fullcomment"><div class="comment cmt"><p>Constructs an instance <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a> by delegating to the macro
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.4</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -674,27 +695,22 @@ for the operations on string indexed collections
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="typequux.SubType#subtyped" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="subtyped[A,H,T&lt;:typequux.HList](implicitev0:&lt;:&lt;[A,H],implicitev1:typequux.NotSubType[A,T]):typequux.SubType[A,typequux.HList.:+:[H,T]]"></a><a id="subtyped[A,H,T&lt;:HList](&lt;:&lt;[A,H],NotSubType[A,T]):SubType[A,:+:[H,T]]"></a>
+    </li><li name="typequux.SubType#subtypeImpl" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="subtypeImpl[A,HL](c:scala.reflect.macros.blackbox.Context)(implicitevidence$3:c.WeakTypeTag[A],implicitevidence$4:c.WeakTypeTag[HL]):c.Tree"></a><a id="subtypeImpl[A,HL](Context)(scala.reflect.macros.blackbox.Context.WeakTypeTag[A],scala.reflect.macros.blackbox.Context.WeakTypeTag[HL]):scala.reflect.macros.blackbox.Context.Tree"></a>
       <span class="permalink">
-      <a href="../typequux/SubType$.html#subtyped[A,H,T&lt;:typequux.HList](implicitev0:&lt;:&lt;[A,H],implicitev1:typequux.NotSubType[A,T]):typequux.SubType[A,typequux.HList.:+:[H,T]]" title="Permalink">
+      <a href="../typequux/SubType$.html#subtypeImpl[A,HL](c:scala.reflect.macros.blackbox.Context)(implicitevidence$3:c.WeakTypeTag[A],implicitevidence$4:c.WeakTypeTag[HL]):c.Tree" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier">implicit </span>
+        <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">subtyped</span><span class="tparams">[<span name="A">A</span>, <span name="H">H</span>, <span name="T">T &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="typequux.SubType.subtyped.A">A</span>, <span class="extype" name="typequux.SubType.subtyped.H">H</span>]</span>, <span name="ev1">ev1: <a href="NotSubType.html" class="extype" name="typequux.NotSubType">NotSubType</a>[<span class="extype" name="typequux.SubType.subtyped.A">A</span>, <span class="extype" name="typequux.SubType.subtyped.T">T</span>]</span>)</span><span class="result">: <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>[<span class="extype" name="typequux.SubType.subtyped.A">A</span>, <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.SubType.subtyped.H">H</span>, <span class="extype" name="typequux.SubType.subtyped.T">T</span>]]</span>
+        <span class="name">subtypeImpl</span><span class="tparams">[<span name="A">A</span>, <span name="HL">HL</span>]</span><span class="params">(<span name="c">c: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.reflect.macros.blackbox.Context" class="extype" target="_top">Context</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.macros.Aliases.WeakTypeTag">scala.reflect.macros.blackbox.Context.WeakTypeTag</span>[<span class="extype" name="typequux.SubType.subtypeImpl.A">A</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.macros.Aliases.WeakTypeTag">scala.reflect.macros.blackbox.Context.WeakTypeTag</span>[<span class="extype" name="typequux.SubType.subtypeImpl.HL">HL</span>]</span>)</span><span class="result">: <span class="extype" name="scala.reflect.macros.Aliases.Tree">scala.reflect.macros.blackbox.Context.Tree</span></span>
       </span>
       
-      <p class="shortcomment cmt">Base case for <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Base case for <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>Type being checked for subtyping</p></dd><dt class="tparam">H</dt><dd class="cmt"><p>Type of the head of the HList</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>Type of the tail of the HList</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -711,27 +727,6 @@ for the operations on string indexed collections
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="typequux.SubType#tailSubtyped" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="tailSubtyped[A,H,T&lt;:typequux.HList](implicitev:typequux.SubType[A,T]):typequux.SubType[A,typequux.HList.:+:[H,T]]"></a><a id="tailSubtyped[A,H,T&lt;:HList](SubType[A,T]):SubType[A,:+:[H,T]]"></a>
-      <span class="permalink">
-      <a href="../typequux/SubType$.html#tailSubtyped[A,H,T&lt;:typequux.HList](implicitev:typequux.SubType[A,T]):typequux.SubType[A,typequux.HList.:+:[H,T]]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">tailSubtyped</span><span class="tparams">[<span name="A">A</span>, <span name="H">H</span>, <span name="T">T &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>[<span class="extype" name="typequux.SubType.tailSubtyped.A">A</span>, <span class="extype" name="typequux.SubType.tailSubtyped.T">T</span>]</span>)</span><span class="result">: <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>[<span class="extype" name="typequux.SubType.tailSubtyped.A">A</span>, <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.SubType.tailSubtyped.H">H</span>, <span class="extype" name="typequux.SubType.tailSubtyped.T">T</span>]]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Induction case for <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Induction case for <a href="SubType.html" class="extype" name="typequux.SubType">SubType</a>
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="paramcmts block"><dt class="tparam">A</dt><dd class="cmt"><p>Type being checked for subtyping</p></dd><dt class="tparam">H</dt><dd class="cmt"><p>Type of the head of the HList</p></dd><dt class="tparam">T</dt><dd class="cmt"><p>Type of the tail of the HList</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
