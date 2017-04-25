@@ -15,7 +15,7 @@
   */
 package typequuxtests
 
-import typequux.StringIndexedCollection.SINil
+import typequux.Typequux.SINil
 
 class StringIndexedCollectionSpec extends BaseSpec {
 

@@ -230,8 +230,6 @@ object NotSubType {
 
 object AllContained {
 
-  implicit def allContainedDegenerate[H1, H2](implicit ev: H1 =:= H1): AllContained[H1, H2] = new AllContained[H1, H2]
-
   /** Constructs an instance [[AllContained]] by delegating to the macro
     *
     * @author Harshad Deo

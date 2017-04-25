@@ -16,7 +16,7 @@
 package typequuxtests
 
 import typequux.Record
-import typequux.Record.RNil
+import typequux.Typequux.RNil
 
 class RecordSpec extends BaseSpec {
 

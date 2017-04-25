@@ -75,6 +75,29 @@ class SizedVectorSpec extends BaseSpec {
     val szz2 = SizedVector.from(5, List("a", "b", "c", "d", "e"))
     assert(szz1 == None)
     assert(szz2 == Some(SizedVector("a", "b", "c", "d", "e")))
+
+    assertTypeError("""SizedVector.from(0, Nil)""")
+    assertTypeError("""SizedVector.from(0, Vector.empty[Int])""")
+
+    val szz3 = SizedVector.from[Dense._1, Int](Vector(1))
+    assert(szz3 == Some(SizedVector(1)))
+
+    val szz4 = SizedVector.from[Dense._1, Int](Vector.empty[Int])
+    assert(szz4 == None)
+
+    val szz5 = SizedVector.from[Dense._1, Int](Vector(1, 2, 3, 4))
+    assert(szz5 == None)
+
+    val szz6 = SizedVector.from[Dense._4, Int](Vector(1, 2, 3, 4))
+    assert(szz6 == Some(SizedVector(1, 2, 3, 4)))
+
+    val szz7 = SizedVector.from[Dense._4, Int](Vector(1, 2, 3))
+    assert(szz7 == None)
+
+    val szz8 = SizedVector.from[Dense._4, Int](Vector(1, 2, 3, 4, 5))
+    assert(szz8 == None)
+
+    assertTypeError("""SizedVector.from[Dense._0, Int](List.empty[Int])""")
   }
 
   it should "concatenate properly" in {
@@ -317,5 +340,56 @@ class SizedVectorSpec extends BaseSpec {
   it should "convert to string properly" in {
     val s = SizedVector(1, 2, 3, 4)
     assert(s.toString == "SizedVector(1, 2, 3, 4)")
+  }
+
+  it should "transpose properly" in {
+    val a1 = SizedVector(SizedVector(1, 2, 3, 4))
+    val a2 = SizedVector(SizedVector(1), SizedVector(2), SizedVector(3), SizedVector(4))
+    assert(a1.transpose == a2)
+
+    val b1 = SizedVector(SizedVector(2, 6), SizedVector(3, 7), SizedVector(4, 8), SizedVector(5, 9))
+    val b2 = SizedVector(SizedVector(2, 3, 4, 5), SizedVector(6, 7, 8, 9))
+    assert(b1.transpose == b2)
+
+    val c = SizedVector(1, 2, 3, 4, 5)
+    assertTypeError("""c.transpose""")
+
+    val d = SizedVector(SizedVector(1, 2, 3), SizedVector(4, 5))
+    assertTypeError("""d.transpose""")
+  }
+
+  it should "symzip properly" in {
+    val a = SizedVector(1, 2, 3, 4).symzip(SizedVector("a", "b", "c", "d"))
+    assert(a == SizedVector((1, "a"), (2, "b"), (3, "c"), (4, "d")))
+
+    val b1 = SizedVector(1, 2, 3, 5)
+    val b2 = SizedVector(1, 2, 3)
+    assertTypeError("""b1.symzip(b2)""")
+    assertTypeError("""b2.symzip(b1)""")
+  }
+
+  it should "traverse properly" in {
+    def f(z: Int): Either[String, Int] = if (z > 5) Left(s"Error $z") else Right(z)
+    def g(z1: String, z2: Iterable[String]): List[String] = z1 :: z2.toList
+
+    def check[D <: Dense](expected: Either[List[String], SizedVector[D, Int]])(
+        actual: Either[List[String], SizedVector[D, Int]]): Boolean = (expected, actual) match {
+      case (Left(e1), Left(e2)) => e1 == e2
+      case (Right(e1), Right(e2)) => e1 == e2
+      case _ => false
+    }
+
+    assert(check(SizedVector(1, 2, 3, 4).traverse(f)(g))(Right(SizedVector(1, 2, 3, 4))))
+    assert(check(SizedVector(1, 2, 3, 4, 6).traverse(f)(g))(Left("Error 6" :: Nil)))
+    assert(check(SizedVector(1, 2, 3, 6, 4).traverse(f)(g))(Left("Error 6" :: Nil)))
+    assert(check(SizedVector(1, 2, 6, 3, 4).traverse(f)(g))(Left("Error 6" :: Nil)))
+    assert(check(SizedVector(1, 6, 2, 3, 4).traverse(f)(g))(Left("Error 6" :: Nil)))
+    assert(check(SizedVector(6, 1, 2, 3, 4).traverse(f)(g))(Left("Error 6" :: Nil)))
+
+    assert(check(SizedVector(6, 7, 8).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
+    assert(check(SizedVector(6, 7, 8, 1).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
+    assert(check(SizedVector(6, 7, 1, 8).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
+    assert(check(SizedVector(6, 2, 7, 8).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
+    assert(check(SizedVector(1, 6, 7, 8).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
   }
 }

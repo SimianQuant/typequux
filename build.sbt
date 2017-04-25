@@ -8,9 +8,9 @@ lazy val testAllCommand = Command.command("testall") { state =>
 }
 
 lazy val runcoverageCommand = Command.command("runcoverage") { state =>
-    "project typequuxtestsJVM" :: "clean" :: "coverage" :: "test" ::
-      "project typequuxJVM" :: "coverageReport" ::
-        state
+  "project typequuxtestsJVM" :: "clean" :: "coverage" :: "test" ::
+    "project typequuxJVM" :: "coverageReport" ::
+      state
 }
 
 lazy val releaseLocalCommand = Command.command("releaselocal") { state =>
