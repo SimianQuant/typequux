@@ -15,11 +15,14 @@
   */
 package typequux
 
+import annotation.tailrec
 import Bool.True
 import Comparison.{EQ, GT, LT}
 import constraint.TrueConstraint
 import Dense._
 import language.higherKinds
+import language.experimental.macros
+import reflect.macros.blackbox.Context
 
 /** Typelevel representation of dense numbers, stored as a list of [[Dense.Digit]]
   *
@@ -592,7 +595,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class DenseRep[D] private (val v: Long) extends AnyVal
+  final class DenseRep[D <: Dense](val v: Long) extends AnyVal
 
   /** Contains implicit definitions to build the value level representation of a dense type as a [[scala.Long]]
     *
@@ -602,26 +605,47 @@ object Dense {
     */
   object DenseRep {
 
-    /** Implements [[DenseRep]] for [[DNil]]
+    /** Builds an instance of [[DenseRep]] by delegating to the macro
+      *
+      * @tparam D The Dense type to be converted
       *
       * @author Harshad Deo
-      * @since 0.1
+      * @since 0.6.4
       */
-    implicit val DNil2Rep: DenseRep[DNil] = new DenseRep[DNil](0l)
+    implicit def build[D <: Dense]: DenseRep[D] = macro buildImpl[D]
 
-    /** Builds [[DenseRep]] for [[DCons]] if the lowest priority bit is 0
-      *
-      * @author Harshad Deo
-      * @since 0.1
-      */
-    implicit def dCons02Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D0 :: T] = new DenseRep(tr.v << 1)
+    def buildImpl[D <: Dense](c: Context)(wtt: c.WeakTypeTag[D]): c.Tree = {
+      import c.universe._
 
-    /** Builds [[DenseRep]] for [[DCons]] if the lowest priority bit is 1
-      *
-      * @author Harshad Deo
-      * @since 0.1
-      */
-    implicit def dCons22Rep[T <: Dense](implicit tr: DenseRep[T]): DenseRep[D1 :: T] = new DenseRep((tr.v << 1) | 1)
+      def processType(tp: Type) = tp match {
+        case z: TypeRef => z.dealias
+        case _ => tp
+      }
+
+      def allTypes(xs: List[Type]): List[Type] = xs match {
+        case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
+        case _ => Nil
+      }
+
+      val d0ref = implicitly[c.WeakTypeTag[Dense.D0]].tpe
+      val d1ref = implicitly[c.WeakTypeTag[Dense.D1]].tpe
+
+      @tailrec
+      def go(pending: List[Type], acc: Long, addn: Long): c.Tree = pending match {
+        case h :: t =>
+          if (h =:= d0ref) {
+            go(t, acc, addn << 1)
+          } else if (h =:= d1ref) {
+            go(t, acc | addn, addn << 1)
+          } else {
+            c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
+          }
+        case Nil => q"new typequux.Dense.DenseRep[${wtt.tpe}]($acc)"
+      }
+
+      go(allTypes(processType(wtt.tpe).typeArgs), 0, 1)
+    }
+
   }
 
   /** Builds a value level [[scala.Int]] representation of a dense type
@@ -632,7 +656,7 @@ object Dense {
     * @author Harshad Deo
     * @since 0.3.1
     */
-  final class DenseIntRep[D] private (val v: Int) extends AnyVal
+  final class DenseIntRep[D](val v: Int) extends AnyVal
 
   /** Contains implicit definitional to build a value level representation of a dense type as a [[scala.Int]]
     *
@@ -642,27 +666,46 @@ object Dense {
     */
   object DenseIntRep {
 
-    /** Implements [[DenseIntRep]] for [[DNil]]
+    /** Builds an instance of [[DenseIntRep]] by delegating to the macro
+      *
+      * @tparam D The Dense type to be converted
       *
       * @author Harshad Deo
-      * @since 0.3.1
+      * @since 0.6.4
       */
-    implicit val dNil2Rep: DenseIntRep[DNil] = new DenseIntRep[DNil](0)
+    implicit def build[D <: Dense]: DenseIntRep[D] = macro buildImpl[D]
 
-    /** Builds [[DenseIntRep]] for [[DCons]] if the lowest priority bit is 0
-      *
-      * @author Harshad Deo
-      * @since 0.3.1
-      */
-    implicit def dCons02Rep[T <: Dense](implicit tr: DenseIntRep[T]): DenseIntRep[D0 :: T] = new DenseIntRep(tr.v << 1)
+    def buildImpl[D <: Dense](c: Context)(wtt: c.WeakTypeTag[D]): c.Tree = {
+      import c.universe._
 
-    /** Builds [[DenseIntRep]] for [[DCons]] if the lowest priority bit is 1
-      *
-      * @author Harshad Deo
-      * @since 0.3.1
-      */
-    implicit def dCons22Rep[T <: Dense](implicit tr: DenseIntRep[T]): DenseIntRep[D1 :: T] =
-      new DenseIntRep((tr.v << 1) | 1)
+      def processType(tp: Type) = tp match {
+        case z: TypeRef => z.dealias
+        case _ => tp
+      }
+
+      def allTypes(xs: List[Type]): List[Type] = xs match {
+        case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
+        case _ => Nil
+      }
+
+      val d0ref = implicitly[c.WeakTypeTag[Dense.D0]].tpe
+      val d1ref = implicitly[c.WeakTypeTag[Dense.D1]].tpe
+
+      @tailrec
+      def go(pending: List[Type], acc: Int, addn: Int): c.Tree = pending match {
+        case h :: t =>
+          if (h =:= d0ref) {
+            go(t, acc, addn << 1)
+          } else if (h =:= d1ref) {
+            go(t, acc | addn, addn << 1)
+          } else {
+            c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
+          }
+        case Nil => q"new typequux.Dense.DenseIntRep[${wtt.tpe}]($acc)"
+      }
+
+      go(allTypes(processType(wtt.tpe).typeArgs), 0, 1)
+    }
 
   }
 
