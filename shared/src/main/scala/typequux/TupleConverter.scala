@@ -15,7 +15,9 @@
   */
 package typequux
 
-import HList.{:+:, HNil}
+import language.experimental.macros
+import reflect.macros.whitebox.Context
+import Typequux.{:+:, HNil}
 
 /** Conversion from Tuple to [[HList]]
   *
@@ -25,7 +27,7 @@ import HList.{:+:, HNil}
   * @author Harshad Deo
   * @since 0.1
   */
-sealed trait Tuple2HListConverter[T, HL] {
+trait Tuple2HListConverter[T, HL] {
   def apply(t: T): HL
 }
 
@@ -36,135 +38,61 @@ sealed trait Tuple2HListConverter[T, HL] {
   */
 object Tuple2HListConverter {
 
-  /** Arity 2 Converter
+  /** Generates [[Tuple2HListConverter]] by delegating to the macro
     *
     * @author Harshad Deo
-    * @since 0.1
+    * @since 0.6.5
     */
-  implicit def tuple2Converter[A, B]: Tuple2HListConverter[(A, B), A :+: B :+: HNil] =
-    new Tuple2HListConverter[(A, B), A :+: B :+: HNil] {
-      override def apply(a: (A, B)) = a._1 :+: a._2 :+: HNil
+  implicit def build[T, HL]: Tuple2HListConverter[T, HL] = macro buildImpl[T, HL]
+
+  def buildImpl[T, HL](c: Context)(implicit wtt: c.WeakTypeTag[T]): c.Tree = {
+    import c.universe._
+
+    val wtp = wtt.tpe match {
+      case z: TypeRef => z.dealias
+      case z => z
     }
 
-  /** Arity 3 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple3Converter[A, B, C]: Tuple2HListConverter[(A, B, C), A :+: B :+: C :+: HNil] =
-    new Tuple2HListConverter[(A, B, C), A :+: B :+: C :+: HNil] {
-      override def apply(a: (A, B, C)) = a._1 :+: a._2 :+: a._3 :+: HNil
-    }
+    val allTupleNames = (2 to 22).map(z => s"scala.Tuple$z")
+    val isTuple = allTupleNames.exists(z => wtp.typeSymbol.fullName == z)
+    if (isTuple) {
+      val targs = wtp.typeArgs
+      val typeCollapsed = targs.foldRight[c.Tree](tq"typequux.Typequux.HNil") {
+        case (v, acc) => tq"typequux.Typequux.:+:[$v, $acc]"
+      }
+      val tupleArgs = List(q"t._1",
+                           q"t._2",
+                           q"t._3",
+                           q"t._4",
+                           q"t._5",
+                           q"t._6",
+                           q"t._7",
+                           q"t._8",
+                           q"t._9",
+                           q"t._10",
+                           q"t._11",
+                           q"t._12",
+                           q"t._13",
+                           q"t._14",
+                           q"t._15",
+                           q"t._16",
+                           q"t._17",
+                           q"t._18",
+                           q"t._19",
+                           q"t._20",
+                           q"t._21",
+                           q"t._22").take(targs.length)
 
-  /** Arity 4 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple4Converter[A, B, C, D]: Tuple2HListConverter[(A, B, C, D), A :+: B :+: C :+: D :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D), A :+: B :+: C :+: D :+: HNil] {
-      override def apply(a: (A, B, C, D)) = a._1 :+: a._2 :+: a._3 :+: a._4 :+: HNil
+      val valueCollapsed = tupleArgs.foldRight[c.Tree](q"typequux.Typequux.HNil") {
+        case (v, acc) => q"typequux.Typequux.:+:($v, $acc)"
+      }
+      q"""new typequux.Tuple2HListConverter[$wtp, $typeCollapsed]{
+        override def apply(t: $wtp): $typeCollapsed = $valueCollapsed
+        }"""
+    } else {
+      c.abort(c.enclosingPosition, s"Supplied type $wtp, is not a tuple")
     }
-
-  /** Arity 5 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple5Converter[A, B, C, D, E]
-    : Tuple2HListConverter[(A, B, C, D, E), A :+: B :+: C :+: D :+: E :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E), A :+: B :+: C :+: D :+: E :+: HNil] {
-      override def apply(a: (A, B, C, D, E)) = a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: HNil
-    }
-
-  /** Arity 6 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple6Converter[A, B, C, D, E, F]
-    : Tuple2HListConverter[(A, B, C, D, E, F), A :+: B :+: C :+: D :+: E :+: F :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F), A :+: B :+: C :+: D :+: E :+: F :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F)) = a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: HNil
-    }
-
-  /** Arity 7 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple7Converter[A, B, C, D, E, F, G]
-    : Tuple2HListConverter[(A, B, C, D, E, F, G), A :+: B :+: C :+: D :+: E :+: F :+: G :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F, G), A :+: B :+: C :+: D :+: E :+: F :+: G :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F, G)) =
-        a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: HNil
-    }
-
-  /** Arity 8 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple8Converter[A, B, C, D, E, F, G, H]
-    : Tuple2HListConverter[(A, B, C, D, E, F, G, H), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F, G, H), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F, G, H)) =
-        a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: HNil
-    }
-
-  /** Arity 9 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple9Converter[A, B, C, D, E, F, G, H, I]
-    : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F, G, H, I), A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F, G, H, I)) =
-        a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: HNil
-    }
-
-  /** Arity 10 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple10Converter[A, B, C, D, E, F, G, H, I, J]
-    : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J),
-                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J),
-                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F, G, H, I, J)) =
-        a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: HNil
-    }
-
-  /** Arity 11 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple11Converter[A, B, C, D, E, F, G, H, I, J, K]
-    : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K),
-                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K),
-                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F, G, H, I, J, K)) =
-        a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: HNil
-    }
-
-  /** Arity 12 Converter
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tuple12Converter[A, B, C, D, E, F, G, H, I, J, K, L]
-    : Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K, L),
-                           A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: HNil] =
-    new Tuple2HListConverter[(A, B, C, D, E, F, G, H, I, J, K, L),
-                             A :+: B :+: C :+: D :+: E :+: F :+: G :+: H :+: I :+: J :+: K :+: L :+: HNil] {
-      override def apply(a: (A, B, C, D, E, F, G, H, I, J, K, L)) =
-        a._1 :+: a._2 :+: a._3 :+: a._4 :+: a._5 :+: a._6 :+: a._7 :+: a._8 :+: a._9 :+: a._10 :+: a._11 :+: a._12 :+: HNil
-    }
+  }
 
 }
 
