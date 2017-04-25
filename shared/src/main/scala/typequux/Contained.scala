@@ -56,7 +56,7 @@ object Contained {
     val tp2 = processType(implicitly[c.WeakTypeTag[HL]].tpe)
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
-      case a :: b :: Nil => a :: allTypes(b.typeArgs)
+      case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
       case _ => Nil
     }
 
@@ -133,7 +133,48 @@ object NotContained {
   * @author Harshad Deo
   * @since 0.1
   */
-final class SubType[A, HL] private ()
+final class SubType[A, HL]()
+
+/** Containt implicit definitions to build a [[SubType]] marker
+  *
+  * @author Harshad Deo
+  * @since 0.1
+  */
+object SubType {
+
+  /** Constructs an instance [[SubType]] by delegating to the macro
+    *
+    * @author Harshad Deo
+    * @since 0.6.4
+    */
+  implicit def buildSubtype[A, HL <: HList]: SubType[A, HL] = macro subtypeImpl[A, HL]
+
+  def subtypeImpl[A: c.WeakTypeTag, HL: c.WeakTypeTag](c: Context): c.Tree = {
+    import c.universe._
+
+    def processType(tp: Type) = tp match {
+      case z: TypeRef => z.dealias
+      case _ => tp
+    }
+
+    val tp1 = processType(implicitly[c.WeakTypeTag[A]].tpe)
+    val tp2 = processType(implicitly[c.WeakTypeTag[HL]].tpe)
+
+    def allTypes(xs: List[Type]): List[Type] = xs match {
+      case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
+      case _ => Nil
+    }
+
+    val at = allTypes(tp2.typeArgs)
+
+    if (at.exists(tp1 <:< _)) {
+      q"new typequux.SubType[$tp1, $tp2]"
+    } else {
+      c.abort(c.enclosingPosition, s"Type ${show(tp1)} is not a subtype of a type in ${show(tp2)}")
+    }
+  }
+
+}
 
 /** Marker that type A is not a subtype of the types of the supplied [[HList]] type
   *
@@ -151,38 +192,6 @@ final class NotSubType[A, HL] private ()
   * @since 0.2.2
   */
 final class AllContained[HL1, HL2]
-
-/** Containt implicit definitions to build a [[SubType]] marker
-  *
-  * @author Harshad Deo
-  * @since 0.1
-  */
-object SubType {
-
-  /** Base case for [[SubType]]
-    *
-    * @tparam A Type being checked for subtyping
-    * @tparam H Type of the head of the HList
-    * @tparam T Type of the tail of the HList
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def subtyped[A, H, T <: HList](implicit ev0: A <:< H, ev1: NotSubType[A, T]): SubType[A, H :+: T] =
-    new SubType[A, H :+: T]
-
-  /** Induction case for [[SubType]]
-    *
-    * @tparam A Type being checked for subtyping
-    * @tparam H Type of the head of the HList
-    * @tparam T Type of the tail of the HList
-    *
-    * @author Harshad Deo
-    * @since 0.1
-    */
-  implicit def tailSubtyped[A, H, T <: HList](implicit ev: SubType[A, T]): SubType[A, H :+: T] =
-    new SubType[A, H :+: T]
-}
 
 /** Containt implicit definitions to build a [[NotSubType]] marker
   *
@@ -249,7 +258,7 @@ object AllContained {
     val tp2 = processType(implicitly[c.WeakTypeTag[HL2]].tpe)
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
-      case a :: b :: Nil => a :: allTypes(b.typeArgs)
+      case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
       case _ => Nil
     }
 
