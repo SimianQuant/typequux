@@ -707,13 +707,13 @@ object Dense {
             } else if (h =:= d1ref) {
               go(t, acc | addn, addn << 1)
             } else {
-              c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
+              c.abort(c.enclosingPosition, s"DenseIntRep cannot be materialized for ${show(wtt.tpe)}")
             }
           case Nil => q"new typequux.Dense.DenseIntRep[${wtt.tpe}]($acc)"
         }
         go(allTypes(proc.typeArgs), 0, 1)
       } else {
-        c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
+        c.abort(c.enclosingPosition, s"DenseIntRep cannot be materialized for ${show(wtt.tpe)}")
       }
     }
 

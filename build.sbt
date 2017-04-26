@@ -35,7 +35,7 @@ lazy val additionalCommands = Seq(testAllCommand, runcoverageCommand, releaseLoc
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.5",
+  version := "0.6.6-SNAPSHOT",
   scalaVersion := "2.11.8",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(

@@ -270,6 +270,8 @@ class SizedVectorSpec extends BaseSpec {
     assert(v.slice[_4, _2] == SizedVector(5, 6))
     assert(v.slice[_3, _5] == SizedVector(4, 5, 6, 7, 8))
     assert(v.slice[_0, _3] == SizedVector(1, 2, 3))
+    assert(v.slice[_0, _10] == v)
+    assert(v.slice[_1, _9] == SizedVector(2, 3, 4, 5, 6, 7, 8, 9, 10))
   }
 
   it should "sort properly" in {

@@ -176,7 +176,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     * @since 0.6.4
     */
   def slice[ST <: Dense, SZ <: Dense](implicit ev0: TrueConstraint[SZ > _0],
-                                      ev2: TrueConstraint[ST + SZ < N],
+                                      ev2: TrueConstraint[ST + SZ <= N],
                                       ev3: DenseIntRep[ST],
                                       ev4: DenseIntRep[SZ]): SizedVector[SZ, T] =
     new SizedVector(backing.slice(ev3.v, ev3.v + ev4.v))
