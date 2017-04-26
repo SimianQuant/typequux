@@ -17,9 +17,15 @@ package typequux.constraint
 
 import typequux.Bool.True
 
-final class TrueConstraint[T] private ()
+final class TrueConstraint[T] private[constraint] ()
 
-object TrueConstraint {
+trait TrueConstraintLowPriority {
+
+  implicit def buildLowPriority[T](implicit ev: True =:= T): TrueConstraint[T] = new TrueConstraint()
+
+}
+
+object TrueConstraint extends TrueConstraintLowPriority {
 
   implicit def build[T](implicit ev: T =:= True): TrueConstraint[T] = new TrueConstraint()
 
