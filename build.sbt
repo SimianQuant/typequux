@@ -35,7 +35,7 @@ lazy val additionalCommands = Seq(testAllCommand, runcoverageCommand, releaseLoc
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.5-SNAPSHOT",
+  version := "0.6.5",
   scalaVersion := "2.11.8",
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
@@ -176,7 +176,7 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .aggregate(typequux)
   .jvmSettings(testSettings)
   .jvmSettings(
-    scalaVersion := "2.12.1",
+    scalaVersion := "2.11.8",
     fork := true
   )
   .jsSettings(testSettings)
