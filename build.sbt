@@ -138,10 +138,12 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   )
   .jsSettings(
     crossScalaVersions := crossVersions,
+    scalaJSStage in Test := FullOptStage,
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
     nativeMode := "release",
+    scalaVersion := "2.11.8",
     coverageExcludedPackages := ".*"
   )
 
@@ -184,6 +186,7 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   )
   .nativeSettings(
     libraryDependencies += "com.simianquant" %% "sntb" % "0.1" % "test",
+    scalaVersion := "2.11.8",
     coverageExcludedPackages := ".*"
   )
 

@@ -688,23 +688,33 @@ object Dense {
         case _ => Nil
       }
 
-      val d0ref = implicitly[c.WeakTypeTag[Dense.D0]].tpe
-      val d1ref = implicitly[c.WeakTypeTag[Dense.D1]].tpe
+      val proc = processType(wtt.tpe)
+      val dnilRef = implicitly[c.WeakTypeTag[Dense.DNil]].tpe
+      val dconsRef = implicitly[c.WeakTypeTag[Dense.DCons[_, _]]].tpe
 
-      @tailrec
-      def go(pending: List[Type], acc: Int, addn: Int): c.Tree = pending match {
-        case h :: t =>
-          if (h =:= d0ref) {
-            go(t, acc, addn << 1)
-          } else if (h =:= d1ref) {
-            go(t, acc | addn, addn << 1)
-          } else {
-            c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
-          }
-        case Nil => q"new typequux.Dense.DenseIntRep[${wtt.tpe}]($acc)"
+      if (proc =:= dnilRef) {
+        q"new typequux.Dense.DenseIntRep[${wtt.tpe}](0)"
+      } else if (proc <:< dconsRef) {
+
+        val d0ref = implicitly[c.WeakTypeTag[Dense.D0]].tpe
+        val d1ref = implicitly[c.WeakTypeTag[Dense.D1]].tpe
+
+        @tailrec
+        def go(pending: List[Type], acc: Int, addn: Int): c.Tree = pending match {
+          case h :: t =>
+            if (h =:= d0ref) {
+              go(t, acc, addn << 1)
+            } else if (h =:= d1ref) {
+              go(t, acc | addn, addn << 1)
+            } else {
+              c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
+            }
+          case Nil => q"new typequux.Dense.DenseIntRep[${wtt.tpe}]($acc)"
+        }
+        go(allTypes(proc.typeArgs), 0, 1)
+      } else {
+        c.abort(c.enclosingPosition, s"DenseRep cannot be materialized for ${show(wtt.tpe)}")
       }
-
-      go(allTypes(processType(wtt.tpe).typeArgs), 0, 1)
     }
 
   }
