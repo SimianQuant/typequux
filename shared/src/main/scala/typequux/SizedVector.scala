@@ -261,6 +261,8 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
   def zip[U, N1 <: Dense](that: SizedVector[N1, U]): SizedVector[Min[N, N1], (T, U)] =
     new SizedVector[Min[N, N1], (T, U)](backing zip that.backing)
 
+  def zipWithIndex: SizedVector[N, (T, Int)] = new SizedVector(backing.zipWithIndex)
+
   /** Zips with a SizedVector of the same size
     *
     * @tparam U Element type of the argument

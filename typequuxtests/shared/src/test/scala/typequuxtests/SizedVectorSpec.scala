@@ -406,4 +406,9 @@ class SizedVectorSpec extends BaseSpec {
     assert(check(SizedVector(6, 2, 7, 8).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
     assert(check(SizedVector(1, 6, 7, 8).traverse(f)(g))(Left("Error 6" :: "Error 7" :: "Error 8" :: Nil)))
   }
+
+  it should "zipWithIndex properly" in {
+    assert(SizedVector("a").zipWithIndex == SizedVector(("a", 0)))
+    assert(SizedVector("a", "b", "c", "d").zipWithIndex == SizedVector(("a", 0), ("b", 1), ("c", 2), ("d", 3)))
+  }
 }
