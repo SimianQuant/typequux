@@ -22,9 +22,9 @@ class TrueConstraintSpec extends BaseSpec {
 
   it should "build properly" in {
     assertCompiles { """implicitly[TrueConstraint[True]]""" }
-    assertCompiles { """def foo[U](implicit ev: U =:= True): TrueConstraint[U] = implicitly[TrueConstraint[U]""" }
-    assertCompiles { """def foo[U](implicit ev: True =:= U): TrueConstraint[U] = implicitly[TrueConstraint[U]""" }
-    
+    assertCompiles { """def foo[U](implicit ev: U =:= True): TrueConstraint[U] = implicitly[TrueConstraint[U]]""" }
+    assertCompiles { """def foo[U](implicit ev: True =:= U): TrueConstraint[U] = implicitly[TrueConstraint[U]]""" }
+
     assertTypeError { """implicitly[TrueConstraint[False]]""" }
   }
 
