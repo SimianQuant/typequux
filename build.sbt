@@ -35,8 +35,8 @@ lazy val additionalCommands = Seq(testAllCommand, runcoverageCommand, releaseLoc
 
 lazy val commonShared = Seq(
   organization := "com.simianquant",
-  version := "0.6.6-SNAPSHOT",
-  scalaVersion := "2.11.8",
+  version := Settings.version,
+  scalaVersion := Settings.scalaVersion,
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
@@ -55,39 +55,14 @@ lazy val commonShared = Seq(
         Serializable,
         TryPartial)
   },
-  scalacOptions in (Compile) ++= Seq(
-    "-deprecation",
-    "-unchecked",
-    "-explaintypes",
-    //"-Ywarn-unused-import",
-    "-encoding",
-    "UTF-8",
-    "-feature",
-    "-Xlog-reflective-calls",
-    "-Ywarn-dead-code",
-    "-Ywarn-inaccessible",
-    "-Ywarn-infer-any",
-    "-Ywarn-unused",
-    "-Ywarn-value-discard",
-    "-Xlint",
-    "-Ywarn-nullary-override",
-    "-Ywarn-nullary-unit",
-    "-Xfuture",
-    "-P:linter:disable:UnusedParameter"
-  ),
+  scalacOptions in (Compile) ++= Settings.scalacCompileOptions,
   scalacOptions in (Compile) ++= Seq(scalaVersion.value match {
     case x if x.startsWith("2.12.") => "-target:jvm-1.8"
     case x => "-target:jvm-1.6"
   }),
-  scalacOptions in (Compile, doc) ++= Seq(
-    "-author",
-    "-groups",
-    "-implicits"
-  ),
-  addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.16")
+  scalacOptions in (Compile, doc) ++= Settings.scalacDocOptions,
+  addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % Settings.Version.linter)
 )
-
-lazy val crossVersions = Seq("2.11.8", "2.12.1")
 
 lazy val sharedSettings = commonShared ++ Seq(
     name := "typequux",
@@ -124,8 +99,8 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("."))
   .settings(sharedSettings)
   .jvmSettings(
-    crossScalaVersions := crossVersions,
-    scalaVersion := "2.12.1",
+    crossScalaVersions := Settings.crossScalaVersions,
+    scalaVersion := Settings.crossScalaVersions.last,
     initialCommands := """| class Witness1[T](val x: T)
       | object Witness1{
       |   def apply[T](x: T): Witness1[T] = new Witness1(x)
@@ -137,13 +112,12 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     fork := true
   )
   .jsSettings(
-    crossScalaVersions := crossVersions,
+    crossScalaVersions := Settings.crossScalaVersions,
     scalaJSStage in Test := FullOptStage,
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
     nativeMode := "release",
-    scalaVersion := "2.11.8",
     coverageExcludedPackages := ".*"
   )
 
@@ -162,11 +136,11 @@ lazy val typequuxJS = typequux.js.settings(coverageExcludedPackages := ".*")
 
 lazy val testSettings = commonShared ++ Seq(
     name := "typequuxtests",
-    crossScalaVersions := crossVersions,
+    crossScalaVersions := Settings.crossScalaVersions,
     libraryDependencies ++= Seq(
-      "org.scalatest" %%% "scalatest" % "3.0.1" % "test"
+      "org.scalatest" %%% "scalatest" % Settings.Version.scalaTest % "test"
     ),
-    testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
+    testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, Settings.scalaTestOptions)
   )
 
 lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
@@ -176,7 +150,6 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .aggregate(typequux)
   .jvmSettings(testSettings)
   .jvmSettings(
-    scalaVersion := "2.11.8",
     fork := true
   )
   .jsSettings(testSettings)
@@ -185,8 +158,7 @@ lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
     coverageExcludedPackages := ".*"
   )
   .nativeSettings(
-    libraryDependencies += "com.simianquant" %% "sntb" % "0.1" % "test",
-    scalaVersion := "2.11.8",
+    libraryDependencies += "com.simianquant" %% "sntb" % Settings.Version.sntb % "test",
     coverageExcludedPackages := ".*"
   )
 

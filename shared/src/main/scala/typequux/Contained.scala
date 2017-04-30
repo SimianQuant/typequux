@@ -16,7 +16,7 @@
 package typequux
 
 import language.experimental.macros
-import reflect.macros.blackbox.Context
+import reflect.macros.whitebox.Context
 
 import HList.{:+:, HNil}
 

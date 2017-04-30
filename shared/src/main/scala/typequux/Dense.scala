@@ -22,7 +22,7 @@ import constraint.TrueConstraint
 import Dense._
 import language.higherKinds
 import language.experimental.macros
-import reflect.macros.blackbox.Context
+import reflect.macros.whitebox.Context
 
 /** Typelevel representation of dense numbers, stored as a list of [[Dense.Digit]]
   *
