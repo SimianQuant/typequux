@@ -14,17 +14,17 @@ before_install:
 - sudo apt-get -qq update
 - sudo apt-get install -y nodejs
 - sudo sh -c "echo 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.7 main' >> /etc/apt/sources.list"
-- sudo sh -c "echo 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise main' >> /etc/apt/sources.list"
+- sudo sh -c "echo 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise main' >> /etc/apt/sources.list" sbt coverage 'project typequuxtestsJVM' clean test coverageReport && sbt 'project typequuxtestsJVM' coverageAggregate
 - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
 - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
 - sudo apt-get -qq update
 - sudo apt-get install -y libgc-dev clang++-3.7 llvm-3.7 llvm-3.7-dev llvm-3.7-runtime llvm-3.7-tool libunwind7-dev
 
 script: 
-  - sbt clean 'project typequuxtestsJVM'  +test
-  - sbt clean 'project typequuxtestsJS'  +test
-  - sbt clean 'project typequuxtestsNative' test:run
-  - sbt clean 'project typequuxtestsJVM' coverage test coverageReport && sbt 'project typequuxtestsJVM' coverageAggregate
+  - sbt 'project typequuxtestsJVM' clean +typequuxtestsJVM
+  - sbt 'project typequuxtestsJS' clean +test
+  - sbt 'project typequuxtestsNative' clean test:run
+  - sbt coverage 'project typequuxtestsJVM' clean test coverageReport && sbt 'project typequuxtestsJVM' coverageAggregate
 
 after_success:
   - sbt 'project typequuxtestsJVM' coveralls

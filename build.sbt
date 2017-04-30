@@ -100,7 +100,6 @@ val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .settings(sharedSettings)
   .jvmSettings(
     crossScalaVersions := Settings.crossScalaVersions,
-    scalaVersion := Settings.crossScalaVersions.last,
     initialCommands := """| class Witness1[T](val x: T)
       | object Witness1{
       |   def apply[T](x: T): Witness1[T] = new Witness1(x)
