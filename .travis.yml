@@ -21,7 +21,7 @@ before_install:
 - sudo apt-get install -y libgc-dev clang++-3.7 llvm-3.7 llvm-3.7-dev llvm-3.7-runtime llvm-3.7-tool libunwind7-dev
 
 script: 
-  - sbt 'project typequuxtestsJVM' clean +typequuxtestsJVM
+  - sbt 'project typequuxtestsJVM' clean +test
   - sbt 'project typequuxtestsJS' clean +test
   - sbt 'project typequuxtestsNative' clean test:run
   - sbt coverage 'project typequuxtestsJVM' clean test coverageReport && sbt 'project typequuxtestsJVM' coverageAggregate
