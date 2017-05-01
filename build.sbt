@@ -27,7 +27,7 @@ lazy val releaseCommand = Command.command("release") { state =>
       "project typequuxJS" :: "+publishSigned" ::
         "project typequuxJVM" :: "+publishSigned" ::
           "sonatypeRelease" ::
-            "ghpagesPushSite" ::
+            "++2.12.2" :: "ghpagesPushSite" ::
               state
 }
 
@@ -55,16 +55,12 @@ lazy val commonShared = Seq(
         Serializable,
         TryPartial)
   },
-  scalacOptions in (Compile) ++= Settings.scalacCompileOptions,
-  scalacOptions in (Compile) ++= Seq(scalaVersion.value match {
-    case x if x.startsWith("2.12.") => "-target:jvm-1.8"
-    case x => "-target:jvm-1.6"
-  }),
+  scalacOptions in (Compile) ++= Settings.scalacCompileOptions(scalaVersion.value),
   scalacOptions in (Compile, doc) ++= Settings.scalacDocOptions,
   addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % Settings.Version.linter)
 )
 
-lazy val sharedSettings = commonShared ++ Seq(
+lazy val libSettings = commonShared ++ Seq(
     name := "typequux",
     previewLaunchBrowser := false,
     publishMavenStyle := true,
@@ -97,7 +93,7 @@ lazy val sharedSettings = commonShared ++ Seq(
 
 val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("."))
-  .settings(sharedSettings)
+  .settings(libSettings)
   .jvmSettings(
     crossScalaVersions := Settings.crossScalaVersions,
     initialCommands := """| class Witness1[T](val x: T)
