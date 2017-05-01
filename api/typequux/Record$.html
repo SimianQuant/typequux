@@ -1,44 +1,369 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Record - typequux.Record</title>
-          <meta name="description" content="Record - typequux.Record" />
-          <meta name="keywords" content="Record typequux.Record" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title></title>
+          <meta name="description" content="" />
+          <meta name="keywords" content="" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      <link href="../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../lib/jquery.js" id="jquery-js"></script>
-      <script type="text/javascript" src="../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../lib/jquery.js"></script>
+      <script type="text/javascript" src="../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../lib/index.js"></script>
+      <script type="text/javascript" src="../index.js"></script>
+      <script type="text/javascript" src="../lib/scheduler.js"></script>
       <script type="text/javascript" src="../lib/template.js"></script>
       <script type="text/javascript" src="../lib/tools.tooltip.js"></script>
       
       <script type="text/javascript">
-         if(top === self) {
-            var url = '../index.html';
-            var hash = 'typequux.Record$';
-            var anchor = window.location.hash;
-            var anchor_opt = '';
-            if (anchor.length >= 1)
-              anchor_opt = '@' + anchor.substring(1);
-            window.location.href = url + '#' + hash + anchor_opt;
-         }
-   	  </script>
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../';
+      </script>
     
         </head>
-        <body class="value">
-      <div id="definition">
-        <a href="Record.html" title="See companion trait"><img alt="Object/Trait" src="../lib/object_to_trait_big.png" /></a>
-        <p id="owner"><a href="package.html" class="extype" name="typequux">typequux</a></p>
-        <h1><a href="Record.html" title="See companion trait">Record</a></h1><h3><span class="morelinks"><div>
-            Related Docs:
-            <a href="Record.html" title="See companion trait">trait Record</a>
-            | <a href="package.html" class="extype" name="typequux">package typequux</a>
-          </div></span></h3><span class="permalink">
-      <a href="../index.html#typequux.Record$" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+        <body>
+      <div id="search">
+        <span id="doc-title"><span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html">
+              <span class="name">root</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.typequux" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="typequux"></a><a id="typequux:typequux"></a>
+      <span class="permalink">
+      <a href="index.html#typequux" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html">
+              <span class="name">typequux</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="typequux.constraint" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="constraint"></a><a id="constraint:constraint"></a>
+      <span class="permalink">
+      <a href="../typequux/index.html#constraint" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="constraint/index.html">
+              <span class="name">constraint</span>
+            </a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="typequux">typequux</a></dd></dl></div>
+    </li><li class="current-entities indented1">
+                        <a class="object" href="AllContained$.html" title=""></a>
+                        <a class="class" href="AllContained.html" title="Marker that all types of HL1 are contained in HL2
+"></a>
+                        <a href="AllContained.html" title="Marker that all types of HL1 are contained in HL2
+">
+                          AllContained
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="ArityIndexOps.html" title="Provides scala collection like operations on sequantially indexed arbitrary arity types, like HList and tuple
+"></a>
+                        <a href="ArityIndexOps.html" title="Provides scala collection like operations on sequantially indexed arbitrary arity types, like HList and tuple
+">
+                          ArityIndexOps
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="ArityZipOps.html" title="Provided arbitrary arity zips for sequentially indexed arbitrary arity types, like HList or Tuples
+"></a>
+                        <a href="ArityZipOps.html" title="Provided arbitrary arity zips for sequentially indexed arbitrary arity types, like HList or Tuples
+">
+                          ArityZipOps
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="Bool$.html" title="Contains implementation for Bool and typeconstructor aliases that make usage more pleasant"></a>
+                        <a class="trait" href="Bool.html" title="Church encodings of booleans."></a>
+                        <a href="Bool.html" title="Church encodings of booleans.">
+                          Bool
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="Comparison$.html" title="Contains implementation for Comparison
+"></a>
+                        <a class="trait" href="Comparison.html" title="Typelevel encoding of the result of a comparison
+"></a>
+                        <a href="Comparison.html" title="Typelevel encoding of the result of a comparison
+">
+                          Comparison
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="Contained$.html" title="Contains implicit definitions to build a Contained marker."></a>
+                        <a class="class" href="Contained.html" title="Marker that type A is one of the types of the supplied HList type
+"></a>
+                        <a href="Contained.html" title="Marker that type A is one of the types of the supplied HList type
+">
+                          Contained
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="Dense$.html" title="Contains implementation for Dense and typeconstructor aliases that make usage more pleasant"></a>
+                        <a class="trait" href="Dense.html" title="Typelevel representation of dense numbers, stored as a list of Dense.Digit
+"></a>
+                        <a href="Dense.html" title="Typelevel representation of dense numbers, stored as a list of Dense.Digit
+">
+                          Dense
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="DenseDiff$.html" title="Contains implicit definitions to build a DenseDiff marker
+"></a>
+                        <a class="trait" href="DenseDiff.html" title="Marker trait for typelevel subtraction of Dense numbers."></a>
+                        <a href="DenseDiff.html" title="Marker trait for typelevel subtraction of Dense numbers.">
+                          DenseDiff
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="DenseMap$.html" title="Contains implementation traits for DenseMap and typeconstructor aliases that make usage more pleasant."></a>
+                        <a class="trait" href="DenseMap.html" title="Typelevel map in which the keys are Dense numbers."></a>
+                        <a href="DenseMap.html" title="Typelevel map in which the keys are Dense numbers.">
+                          DenseMap
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="DenseSet$.html" title="Contains implementation traits for DenseSet and typeconstructor aliases that make usage more pleasant."></a>
+                        <a class="trait" href="DenseSet.html" title="Typelevel set of Dense numbers, implemented as a binary tree
+"></a>
+                        <a href="DenseSet.html" title="Typelevel set of Dense numbers, implemented as a binary tree
+">
+                          DenseSet
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Fold.html" title="Typeclass for typelevel and valuelevel fold
+"></a>
+                        <a href="Fold.html" title="Typeclass for typelevel and valuelevel fold
+">
+                          Fold
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="Fold2.html" title="Typeclass for typelevel and valuelevel fold for a tuple arg
+"></a>
+                        <a href="Fold2.html" title="Typeclass for typelevel and valuelevel fold for a tuple arg
+">
+                          Fold2
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="HList$.html" title="Contains implementations for HList and implicit definitions to build the constraint typeclasses
+necessary for operations."></a>
+                        <a class="trait" href="HList.html" title="Sequentially indexed arbitrary arity type in which each element can be of a different type
+"></a>
+                        <a href="HList.html" title="Sequentially indexed arbitrary arity type in which each element can be of a different type
+">
+                          HList
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="HList2TupleConverter$.html" title="Provides implicit definitions to convert Tuple2-18 to HList."></a>
+                        <a class="trait" href="HList2TupleConverter.html" title="Conversions from HList to Tuple
+"></a>
+                        <a href="HList2TupleConverter.html" title="Conversions from HList to Tuple
+">
+                          HList2TupleConverter
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="HListOps.html" title="Common operations on HList
+"></a>
+                        <a href="HListOps.html" title="Common operations on HList
+">
+                          HListOps
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="LiteralHash$.html" title="Contains implicit conversions to convert literals to their corresponding LiteralHash
+"></a>
+                        <a class="trait" href="LiteralHash.html" title="Typelevel representation of a compile time constant literal."></a>
+                        <a href="LiteralHash.html" title="Typelevel representation of a compile time constant literal.">
+                          LiteralHash
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="trait" href="LowPriorityHList2TupleConverter.html" title="Provided implicit definition to convert HList to Tuple1."></a>
+                        <a href="LowPriorityHList2TupleConverter.html" title="Provided implicit definition to convert HList to Tuple1.">
+                          LowPriorityHList2TupleConverter
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="Nat$.html" title="Contains implementation traits for Nat and typeconstructor aliases that make usage more pleasant."></a>
+                        <a class="trait" href="Nat.html" title="Peano encoding of natural numbers
+"></a>
+                        <a href="Nat.html" title="Peano encoding of natural numbers
+">
+                          Nat
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="NatDiff$.html" title="Contains implicit definitions to build a NatDiff marker
+"></a>
+                        <a class="trait" href="NatDiff.html" title="Marker trait for typelevel subtraction of Nat
+"></a>
+                        <a href="NatDiff.html" title="Marker trait for typelevel subtraction of Nat
+">
+                          NatDiff
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="NotContained$.html" title="Contains implicit definitions to build a NotContained marker."></a>
+                        <a class="class" href="NotContained.html" title="Marker that type A is not one of the types of the supplied HList type
+"></a>
+                        <a href="NotContained.html" title="Marker that type A is not one of the types of the supplied HList type
+">
+                          NotContained
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="NotSubType$.html" title="Containt implicit definitions to build a NotSubType marker
+"></a>
+                        <a class="class" href="NotSubType.html" title="Marker that type A is not a subtype of the types of the supplied HList type
+"></a>
+                        <a href="NotSubType.html" title="Marker that type A is not a subtype of the types of the supplied HList type
+">
+                          NotSubType
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="" title="Contains implementations of Record and implicit definitions for building typeclasses necessary
+for the operations on records
+"></a>
+                        <a class="trait" href="Record.html" title="String indexed collection in which the elements can have different types."></a>
+                        <a href="Record.html" title="String indexed collection in which the elements can have different types.">
+                          Record
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="SiOps.html" title="Provides scala collection like operations on string indexed collections like Record and StringIndexedCollection
+"></a>
+                        <a href="SiOps.html" title="Provides scala collection like operations on string indexed collections like Record and StringIndexedCollection
+">
+                          SiOps
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="SizedVector$.html" title="Implements methods to construct SizedVector objects
+"></a>
+                        <a class="class" href="SizedVector.html" title="Sequantially indexed immutable collection of fixed size in which all elements are of the same type."></a>
+                        <a href="SizedVector.html" title="Sequantially indexed immutable collection of fixed size in which all elements are of the same type.">
+                          SizedVector
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="StringIndexedCollection$.html" title="Contains implementations of StringIndexedCollection  and implicit definitions for building typeclasses necessary
+for the operations on string indexed collections
+"></a>
+                        <a class="trait" href="StringIndexedCollection.html" title="String indexed collection in which all the elements are of the same type."></a>
+                        <a href="StringIndexedCollection.html" title="String indexed collection in which all the elements are of the same type.">
+                          StringIndexedCollection
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="SubType$.html" title="Containt implicit definitions to build a SubType marker
+"></a>
+                        <a class="class" href="SubType.html" title="Marker that type A is a subtype of one of the types of the supplied HList type
+"></a>
+                        <a href="SubType.html" title="Marker that type A is a subtype of one of the types of the supplied HList type
+">
+                          SubType
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="Tuple2HListConverter$.html" title="Provides implicit definitions to convert Tuple2-22 to HList
+"></a>
+                        <a class="trait" href="Tuple2HListConverter.html" title="Conversion from Tuple to HList
+"></a>
+                        <a href="Tuple2HListConverter.html" title="Conversion from Tuple to HList
+">
+                          Tuple2HListConverter
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="class" href="TupleIndexOps.html" title="Provides scala collection-like operations on tuples."></a>
+                        <a href="TupleIndexOps.html" title="Provides scala collection-like operations on tuples.">
+                          TupleIndexOps
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="object" href="TupleOps$.html" title="Provides implicit definitions to build constraint typeclasses for tuples."></a>
+                        <a href="TupleOps$.html" title="Provides implicit definitions to build constraint typeclasses for tuples.">
+                          TupleOps
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <span class="separator"></span>
+                        <a class="object" href="Typequux$.html" title=""></a>
+                        <a href="Typequux$.html" title="">
+                          Typequux
+                        </a>
+                      </li><li class="current-entities indented1">
+                        <a class="object" href="$tilde$greater$.html" title="Contains implicit conversions and values that provide several utility methods
+"></a>
+                        <a class="trait" href="$tilde$greater.html" title="Proxy for natural transformations between contexts
+"></a>
+                        <a href="$tilde$greater.html" title="Proxy for natural transformations between contexts
+">
+                          ~&gt;
+                        </a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="object value">
+      <div id="definition">
+        <a href="Record.html" title="See companion trait"><div class="big-circle object-companion-trait">o</div></a>
+        <p id="owner"><a href="index.html" class="extype" name="typequux">typequux</a></p>
+        <h1><a href="Record.html" title="See companion trait">Record</a><span class="permalink">
+      <a href="../typequux/Record$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"><div>
+            Companion <a href="Record.html" title="See companion trait">trait Record</a>
+          </div></span></h3>
       </div>
 
       <h4 id="signature" class="signature">
@@ -50,6 +375,7 @@
         <span class="name">Record</span>
       </span>
       </h4>
+
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Contains implementations of <a href="Record.html" class="extype" name="typequux.Record">Record</a> and implicit definitions for building typeclasses necessary
 for the operations on records
@@ -57,38 +383,49 @@ for the operations on records
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl><div class="toggleContainer block">
-          <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></div>
         </div></div>
         
 
       <div id="mbrsel">
-        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
-        <div id="order">
-              <span class="filtertype">Ordering</span>
-              <ol>
-                <li class="group out"><span>Grouped</span></li>
-                <li class="alpha in"><span>Alphabetic</span></li>
-                <li class="inherit out"><span>By Inheritance</span></li>
-              </ol>
-            </div>
-        <div id="ancestors">
-                <span class="filtertype">Inherited<br />
-                </span>
-                <ol id="linearization">
-                  <li class="in" name="typequux.Record"><span>Record</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
-                </ol>
-              </div><div id="ancestors">
-            <span class="filtertype"></span>
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
             <ol>
-              <li class="hideall out"><span>Hide All</span></li>
-              <li class="showall in"><span>Show All</span></li>
+              <li class="group out"><span>Grouped</span></li>
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
             </ol>
           </div>
-        <div id="visbl">
-            <span class="filtertype">Visibility</span>
-            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
-          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="typequux.Record"><span>Record</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
       </div>
 
       <div id="template">
@@ -97,44 +434,48 @@ for the operations on records
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="typequux.Record.NonEmptyRecord" visbl="pub" data-isabs="false" fullComment="yes" group="Implementation">
-      <a id="NonEmptyRecord[MP&lt;:typequux.DenseMap,+HL&lt;:typequux.HList]extendsRecord"></a>
-      <a id="NonEmptyRecord[MP&lt;:DenseMap,+HL&lt;:HList]:NonEmptyRecord[MP,HL]"></a>
-      <h4 class="signature">
+              <ol><li name="typequux.Record.NonEmptyRecord" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Implementation">
+      <a id="NonEmptyRecord[MP&lt;:typequux.DenseMap,+HL&lt;:typequux.HList]extendsRecord"></a><a id="NonEmptyRecord[MP&lt;:DenseMap,+HL&lt;:HList]:NonEmptyRecord[MP,HL]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#NonEmptyRecord[MP&lt;:typequux.DenseMap,+HL&lt;:typequux.HList]extendsRecord" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Record$$NonEmptyRecord.html"><span class="name">NonEmptyRecord</span></a><span class="tparams">[<span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">+HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="result"> extends <a href="Record.html" class="extype" name="typequux.Record">Record</a></span>
+        <a title="Implementation of a non-empty Record
+" href="Record$$NonEmptyRecord.html">
+              <span class="name">NonEmptyRecord</span>
+            </a><span class="tparams">[<span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">+HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="result"> extends <a href="Record.html" class="extype" name="typequux.Record">Record</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@NonEmptyRecord[MP&lt;:typequux.DenseMap,+HL&lt;:typequux.HList]extendsRecord" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Implementation of a non-empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Implementation of a non-empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">MP</dt><dd class="cmt"><p>Type of the <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a> that stores the indices</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the backing <a href="HList.html" class="extype" name="typequux.HList">HList</a> that stores the values</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record.RNil" visbl="pub" data-isabs="false" fullComment="yes" group="Implementation">
-      <a id="RNilextendsRecord"></a>
-      <a id="RNil:RNil"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record.RNil" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Implementation">
+      <a id="RNilextendsRecord"></a><a id="RNil:RNil"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#RNilextendsRecord" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="Record$$RNil.html"><span class="name">RNil</span></a><span class="result"> extends <a href="Record.html" class="extype" name="typequux.Record">Record</a></span>
+        <a title="Implementation of an empty Record
+" href="Record$$RNil.html">
+              <span class="name">RNil</span>
+            </a><span class="result"> extends <a href="Record.html" class="extype" name="typequux.Record">Record</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@RNilextendsRecord" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Implementation of an empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Implementation of an empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p></div><div class="comment cmt">
@@ -146,63 +487,64 @@ for the operations on records
 
         
 
-        <div id="values" class="values members">
+        <div class="values members">
               <h3>Value Members</h3>
-              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="!=(x$1:Any):Boolean"></a>
-      <a id="!=(Any):Boolean"></a>
-      <h4 class="signature">
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@!=(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
-      <a id="##():Int"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../typequux/Record$.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@##():Int" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="==(x$1:Any):Boolean"></a>
-      <a id="==(Any):Boolean"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@==(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="typequux.Record#RNil" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RNil:typequux.Record.RNil"></a><a id="RNil:RNil"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#RNil:typequux.Record.RNil" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="typequux.Record#RNil" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="RNil:typequux.Record.RNil"></a>
-      <a id="RNil:RNil"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">val</span>
@@ -210,60 +552,15 @@ for the operations on records
       <span class="symbol">
         <span class="name">RNil</span><span class="result">: <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@RNil:typequux.Record.RNil" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
       
-    </li><li name="typequux.Record.RNilLengthConstraint" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="RNilLengthConstraint"></a>
-      <a id="RNilLengthConstraint:RNilLengthConstraint"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="Record$$RNilLengthConstraint$.html"><span class="name">RNilLengthConstraint</span></a><span class="result"> extends <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>, <a href="Dense$.html#_0=typequux.Dense.DNil" class="extmbr" name="typequux.Dense._0">_0</a>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@RNilLengthConstraint" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <p class="shortcomment cmt">Implements <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">constraint.LengthConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Implements <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">constraint.LengthConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record.RNilToMapConstraint" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="RNilToMapConstraint"></a>
-      <a id="RNilToMapConstraint:RNilToMapConstraint"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier">implicit </span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="Record$$RNilToMapConstraint$.html"><span class="name">RNilToMapConstraint</span></a><span class="result"> extends <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>, <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Nothing" class="extype" target="_top">Nothing</a>]]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@RNilToMapConstraint" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Implements <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">constraint.ToMapConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
-</p><div class="fullcomment"><div class="comment cmt"><p>Implements <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">constraint.ToMapConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
-</p></div><div class="comment cmt">
-        <h6>Author:</h6>
-        <p>Harshad Deo</p>
-      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="asInstanceOf[T0]:T0"></a>
-      <a id="asInstanceOf[T0]:T0"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -271,50 +568,44 @@ for the operations on records
       <span class="symbol">
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@asInstanceOf[T0]:T0" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="typequux.Record#class2Record" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Implementation">
+      <a id="class2Record[T](x:T):Any"></a><a id="class2Record[T](T):Any"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#class2Record[T](x:T):Any" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="typequux.Record#class2Record" visbl="pub" data-isabs="false" fullComment="yes" group="Implementation">
-      <a id="class2Record[T](x:T):Any"></a>
-      <a id="class2Record[T](T):Any"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">macro </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">class2Record</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="x">x: <span class="extype" name="typequux.Record.class2Record.T">T</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>
+        <span class="name">class2Record</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="x">x: <span class="extype" name="typequux.Record.class2Record.T">T</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@class2Record[T](x:T):Any" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Converts a class to a record, by keeping track of all vals, case accessors and getters
 </p><div class="fullcomment"><div class="comment cmt"><p>Converts a class to a record, by keeping track of all vals, case accessors and getters
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>Type to be converted to a record</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="clone():Object"></a>
-      <a id="clone():AnyRef"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@clone():Object" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -322,56 +613,53 @@ for the operations on records
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="eq(x$1:AnyRef):Boolean"></a>
-      <a id="eq(AnyRef):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@equals(x$1:Any):Boolean" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
-      <a id="finalize():Unit"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../typequux/Record$.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@finalize():Unit" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -379,10 +667,13 @@ for the operations on records
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
-      <a id="getClass():Class[_]"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../typequux/Record$.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -390,145 +681,137 @@ for the operations on records
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@getClass():Class[_]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <a id="hashCode():Int"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@hashCode():Int" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
-      <a id="isInstanceOf[T0]:Boolean"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../typequux/Record$.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ne(x$1:AnyRef):Boolean"></a>
-      <a id="ne(AnyRef):Boolean"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
-      <a id="notify():Unit"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../typequux/Record$.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@notify():Unit" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="notifyAll():Unit"></a>
-      <a id="notifyAll():Unit"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@notifyAll():Unit" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="typequux.Record#rAddConstraintNil" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="rAddConstraintNil[N&lt;:typequux.Dense,U](implicitev:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.RNil,U,typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]]]"></a><a id="rAddConstraintNil[N&lt;:Dense,U](ToMapConstraint[NonEmptyRecord[NonEmptyDenseMap[N,_0,EmptyDenseMap,EmptyDenseMap],:+:[U,HNil]],Map[String,Any]]):SIAddConstraint[N,RNil,U,NonEmptyRecord[NonEmptyDenseMap[N,_0,EmptyDenseMap,EmptyDenseMap],:+:[U,HNil]]]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#rAddConstraintNil[N&lt;:typequux.Dense,U](implicitev:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.RNil,U,typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]]]" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="typequux.Record#rAddConstraintNil" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="rAddConstraintNil[N&lt;:typequux.Dense,U](implicitev:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.RNil,U,typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]]]"></a>
-      <a id="rAddConstraintNil[N&lt;:Dense,U](ToMapConstraint[NonEmptyRecord[NonEmptyDenseMap[N,_0,EmptyDenseMap,EmptyDenseMap],:+:[U,HNil]],Map[String,Any]]):SIAddConstraint[N,RNil,U,NonEmptyRecord[NonEmptyDenseMap[N,_0,EmptyDenseMap,EmptyDenseMap],:+:[U,HNil]]]"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rAddConstraintNil</span><span class="tparams">[<span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="U">U</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<a href="DenseMap$$NonEmptyDenseMap.html" class="extype" name="typequux.DenseMap.NonEmptyDenseMap">NonEmptyDenseMap</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.N">N</span>, <a href="Dense$.html#_0=typequux.Dense.DNil" class="extmbr" name="typequux.Dense._0">_0</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.U">U</span>, <a href="HList$$HNil.html" class="extype" name="typequux.HList.HNil">HNil</a>]], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a>]]</span>)</span><span class="result">: <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">SIAddConstraint</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.N">N</span>, <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>, <span class="extype" name="typequux.Record.rAddConstraintNil.U">U</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<a href="DenseMap$$NonEmptyDenseMap.html" class="extype" name="typequux.DenseMap.NonEmptyDenseMap">NonEmptyDenseMap</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.N">N</span>, <a href="Dense$.html#_0=typequux.Dense.DNil" class="extmbr" name="typequux.Dense._0">_0</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.U">U</span>, <a href="HList$$HNil.html" class="extype" name="typequux.HList.HNil">HNil</a>]]]</span>
+        <span class="name">rAddConstraintNil</span><span class="tparams">[<span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="U">U</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<a href="DenseMap$$NonEmptyDenseMap.html" class="extype" name="typequux.DenseMap.NonEmptyDenseMap">NonEmptyDenseMap</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.N">N</span>, <a href="Dense$.html#_0=typequux.Dense.DNil" class="extmbr" name="typequux.Dense._0">_0</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.U">U</span>, <a href="HList$$HNil.html" class="extype" name="typequux.HList.HNil">HNil</a>]], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a>]]</span>)</span><span class="result">: <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">SIAddConstraint</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.N">N</span>, <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>, <span class="extype" name="typequux.Record.rAddConstraintNil.U">U</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<a href="DenseMap$$NonEmptyDenseMap.html" class="extype" name="typequux.DenseMap.NonEmptyDenseMap">NonEmptyDenseMap</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.N">N</span>, <a href="Dense$.html#_0=typequux.Dense.DNil" class="extmbr" name="typequux.Dense._0">_0</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>, <a href="DenseMap$$EmptyDenseMap.html" class="extype" name="typequux.DenseMap.EmptyDenseMap">EmptyDenseMap</a>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNil.U">U</span>, <a href="HList$$HNil.html" class="extype" name="typequux.HList.HNil">HNil</a>]]]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@rAddConstraintNil[N&lt;:typequux.Dense,U](implicitev:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.RNil,U,typequux.Record.NonEmptyRecord[typequux.DenseMap.NonEmptyDenseMap[N,typequux.Dense._0,typequux.DenseMap.EmptyDenseMap,typequux.DenseMap.EmptyDenseMap],typequux.HList.:+:[U,typequux.HList.HNil]]]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Builds <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">constraint.SIAddConstraint</a> for empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Builds <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">constraint.SIAddConstraint</a> for empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">N</dt><dd class="cmt"><p>Type index at which to add (i.e. String Value Hash)</p></dd><dt class="tparam">U</dt><dd class="cmt"><p>Type of the object to add</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record#rAddConstraintNonEmpty" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="rAddConstraintNonEmpty[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,U,L&lt;:typequux.Dense](implicitev0:typequux.constraint.LengthConstraint[HL,L],implicitev1:=:=[typequux.Bool.False,MP#Contains[N]],implicitev2:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]]]"></a>
-      <a id="rAddConstraintNonEmpty[N&lt;:Dense,MP&lt;:DenseMap,HL&lt;:HList,U,L&lt;:Dense](LengthConstraint[HL,L],=:=[False,Record.rAddConstraintNonEmpty.MP.Contains[N]],ToMapConstraint[NonEmptyRecord[Record.rAddConstraintNonEmpty.MP.Add[N,L],:+:[U,HL]],Map[String,Any]]):SIAddConstraint[N,NonEmptyRecord[MP,HL],U,NonEmptyRecord[Record.rAddConstraintNonEmpty.MP.Add[N,L],:+:[U,HL]]]"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record#rAddConstraintNonEmpty" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="rAddConstraintNonEmpty[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,U,L&lt;:typequux.Dense](implicitev0:typequux.constraint.LengthConstraint[HL,L],implicitev1:=:=[typequux.Bool.False,MP#Contains[N]],implicitev2:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]]]"></a><a id="rAddConstraintNonEmpty[N&lt;:Dense,MP&lt;:DenseMap,HL&lt;:HList,U,L&lt;:Dense](LengthConstraint[HL,L],=:=[False,Record.rAddConstraintNonEmpty.MP.Contains[N]],ToMapConstraint[NonEmptyRecord[Record.rAddConstraintNonEmpty.MP.Add[N,L],:+:[U,HL]],Map[String,Any]]):SIAddConstraint[N,NonEmptyRecord[MP,HL],U,NonEmptyRecord[Record.rAddConstraintNonEmpty.MP.Add[N,L],:+:[U,HL]]]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#rAddConstraintNonEmpty[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,U,L&lt;:typequux.Dense](implicitev0:typequux.constraint.LengthConstraint[HL,L],implicitev1:=:=[typequux.Bool.False,MP#Contains[N]],implicitev2:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rAddConstraintNonEmpty</span><span class="tparams">[<span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="U">U</span>, <span name="L">L &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.L">L</span>]</span>, <span name="ev1">ev1: <span class="extype" name="scala.Predef.=:=">=:=</span>[<a href="Bool$$False.html" class="extype" name="typequux.Bool.False">False</a>, <span class="extype" name="typequux.DenseMap.Contains">Record.rAddConstraintNonEmpty.MP.Contains</span>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>]]</span>, <span name="ev2">ev2: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.DenseMap.Add">Record.rAddConstraintNonEmpty.MP.Add</span>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.L">L</span>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.U">U</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>]], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a>]]</span>)</span><span class="result">: <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">SIAddConstraint</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.MP">MP</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>], <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.U">U</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.DenseMap.Add">Record.rAddConstraintNonEmpty.MP.Add</span>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.L">L</span>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.U">U</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>]]]</span>
+        <span class="name">rAddConstraintNonEmpty</span><span class="tparams">[<span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="U">U</span>, <span name="L">L &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.L">L</span>]</span>, <span name="ev1">ev1: <span class="extype" name="scala.Predef.=:=">=:=</span>[<a href="Bool$$False.html" class="extype" name="typequux.Bool.False">False</a>, <span class="extype" name="typequux.DenseMap.Contains">Record.rAddConstraintNonEmpty.MP.Contains</span>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>]]</span>, <span name="ev2">ev2: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.DenseMap.Add">Record.rAddConstraintNonEmpty.MP.Add</span>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.L">L</span>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.U">U</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>]], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a>]]</span>)</span><span class="result">: <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">SIAddConstraint</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.MP">MP</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>], <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.U">U</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.DenseMap.Add">Record.rAddConstraintNonEmpty.MP.Add</span>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.N">N</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.L">L</span>], <a href="HList$.html#:+:[H,T&lt;:typequux.HList]=typequux.HList.HCons[H,T]" class="extmbr" name="typequux.HList.:+:">:+:</a>[<span class="extype" name="typequux.Record.rAddConstraintNonEmpty.U">U</span>, <span class="extype" name="typequux.Record.rAddConstraintNonEmpty.HL">HL</span>]]]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@rAddConstraintNonEmpty[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,U,L&lt;:typequux.Dense](implicitev0:typequux.constraint.LengthConstraint[HL,L],implicitev1:=:=[typequux.Bool.False,MP#Contains[N]],implicitev2:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]],Map[String,Any]]):typequux.constraint.SIAddConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP#Add[N,L],typequux.HList.:+:[U,HL]]]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Builds <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">constraint.SIAddConstraint</a> for non-empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Builds <a href="constraint/SIAddConstraint.html" class="extype" name="typequux.constraint.SIAddConstraint">constraint.SIAddConstraint</a> for non-empty <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">N</dt><dd class="cmt"><p>Type index at which to add (i.e. string value hash)</p></dd><dt class="tparam">MP</dt><dd class="cmt"><p><a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a> corresponding to the record</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the backing HList of the record</p></dd><dt class="tparam">U</dt><dd class="cmt"><p>Type of the object being added</p></dd><dt class="tparam">L</dt><dd class="cmt"><p>Typelevel length of the record being added to</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record#rAtConstraint" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="rAtConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,N&lt;:typequux.Dense,L&lt;:typequux.Dense,D,A](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.AtConstraint[D,HL,A]):typequux.constraint.AtConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],A]"></a>
-      <a id="rAtConstraint[MP&lt;:DenseMap,HL&lt;:HList,N&lt;:Dense,L&lt;:Dense,D,A](TrueConstraint[Record.rAtConstraint.MP.Contains[N]],&lt;:&lt;[Record.rAtConstraint.MP.Get[N],Dense],LengthConstraint[HL,L],DenseDiff[Record.rAtConstraint.L.Dec,Record.rAtConstraint.MP.Get[N],D],AtConstraint[D,HL,A]):AtConstraint[N,NonEmptyRecord[MP,HL],A]"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record#rAtConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="rAtConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,N&lt;:typequux.Dense,L&lt;:typequux.Dense,D,A](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.AtConstraint[D,HL,A]):typequux.constraint.AtConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],A]"></a><a id="rAtConstraint[MP&lt;:DenseMap,HL&lt;:HList,N&lt;:Dense,L&lt;:Dense,D,A](TrueConstraint[Record.rAtConstraint.MP.Contains[N]],&lt;:&lt;[Record.rAtConstraint.MP.Get[N],Dense],LengthConstraint[HL,L],DenseDiff[Record.rAtConstraint.L.Dec,Record.rAtConstraint.MP.Get[N],D],AtConstraint[D,HL,A]):AtConstraint[N,NonEmptyRecord[MP,HL],A]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#rAtConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,N&lt;:typequux.Dense,L&lt;:typequux.Dense,D,A](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.AtConstraint[D,HL,A]):typequux.constraint.AtConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
@@ -536,21 +819,20 @@ for the operations on records
       <span class="symbol">
         <span class="name">rAtConstraint</span><span class="tparams">[<span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="L">L &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="D">D</span>, <span name="A">A</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <a href="constraint/TrueConstraint.html" class="extype" name="typequux.constraint.TrueConstraint">TrueConstraint</a>[<span class="extype" name="typequux.DenseMap.Contains">Record.rAtConstraint.MP.Contains</span>[<span class="extype" name="typequux.Record.rAtConstraint.N">N</span>]]</span>, <span name="ev1">ev1: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="typequux.DenseMap.Get">Record.rAtConstraint.MP.Get</span>[<span class="extype" name="typequux.Record.rAtConstraint.N">N</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>, <span name="ev2">ev2: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<span class="extype" name="typequux.Record.rAtConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rAtConstraint.L">L</span>]</span>, <span name="ev3">ev3: <a href="DenseDiff.html" class="extype" name="typequux.DenseDiff">DenseDiff</a>[<span class="extype" name="typequux.Dense.Dec">Record.rAtConstraint.L.Dec</span>, <span class="extype" name="typequux.DenseMap.Get">Record.rAtConstraint.MP.Get</span>[<span class="extype" name="typequux.Record.rAtConstraint.N">N</span>], <span class="extype" name="typequux.Record.rAtConstraint.D">D</span>]</span>, <span name="ev4">ev4: <a href="constraint/AtConstraint.html" class="extype" name="typequux.constraint.AtConstraint">AtConstraint</a>[<span class="extype" name="typequux.Record.rAtConstraint.D">D</span>, <span class="extype" name="typequux.Record.rAtConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rAtConstraint.A">A</span>]</span>)</span><span class="result">: <a href="constraint/AtConstraint.html" class="extype" name="typequux.constraint.AtConstraint">AtConstraint</a>[<span class="extype" name="typequux.Record.rAtConstraint.N">N</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rAtConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rAtConstraint.HL">HL</span>], <span class="extype" name="typequux.Record.rAtConstraint.A">A</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@rAtConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,N&lt;:typequux.Dense,L&lt;:typequux.Dense,D,A](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.AtConstraint[D,HL,A]):typequux.constraint.AtConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],A]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Builds <a href="constraint/AtConstraint.html" class="extype" name="typequux.constraint.AtConstraint">constraint.AtConstraint</a> for <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Builds <a href="constraint/AtConstraint.html" class="extype" name="typequux.constraint.AtConstraint">constraint.AtConstraint</a> for <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">MP</dt><dd class="cmt"><p><a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a> corresponding to the record</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the backing HList of the record</p></dd><dt class="tparam">N</dt><dd class="cmt"><p>Index at which to get (i.e. String Value Hash)</p></dd><dt class="tparam">L</dt><dd class="cmt"><p>Length of the backing HList</p></dd><dt class="tparam">D</dt><dd class="cmt"><p>Index of the HList corresponding to N</p></dd><dt class="tparam">A</dt><dd class="cmt"><p>Type of the element being fetched</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record#rLengthConstraint" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="rLengthConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense](implicitev:typequux.constraint.LengthConstraint[HL,L]):typequux.constraint.LengthConstraint[typequux.Record.NonEmptyRecord[MP,HL],L]"></a>
-      <a id="rLengthConstraint[MP&lt;:DenseMap,HL&lt;:HList,L&lt;:Dense](LengthConstraint[HL,L]):LengthConstraint[NonEmptyRecord[MP,HL],L]"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record#rLengthConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="rLengthConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense](implicitev:typequux.constraint.LengthConstraint[HL,L]):typequux.constraint.LengthConstraint[typequux.Record.NonEmptyRecord[MP,HL],L]"></a><a id="rLengthConstraint[MP&lt;:DenseMap,HL&lt;:HList,L&lt;:Dense](LengthConstraint[HL,L]):LengthConstraint[NonEmptyRecord[MP,HL],L]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#rLengthConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense](implicitev:typequux.constraint.LengthConstraint[HL,L]):typequux.constraint.LengthConstraint[typequux.Record.NonEmptyRecord[MP,HL],L]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
@@ -558,21 +840,20 @@ for the operations on records
       <span class="symbol">
         <span class="name">rLengthConstraint</span><span class="tparams">[<span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="L">L &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<span class="extype" name="typequux.Record.rLengthConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rLengthConstraint.L">L</span>]</span>)</span><span class="result">: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rLengthConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rLengthConstraint.HL">HL</span>], <span class="extype" name="typequux.Record.rLengthConstraint.L">L</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@rLengthConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense](implicitev:typequux.constraint.LengthConstraint[HL,L]):typequux.constraint.LengthConstraint[typequux.Record.NonEmptyRecord[MP,HL],L]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Builds <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">constraint.LengthConstraint</a> for <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Builds <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">constraint.LengthConstraint</a> for <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">MP</dt><dd class="cmt"><p><a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a> corresponding to the record</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the backing HList</p></dd><dt class="tparam">L</dt><dd class="cmt"><p>Typelevel length</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record#rToMapConstraint" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="rToMapConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,R](implicitev:typequux.constraint.ToListConstraint[HL,R]):typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HL],Map[String,R]]"></a>
-      <a id="rToMapConstraint[MP&lt;:DenseMap,HL&lt;:HList,R](ToListConstraint[HL,R]):ToMapConstraint[NonEmptyRecord[MP,HL],Map[String,R]]"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record#rToMapConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="rToMapConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,R](implicitev:typequux.constraint.ToListConstraint[HL,R]):typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HL],Map[String,R]]"></a><a id="rToMapConstraint[MP&lt;:DenseMap,HL&lt;:HList,R](ToListConstraint[HL,R]):ToMapConstraint[NonEmptyRecord[MP,HL],Map[String,R]]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#rToMapConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,R](implicitev:typequux.constraint.ToListConstraint[HL,R]):typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HL],Map[String,R]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
@@ -580,43 +861,41 @@ for the operations on records
       <span class="symbol">
         <span class="name">rToMapConstraint</span><span class="tparams">[<span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="R">R</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <a href="constraint/ToListConstraint.html" class="extype" name="typequux.constraint.ToListConstraint">ToListConstraint</a>[<span class="extype" name="typequux.Record.rToMapConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rToMapConstraint.R">R</span>]</span>)</span><span class="result">: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rToMapConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rToMapConstraint.HL">HL</span>], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="typequux.Record.rToMapConstraint.R">R</span>]]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@rToMapConstraint[MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,R](implicitev:typequux.constraint.ToListConstraint[HL,R]):typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HL],Map[String,R]]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Builds <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">constraint.ToMapConstraint</a> for <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Builds <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">constraint.ToMapConstraint</a> for <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">MP</dt><dd class="cmt"><p><a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a> corresponding to the record</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the backing HList for the record</p></dd><dt class="tparam">R</dt><dd class="cmt"><p>Least Upper Bound element type of the HList</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record#rUpdatedConstraint" visbl="pub" data-isabs="false" fullComment="yes" group="Constraint Constructor">
-      <a id="rUpdatedConstraint[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense,D,U,HR&lt;:typequux.HList](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.UpdatedConstraint[D,HL,U,HR],implicitev5:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HR],Map[String,Any]]):typequux.constraint.UpdatedConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP,HR]]"></a>
-      <a id="rUpdatedConstraint[N&lt;:Dense,MP&lt;:DenseMap,HL&lt;:HList,L&lt;:Dense,D,U,HR&lt;:HList](TrueConstraint[Record.rUpdatedConstraint.MP.Contains[N]],&lt;:&lt;[Record.rUpdatedConstraint.MP.Get[N],Dense],LengthConstraint[HL,L],DenseDiff[Record.rUpdatedConstraint.L.Dec,Record.rUpdatedConstraint.MP.Get[N],D],UpdatedConstraint[D,HL,U,HR],ToMapConstraint[NonEmptyRecord[MP,HR],Map[String,Any]]):UpdatedConstraint[N,NonEmptyRecord[MP,HL],U,NonEmptyRecord[MP,HR]]"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record#rUpdatedConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="rUpdatedConstraint[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense,D,U,HR&lt;:typequux.HList](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.UpdatedConstraint[D,HL,U,HR],implicitev5:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HR],Map[String,Any]]):typequux.constraint.UpdatedConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP,HR]]"></a><a id="rUpdatedConstraint[N&lt;:Dense,MP&lt;:DenseMap,HL&lt;:HList,L&lt;:Dense,D,U,HR&lt;:HList](TrueConstraint[Record.rUpdatedConstraint.MP.Contains[N]],&lt;:&lt;[Record.rUpdatedConstraint.MP.Get[N],Dense],LengthConstraint[HL,L],DenseDiff[Record.rUpdatedConstraint.L.Dec,Record.rUpdatedConstraint.MP.Get[N],D],UpdatedConstraint[D,HL,U,HR],ToMapConstraint[NonEmptyRecord[MP,HR],Map[String,Any]]):UpdatedConstraint[N,NonEmptyRecord[MP,HL],U,NonEmptyRecord[MP,HR]]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#rUpdatedConstraint[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense,D,U,HR&lt;:typequux.HList](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.UpdatedConstraint[D,HL,U,HR],implicitev5:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HR],Map[String,Any]]):typequux.constraint.UpdatedConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP,HR]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rUpdatedConstraint</span><span class="tparams">[<span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="L">L &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="D">D</span>, <span name="U">U</span>, <span name="HR">HR &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <a href="constraint/TrueConstraint.html" class="extype" name="typequux.constraint.TrueConstraint">TrueConstraint</a>[<span class="extype" name="typequux.DenseMap.Contains">Record.rUpdatedConstraint.MP.Contains</span>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>]]</span>, <span name="ev1">ev1: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="typequux.DenseMap.Get">Record.rUpdatedConstraint.MP.Get</span>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>, <span name="ev2">ev2: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.L">L</span>]</span>, <span name="ev3">ev3: <a href="DenseDiff.html" class="extype" name="typequux.DenseDiff">DenseDiff</a>[<span class="extype" name="typequux.Dense.Dec">Record.rUpdatedConstraint.L.Dec</span>, <span class="extype" name="typequux.DenseMap.Get">Record.rUpdatedConstraint.MP.Get</span>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>], <span class="extype" name="typequux.Record.rUpdatedConstraint.D">D</span>]</span>, <span name="ev4">ev4: <a href="constraint/UpdatedConstraint.html" class="extype" name="typequux.constraint.UpdatedConstraint">UpdatedConstraint</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.D">D</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.U">U</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HR">HR</span>]</span>, <span name="ev5">ev5: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HR">HR</span>], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a>]]</span>)</span><span class="result">: <a href="constraint/UpdatedConstraint.html" class="extype" name="typequux.constraint.UpdatedConstraint">UpdatedConstraint</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HL">HL</span>], <span class="extype" name="typequux.Record.rUpdatedConstraint.U">U</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HR">HR</span>]]</span>
+        <span class="name">rUpdatedConstraint</span><span class="tparams">[<span name="N">N &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="MP">MP &lt;: <a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a></span>, <span name="HL">HL &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>, <span name="L">L &lt;: <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a></span>, <span name="D">D</span>, <span name="U">U</span>, <span name="HR">HR &lt;: <a href="HList.html" class="extype" name="typequux.HList">HList</a></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="ev0">ev0: <a href="constraint/TrueConstraint.html" class="extype" name="typequux.constraint.TrueConstraint">TrueConstraint</a>[<span class="extype" name="typequux.DenseMap.Contains">Record.rUpdatedConstraint.MP.Contains</span>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>]]</span>, <span name="ev1">ev1: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="typequux.DenseMap.Get">Record.rUpdatedConstraint.MP.Get</span>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>], <a href="Dense.html" class="extype" name="typequux.Dense">Dense</a>]</span>, <span name="ev2">ev2: <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.L">L</span>]</span>, <span name="ev3">ev3: <a href="DenseDiff.html" class="extype" name="typequux.DenseDiff">DenseDiff</a>[<span class="extype" name="typequux.Dense.Dec">Record.rUpdatedConstraint.L.Dec</span>, <span class="extype" name="typequux.DenseMap.Get">Record.rUpdatedConstraint.MP.Get</span>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>], <span class="extype" name="typequux.Record.rUpdatedConstraint.D">D</span>]</span>, <span name="ev4">ev4: <a href="constraint/UpdatedConstraint.html" class="extype" name="typequux.constraint.UpdatedConstraint">UpdatedConstraint</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.D">D</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HL">HL</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.U">U</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HR">HR</span>]</span>, <span name="ev5">ev5: <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HR">HR</span>], <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a>]]</span>)</span><span class="result">: <a href="constraint/UpdatedConstraint.html" class="extype" name="typequux.constraint.UpdatedConstraint">UpdatedConstraint</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.N">N</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HL">HL</span>], <span class="extype" name="typequux.Record.rUpdatedConstraint.U">U</span>, <a href="Record$$NonEmptyRecord.html" class="extype" name="typequux.Record.NonEmptyRecord">NonEmptyRecord</a>[<span class="extype" name="typequux.Record.rUpdatedConstraint.MP">MP</span>, <span class="extype" name="typequux.Record.rUpdatedConstraint.HR">HR</span>]]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@rUpdatedConstraint[N&lt;:typequux.Dense,MP&lt;:typequux.DenseMap,HL&lt;:typequux.HList,L&lt;:typequux.Dense,D,U,HR&lt;:typequux.HList](implicitev0:typequux.constraint.TrueConstraint[MP#Contains[N]],implicitev1:&lt;:&lt;[MP#Get[N],typequux.Dense],implicitev2:typequux.constraint.LengthConstraint[HL,L],implicitev3:typequux.DenseDiff[L#Dec,MP#Get[N],D],implicitev4:typequux.constraint.UpdatedConstraint[D,HL,U,HR],implicitev5:typequux.constraint.ToMapConstraint[typequux.Record.NonEmptyRecord[MP,HR],Map[String,Any]]):typequux.constraint.UpdatedConstraint[N,typequux.Record.NonEmptyRecord[MP,HL],U,typequux.Record.NonEmptyRecord[MP,HR]]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Builds <a href="constraint/UpdatedConstraint.html" class="extype" name="typequux.constraint.UpdatedConstraint">constraint.UpdatedConstraint</a> for <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p><div class="fullcomment"><div class="comment cmt"><p>Builds <a href="constraint/UpdatedConstraint.html" class="extype" name="typequux.constraint.UpdatedConstraint">constraint.UpdatedConstraint</a> for <a href="Record.html" class="extype" name="typequux.Record">Record</a>
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">N</dt><dd class="cmt"><p>Index to update (i.e. String Value Hash)</p></dd><dt class="tparam">MP</dt><dd class="cmt"><p><a href="DenseMap.html" class="extype" name="typequux.DenseMap">DenseMap</a> corresponding to the record</p></dd><dt class="tparam">HL</dt><dd class="cmt"><p>Type of the backing HList</p></dd><dt class="tparam">L</dt><dd class="cmt"><p>Typelevel length of the backing HList</p></dd><dt class="tparam">D</dt><dd class="cmt"><p>Index of the HList to update</p></dd><dt class="tparam">U</dt><dd class="cmt"><p>Type of the element at the updated position</p></dd><dt class="tparam">HR</dt><dd class="cmt"><p>Type of the backing HList after being updated</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="typequux.Record#record2Ops" visbl="pub" data-isabs="false" fullComment="yes" group="Ops Converter">
-      <a id="record2Ops[R](r:R)(implicitev:&lt;:&lt;[R,typequux.Record]):typequux.SiOps[R]"></a>
-      <a id="record2Ops[R](R)(&lt;:&lt;[R,Record]):SiOps[R]"></a>
-      <h4 class="signature">
+    </li><li name="typequux.Record#record2Ops" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ops Converter">
+      <a id="record2Ops[R](r:R)(implicitev:&lt;:&lt;[R,typequux.Record]):typequux.SiOps[R]"></a><a id="record2Ops[R](R)(&lt;:&lt;[R,Record]):SiOps[R]"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#record2Ops[R](r:R)(implicitev:&lt;:&lt;[R,typequux.Record]):typequux.SiOps[R]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">implicit </span>
         <span class="kind">def</span>
@@ -624,21 +903,20 @@ for the operations on records
       <span class="symbol">
         <span class="name">record2Ops</span><span class="tparams">[<span name="R">R</span>]</span><span class="params">(<span name="r">r: <span class="extype" name="typequux.Record.record2Ops.R">R</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="typequux.Record.record2Ops.R">R</span>, <a href="Record.html" class="extype" name="typequux.Record">Record</a>]</span>)</span><span class="result">: <a href="SiOps.html" class="extype" name="typequux.SiOps">SiOps</a>[<span class="extype" name="typequux.Record.record2Ops.R">R</span>]</span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@record2Ops[R](r:R)(implicitev:&lt;:&lt;[R,typequux.Record]):typequux.SiOps[R]" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <p class="shortcomment cmt">Converts a <a href="Record.html" class="extype" name="typequux.Record">Record</a> to an <a href="SiOps.html" class="extype" name="typequux.SiOps">SiOps</a> object
 </p><div class="fullcomment"><div class="comment cmt"><p>Converts a <a href="Record.html" class="extype" name="typequux.Record">Record</a> to an <a href="SiOps.html" class="extype" name="typequux.SiOps">SiOps</a> object
 </p></div><div class="comment cmt">
         <h6>Author:</h6>
         <p>Harshad Deo</p>
       </div><dl class="paramcmts block"><dt class="tparam">R</dt><dd class="cmt"><p>Type of the record to be converted</p></dd></dl><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
-    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
-      <a id="synchronized[T0](⇒T0):T0"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
@@ -646,16 +924,15 @@ for the operations on records
       <span class="symbol">
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
       </a>
     </span>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <a id="toString():String"></a>
-      <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
@@ -663,28 +940,23 @@ for the operations on records
       <span class="symbol">
         <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@toString():String" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
-      <a id="wait():Unit"></a>
-      <h4 class="signature">
+      <span class="permalink">
+      <a href="../typequux/Record$.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@wait():Unit" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -692,22 +964,21 @@ for the operations on records
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
-      <a id="wait(Long,Int):Unit"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Long" class="extype" target="_top">Long</a></span>, <span name="arg1">arg1: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -715,22 +986,21 @@ for the operations on records
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="wait(x$1:Long):Unit"></a>
-      <a id="wait(Long):Unit"></a>
-      <h4 class="signature">
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
       <span class="modifier_kind">
         <span class="modifier">final </span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
       </span>
-      </h4><span class="permalink">
-      <a href="../index.html#typequux.Record$@wait(x$1:Long):Unit" title="Permalink" target="_top">
-        <img src="../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
+      
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
@@ -738,7 +1008,56 @@ for the operations on records
     </span>)</span>
               
         </dd></dl></div>
-    </li></ol>
+    </li><li name="typequux.Record.RNilLengthConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="RNilLengthConstraint"></a><a id="RNilLengthConstraint:RNilLengthConstraint"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#RNilLengthConstraint" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Implements constraint.LengthConstraint for RNil
+" href="Record$$RNilLengthConstraint$.html">
+              <span class="name">RNilLengthConstraint</span>
+            </a><span class="result"> extends <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">LengthConstraint</a>[<a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>, <a href="Dense$.html#_0=typequux.Dense.DNil" class="extmbr" name="typequux.Dense._0">_0</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Implements <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">constraint.LengthConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Implements <a href="constraint/LengthConstraint.html" class="extype" name="typequux.constraint.LengthConstraint">constraint.LengthConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
+    </li><li name="typequux.Record.RNilToMapConstraint" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Constraint Constructor">
+      <a id="RNilToMapConstraint"></a><a id="RNilToMapConstraint:RNilToMapConstraint"></a>
+      <span class="permalink">
+      <a href="../typequux/Record$.html#RNilToMapConstraint" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Implements constraint.ToMapConstraint for RNil
+" href="Record$$RNilToMapConstraint$.html">
+              <span class="name">RNilToMapConstraint</span>
+            </a><span class="result"> extends <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">ToMapConstraint</a>[<a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>, <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Nothing" class="extype" target="_top">Nothing</a>]]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Implements <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">constraint.ToMapConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
+</p><div class="fullcomment"><div class="comment cmt"><p>Implements <a href="constraint/ToMapConstraint.html" class="extype" name="typequux.constraint.ToMapConstraint">constraint.ToMapConstraint</a> for <a href="Record$$RNil.html" class="extype" name="typequux.Record.RNil">RNil</a>
+</p></div><div class="comment cmt">
+        <h6>Author:</h6>
+        <p>Harshad Deo</p>
+      </div><dl class="attributes block"> <dt>Since</dt><dd><p>0.1</p></dd></dl></div>
+    </li>
+              </ol>
             </div>
 
         
@@ -748,9 +1067,9 @@ for the operations on records
 
         <div id="inheritedMembers">
         <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
             </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.11.11/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.12.1/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
             </div>
         
         </div>
@@ -776,7 +1095,9 @@ for the operations on records
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-
-
+    </body>
+          </div>
+        </div>
+      </div>
     </body>
       </html>
