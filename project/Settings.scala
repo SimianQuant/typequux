@@ -5,7 +5,7 @@ object Settings {
 
   val crossScalaVersions = Seq("2.11.11", "2.12.2")
 
-  private val commonScalacOptions = Seq(
+  val commonScalacOptions = Seq(
     "-deprecation",
     "-unchecked",
     "-explaintypes",
@@ -22,16 +22,8 @@ object Settings {
     "-Xlint",
     "-Ywarn-nullary-override",
     "-Ywarn-nullary-unit",
-    "-Xfuture",
-    "-P:linter:disable:UnusedParameter"
+    "-Xfuture"
   )
-
-  def scalacCompileOptions(version: String) =
-    if (version.startsWith("2.11")) {
-      "-target:jvm-1.6" +: commonScalacOptions
-    } else {
-      "-target:jvm-1.8" +: commonScalacOptions
-    }
 
   val scalacDocOptions = Seq(
     "-author",
@@ -42,8 +34,7 @@ object Settings {
   val scalaTestOptions = "-oD"
 
   object Version {
-    val linter = "0.1.16"
     val scalaTest = "3.0.1"
-    val sntb = "0.2"
+    val sntb = "0.2.2"
   }
 }
