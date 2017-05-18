@@ -123,6 +123,7 @@ lazy val typequuxtestsNative = typequuxtests.native
 
 lazy val cleanAll = taskKey[Unit]("Cleans everything")
 lazy val testAll = taskKey[Unit]("Tests everything")
+lazy val buildCoverage = taskKey[Unit]("Generate coverage report")
 
 lazy val Typequux = config("typequuxJVM")
 
@@ -146,7 +147,16 @@ lazy val root = project
           crossTest.in(typequuxtestsJVM, Test).value
           crossTest.in(typequuxtestsJS, Test).value
           run.in(typequuxtestsNative, Test).toTask("").value
-        }
+        },
+        buildCoverage := Def
+          .sequential(
+            clean in typequuxJVM,
+            clean in typequuxtestsJVM,
+            test in (typequuxtestsJVM, Test),
+            coverageReport in typequuxJVM
+          )
+          .value
+        
       ))
   )
   .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
