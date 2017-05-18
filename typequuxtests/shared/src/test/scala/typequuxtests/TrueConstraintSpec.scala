@@ -16,7 +16,7 @@
 package typequuxtests
 
 import typequux.constraint.TrueConstraint
-import typequux.Typequux.{True, False}
+import typequux.Typequux.{False, True}
 
 class TrueConstraintSpec extends BaseSpec {
 

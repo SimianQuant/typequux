@@ -60,28 +60,30 @@ object Tuple2HListConverter {
       val typeCollapsed = targs.foldRight[c.Tree](tq"typequux.Typequux.HNil") {
         case (v, acc) => tq"typequux.Typequux.:+:[$v, $acc]"
       }
-      val tupleArgs = List(q"t._1",
-                           q"t._2",
-                           q"t._3",
-                           q"t._4",
-                           q"t._5",
-                           q"t._6",
-                           q"t._7",
-                           q"t._8",
-                           q"t._9",
-                           q"t._10",
-                           q"t._11",
-                           q"t._12",
-                           q"t._13",
-                           q"t._14",
-                           q"t._15",
-                           q"t._16",
-                           q"t._17",
-                           q"t._18",
-                           q"t._19",
-                           q"t._20",
-                           q"t._21",
-                           q"t._22").take(targs.length)
+      val tupleArgs = List(
+        q"t._1",
+        q"t._2",
+        q"t._3",
+        q"t._4",
+        q"t._5",
+        q"t._6",
+        q"t._7",
+        q"t._8",
+        q"t._9",
+        q"t._10",
+        q"t._11",
+        q"t._12",
+        q"t._13",
+        q"t._14",
+        q"t._15",
+        q"t._16",
+        q"t._17",
+        q"t._18",
+        q"t._19",
+        q"t._20",
+        q"t._21",
+        q"t._22"
+      ).take(targs.length)
 
       val valueCollapsed = tupleArgs.foldRight[c.Tree](q"typequux.Typequux.HNil") {
         case (v, acc) => q"typequux.Typequux.:+:($v, $acc)"

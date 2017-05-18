@@ -17,21 +17,23 @@ package typequuxtests
 
 object NativeRunner {
 
-  val elems = List(new BoolSpec,
-                   new ComparisonSpec,
-                   new ContainedSpec,
-                   new DenseMapSpec,
-                   new DenseSetLiteralSpec,
-                   new DenseSetSpec,
-                   new HListSpec,
-                   new LiteralHashSpec,
-                   new NatSpec,
-                   new RecordSpec,
-                   new SizedVectorSpec,
-                   new StringIndexedCollectionSpec,
-                   new TransformSpec,
-                   new TupleConverterSpec,
-                   new TupleOpsSpec)
+  val elems = List(
+    new BoolSpec,
+    new ComparisonSpec,
+    new ContainedSpec,
+    new DenseMapSpec,
+    new DenseSetLiteralSpec,
+    new DenseSetSpec,
+    new HListSpec,
+    new LiteralHashSpec,
+    new NatSpec,
+    new RecordSpec,
+    new SizedVectorSpec,
+    new StringIndexedCollectionSpec,
+    new TransformSpec,
+    new TupleConverterSpec,
+    new TupleOpsSpec
+  )
 
   def main(args: Array[String]): Unit = {
     elems foreach (_.run)

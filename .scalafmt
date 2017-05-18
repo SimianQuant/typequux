@@ -1,2 +1,4 @@
---maxColumn 120
---formatSbtFiles true
+maxColumn = 120
+project.git = true
+assumeStandardLibraryStripMargin = true
+rewrite.rules = [SortImports]

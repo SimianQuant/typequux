@@ -1,34 +1,36 @@
 import sbtcrossproject.{crossProject, CrossType}
 
+lazy val testAll = taskKey[Unit]("Runs all test cases")
+
 lazy val testAllCommand = Command.command("testall") { state =>
   "project typequuxtestsNative" :: "clean" :: "test:run" ::
     "project typequuxtestsJVM" :: "clean" :: "+test" ::
-      "project typequuxtestsJS" :: "clean" :: "+test" ::
-        state
+    "project typequuxtestsJS" :: "clean" :: "+test" ::
+    state
 }
 
 lazy val runcoverageCommand = Command.command("runcoverage") { state =>
   "project typequuxtestsJVM" :: "clean" :: "coverage" :: "test" ::
     "project typequuxJVM" :: "coverageReport" ::
-      state
+    state
 }
 
 lazy val releaseLocalCommand = Command.command("releaselocal") { state =>
   "testall" ::
     "project typequuxNative" :: "publishLocal" ::
-      "project typequuxJVM" :: "+publishLocal" ::
-        "project typequuxJS" :: "+publishLocal" ::
-          state
+    "project typequuxJVM" :: "+publishLocal" ::
+    "project typequuxJS" :: "+publishLocal" ::
+    state
 }
 
 lazy val releaseCommand = Command.command("release") { state =>
   "testall" ::
     "project typequuxNative" :: "publishSigned" ::
-      "project typequuxJS" :: "+publishSigned" ::
-        "project typequuxJVM" :: "+publishSigned" ::
-          "sonatypeRelease" ::
-            "++2.12.2" :: "ghpagesPushSite" ::
-              state
+    "project typequuxJS" :: "+publishSigned" ::
+    "project typequuxJVM" :: "+publishSigned" ::
+    "sonatypeRelease" ::
+    "++2.12.2" :: "ghpagesPushSite" ::
+    state
 }
 
 lazy val additionalCommands = Seq(testAllCommand, runcoverageCommand, releaseLocalCommand, releaseCommand)
@@ -61,15 +63,15 @@ lazy val commonShared = Seq(
 )
 
 lazy val libSettings = commonShared ++ Seq(
-    name := "typequux",
-    previewLaunchBrowser := false,
-    publishMavenStyle := true,
-    publishArtifact in Test := false,
-    publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
-    pomIncludeRepository := { _ =>
+  name := "typequux",
+  previewLaunchBrowser := false,
+  publishMavenStyle := true,
+  publishArtifact in Test := false,
+  publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
+  pomIncludeRepository := { _ =>
     false
   },
-    pomExtra := (<url>https://harshad-deo.github.io/typequux/TypeQuux.html</url>
+  pomExtra := (<url>https://harshad-deo.github.io/typequux/TypeQuux.html</url>
       <licenses>
         <license>
           <name>Apache-2</name>
@@ -89,21 +91,30 @@ lazy val libSettings = commonShared ++ Seq(
           <url>https://github.com/harshad-deo</url>
         </developer>
       </developers>)
-  )
+)
 
 val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("."))
   .settings(libSettings)
+  .settings(
+    inThisBuild(
+      List(
+        testAll := {
+          println("testing testing")
+        }
+      )
+    )
+  )
   .jvmSettings(
     crossScalaVersions := Settings.crossScalaVersions,
     initialCommands := """| class Witness1[T](val x: T)
-      | object Witness1{
-      |   def apply[T](x: T): Witness1[T] = new Witness1(x)
-      | }
-      | class Witness2[T]
-      | import typequux._
-      | import Typequux._
-      | """.stripMargin,
+                          | object Witness1{
+                          |   def apply[T](x: T): Witness1[T] = new Witness1(x)
+                          | }
+                          | class Witness2[T]
+                          | import typequux._
+                          | import Typequux._
+                          | """.stripMargin,
     fork := true
   )
   .jsSettings(
@@ -130,13 +141,13 @@ lazy val typequuxNative = typequux.native
 lazy val typequuxJS = typequux.js.settings(coverageExcludedPackages := ".*")
 
 lazy val testSettings = commonShared ++ Seq(
-    name := "typequuxtests",
-    crossScalaVersions := Settings.crossScalaVersions,
-    libraryDependencies ++= Seq(
-      "org.scalatest" %%% "scalatest" % Settings.Version.scalaTest % "test"
-    ),
-    testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, Settings.scalaTestOptions)
-  )
+  name := "typequuxtests",
+  crossScalaVersions := Settings.crossScalaVersions,
+  libraryDependencies ++= Seq(
+    "org.scalatest" %%% "scalatest" % Settings.Version.scalaTest % "test"
+  ),
+  testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, Settings.scalaTestOptions)
+)
 
 lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("typequuxtests"))

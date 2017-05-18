@@ -312,7 +312,7 @@ object LiteralHash {
 
     def forUnit(x: Tree): Tree = {
       x match {
-        case q"${ y: Unit }" =>
+        case q"${y: Unit}" =>
           q"""
         new typequux.LiteralHash[Unit]{
           override type TypeHash = typequux.LiteralHash.UnitTypeHash
@@ -326,7 +326,7 @@ object LiteralHash {
 
     def forBoolean(x: Tree): Tree = {
       x match {
-        case q"${ y: Boolean }" =>
+        case q"${y: Boolean}" =>
           val valueHash = if (y) tq"typequux.Dense._1" else tq"typequux.Dense._0"
           q"""
         new typequux.LiteralHash[Boolean]{
@@ -341,14 +341,14 @@ object LiteralHash {
 
     def forByte(x: Tree): Tree = {
       x match {
-        case q"${ y: Byte }" => resolveByte(y)
+        case q"${y: Byte}" => resolveByte(y)
         case _ => abortHere("byte")
       }
     }
 
     def forInt2Byte(x: Tree): Tree = {
       x match {
-        case q"${ y: Int }" =>
+        case q"${y: Int}" =>
           if (y > Byte.MaxValue) {
             c.abort(c.enclosingPosition, "Supplied integer literal is too large to be converted to a byte")
           } else if (y < Byte.MinValue) {
@@ -375,14 +375,14 @@ object LiteralHash {
 
     def forShort(x: Tree): Tree = {
       x match {
-        case q"${ y: Short }" => resolveShort(y)
+        case q"${y: Short}" => resolveShort(y)
         case _ => abortHere("short")
       }
     }
 
     def forInt2Short(x: Tree): Tree = {
       x match {
-        case q"${ y: Int }" =>
+        case q"${y: Int}" =>
           if (y > Short.MaxValue) {
             c.abort(c.enclosingPosition, "Supplied integer literal is too large to be converted to a short")
           } else if (y < Short.MinValue) {
@@ -419,7 +419,7 @@ object LiteralHash {
       """
       }
       x match {
-        case q"${ y: Char }" => resolve(y)
+        case q"${y: Char}" => resolve(y)
         case _ => abortHere("character")
       }
     }
@@ -439,7 +439,7 @@ object LiteralHash {
       """
       }
       x match {
-        case q"${ y: Int }" => resolve(y)
+        case q"${y: Int}" => resolve(y)
         case _ => abortHere("integer")
       }
     }
@@ -458,7 +458,7 @@ object LiteralHash {
       """
       }
       x match {
-        case q"${ y: Long }" => resolve(y)
+        case q"${y: Long}" => resolve(y)
         case _ => abortHere("long")
       }
     }
@@ -482,7 +482,7 @@ object LiteralHash {
       """
       }
       x match {
-        case q"${ y: Float }" => resolve(y)
+        case q"${y: Float}" => resolve(y)
         case _ => abortHere("float")
       }
     }
@@ -506,7 +506,7 @@ object LiteralHash {
       """
       }
       x match {
-        case q"${ y: Double }" => resolve(y)
+        case q"${y: Double}" => resolve(y)
         case _ => abortHere("double")
       }
     }
@@ -528,7 +528,7 @@ object LiteralHash {
       """
       }
       x match {
-        case q"${ y: String }" => resolve(y)
+        case q"${y: String}" => resolve(y)
         case _ => abortHere("string")
       }
     }
