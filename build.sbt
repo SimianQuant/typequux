@@ -46,10 +46,44 @@ lazy val commonNativeSettings = List(
   crossScalaVersions -= "2.12.2"
 )
 
+lazy val publishLocalCross = taskKey[Unit]("Publishes library locally for all scala versions")
+lazy val publishSignedCross = taskKey[Unit]("Publishes library signed for all scala versions")
+
 lazy val typequux = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .crossType(CrossType.Pure)
   .in(file("typequux"))
   .settings(commonSettings("typequux"))
+  .settings(
+    previewLaunchBrowser := false,
+    publishMavenStyle := true,
+    publishArtifact in Test := false,
+    publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
+    pomIncludeRepository := { _ =>
+      false
+    },
+    pomExtra := (
+      <url>https://harshad-deo.github.io/typequux/TypeQuux.html</url>
+      <licenses>
+        <license>
+          <name>Apache-2</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+          <distribution>repo</distribution>
+        </license>
+      </licenses>
+      <scm>
+        <connection>scm:git:git@github.com:harshad-deo/typequux.git</connection>
+        <developerConnection>scm:git:git@github.com:harshad-deo/typequux.git</developerConnection>
+        <url>git@github.com:harshad-deo/typequux.git</url>
+      </scm>
+      <developers>
+        <developer>
+          <id>harshad-deo</id>
+          <name>Harshad Deo</name>
+          <url>https://github.com/harshad-deo</url>
+        </developer>
+      </developers>
+    )
+  )
   .jvmSettings(commonJVMSettings)
   .jvmSettings(
     initialCommands := """|class Witness1[T](val x: T)
@@ -58,10 +92,29 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform, NativePlatform)
                           |}
                           |class Witness2[T]
                           |import typequux._
-                          |import Typequux._""".stripMargin
+                          |import Typequux._""".stripMargin,
+    publishLocalCross := {
+      runCommandAndRemaining("+typequuxJVM/publishLocal")(state.value)
+    },
+    publishSignedCross := {
+      runCommandAndRemaining("+typequuxJVM/publishSigned")(state.value)
+    }
   )
   .jsSettings(commonJSSettings)
+  .jsSettings(
+    publishLocalCross := {
+      runCommandAndRemaining("+typequuxJS/publishLocal")(state.value)
+    },
+    publishSignedCross := {
+      runCommandAndRemaining("+typequuxJS/publishSigned")(state.value)
+    }
+  )
   .nativeSettings(commonNativeSettings)
+  .nativeSettings(
+    publishSignedCross := {
+      runCommandAndRemaining("publishSigned")(state.value)
+    }
+  )
 
 lazy val typequuxJVM = typequux.jvm
 lazy val typequuxJS = typequux.js
@@ -125,8 +178,14 @@ lazy val cleanAll = taskKey[Unit]("Cleans everything")
 lazy val testJVMJS = taskKey[Unit]("Tests JVM and JS")
 lazy val testAll = taskKey[Unit]("Tests everything")
 lazy val buildCoverage = taskKey[Unit]("Generate coverage report")
+lazy val publishLibLocal = taskKey[Unit]("Publishes the library locally")
+lazy val publishLibSigned = taskKey[Unit]("Publishes the library signed")
 
 lazy val Typequux = config("typequuxJVM")
+
+lazy val releaseCommand = Command.command("release") { state =>
+  "publishLibSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
+}
 
 lazy val root = project
   .in(file("."))
@@ -159,7 +218,26 @@ lazy val root = project
             test in (typequuxtestsJVM, Test),
             coverageReport in typequuxJVM
           )
-          .value
+          .value,
+        publishLibLocal := Def
+          .sequential(
+            cleanAll,
+            testAll,
+            publishLocalCross in typequuxJVM,
+            publishLocalCross in typequuxJS,
+            publishLocal in typequuxNative
+          )
+          .value,
+        publishLibSigned := Def
+          .sequential(
+            cleanAll,
+            testAll,
+            publishSignedCross in typequuxJVM,
+            publishSignedCross in typequuxJS,
+            publishSignedCross in typequuxNative // dunno why normal publish signed is not working
+          )
+          .value,
+        commands += releaseCommand
       ))
   )
   .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
@@ -170,169 +248,3 @@ lazy val root = project
   )
 
 onLoad in Global := (Command.process("project root", _: State)) compose (onLoad in Global).value
-// lazy val runcoverageCommand = Command.command("runcoverage") { state =>
-//   "project typequuxtestsJVM" :: "clean" :: "coverage" :: "test" ::
-//     "project typequuxJVM" :: "coverageReport" ::
-//     state
-// }
-
-// lazy val releaseLocalCommand = Command.command("releaselocal") { state =>
-//   "testall" ::
-//     "project typequuxNative" :: "publishLocal" ::
-//     "project typequuxJVM" :: "+publishLocal" ::
-//     "project typequuxJS" :: "+publishLocal" ::
-//     state
-// }
-
-// lazy val releaseCommand = Command.command("release") { state =>
-//   "testall" ::
-//     "project typequuxNative" :: "publishSigned" ::
-//     "project typequuxJS" :: "+publishSigned" ::
-//     "project typequuxJVM" :: "+publishSigned" ::
-//     "sonatypeRelease" ::
-//     "++2.12.2" :: "ghpagesPushSite" ::
-//     state
-// }
-
-// lazy val additionalCommands = Seq(testAllCommand, runcoverageCommand, releaseLocalCommand, releaseCommand)
-
-// lazy val commonShared = Seq(
-//   organization := "com.simianquant",
-//   version := Settings.version,
-//   scalaVersion := Settings.scalaVersion,
-//   incOptions := incOptions.value.withLogRecompileOnMacro(false),
-//   libraryDependencies ++= Seq(
-//     "org.scala-lang" % "scala-reflect" % scalaVersion.value
-//   ),
-//   commands ++= additionalCommands,
-//   wartremoverErrors ++= {
-//     import Wart._
-//     Seq(Any2StringAdd,
-//         EitherProjectionPartial,
-//         Enumeration,
-//         ListOps,
-//         Option2Iterable,
-//         OptionPartial,
-//         Product,
-//         Return,
-//         Serializable,
-//         TryPartial)
-//   },
-//   scalacOptions in (Compile) ++= Settings.scalacCompileOptions(scalaVersion.value),
-//   scalacOptions in (Compile, doc) ++= Settings.scalacDocOptions,
-//   addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % Settings.Version.linter)
-// )
-
-// lazy val libSettings = commonShared ++ Seq(
-//   name := "typequux",
-//   previewLaunchBrowser := false,
-//   publishMavenStyle := true,
-//   publishArtifact in Test := false,
-//   publishTo := Some("releases" at "https://oss.sonatype.org/service/local/staging/deploy/maven2"),
-//   pomIncludeRepository := { _ =>
-//     false
-//   },
-//   pomExtra := (<url>https://harshad-deo.github.io/typequux/TypeQuux.html</url>
-//       <licenses>
-//         <license>
-//           <name>Apache-2</name>
-//           <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-//           <distribution>repo</distribution>
-//         </license>
-//       </licenses>
-//       <scm>
-//         <connection>scm:git:git@github.com:harshad-deo/typequux.git</connection>
-//         <developerConnection>scm:git:git@github.com:harshad-deo/typequux.git</developerConnection>
-//         <url>git@github.com:harshad-deo/typequux.git</url>
-//       </scm>
-//       <developers>
-//         <developer>
-//           <id>harshad-deo</id>
-//           <name>Harshad Deo</name>
-//           <url>https://github.com/harshad-deo</url>
-//         </developer>
-//       </developers>)
-// )
-
-// val typequux = crossProject(JSPlatform, JVMPlatform, NativePlatform)
-//   .in(file("."))
-//   .settings(libSettings)
-//   .settings(
-//     inThisBuild(
-//       List(
-//         testAll := {
-//           println("testing testing")
-//         }
-//       )
-//     )
-//   )
-//   .jvmSettings(
-//     crossScalaVersions := Settings.crossScalaVersions,
-//     initialCommands := """| class Witness1[T](val x: T)
-//                           | object Witness1{
-//                           |   def apply[T](x: T): Witness1[T] = new Witness1(x)
-//                           | }
-//                           | class Witness2[T]
-//                           | import typequux._
-//                           | import Typequux._
-//                           | """.stripMargin,
-//     fork := true
-//   )
-//   .jsSettings(
-//     crossScalaVersions := Settings.crossScalaVersions,
-//     scalaJSStage in Test := FullOptStage,
-//     coverageExcludedPackages := ".*"
-//   )
-//   .nativeSettings(
-//     nativeMode := "release",
-//     coverageExcludedPackages := ".*"
-//   )
-
-// lazy val typequuxJVM =
-//   typequux.jvm
-//     .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
-//     .settings(
-//       siteSubdirName in SiteScaladoc := "api",
-//       ghpages.settings,
-//       git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
-//     )
-
-// lazy val typequuxNative = typequux.native
-
-// lazy val typequuxJS = typequux.js.settings(coverageExcludedPackages := ".*")
-
-// lazy val testSettings = commonShared ++ Seq(
-//   name := "typequuxtests",
-//   crossScalaVersions := Settings.crossScalaVersions,
-//   libraryDependencies ++= Seq(
-//     "org.scalatest" %%% "scalatest" % Settings.Version.scalaTest % "test"
-//   ),
-//   testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, Settings.scalaTestOptions)
-// )
-
-// lazy val typequuxtests = crossProject(JSPlatform, JVMPlatform, NativePlatform)
-//   .in(file("typequuxtests"))
-//   .settings(commonShared)
-//   .dependsOn(typequux)
-//   .aggregate(typequux)
-//   .jvmSettings(testSettings)
-//   .jvmSettings(
-//     fork := true
-//   )
-//   .jsSettings(testSettings)
-//   .jsSettings(
-//     scalaJSStage in Test := FullOptStage,
-//     coverageExcludedPackages := ".*"
-//   )
-//   .nativeSettings(
-//     libraryDependencies += "com.simianquant" %% "sntb" % Settings.Version.sntb % "test",
-//     coverageExcludedPackages := ".*"
-//   )
-
-// lazy val typequuxtestsJVM = typequuxtests.jvm
-
-// lazy val typequuxtestsJS = typequuxtests.js
-
-// lazy val typequuxtestsNative = typequuxtests.native
-
-// commands ++= additionalCommands
