@@ -22,7 +22,7 @@ def commonSettings(nameStr: String) = Seq(
     Wart.Serializable,
     Wart.TryPartial
   ),
-  scalacOptions in (Compile) ++= Settings.commonScalacOptions,
+  scalacOptions in (Compile) ++= Settings.commonScalacOptions(scalaVersion.value),
   scalacOptions in (Compile, doc) ++= Settings.scalacDocOptions
 )
 

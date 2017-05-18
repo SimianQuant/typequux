@@ -5,25 +5,32 @@ object Settings {
 
   val crossScalaVersions = Seq("2.11.11", "2.12.2")
 
-  val commonScalacOptions = Seq(
-    "-deprecation",
-    "-unchecked",
-    "-explaintypes",
-    //"-Ywarn-unused-import",
-    "-encoding",
-    "UTF-8",
-    "-feature",
-    "-Xlog-reflective-calls",
-    "-Ywarn-dead-code",
-    "-Ywarn-inaccessible",
-    "-Ywarn-infer-any",
-    "-Ywarn-unused",
-    "-Ywarn-value-discard",
-    "-Xlint",
-    "-Ywarn-nullary-override",
-    "-Ywarn-nullary-unit",
-    "-Xfuture"
-  )
+  def commonScalacOptions(version: String): Seq[String] = {
+    val common = Seq(
+      "-deprecation",
+      "-unchecked",
+      "-explaintypes",
+      //"-Ywarn-unused-import",
+      "-encoding",
+      "UTF-8",
+      "-feature",
+      "-Xlog-reflective-calls",
+      "-Ywarn-dead-code",
+      "-Ywarn-inaccessible",
+      "-Ywarn-infer-any",
+      "-Ywarn-unused",
+      "-Ywarn-value-discard",
+      "-Xlint",
+      "-Ywarn-nullary-override",
+      "-Ywarn-nullary-unit",
+      "-Xfuture"
+    )
+    if (version.startsWith("2.11")) {
+      common
+    } else {
+      common :+ "-opt:l:method"
+    }
+  }
 
   val scalacDocOptions = Seq(
     "-author",
