@@ -42,6 +42,7 @@ lazy val commonJSSettings = List(
 lazy val commonNativeSettings = List(
   nativeMode := "release",
   coverageExcludedPackages := ".*",
+  scalaVersion := "2.11.11",
   crossScalaVersions -= "2.12.2"
 )
 
@@ -51,14 +52,13 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .settings(commonSettings("typequux"))
   .jvmSettings(commonJVMSettings)
   .jvmSettings(
-    initialCommands := """| class Witness1[T](val x: T)
-                          | object Witness1{
-                          |   def apply[T](x: T): Witness1[T] = new Witness1(x)
-                          | }
-                          | class Witness2[T]
-                          | import typequux._
-                          | import Typequux._
-                          | """.stripMargin
+    initialCommands := """|class Witness1[T](val x: T)
+                          |object Witness1{
+                          |  def apply[T](x: T): Witness1[T] = new Witness1(x)
+                          |}
+                          |class Witness2[T]
+                          |import typequux._
+                          |import Typequux._""".stripMargin
   )
   .jsSettings(commonJSSettings)
   .nativeSettings(commonNativeSettings)
@@ -102,7 +102,7 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
     (crossTest in Test) := {
       runCommandAndRemaining("+typequuxtestsJVM/test")(state.value)
     }
-    )
+  )
   .jsSettings(
     scalaJSStage in Test := FullOptStage,
     coverageExcludedPackages := ".*",
@@ -123,6 +123,8 @@ lazy val typequuxtestsNative = typequuxtests.native
 
 lazy val cleanAll = taskKey[Unit]("Cleans everything")
 lazy val testAll = taskKey[Unit]("Tests everything")
+
+lazy val Typequux = config("typequuxJVM")
 
 lazy val root = project
   .in(file("."))
@@ -147,16 +149,14 @@ lazy val root = project
         }
       ))
   )
+  .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
+  .settings(
+    SiteScaladocPlugin.scaladocSettings(Typequux, mappings in (Compile, packageDoc) in typequuxJVM, "api"),
+    ghpages.settings,
+    git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
+  )
 
 onLoad in Global := (Command.process("project root", _: State)) compose (onLoad in Global).value
-
-// lazy val testAllCommand = Command.command("testall") { state =>
-//   "project typequuxtestsNative" :: "clean" :: "test:run" ::
-//     "project typequuxtestsJVM" :: "clean" :: "+test" ::
-//     "project typequuxtestsJS" :: "clean" :: "+test" ::
-//     state
-// }
-
 // lazy val runcoverageCommand = Command.command("runcoverage") { state =>
 //   "project typequuxtestsJVM" :: "clean" :: "coverage" :: "test" ::
 //     "project typequuxJVM" :: "coverageReport" ::
