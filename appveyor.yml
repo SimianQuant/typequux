@@ -29,5 +29,8 @@ install:
   - cmd: SET PATH=C:\sbt\sbt\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: SET SBT_OPTS=-XX:MaxPermSize=2g -Xmx4g
 
+build_script:
+  - sbt cleanAll
+
 test_script:
   - sbt testJVMJS
