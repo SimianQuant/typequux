@@ -25,4 +25,4 @@ script:
   - sbt coverage buildCoverage
 
 after_success:
-  - sbt 'project typequuxtestsJVM' coveralls
+  - sbt 'project typequuxJVM' coveralls
