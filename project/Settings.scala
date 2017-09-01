@@ -6,11 +6,11 @@ object Settings {
   val crossScalaVersions = Seq("2.11.11", "2.12.2")
 
   def commonScalacOptions(version: String): Seq[String] = {
-    val common = Seq(
+    val common = List(
+      "-Ywarn-unused-import",
       "-deprecation",
       "-unchecked",
       "-explaintypes",
-      //"-Ywarn-unused-import",
       "-encoding",
       "UTF-8",
       "-feature",
@@ -18,17 +18,19 @@ object Settings {
       "-Ywarn-dead-code",
       "-Ywarn-inaccessible",
       "-Ywarn-infer-any",
-      "-Ywarn-unused",
-      "-Ywarn-value-discard",
-      "-Xlint",
       "-Ywarn-nullary-override",
       "-Ywarn-nullary-unit",
       "-Xfuture"
     )
     if (version.startsWith("2.11")) {
-      common
+      "-Xlint:_,-missing-interpolator" :: "-Ywarn-unused" :: common
     } else {
-      common :+ "-opt:l:method"
+      "-Xlint:adapted-args,nullary-unit,inaccessible,nullary-override,infer-any,doc-detached,private-shadow," +
+        "type-parameter-shadow,poly-implicit-overload,option-implicit,delayedinit-select,by-name-right-associative," +
+        "package-object-classes,unsound-match,stars-align,constant" ::
+        "-Ywarn-unused:imports,patvars,privates,locals" ::
+        "-opt:l:method" ::
+        common
     }
   }
 
@@ -38,10 +40,8 @@ object Settings {
     "-implicits"
   )
 
-  val scalaTestOptions = "-oD"
-
   object Version {
     val scalaTest = "3.0.1"
-    val sntb = "0.2.2"
+    val sntb = "0.3.1-SNAPSHOT"
   }
 }

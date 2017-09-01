@@ -15,11 +15,9 @@
   */
 package typequuxtests
 
-import typequux.{Dense, SizedVector}
+import typequux.SizedVector
 
 class SizedVectorParSpec extends BaseSpec {
-
-  import Dense._
 
   it should "parmap properly" in {
     val v1 = SizedVector(1, 4, 9, 16, 25)

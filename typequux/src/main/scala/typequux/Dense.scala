@@ -16,7 +16,6 @@
 package typequux
 
 import annotation.tailrec
-import Bool.True
 import Comparison.{EQ, GT, LT}
 import constraint.TrueConstraint
 import Dense._

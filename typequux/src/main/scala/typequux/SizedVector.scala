@@ -16,7 +16,6 @@
 package typequux
 
 import annotation.tailrec
-import Bool.True
 import collection.immutable.VectorBuilder
 import constraint.TrueConstraint
 import Dense._

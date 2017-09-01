@@ -15,7 +15,7 @@
   */
 package typequux
 
-import Bool.{False, True}
+import Bool.False
 import constraint._
 import Dense._
 import DenseMap.EmptyDenseMap

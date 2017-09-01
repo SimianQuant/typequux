@@ -141,7 +141,7 @@ lazy val crossTest = taskKey[Unit]("Test library against all scala versions")
 
 lazy val jvmJSTestSettings = Seq(
   libraryDependencies += "org.scalatest" %%% "scalatest" % Settings.Version.scalaTest % "test",
-  testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, Settings.scalaTestOptions)
+  testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
 )
 
 lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
@@ -165,8 +165,9 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .nativeSettings(commonNativeSettings)
   .nativeSettings(
-    libraryDependencies += "com.simianquant" %% "sntb" % Settings.Version.sntb % "test",
-    coverageExcludedPackages := ".*"
+    libraryDependencies += "com.simianquant" %%% "sntb" % Settings.Version.sntb % "test",
+    coverageExcludedPackages := ".*",
+    testFrameworks += new TestFramework("sntb.SntbFramework")
   )
   .dependsOn(typequux)
 
@@ -209,7 +210,7 @@ lazy val root = project
         },
         testAll := {
           testJVMJS.value
-          run.in(typequuxtestsNative, Test).toTask("").value
+          test.in(typequuxtestsNative, Test).value
         },
         buildCoverage := Def
           .sequential(
