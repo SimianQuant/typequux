@@ -92,6 +92,6 @@ class StringIndexedCollectionSpec extends BaseSpec {
   }
 
   it should "convert to string properly" in {
-    assert(si1.toString == "StringIndexedCollection(pi -> 3.14, e -> 2.718, h -> 6.626, phi -> 1.618)")
+    assert(si1.toString == s"StringIndexedCollection(pi -> ${3.14}, e -> ${2.718}, h -> ${6.626}, phi -> ${1.618})")
   }
 }
