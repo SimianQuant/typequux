@@ -112,7 +112,7 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .nativeSettings(commonNativeSettings)
   .nativeSettings(
     publishSignedCross := {
-      runCommandAndRemaining("publishSigned")(state.value)
+      runCommandAndRemaining("typequuxNative/publishSigned")(state.value)
     }
   )
 
@@ -247,5 +247,3 @@ lazy val root = project
     ghpages.settings,
     git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
   )
-
-onLoad in Global := (Command.process("project root", _: State)) compose (onLoad in Global).value
