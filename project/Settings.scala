@@ -1,5 +1,5 @@
 object Settings {
-  val version = "0.7.0"
+  val version = "0.7.1-SNAPSHOT"
 
   val scalaVersion = "2.12.2"
 
@@ -42,6 +42,6 @@ object Settings {
 
   object Version {
     val scalaTest = "3.0.1"
-    val sntb = "0.3.1"
+    val sntb = "0.3.3"
   }
 }
