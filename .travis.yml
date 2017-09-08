@@ -1,7 +1,7 @@
 language: scala
 
 scala:
-  - 2.11.8
+  - 2.11.11
 
 branches:
   except:
@@ -9,6 +9,8 @@ branches:
 
 jdk:
   - oraclejdk8
+
+dist: trusty
 
 before_install:
 - sudo apt-get -qq update
