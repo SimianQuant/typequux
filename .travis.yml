@@ -12,7 +12,7 @@ branches:
 jdk:
   - oraclejdk8
 
-dist: trusty
+dist: precise
 
 before_install:
   - sudo apt-get -qq update
