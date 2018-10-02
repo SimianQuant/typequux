@@ -618,12 +618,12 @@ object Dense {
 
       def processType(tp: Type) = tp match {
         case z: TypeRef => z.dealias
-        case _ => tp
+        case _          => tp
       }
 
       def allTypes(xs: List[Type]): List[Type] = xs match {
         case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
-        case _ => Nil
+        case _             => Nil
       }
 
       val d0ref = implicitly[c.WeakTypeTag[Dense.D0]].tpe
@@ -679,12 +679,12 @@ object Dense {
 
       def processType(tp: Type) = tp match {
         case z: TypeRef => z.dealias
-        case _ => tp
+        case _          => tp
       }
 
       def allTypes(xs: List[Type]): List[Type] = xs match {
         case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
-        case _ => Nil
+        case _             => Nil
       }
 
       val proc = processType(wtt.tpe)

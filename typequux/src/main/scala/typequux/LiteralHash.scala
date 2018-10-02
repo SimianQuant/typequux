@@ -342,7 +342,7 @@ object LiteralHash {
     def forByte(x: Tree): Tree = {
       x match {
         case q"${y: Byte}" => resolveByte(y)
-        case _ => abortHere("byte")
+        case _             => abortHere("byte")
       }
     }
 
@@ -376,7 +376,7 @@ object LiteralHash {
     def forShort(x: Tree): Tree = {
       x match {
         case q"${y: Short}" => resolveShort(y)
-        case _ => abortHere("short")
+        case _              => abortHere("short")
       }
     }
 
@@ -420,7 +420,7 @@ object LiteralHash {
       }
       x match {
         case q"${y: Char}" => resolve(y)
-        case _ => abortHere("character")
+        case _             => abortHere("character")
       }
     }
 
@@ -440,7 +440,7 @@ object LiteralHash {
       }
       x match {
         case q"${y: Int}" => resolve(y)
-        case _ => abortHere("integer")
+        case _            => abortHere("integer")
       }
     }
 
@@ -459,7 +459,7 @@ object LiteralHash {
       }
       x match {
         case q"${y: Long}" => resolve(y)
-        case _ => abortHere("long")
+        case _             => abortHere("long")
       }
     }
 
@@ -483,7 +483,7 @@ object LiteralHash {
       }
       x match {
         case q"${y: Float}" => resolve(y)
-        case _ => abortHere("float")
+        case _              => abortHere("float")
       }
     }
 
@@ -507,7 +507,7 @@ object LiteralHash {
       }
       x match {
         case q"${y: Double}" => resolve(y)
-        case _ => abortHere("double")
+        case _               => abortHere("double")
       }
     }
 
@@ -529,7 +529,7 @@ object LiteralHash {
       }
       x match {
         case q"${y: String}" => resolve(y)
-        case _ => abortHere("string")
+        case _               => abortHere("string")
       }
     }
 

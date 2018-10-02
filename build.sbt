@@ -137,10 +137,10 @@ def runCommandAndRemaining(command: String): State => State = { st: State =>
   def runCommand(command: String, state: State): State = {
     val nextState = Parser.parse(command, state.combinedParser) match {
       case Right(cmd) => cmd()
-      case Left(msg) => throw sys.error(s"Invalid programmatic input:\n$msg")
+      case Left(msg)  => throw sys.error(s"Invalid programmatic input:\n$msg")
     }
     nextState.remainingCommands.toList match {
-      case Nil => nextState
+      case Nil          => nextState
       case head :: tail => runCommand(head, nextState.copy(remainingCommands = tail))
     }
   }

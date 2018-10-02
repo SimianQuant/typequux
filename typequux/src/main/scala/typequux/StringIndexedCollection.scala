@@ -56,7 +56,7 @@ object StringIndexedCollection {
     override def equals(other: Any): Boolean = (other.## == this.##) && {
       other match {
         case that: NonEmptySI[_, _] => (this eq that) || this.toMap == that.toMap
-        case _ => false
+        case _                      => false
       }
     }
 

@@ -231,7 +231,7 @@ class TupleOpsSpec extends BaseSpec {
     val tz1z: List[(Int, Boolean)] = tz1.azipped
     val tz2z: Vector[(Int, Boolean, String, Double)] = tz2.azipped
 
-    val tz1f: List[(Boolean, Int)] = tz1.zipwith { case (i, b) => (b, i) }
+    val tz1f: List[(Boolean, Int)] = tz1.zipwith { case (i, b)                             => (b, i) }
     val tz2f: Vector[((Int, String), (Boolean, Double))] = tz2.zipwith { case (i, b, s, d) => ((i, s), (b, d)) }
 
     assert(tz1z == List((1, true), (2, false)))
@@ -258,7 +258,7 @@ class TupleOpsSpec extends BaseSpec {
     val sz2z: Stream[(BigInt, Int, Long)] = sz2.azipped
     val sz3z: Stream[(BigInt, Int, String)] = sz3.azipped
 
-    val sz1f: Stream[(Int, BigInt)] = sz1.zipwith { case (b, i) => (i, b) }
+    val sz1f: Stream[(Int, BigInt)] = sz1.zipwith { case (b, i)            => (i, b) }
     val sz2f: Stream[(Int, (BigInt, Long))] = sz2.zipwith { case (b, i, l) => (i, (b, l)) }
     val sz3f: Stream[(Int, BigInt, String)] = sz3.zipwith { case (b, i, s) => (i, b, s) }
 

@@ -388,9 +388,9 @@ class SizedVectorSpec extends BaseSpec {
 
     def check[D <: Dense](expected: Either[List[String], SizedVector[D, Int]])(
         actual: Either[List[String], SizedVector[D, Int]]): Boolean = (expected, actual) match {
-      case (Left(e1), Left(e2)) => e1 == e2
+      case (Left(e1), Left(e2))   => e1 == e2
       case (Right(e1), Right(e2)) => e1 == e2
-      case _ => false
+      case _                      => false
     }
 
     assert(check(SizedVector(1, 2, 3, 4).traverse(f)(g))(Right(SizedVector(1, 2, 3, 4))))

@@ -200,9 +200,8 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpConsConstraint[T, HL <: HList, U, R](
-      implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: HList2TupleConverter[R, U :+: HL]): ConsConstraint[T, U, R] =
+  implicit def tpConsConstraint[T, HL <: HList, U, R](implicit ev0: Tuple2HListConverter[T, HL],
+                                                      ev1: HList2TupleConverter[R, U :+: HL]): ConsConstraint[T, U, R] =
     new ConsConstraint[T, U, R] {
       override def apply(t: T, u: U) = {
         val hl = ev0(t)

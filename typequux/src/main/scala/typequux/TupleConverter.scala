@@ -50,7 +50,7 @@ object Tuple2HListConverter {
 
     val wtp = wtt.tpe match {
       case z: TypeRef => z.dealias
-      case z => z
+      case z          => z
     }
 
     val allTupleNames = (2 to 22).map(z => s"scala.Tuple$z")

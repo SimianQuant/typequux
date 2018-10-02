@@ -115,10 +115,8 @@ object DenseSet {
                                                            NonEmptyDenseSet[V, L, R],
                                                            NonEmptyDenseSet[V, L, R#Include[X]],
                                                            DenseSet]
-    override type Remove[X <: Dense] = X#Compare[V]#Match[NonEmptyDenseSet[V, L#Remove[X], R],
-                                                          L#Union[R],
-                                                          NonEmptyDenseSet[V, L, R#Remove[X]],
-                                                          DenseSet]
+    override type Remove[X <: Dense] =
+      X#Compare[V]#Match[NonEmptyDenseSet[V, L#Remove[X], R], L#Union[R], NonEmptyDenseSet[V, L, R#Remove[X]], DenseSet]
     override type Union[X <: DenseSet] = FoldL[X, DenseSet, UnionFold]
     override type Diff[X <: DenseSet] = FoldL[EmptyDenseSet, DenseSet, DifferenceFold[X]]
     override type Size = _1 + L#Size + R#Size
