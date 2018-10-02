@@ -29,7 +29,6 @@ def commonSettings(nameStr: String) = Seq(
     Wart.Serializable,
     Wart.StringPlusAny,
     Wart.Throw,
-    Wart.TraversableOps,
     Wart.TryPartial
   ),
   scalacOptions in (Compile) ++= Settings.commonScalacOptions(scalaVersion.value),
@@ -150,7 +149,7 @@ def runCommandAndRemaining(command: String): State => State = { st: State =>
 lazy val crossTest = taskKey[Unit]("Test library against all scala versions")
 
 lazy val jvmJSTestSettings = Seq(
-  libraryDependencies += "org.scalatest" %%% "scalatest" % Settings.Version.scalaTest % "test",
+  libraryDependencies += "org.scalatest" %%% "scalatest" % Settings.versions.scalaTest % Test,
   testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
 )
 
@@ -160,7 +159,6 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .jvmSettings(commonJVMSettings)
   .jvmSettings(jvmJSTestSettings)
   .jvmSettings(
-    libraryDependencies += "org.scalatest" %% "scalatest" % Settings.Version.scalaTest % Test,
     (crossTest in Test) := {
       runCommandAndRemaining("+typequuxtestsJVM/test")(state.value)
     }
@@ -176,8 +174,7 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .nativeSettings(commonNativeSettings)
   .nativeSettings(
-    coverageExcludedPackages := ".*",
-    
+    coverageExcludedPackages := ".*"
   )
   .dependsOn(typequux)
 

@@ -57,15 +57,15 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class HNil extends HList {
+  final class HNil private[HList] () extends HList {
     override def toString: String = "HNil"
   }
 
   // aliases
 
   type :+:[H, T <: HList] = HCons[H, T]
-  val :+: = HCons
-  val HNil = new HNil
+  val :+: : HCons.type = HCons
+  val HNil: HNil = new HNil
 
   /** Arbitrary arity zipper in which the elements share common context that is a subtype of Traversable and
     * has strict evaluation semantics (not a [[scala.collection.immutable.Stream]])
@@ -396,7 +396,11 @@ object HList {
     */
   class IndexedOps[HL <: HList, Before <: HList, At, After <: HList](hl: HL, ind: Indexer[HL, Before, At, After]) {
 
-    val (before, at, after) = ind(hl)
+    private lazy val (_before, _at, _after) = ind(hl)
+
+    lazy val before: Before = _before
+    lazy val at: At = _at
+    lazy val after: After = _after
 
     /** Drop the sublist before the index
       *
@@ -1452,6 +1456,7 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
+  @SuppressWarnings(Array("org.wartremover.warts.Null"))
   implicit def hLubConstraint[HL <: HList, R]: LubConstraint[HL, R] = macro HListMacroImpl.toList[HL, R]
 
   /** Base case of [[constraint.ListBuilderConstraint]] for HLists
@@ -1513,7 +1518,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def :+:[A](a: A): HList.HCons[A, B] = HList.HCons(a, b) 
+  def :+:[A](a: A): HList.HCons[A, B] = HList.HCons(a, b)
 
   /** Prepends an hlist to this one
     *
@@ -1524,7 +1529,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def :++:[A, R](a: A)(implicit ev: AppendConstraint[A, B, R]): R = ev(a, b) 
+  def :++:[A, R](a: A)(implicit ev: AppendConstraint[A, B, R]): R = ev(a, b)
 
   /** Builds a type-indexer, can be used to factorize a HList by type. For details, see [[HList.TIndexer]]
     *

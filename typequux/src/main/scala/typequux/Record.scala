@@ -55,6 +55,7 @@ object Record {
       extends Record {
     override def hashCode: Int = asMap.##
 
+    @SuppressWarnings(Array("org.wartremover.warts.Equals"))
     override def equals(other: Any): Boolean = (this.## == other.##) && {
       other match {
         case that: NonEmptyRecord[_, HL] =>
@@ -63,6 +64,7 @@ object Record {
       }
     }
 
+    @SuppressWarnings(Array("org.wartremover.warts.Any"))
     private[Record] def asMap: Map[String, Any] = this.toMap
   }
 
@@ -72,8 +74,8 @@ object Record {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class RNil extends Record
-  final val RNil = new RNil
+  final class RNil private[Record] () extends Record
+  final val RNil: RNil = new RNil
 
   /** Converts a [[Record]] to an [[SiOps]] object
     *
@@ -93,6 +95,7 @@ object Record {
     * @author Harshad Deo
     * @since 0.1
     */
+  @SuppressWarnings(Array("org.wartremover.warts.Null"))
   def class2Record[T](x: T): Any = macro Class2RecordBuilder.class2RecordImpl[T]
 
   private[Record] class Class2RecordBuilder(val c: Context) {

@@ -60,6 +60,7 @@ trait LiteralHash[X] {
   * @author Harshad Deo
   * @since 0.1
   */
+@SuppressWarnings(Array("org.wartremover.warts.Null"))
 object LiteralHash {
 
   /** Type hash for Unit
@@ -297,6 +298,8 @@ object LiteralHash {
     * Macro bundle that can be used by the typeclasses subsequently
     *
     */
+  @SuppressWarnings(
+    Array("org.wartremover.warts.Any", "org.wartremover.warts.PublicInference", "org.wartremover.warts.Equals"))
   private[LiteralHash] class LiteralHashBuilderImpl(val c: whitebox.Context) {
     import c.universe._
 

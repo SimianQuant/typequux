@@ -29,15 +29,15 @@ object Typequux {
 
   type :+:[H, T <: HList] = HList.:+:[H, T]
 
-  val HNil = HList.HNil 
   type HNil = HList.HNil
+  val HNil: HNil = HList.HNil
 
   type Id[X] = X
-  val :+: = HList.:+: 
+  val :+: : HList.HCons.type = HList.:+:
 
-  val RNil = Record.RNil 
   type RNil = Record.RNil
+  val RNil: RNil = Record.RNil
 
-  val SINil = StringIndexedCollection.SINil 
   type SINil = StringIndexedCollection.SINil
+  val SINil: SINil = StringIndexedCollection.SINil
 }

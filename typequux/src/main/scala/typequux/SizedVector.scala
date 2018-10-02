@@ -309,6 +309,7 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
 
   override def hashCode: Int = backing.hashCode
 
+  @SuppressWarnings(Array("org.wartremover.warts.Equals"))
   override def equals(other: Any): Boolean = (this.## == other.##) && {
     other match {
       case that: SizedVector[_, T] => (this eq that) || (backing == that.backing)
@@ -331,6 +332,7 @@ object SizedVector {
     * @author Harshad Deo
     * @since 0.6.3
     */
+  @SuppressWarnings(Array("org.wartremover.warts.Equals"))
   def from[SZ <: Dense, T](v: Seq[T])(implicit dr: Dense.DenseIntRep[SZ],
                                       ev: TrueConstraint[>[SZ, _0]]): Option[SizedVector[SZ, T]] =
     if (dr.v == v.length) {
@@ -346,6 +348,7 @@ object SizedVector {
     * @author Harshad Deo
     * @since 0.1
     */
+  @SuppressWarnings(Array("org.wartremover.warts.Equals"))
   def from[T](sz: LiteralHash[Int], v: Seq[T])(
       implicit ev: TrueConstraint[>[sz.ValueHash, _0]]): Option[SizedVector[sz.ValueHash, T]] = {
     if (sz.value == v.length) {
@@ -362,6 +365,7 @@ object SizedVector {
     * @author Harshad Deo
     * @since 0.1
     */
+  @SuppressWarnings(Array("org.wartremover.warts.Null"))
   def apply[T](inp: T*): Any = macro SizedVectorBuilder.build[T]
 
   private[SizedVector] class SizedVectorBuilder(val c: Context) {
@@ -378,6 +382,7 @@ object SizedVector {
       q"""typequux.SizedVector.from($lh, Vector(${inp :_ *})).fold(???)(identity)"""
     }
 
+    @SuppressWarnings(Array("org.wartremover.warts.Equals"))
     private[this] def toBinary(z: Int): List[Boolean] = {
       val maxIter = 31
       val places =

@@ -674,6 +674,7 @@ object Dense {
       */
     implicit def build[D <: Dense]: DenseIntRep[D] = macro buildImpl[D]
 
+    @SuppressWarnings(Array("org.wartremover.warts.Any"))
     def buildImpl[D <: Dense](c: Context)(wtt: c.WeakTypeTag[D]): c.Tree = {
       import c.universe._
 

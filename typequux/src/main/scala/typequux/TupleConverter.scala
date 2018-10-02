@@ -45,6 +45,7 @@ object Tuple2HListConverter {
     */
   implicit def build[T, HL]: Tuple2HListConverter[T, HL] = macro buildImpl[T, HL]
 
+  @SuppressWarnings(Array("org.wartremover.warts.Equals"))
   def buildImpl[T, HL](c: Context)(implicit wtt: c.WeakTypeTag[T]): c.Tree = {
     import c.universe._
 

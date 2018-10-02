@@ -53,6 +53,7 @@ object StringIndexedCollection {
       extends StringIndexedCollection[T] {
     override def hashCode: Int = this.toMap.##
 
+    @SuppressWarnings(Array("org.wartremover.warts.Equals", "org.wartremover.warts.Any"))
     override def equals(other: Any): Boolean = (other.## == this.##) && {
       other match {
         case that: NonEmptySI[_, _] => (this eq that) || this.toMap == that.toMap
@@ -72,8 +73,8 @@ object StringIndexedCollection {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class SINil extends StringIndexedCollection[Nothing]
-  val SINil = new SINil
+  final class SINil private[StringIndexedCollection] () extends StringIndexedCollection[Nothing]
+  val SINil: SINil = new SINil
 
   /** Converts a [[StringIndexedCollection]] to an [[SiOps]] object
     *
