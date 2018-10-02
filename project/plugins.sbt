@@ -9,7 +9,6 @@ addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
 addSbtPlugin("org.wartremover" % "sbt-wartremover" % "2.3.4")
 addSbtPlugin("com.thoughtworks.sbt-api-mappings" % "sbt-api-mappings" % "0.2.2")
 
-
 addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "1.2.0")
 resolvers += "jgit-repo" at "http://download.eclipse.org/jgit/maven"
 addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages" % "0.5.4")
