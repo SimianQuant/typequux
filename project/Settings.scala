@@ -1,9 +1,9 @@
 object Settings {
   val version = "0.7.3-SNAPSHOT"
 
-  val scalaVersion = "2.12.4"
+  val scalaVersion = "2.12.7"
 
-  val crossScalaVersions = Seq("2.11.12", "2.12.4")
+  val crossScalaVersions = Seq("2.11.12", scalaVersion)
 
   def commonScalacOptions(version: String): Seq[String] = {
     val common = List(
