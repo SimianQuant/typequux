@@ -1513,7 +1513,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def :+:[A](a: A): HList.HCons[A, B] = HList.HCons(a, b) // scalastyle:ignore
+  def :+:[A](a: A): HList.HCons[A, B] = HList.HCons(a, b) 
 
   /** Prepends an hlist to this one
     *
@@ -1524,7 +1524,7 @@ class HListOps[B <: HList](b: B) extends ArityIndexOps(b) {
     * @author Harshad Deo
     * @since 0.1
     */
-  def :++:[A, R](a: A)(implicit ev: AppendConstraint[A, B, R]): R = ev(a, b) // scalastyle:ignore
+  def :++:[A, R](a: A)(implicit ev: AppendConstraint[A, B, R]): R = ev(a, b) 
 
   /** Builds a type-indexer, can be used to factorize a HList by type. For details, see [[HList.TIndexer]]
     *
