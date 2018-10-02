@@ -3,8 +3,8 @@ import sbtcrossproject.{crossProject, CrossType}
 def commonSettings(nameStr: String) = Seq(
   name := nameStr,
   organization := "com.simianquant",
-  version := Settings.version,
-  scalaVersion := Settings.scalaVersion,
+  version := Settings.versions.project,
+  scalaVersion := Settings.versions.scala,
   crossScalaVersions := Settings.crossScalaVersions,
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
@@ -53,7 +53,7 @@ lazy val commonNativeSettings = List(
   nativeMode := "release",
   coverageExcludedPackages := ".*",
   scalaVersion := "2.11.11",
-  crossScalaVersions -= "2.12.2"
+  crossScalaVersions -= Settings.versions.scala
 )
 
 lazy val publishLocalCross = taskKey[Unit]("Publishes library locally for all scala versions")
@@ -159,13 +159,14 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .settings(commonSettings("typequuxtests"))
   .jvmSettings(commonJVMSettings)
   .jvmSettings(jvmJSTestSettings)
-  .jsSettings(commonJSSettings)
-  .jsSettings(jvmJSTestSettings)
   .jvmSettings(
+    libraryDependencies += "org.scalatest" %% "scalatest" % Settings.Version.scalaTest % Test,
     (crossTest in Test) := {
       runCommandAndRemaining("+typequuxtestsJVM/test")(state.value)
     }
   )
+  .jsSettings(commonJSSettings)
+  .jsSettings(jvmJSTestSettings)
   .jsSettings(
     scalaJSStage in Test := FullOptStage,
     coverageExcludedPackages := ".*",
@@ -175,9 +176,8 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .nativeSettings(commonNativeSettings)
   .nativeSettings(
-    libraryDependencies += "com.simianquant" %%% "sntb" % Settings.Version.sntb % "test",
     coverageExcludedPackages := ".*",
-    testFrameworks += new TestFramework("sntb.SntbFramework")
+    
   )
   .dependsOn(typequux)
 
