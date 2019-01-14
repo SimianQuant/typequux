@@ -22,8 +22,8 @@ The usage is pretty straightforward
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> type Rep[B <: Bool] = B#If[Int, String, Any]
 defined type alias Rep

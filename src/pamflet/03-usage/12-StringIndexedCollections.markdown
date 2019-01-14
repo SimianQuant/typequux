@@ -15,8 +15,8 @@ are not terribly informative. For clarity, they are replaced below by `\**\`. Su
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val pl1 = SINil.add("goku", 32000).add("piccolo", 3500).add("krillin", 1770)
 pl1: /**/

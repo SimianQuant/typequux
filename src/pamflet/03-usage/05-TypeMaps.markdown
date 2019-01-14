@@ -14,9 +14,9 @@ You can use the type constructors that are a part of the DenseMap trait or (more
 #### Add
 
 ```scala
-scala> import typequux._; import typequux._; import Dense._; import DenseMap._
+scala> import typequux._; import Typequux._; import Dense._; import DenseMap._
 import typequux._
-import typequux._
+import Typequux._
 import Dense._
 import DenseMap._
 

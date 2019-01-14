@@ -20,9 +20,9 @@ If you leave all three type parameters unconstrained, the code will compile for 
 regardless of arity or the specific primitive. 
 
 ```scala
-scala> import typequux._; import typequux._; import TupleOps._; import constraint._
+scala> import typequux._; import Typequux._; import TupleOps._; import constraint._
 import typequux._
-import typequux._
+import Typequux._
 import TupleOps._
 import constraint._
 

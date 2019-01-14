@@ -142,8 +142,8 @@ res23: /**/ = <function1>
 #### Comparators
 
 ```scala
-scala> import typequux._ // package object, for True and False
-import typequux._
+scala> import Typequux._ // useful imports for True and False
+import Typequux._
 
 scala> implicitly[_0 < _3 =:= True]
 res26: /**/ = <function1>

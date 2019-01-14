@@ -14,9 +14,9 @@ You can use the type constructors that are a part of the DenseSet trait or (more
 #### Include
 
 ```scala
-scala> import typequux._; import typequux._, import Dense._; import DenseSet._
+scala> import typequux._; import Typequux._; import Dense._; import DenseSet._
 import typequux._
-import typequux._
+import Typequux._
 import Dense._
 import DenseSet._
 

@@ -18,8 +18,8 @@ Supported operations are:
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val r1 = RNil.add("name", "goku").add("powerlevel", 8000).add("friends", List("krillin", "yamcha", "bulma"))
 r1: /**/

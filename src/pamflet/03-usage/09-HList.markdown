@@ -11,8 +11,8 @@ The type signatures for hlists can be quite long and are not terribly informativ
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> type LT = String :+: AnyVal :+: AnyRef :+: Traversable[_] :+: Option[Int] :+: HNil
 defined type alias LT

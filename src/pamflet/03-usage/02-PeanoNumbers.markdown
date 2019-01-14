@@ -88,8 +88,8 @@ res14: =:=[typequux.Nat.Fact[typequux.Nat._3],typequux.Nat._6] = <function1>
 #### Comparators
 
 ```scala
-scala> import typequux._ // package object, for True, False
-import typequux._
+scala> import Typequux._ // useful imports for True, False
+import Typequux._
 
 scala> implicitly[_0 < _3 =:= True]
 res15: =:=[typequux.Nat.<[typequux.Nat._0,typequux.Nat._3],typequux.True] = <function1>

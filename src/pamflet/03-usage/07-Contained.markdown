@@ -13,8 +13,8 @@ Type unions can be used to guarentee that a given type is a member of the suppli
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> implicitly[Contained[Int, Int :+: HNil]]
 res0: typequux.Contained[Int,typequux.typequux.:+:[Int,typequux.typequux.HNil]] = typequux.Contained@17a63316

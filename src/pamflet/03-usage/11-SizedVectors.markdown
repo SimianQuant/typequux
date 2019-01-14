@@ -15,8 +15,8 @@ The common feature of the supported operations is that the size information is p
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val sz1 = SizedVector(1, 2, 3)
 sz1: /**/ = SizedVector(1, 2, 3)
