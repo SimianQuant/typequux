@@ -55,10 +55,10 @@ scala&gt; def atExample[R](i: LiteralHash[_], r: R)(implicit ev: AtConstraint[i.
 atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constraint.AtConstraint[i.ValueHash,R,String])String
 </code></pre><p>A <code>LiteralHash[T]</code> is an encapsulation of the singleton type associated with a literal of type <code>T</code>. The <code>ValueHash</code> is the 
 singleton type associated with the value of the literal. The companion object for <code>LiteralHash</code> containt implicit converters
-to build the objects from the regular literals. You can find out more <a href="https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html">here</a>.
-</p><p>Constraints are typeclasses that abstract over specific typelevel datastructures like <a href="https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html">HLists</a>, <a href="https://harshad-deo.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a> and <a href="https://harshad-deo.github.io/typequux/Records.html">Records</a> (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
+to build the objects from the regular literals. You can find out more <a href="https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html">here</a>.
+</p><p>Constraints are typeclasses that abstract over specific typelevel datastructures like <a href="https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html">HLists</a>, <a href="https://simianquant.github.io/typequux/String+Indexed+Collections.html">StringIndexedCollections</a> and <a href="https://simianquant.github.io/typequux/Records.html">Records</a> (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
 They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
-You can find out more <a href="https://harshad-deo.github.io/typequux/Understanding+Constraints.html">here</a>. 
+You can find out more <a href="https://simianquant.github.io/typequux/Understanding+Constraints.html">here</a>. 
 </p><p>In this example, the encoded invariant is that given an index (<code>ValueHash</code>) and an object of type <code>R</code>, the value at the index position should be a <code>String</code>. 
 <strong>It should be stressed that this is achieved without using runtime reflection or structural types.</strong>
 </p><p>This can be used with sequentially indexed collections, like HLists and Tuples (the regular scala tuples).

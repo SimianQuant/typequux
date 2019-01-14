@@ -11,8 +11,8 @@ collected wisdom on type-hackery in scala.
 
 You can now:
 
-* Head over to the [github page](https://github.com/harshad-deo/typequux) which has instructions on how to set-up a project
-* Peruse through the [API](https://harshad-deo.github.io/typequux/api/typequux/index.html)
+* Head over to the [github page](https://github.com/simianquant/typequux) which has instructions on how to set-up a project
+* Peruse through the [API](https://simianquant.github.io/typequux/api/typequux/index.html)
 * Read the examples below
 
 Happy Hacking!
@@ -40,11 +40,11 @@ atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constrain
 
 A `LiteralHash[T]` is an encapsulation of the singleton type associated with a literal of type `T`. The `ValueHash` is the 
 singleton type associated with the value of the literal. The companion object for `LiteralHash` containt implicit converters
-to build the objects from the regular literals. You can find out more [here](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html).
+to build the objects from the regular literals. You can find out more [here](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html).
 
-Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html), [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html) and [Records](https://harshad-deo.github.io/typequux/Records.html) (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
+Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html), [StringIndexedCollections](https://simianquant.github.io/typequux/String+Indexed+Collections.html) and [Records](https://simianquant.github.io/typequux/Records.html) (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
 They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
-You can find out more [here](https://harshad-deo.github.io/typequux/Understanding+Constraints.html). 
+You can find out more [here](https://simianquant.github.io/typequux/Understanding+Constraints.html). 
 
 In this example, the encoded invariant is that given an index (`ValueHash`) and an object of type `R`, the value at the index position should be a `String`. 
 **It should be stressed that this is achieved without using runtime reflection or structural types.**
@@ -283,7 +283,7 @@ scala> implicitly[True Eqv True =:= True]
 res24: =:=[typequux.Bool.Eqv[typequux.typequux.True,typequux.typequux.True],typequux.typequux.True] = <function1>
 ```
 
-These type constructors can be used to prove properties about other constructs. For example, total order transitivity of [dense numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html):
+These type constructors can be used to prove properties about other constructs. For example, total order transitivity of [dense numbers](https://simianquant.github.io/typequux/Dense+Numbers.html):
 
 
 ```scala 
@@ -366,7 +366,7 @@ Church booleans can be shown to satisfy the following laws:
 Peano Numbers
 -------------
 
-Many typelevel constructs like [heterogenous lists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html) (an in the case of this library, also [type sets](https://harshad-deo.github.io/typequux/Type+Sets.html), [type maps](https://harshad-deo.github.io/typequux/Type+Maps.html), [literal singleton types](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. Peano numbers are the simplest encodings of natural numbers - a numeric type is either 0 or a successor of another. 
+Many typelevel constructs like [heterogenous lists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html) (an in the case of this library, also [type sets](https://simianquant.github.io/typequux/Type+Sets.html), [type maps](https://simianquant.github.io/typequux/Type+Maps.html), [literal singleton types](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. Peano numbers are the simplest encodings of natural numbers - a numeric type is either 0 or a successor of another. 
 
 ```scala
 sealed trait Nat 
@@ -387,7 +387,7 @@ object Nat {
 }
 ```
 
-Finding the successor or the predecessor is a constant time operation for peano numbers which is why they are often used as indexers. However, they are cumbersome to construct (since every preceding number needs to be constructed first) and every other operation requires linear time or worse. This makes them unsuitable for most of the more complex constructs included in the library, which is why typequux exclusively uses [dense numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html). A rich implementation of Peano numbers is provided nonetheless because it is an important primitive that may find utility in the code that you write. 
+Finding the successor or the predecessor is a constant time operation for peano numbers which is why they are often used as indexers. However, they are cumbersome to construct (since every preceding number needs to be constructed first) and every other operation requires linear time or worse. This makes them unsuitable for most of the more complex constructs included in the library, which is why typequux exclusively uses [dense numbers](https://simianquant.github.io/typequux/Dense+Numbers.html). A rich implementation of Peano numbers is provided nonetheless because it is an important primitive that may find utility in the code that you write. 
 
 The type constructers that are a part of the `Nat` trait are unlikely to be useful in practice. The companion object provided type constructors that implement common operations. Supported operations are:
 
@@ -531,7 +531,7 @@ Peano numbers can be shown to satisfy:
 Dense Numbers
 -------------
 
-Many typelevel constructs like [heterogenous lists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html) (and in this library, also [type sets](https://harshad-deo.github.io/typequux/Type+Sets.html), [type maps](https://harshad-deo.github.io/typequux/Type+Maps.html), [literal singleton types](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. While [Peano numbers](https://harshad-deo.github.io/typequux/Peano+Numbers.html) are simple, their construction is too cumbersome and performance too poor for them to be suitable for most of the more complex constructs provided by the library.
+Many typelevel constructs like [heterogenous lists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html) (and in this library, also [type sets](https://simianquant.github.io/typequux/Type+Sets.html), [type maps](https://simianquant.github.io/typequux/Type+Maps.html), [literal singleton types](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. While [Peano numbers](https://simianquant.github.io/typequux/Peano+Numbers.html) are simple, their construction is too cumbersome and performance too poor for them to be suitable for most of the more complex constructs provided by the library.
 
 Functionally, dense numbers encode a numeric type in binary. A number is either 0 or a heterogenous list of digits. For non zero numbers, the `head` of the list is the least significant bit and the last element is always `1`. 
 
@@ -920,10 +920,10 @@ Dense sets can be shown to satisfy:
 3. Union Associativity: `True =:= Eq[Union[X, Union[Y, Z]], Union[Union[X, Y], Z]]`
 
 ### See Also
-* [Church Booleans](https://harshad-deo.github.io/typequux/Church+Encoding+of+Booleans.html)
-* [Dense Numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html)
-* [Type Maps](https://harshad-deo.github.io/typequux/Type+Maps.html)
-* [Singleton Types for Literals](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html)
+* [Church Booleans](https://simianquant.github.io/typequux/Church+Encoding+of+Booleans.html)
+* [Dense Numbers](https://simianquant.github.io/typequux/Dense+Numbers.html)
+* [Type Maps](https://simianquant.github.io/typequux/Type+Maps.html)
+* [Singleton Types for Literals](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html)
 Type Maps
 ---------
 
@@ -1050,9 +1050,9 @@ Since the specific type signature of a dense map depends on the path by which it
 In the library, DenseMaps are used as backing datastructures for StringIndexedCollections and Records.
 
 ### See Also
-* [Type Sets](https://harshad-deo.github.io/typequux/Type+Sets.html)
-* [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
-* [Records](https://harshad-deo.github.io/typequux/Records.html)
+* [Type Sets](https://simianquant.github.io/typequux/Type+Sets.html)
+* [StringIndexedCollections](https://simianquant.github.io/typequux/String+Indexed+Collections.html)
+* [Records](https://simianquant.github.io/typequux/Records.html)
 Natural Transformations
 -----------------------
 
@@ -1836,8 +1836,8 @@ res109: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
 ```
 
 ### See also
-* [Records](https://harshad-deo.github.io/typequux/Records.html)
-* [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html)
+* [Records](https://simianquant.github.io/typequux/Records.html)
+* [Constraints](https://simianquant.github.io/typequux/Understanding+Constraints.html)
 
 Tuple Ops
 ---------
@@ -2299,15 +2299,15 @@ res99: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
 ```
 
 ### See also
-* [HLists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html)
-* [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html)
+* [HLists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html)
+* [Constraints](https://simianquant.github.io/typequux/Understanding+Constraints.html)
 
 
 
 Sized Vectors
 -------------
 
-SizedVectors are vectors with statically known sizes. They differ from [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
+SizedVectors are vectors with statically known sizes. They differ from [StringIndexedCollections](https://simianquant.github.io/typequux/String+Indexed+Collections.html)
 in that they are sequentially indexed by an integer rather than by a string. Therefore, they are like tuples in which each element has the same type. 
 
 The indices are 0-based and indexation can begin on the left or the right. The type signatures for SizedVectors can be quite 
@@ -2557,7 +2557,7 @@ String indexed collections are similar to immutable associative maps between str
 of the same type. They differ from standard collections like `Map` in that the presence or absence of a key can be 
 guarenteed at compile time. 
 
-String Indexed collections use a [TypeMap](https://harshad-deo.github.io/typequux/Type+Maps.html) to store the keys and their association
+String Indexed collections use a [TypeMap](https://simianquant.github.io/typequux/Type+Maps.html) to store the keys and their association
 and scala `Vectors` to store the values. The type signatures for StringIndexedCollections can be quite complicated and 
 are not terribly informative. For clarity, they are replaced below by `\**\`. Supported operations are:
 
@@ -2649,8 +2649,8 @@ Records are similar to immutable associative maps between strings and values exc
 
 * They preserve the specific type of all the values
 
-Therefore, in a way, they are like ad-hoc classes. Records use a [TypeMap](https://harshad-deo.github.io/typequux/Type+Maps.html) to store the 
-keys and their association and a [HList](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html) to store the values. 
+Therefore, in a way, they are like ad-hoc classes. Records use a [TypeMap](https://simianquant.github.io/typequux/Type+Maps.html) to store the 
+keys and their association and a [HList](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html) to store the values. 
 The type signatures for records can be quite complicated and are not terribly informative. For clarity, they are replaced below by `/**/`.
 Supported operations are:
 
