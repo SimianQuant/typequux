@@ -90,7 +90,6 @@ lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform)
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
   .jsSettings(
-    scalaJSStage in Test := FullOptStage,
     coverageExcludedPackages := ".*"
   )
   .dependsOn(typequux)
