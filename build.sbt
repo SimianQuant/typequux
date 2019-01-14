@@ -34,38 +34,32 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform)
   .settings(commonSettings("typequux"))
   .settings(
     previewLaunchBrowser := false,
-    publishMavenStyle := true,
-    publishArtifact in Test := false,
+    scmInfo := Some(
+      ScmInfo(
+        url("https://github.com/SimianQuant/typequux"),
+        "scm:git@github.com:SimianQuant/typequux.git"
+      )
+    ),
+    developers := List(
+      Developer(
+        id = "harshad-deo",
+        name = "Harshad Deo",
+        email = "harshad@simianquant.com",
+        url = url("https://github.com/harshad-deo")
+      )
+    ),
+    description := "A hackable library for typelevel programming in Scala",
+    licenses := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt")),
+    homepage := Some(url("https://github.com/SimianQuant/typequux")),
+    pomIncludeRepository := { _ =>
+      false
+    },
     publishTo := {
       val nexus = "https://oss.sonatype.org/"
       if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
       else Some("releases" at nexus + "service/local/staging/deploy/maven2")
     },
-    pomIncludeRepository := { _ =>
-      false
-    },
-    pomExtra := (
-      <url>https://harshad-deo.github.io/typequux/TypeQuux.html</url>
-      <licenses>
-        <license>
-          <name>Apache-2</name>
-          <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-          <distribution>repo</distribution>
-        </license>
-      </licenses>
-      <scm>
-        <connection>scm:git:git@github.com:harshad-deo/typequux.git</connection>
-        <developerConnection>scm:git:git@github.com:harshad-deo/typequux.git</developerConnection>
-        <url>git@github.com:harshad-deo/typequux.git</url>
-      </scm>
-      <developers>
-        <developer>
-          <id>harshad-deo</id>
-          <name>Harshad Deo</name>
-          <url>https://github.com/harshad-deo</url>
-        </developer>
-      </developers>
-    )
+    publishMavenStyle := true
   )
   .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
