@@ -10,7 +10,7 @@ def commonSettings(nameStr: String) = Seq(
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
   ),
-  wartremoverErrors ++= Seq(
+  wartremoverErrors in (Compile, compile) ++= Seq(
     Wart.ArrayEquals,
     Wart.Any,
     Wart.AnyVal,
