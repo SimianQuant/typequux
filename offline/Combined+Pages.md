@@ -28,8 +28,8 @@ Here are two quick examples to illustrate the look, feel and abilities of the AP
 scala> import typequux._ // importing the package
 import typequux._
 
-scala> import typequux._ // importing the package object
-import typequux._
+scala> import Typequux._ // importing the package object
+import Typequux._
 
 scala> import constraint._ // importing the constraints API
 import constraint._
