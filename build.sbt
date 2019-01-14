@@ -3,6 +3,7 @@ import sbtcrossproject.{crossProject, CrossType}
 def commonSettings(nameStr: String) = Seq(
   name := nameStr,
   organization := "com.simianquant",
+  organizationHomepage := Some(url("https://simianquant.com/")),
   version := Settings.versions.project,
   scalaVersion := Settings.versions.scala,
   crossScalaVersions := Settings.crossScalaVersions,
