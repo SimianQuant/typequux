@@ -63,15 +63,6 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform)
     )
   )
   .jvmSettings(commonJVMSettings)
-  .jvmSettings(
-    initialCommands := """|class Witness1[T](val x: T)
-                          |object Witness1{
-                          |  def apply[T](x: T): Witness1[T] = new Witness1(x)
-                          |}
-                          |class Witness2[T]
-                          |import typequux._
-                          |import Typequux._""".stripMargin
-  )
   .jsSettings(commonJSSettings)
 
 lazy val typequuxJVM = typequux.jvm
