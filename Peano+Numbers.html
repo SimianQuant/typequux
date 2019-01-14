@@ -99,8 +99,8 @@ res13: =:=[typequux.Nat.Fact[typequux.Nat._1],typequux.Nat._1] = &lt;function1&g
 
 scala&gt; implicitly[Fact[_3] =:= _6]
 res14: =:=[typequux.Nat.Fact[typequux.Nat._3],typequux.Nat._6] = &lt;function1&gt;
-</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package object, for True, False
-import typequux._
+</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import Typequux._ // useful imports for True, False
+import Typequux._
 
 scala&gt; implicitly[_0 &lt; _3 =:= True]
 res15: =:=[typequux.Nat.&lt;[typequux.Nat._0,typequux.Nat._3],typequux.True] = &lt;function1&gt;

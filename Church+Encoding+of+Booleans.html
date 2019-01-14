@@ -56,8 +56,8 @@ trait False extends Bool {
 </p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; type Rep[B &lt;: Bool] = B#If[Int, String, Any]
 defined type alias Rep

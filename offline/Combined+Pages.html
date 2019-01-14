@@ -58,7 +58,7 @@ collected wisdom on type-hackery in scala.
 </p><h2 id="Constraints+help+you+abstract+over+structure">Constraints help you abstract over structure<a href="#Constraints+help+you+abstract+over+structure" class="header-link"><span class="header-link-content">&nbsp;</span></a></h2><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // importing the package
 import typequux._
 
-scala&gt; import Typequux._ // importing the package object
+scala&gt; import Typequux._ // useful default types
 import Typequux._
 
 scala&gt; import constraint._ // importing the constraints API
@@ -164,8 +164,8 @@ trait False extends Bool {
 </p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; type Rep[B &lt;: Bool] = B#If[Int, String, Any]
 defined type alias Rep
@@ -350,8 +350,8 @@ res13: =:=[typequux.Nat.Fact[typequux.Nat._1],typequux.Nat._1] = &lt;function1&g
 
 scala&gt; implicitly[Fact[_3] =:= _6]
 res14: =:=[typequux.Nat.Fact[typequux.Nat._3],typequux.Nat._6] = &lt;function1&gt;
-</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package object, for True, False
-import typequux._
+</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import Typequux._ // useful imports for True, False
+import Typequux._
 
 scala&gt; implicitly[_0 &lt; _3 =:= True]
 res15: =:=[typequux.Nat.&lt;[typequux.Nat._0,typequux.Nat._3],typequux.True] = &lt;function1&gt;
@@ -495,8 +495,8 @@ res22: /**/ = &lt;function1&gt;
 
 scala&gt; implicitly[_2 ^ _4 =:= _16]
 res23: /**/ = &lt;function1&gt;
-</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package object, for True and False
-import typequux._
+</code></pre><h4 id="Comparators">Comparators<a href="#Comparators" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import Typequux._ // useful imports for True and False
+import Typequux._
 
 scala&gt; implicitly[_0 &lt; _3 =:= True]
 res26: /**/ = &lt;function1&gt;
@@ -571,9 +571,9 @@ res42: Int = 64
 trait EmptyDenseSet extends DenseSet
 trait NonEmptyDenseSet[V &lt;: Dense, L &lt;: DenseSet, R &lt;: DenseSet] extends DenseSet
 </code></pre><p>You can use the type constructors that are a part of the DenseSet trait or (more conveniently), use the aliases defined in the companion object. Supported operations are: 
-</p><h4 id="Include">Include<a href="#Include" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import typequux._, import Dense._; import DenseSet._
+</p><h4 id="Include">Include<a href="#Include" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import Typequux._; import Dense._; import DenseSet._
 import typequux._
-import typequux._
+import Typequux._
 import Dense._
 import DenseSet._
 
@@ -673,9 +673,9 @@ res26: =:=[typequux.DenseSet.Eq[Eqv1,Eqv2],typequux.True] = &lt;function1&gt;
 trait EmptyDenseMap extends DenseMap
 trait NonEmptyDenseMap[KT &lt;: Dense, VT, L &lt;: DenseMap, R &lt;: DenseMap] extends DenseMap
 </code></pre><p>You can use the type constructors that are a part of the DenseMap trait or (more conveniently), use the aliases defined in the companion object. Supported operations are: 
-</p><h4 id="Add">Add<a href="#Add" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import typequux._; import Dense._; import DenseMap._
+</p><h4 id="Add">Add<a href="#Add" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import Typequux._; import Dense._; import DenseMap._
 import typequux._
-import typequux._
+import Typequux._
 import Dense._
 import DenseMap._
 
@@ -762,8 +762,8 @@ used to produce the documentation, the names of anonymous classes are replaced b
 </p><h4 id="Construction">Construction<a href="#Construction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; val singletonList = new (Id ~&gt; List){override def apply[T](t: T) = List(t)}
 singletonList: typequux.~&gt;[typequux.typequux.Id,List] = /**/
@@ -814,8 +814,8 @@ this is often pragmatically preferrable to the code breaking at runtime.
 </p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; implicitly[Contained[Int, Int :+: HNil]]
 res0: typequux.Contained[Int,typequux.typequux.:+:[Int,typequux.typequux.HNil]] = typequux.Contained@17a63316
@@ -929,8 +929,8 @@ res5: Long = 28
 </p><h4 id="Covariance">Covariance<a href="#Covariance" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; type LT = String :+: AnyVal :+: AnyRef :+: Traversable[_] :+: Option[Int] :+: HNil
 defined type alias LT
@@ -1685,8 +1685,8 @@ complicated and are not terribly informative. For clarity, they are replaced bel
 </p><h4 id="Construction">Construction<a href="#Construction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; val sz1 = SizedVector(1, 2, 3)
 sz1: /**/ = SizedVector(1, 2, 3)
@@ -1854,8 +1854,8 @@ are not terribly informative. For clarity, they are replaced below by <code>\**\
 </p><h4 id="Construction">Construction<a href="#Construction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; val pl1 = SINil.add(&quot;goku&quot;, 32000).add(&quot;piccolo&quot;, 3500).add(&quot;krillin&quot;, 1770)
 pl1: /**/
@@ -1909,8 +1909,8 @@ Supported operations are:
 </p><h4 id="Construction">Construction<a href="#Construction" class="header-link"><span class="header-link-content">&nbsp;</span></a></h4><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; val r1 = RNil.add(&quot;name&quot;, &quot;goku&quot;).add(&quot;powerlevel&quot;, 8000).add(&quot;friends&quot;, List(&quot;krillin&quot;, &quot;yamcha&quot;, &quot;bulma&quot;))
 r1: /**/
@@ -2015,9 +2015,9 @@ with TypeQuux and play the major role in supporting the claim that the library i
 enforced by convention, but are consistent in the default implementations for <code>TakeConstraint</code> that ship with the library. 
 </p><p>If you leave all three type parameters unconstrained, the code will compile for all types for which such a constraint can be satisfied, 
 regardless of arity or the specific primitive. 
-</p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import typequux._; import TupleOps._; import constraint._
+</p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._; import Typequux._; import TupleOps._; import constraint._
 import typequux._
-import typequux._
+import Typequux._
 import TupleOps._
 import constraint._
 

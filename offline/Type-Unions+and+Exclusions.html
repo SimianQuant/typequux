@@ -48,8 +48,8 @@ this is often pragmatically preferrable to the code breaking at runtime.
 </p><pre><code class="prettyprint lang-scala">scala&gt; import typequux._ // package
 import typequux._
 
-scala&gt; import typequux._ // package object
-import typequux._
+scala&gt; import Typequux._ // useful imports
+import Typequux._
 
 scala&gt; implicitly[Contained[Int, Int :+: HNil]]
 res0: typequux.Contained[Int,typequux.typequux.:+:[Int,typequux.typequux.HNil]] = typequux.Contained@17a63316

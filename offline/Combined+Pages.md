@@ -28,7 +28,7 @@ Here are two quick examples to illustrate the look, feel and abilities of the AP
 scala> import typequux._ // importing the package
 import typequux._
 
-scala> import Typequux._ // importing the package object
+scala> import Typequux._ // useful default types
 import Typequux._
 
 scala> import constraint._ // importing the constraints API
@@ -176,8 +176,8 @@ The usage is pretty straightforward
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> type Rep[B <: Bool] = B#If[Int, String, Any]
 defined type alias Rep
@@ -453,8 +453,8 @@ res14: =:=[typequux.Nat.Fact[typequux.Nat._3],typequux.Nat._6] = <function1>
 #### Comparators
 
 ```scala
-scala> import typequux._ // package object, for True, False
-import typequux._
+scala> import Typequux._ // useful imports for True, False
+import Typequux._
 
 scala> implicitly[_0 < _3 =:= True]
 res15: =:=[typequux.Nat.<[typequux.Nat._0,typequux.Nat._3],typequux.True] = <function1>
@@ -672,8 +672,8 @@ res23: /**/ = <function1>
 #### Comparators
 
 ```scala
-scala> import typequux._ // package object, for True and False
-import typequux._
+scala> import Typequux._ // useful imports for True and False
+import Typequux._
 
 scala> implicitly[_0 < _3 =:= True]
 res26: /**/ = <function1>
@@ -791,9 +791,9 @@ You can use the type constructors that are a part of the DenseSet trait or (more
 #### Include
 
 ```scala
-scala> import typequux._; import typequux._, import Dense._; import DenseSet._
+scala> import typequux._; import Typequux._; import Dense._; import DenseSet._
 import typequux._
-import typequux._
+import Typequux._
 import Dense._
 import DenseSet._
 
@@ -940,9 +940,9 @@ You can use the type constructors that are a part of the DenseMap trait or (more
 #### Add
 
 ```scala
-scala> import typequux._; import typequux._; import Dense._; import DenseMap._
+scala> import typequux._; import Typequux._; import Dense._; import DenseMap._
 import typequux._
-import typequux._
+import Typequux._
 import Dense._
 import DenseMap._
 
@@ -1078,8 +1078,8 @@ Supported operations are:
 scala> import typequux._; // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val singletonList = new (Id ~> List){override def apply[T](t: T) = List(t)}
 singletonList: typequux.~>[typequux.typequux.Id,List] = /**/
@@ -1151,8 +1151,8 @@ Type unions can be used to guarentee that a given type is a member of the suppli
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> implicitly[Contained[Int, Int :+: HNil]]
 res0: typequux.Contained[Int,typequux.typequux.:+:[Int,typequux.typequux.HNil]] = typequux.Contained@17a63316
@@ -1306,8 +1306,8 @@ The type signatures for hlists can be quite long and are not terribly informativ
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> type LT = String :+: AnyVal :+: AnyRef :+: Traversable[_] :+: Option[Int] :+: HNil
 defined type alias LT
@@ -2321,8 +2321,8 @@ The common feature of the supported operations is that the size information is p
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val sz1 = SizedVector(1, 2, 3)
 sz1: /**/ = SizedVector(1, 2, 3)
@@ -2567,8 +2567,8 @@ are not terribly informative. For clarity, they are replaced below by `\**\`. Su
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val pl1 = SINil.add("goku", 32000).add("piccolo", 3500).add("krillin", 1770)
 pl1: /**/
@@ -2660,8 +2660,8 @@ Supported operations are:
 scala> import typequux._ // package
 import typequux._
 
-scala> import typequux._ // package object
-import typequux._
+scala> import Typequux._ // useful imports
+import Typequux._
 
 scala> val r1 = RNil.add("name", "goku").add("powerlevel", 8000).add("friends", List("krillin", "yamcha", "bulma"))
 r1: /**/
@@ -2812,9 +2812,9 @@ If you leave all three type parameters unconstrained, the code will compile for 
 regardless of arity or the specific primitive. 
 
 ```scala
-scala> import typequux._; import typequux._; import TupleOps._; import constraint._
+scala> import typequux._; import Typequux._; import TupleOps._; import constraint._
 import typequux._
-import typequux._
+import Typequux._
 import TupleOps._
 import constraint._
 
