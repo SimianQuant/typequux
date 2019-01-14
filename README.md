@@ -21,7 +21,7 @@ To use, add the following line to your `build.sbt` file:
 
 ```scala
 libraryDependencies += "com.simianquant" %% "typequux" % "0.7.2" // scala-jvm
-libraryDependencies += "com.simianquant" %%% "typequux" % "0.7.2" // native/scala-js/cross
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.7.2" // scala-js/cross
 ```
 
 Currently, 2.11 and 2.12 binaries are supported. 
@@ -43,6 +43,10 @@ Currently supported primitives are:
 13. [Records](https://harshad-deo.github.io/typequux/Records.html), which are like adhoc classes
 14. [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html), that allow you to abstract over arity and structure
 
+## Changelog
+
+### 0.8.0
+1. Drop support for Scala Native
 
 ## License
 

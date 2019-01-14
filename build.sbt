@@ -27,17 +27,7 @@ lazy val commonJSSettings = List(
   coverageExcludedPackages := ".*"
 )
 
-lazy val commonNativeSettings = List(
-  nativeMode := "release",
-  coverageExcludedPackages := ".*",
-  scalaVersion := "2.11.11",
-  crossScalaVersions -= Settings.versions.scala
-)
-
-lazy val publishLocalCross = taskKey[Unit]("Publishes library locally for all scala versions")
-lazy val publishSignedCross = taskKey[Unit]("Publishes library signed for all scala versions")
-
-lazy val typequux = crossProject(JVMPlatform, JSPlatform, NativePlatform)
+lazy val typequux = crossProject(JVMPlatform, JSPlatform)
   .crossType(CrossType.Pure)
   .in(file("typequux"))
   .settings(commonSettings("typequux"))
@@ -80,86 +70,33 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform, NativePlatform)
                           |}
                           |class Witness2[T]
                           |import typequux._
-                          |import Typequux._""".stripMargin,
-    publishLocalCross := {
-      runCommandAndRemaining("+typequuxJVM/publishLocal")(state.value)
-    },
-    publishSignedCross := {
-      runCommandAndRemaining("+typequuxJVM/publishSigned")(state.value)
-    }
+                          |import Typequux._""".stripMargin
   )
   .jsSettings(commonJSSettings)
-  .jsSettings(
-    publishLocalCross := {
-      runCommandAndRemaining("+typequuxJS/publishLocal")(state.value)
-    },
-    publishSignedCross := {
-      runCommandAndRemaining("+typequuxJS/publishSigned")(state.value)
-    }
-  )
-  .nativeSettings(commonNativeSettings)
-  .nativeSettings(
-    publishSignedCross := {
-      runCommandAndRemaining("typequuxNative/publishSigned")(state.value)
-    }
-  )
 
 lazy val typequuxJVM = typequux.jvm
 lazy val typequuxJS = typequux.js
-lazy val typequuxNative = typequux.native
-
-// taken from https://stackoverflow.com/questions/40741244/in-sbt-how-to-execute-a-command-in-task
-def runCommandAndRemaining(command: String): State => State = { st: State =>
-  import sbt.complete.Parser
-  @annotation.tailrec
-  def runCommand(command: String, state: State): State = {
-    val nextState = Parser.parse(command, state.combinedParser) match {
-      case Right(cmd) => cmd()
-      case Left(msg)  => throw sys.error(s"Invalid programmatic input:\n$msg")
-    }
-    nextState.remainingCommands.toList match {
-      case Nil          => nextState
-      case head :: tail => runCommand(head, nextState.copy(remainingCommands = tail))
-    }
-  }
-  runCommand(command, st.copy(remainingCommands = Nil)).copy(remainingCommands = st.remainingCommands)
-}
-
-lazy val crossTest = taskKey[Unit]("Test library against all scala versions")
 
 lazy val jvmJSTestSettings = Seq(
-  libraryDependencies += "org.scalatest" %%% "scalatest" % Settings.versions.scalaTest % Test,
-  testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
-)
-
-lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform, NativePlatform)
-  .in(file("typequuxtests"))
-  .settings(commonSettings("typequuxtests"))
-  .jvmSettings(commonJVMSettings)
-  .jvmSettings(jvmJSTestSettings)
-  .jvmSettings(
-    (crossTest in Test) := {
-      runCommandAndRemaining("+typequuxtestsJVM/test")(state.value)
-    }
   )
+
+lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform)
+  .in(file("typequuxtests"))
+  .settings(
+    commonSettings("typequuxtests"),
+    libraryDependencies += "org.scalatest" %%% "scalatest" % Settings.versions.scalaTest % Test,
+    testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
+  )
+  .jvmSettings(commonJVMSettings)
   .jsSettings(commonJSSettings)
-  .jsSettings(jvmJSTestSettings)
   .jsSettings(
     scalaJSStage in Test := FullOptStage,
-    coverageExcludedPackages := ".*",
-    (crossTest in Test) := {
-      runCommandAndRemaining("+typequuxtestsJS/test")(state.value)
-    }
-  )
-  .nativeSettings(commonNativeSettings)
-  .nativeSettings(
     coverageExcludedPackages := ".*"
   )
   .dependsOn(typequux)
 
 lazy val typequuxtestsJVM = typequuxtests.jvm
 lazy val typequuxtestsJS = typequuxtests.js
-lazy val typequuxtestsNative = typequuxtests.native
 
 lazy val cleanAll = taskKey[Unit]("Cleans everything")
 lazy val testJVMJS = taskKey[Unit]("Tests JVM and JS")
@@ -171,7 +108,7 @@ lazy val publishLibSigned = taskKey[Unit]("Publishes the library signed")
 lazy val Typequux = config("typequuxJVM")
 
 lazy val releaseCommand = Command.command("release") { state =>
-  "publishLibSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
+  "+typequuxJVM/publishSigned" :: "+typequuxJS/publishSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
 }
 
 lazy val root = project
@@ -186,50 +123,24 @@ lazy val root = project
 
           clean.in(typequuxJS).value
           clean.in(typequuxtestsJS).value
-
-          clean.in(typequuxNative).value
-          clean.in(typequuxtestsNative).value
-        },
-        testJVMJS := {
-          crossTest.in(typequuxtestsJVM, Test).value
-          crossTest.in(typequuxtestsJS, Test).value
         },
         testAll := {
-          testJVMJS.value
-          test.in(typequuxtestsNative, Test).value
+          test.in(typequuxtestsJVM, Test).value
+          test.in(typequuxtestsJS, Test).value
         },
         buildCoverage := Def
           .sequential(
-            clean in typequuxJVM,
-            clean in typequuxtestsJVM,
-            test in (typequuxtestsJVM, Test),
-            coverageReport in typequuxJVM
-          )
-          .value,
-        publishLibLocal := Def
-          .sequential(
-            cleanAll,
-            testAll,
-            publishLocalCross in typequuxJVM,
-            publishLocalCross in typequuxJS,
-            publishLocal in typequuxNative
-          )
-          .value,
-        publishLibSigned := Def
-          .sequential(
-            cleanAll,
-            testAll,
-            publishSignedCross in typequuxJVM,
-            publishSignedCross in typequuxJS,
-            publishSignedCross in typequuxNative // dunno why normal publish signed is not working
+            clean.in(typequuxJVM),
+            clean.in(typequuxtestsJVM),
+            test.in(typequuxtestsJVM, Test),
+            coverageReport.in(typequuxJVM)
           )
           .value,
         commands += releaseCommand
       ))
   )
-  .enablePlugins(SiteScaladocPlugin, PamfletPlugin)
+  .enablePlugins(SiteScaladocPlugin, PamfletPlugin, GhpagesPlugin)
   .settings(
     SiteScaladocPlugin.scaladocSettings(Typequux, mappings in (Compile, packageDoc) in typequuxJVM, "api"),
-    ghpages.settings,
     git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
   )
