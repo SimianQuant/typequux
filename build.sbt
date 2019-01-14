@@ -10,27 +10,6 @@ def commonSettings(nameStr: String) = Seq(
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
   ),
-  wartremoverErrors in (Compile, compile) ++= Seq(
-    Wart.ArrayEquals,
-    Wart.Any,
-    Wart.AnyVal,
-    Wart.EitherProjectionPartial,
-    Wart.Enumeration,
-    Wart.Equals,
-    Wart.ExplicitImplicitTypes,
-    Wart.JavaConversions,
-    Wart.JavaSerializable,
-    Wart.Null,
-    Wart.Option2Iterable,
-    Wart.OptionPartial,
-    Wart.Product,
-    Wart.PublicInference,
-    Wart.Return,
-    Wart.Serializable,
-    Wart.StringPlusAny,
-    Wart.Throw,
-    Wart.TryPartial
-  ),
   scalacOptions in (Compile) ++= Settings.commonScalacOptions(scalaVersion.value),
   scalacOptions in (Compile, doc) ++= Settings.scalacDocOptions
 )
