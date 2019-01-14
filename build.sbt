@@ -99,11 +99,8 @@ lazy val typequuxtestsJVM = typequuxtests.jvm
 lazy val typequuxtestsJS = typequuxtests.js
 
 lazy val cleanAll = taskKey[Unit]("Cleans everything")
-lazy val testJVMJS = taskKey[Unit]("Tests JVM and JS")
 lazy val testAll = taskKey[Unit]("Tests everything")
 lazy val buildCoverage = taskKey[Unit]("Generate coverage report")
-lazy val publishLibLocal = taskKey[Unit]("Publishes the library locally")
-lazy val publishLibSigned = taskKey[Unit]("Publishes the library signed")
 
 lazy val Typequux = config("typequuxJVM")
 
