@@ -12,8 +12,8 @@ Typelevel programming allows developers to encode several flavours of runtime in
 libraries that support typelevel programming tend to be poorly documented, difficult to understand and difficult to hack. This makes
 them hard to customize to the needs of a specific project/problem. 
 
-TypeQuux provides concise, efficient and easy-to-modify 
-implementations of several typelevel programming primitives. As such, it represents collected wisdom on type-hackery in scala. 
+TypeQuux provides concise, efficient and easy-to-modify  implementations of several typelevel programming primitives. As 
+such, it represents collected wisdom on type-hackery in scala. 
 
 To see what is possible, head on over to the [project site](https://harshad-deo.github.io/typequux/TypeQuux.html) or peruse through the [API](https://harshad-deo.github.io/typequux/api/typequux/index.html). You can see an indexed view of supported primitives and their operations [here](https://harshad-deo.github.io/typequux/Contents+in+Depth.html). 
 
