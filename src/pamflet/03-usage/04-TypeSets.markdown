@@ -143,7 +143,7 @@ Dense sets can be shown to satisfy:
 3. Union Associativity: `True =:= Eq[Union[X, Union[Y, Z]], Union[Union[X, Y], Z]]`
 
 ### See Also
-* [Church Booleans](https://harshad-deo.github.io/typequux/Church+Encoding+of+Booleans.html)
-* [Dense Numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html)
-* [Type Maps](https://harshad-deo.github.io/typequux/Type+Maps.html)
-* [Singleton Types for Literals](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html)
+* [Church Booleans](https://simianquant.github.io/typequux/Church+Encoding+of+Booleans.html)
+* [Dense Numbers](https://simianquant.github.io/typequux/Dense+Numbers.html)
+* [Type Maps](https://simianquant.github.io/typequux/Type+Maps.html)
+* [Singleton Types for Literals](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html)

@@ -541,5 +541,5 @@ res109: List[Option[Object]] = List(Some(foo), Some(Set(1, 2, 3)), None)
 ```
 
 ### See also
-* [Records](https://harshad-deo.github.io/typequux/Records.html)
-* [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html)
+* [Records](https://simianquant.github.io/typequux/Records.html)
+* [Constraints](https://simianquant.github.io/typequux/Understanding+Constraints.html)

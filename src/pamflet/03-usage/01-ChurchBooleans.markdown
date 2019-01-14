@@ -129,7 +129,7 @@ scala> implicitly[True Eqv True =:= True]
 res24: =:=[typequux.Bool.Eqv[typequux.typequux.True,typequux.typequux.True],typequux.typequux.True] = <function1>
 ```
 
-These type constructors can be used to prove properties about other constructs. For example, total order transitivity of [dense numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html):
+These type constructors can be used to prove properties about other constructs. For example, total order transitivity of [dense numbers](https://simianquant.github.io/typequux/Dense+Numbers.html):
 
 
 ```scala 

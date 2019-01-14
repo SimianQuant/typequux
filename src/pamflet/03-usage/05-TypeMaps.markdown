@@ -124,6 +124,6 @@ Since the specific type signature of a dense map depends on the path by which it
 In the library, DenseMaps are used as backing datastructures for StringIndexedCollections and Records.
 
 ### See Also
-* [Type Sets](https://harshad-deo.github.io/typequux/Type+Sets.html)
-* [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
-* [Records](https://harshad-deo.github.io/typequux/Records.html)
+* [Type Sets](https://simianquant.github.io/typequux/Type+Sets.html)
+* [StringIndexedCollections](https://simianquant.github.io/typequux/String+Indexed+Collections.html)
+* [Records](https://simianquant.github.io/typequux/Records.html)

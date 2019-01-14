@@ -21,11 +21,11 @@ atExample: [R](i: typequux.LiteralHash[_], r: R)(implicit ev: typequux.constrain
 
 A `LiteralHash[T]` is an encapsulation of the singleton type associated with a literal of type `T`. The `ValueHash` is the 
 singleton type associated with the value of the literal. The companion object for `LiteralHash` containt implicit converters
-to build the objects from the regular literals. You can find out more [here](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html).
+to build the objects from the regular literals. You can find out more [here](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html).
 
-Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html), [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html) and [Records](https://harshad-deo.github.io/typequux/Records.html) (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
+Constraints are typeclasses that abstract over specific typelevel datastructures like [HLists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html), [StringIndexedCollections](https://simianquant.github.io/typequux/String+Indexed+Collections.html) and [Records](https://simianquant.github.io/typequux/Records.html) (and also programming techniques like structural induction) to encode the invariants associated with the problem. 
 They are called constraints because one or more of the type parameters can be fixed to encode a specific condition. 
-You can find out more [here](https://harshad-deo.github.io/typequux/Understanding+Constraints.html). 
+You can find out more [here](https://simianquant.github.io/typequux/Understanding+Constraints.html). 
 
 In this example, the encoded invariant is that given an index (`ValueHash`) and an object of type `R`, the value at the index position should be a `String`. 
 **It should be stressed that this is achieved without using runtime reflection or structural types.**

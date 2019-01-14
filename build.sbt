@@ -128,5 +128,5 @@ lazy val root = project
   .enablePlugins(SiteScaladocPlugin, PamfletPlugin, GhpagesPlugin)
   .settings(
     SiteScaladocPlugin.scaladocSettings(Typequux, mappings in (Compile, packageDoc) in typequuxJVM, "api"),
-    git.remoteRepo := "git@github.com:harshad-deo/typequux.git"
+    git.remoteRepo := "git@github.com:simianquant/typequux.git"
   )

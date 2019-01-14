@@ -1,7 +1,7 @@
 Peano Numbers
 -------------
 
-Many typelevel constructs like [heterogenous lists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html) (an in the case of this library, also [type sets](https://harshad-deo.github.io/typequux/Type+Sets.html), [type maps](https://harshad-deo.github.io/typequux/Type+Maps.html), [literal singleton types](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. Peano numbers are the simplest encodings of natural numbers - a numeric type is either 0 or a successor of another. 
+Many typelevel constructs like [heterogenous lists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html) (an in the case of this library, also [type sets](https://simianquant.github.io/typequux/Type+Sets.html), [type maps](https://simianquant.github.io/typequux/Type+Maps.html), [literal singleton types](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. Peano numbers are the simplest encodings of natural numbers - a numeric type is either 0 or a successor of another. 
 
 ```scala
 sealed trait Nat 
@@ -22,7 +22,7 @@ object Nat {
 }
 ```
 
-Finding the successor or the predecessor is a constant time operation for peano numbers which is why they are often used as indexers. However, they are cumbersome to construct (since every preceding number needs to be constructed first) and every other operation requires linear time or worse. This makes them unsuitable for most of the more complex constructs included in the library, which is why typequux exclusively uses [dense numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html). A rich implementation of Peano numbers is provided nonetheless because it is an important primitive that may find utility in the code that you write. 
+Finding the successor or the predecessor is a constant time operation for peano numbers which is why they are often used as indexers. However, they are cumbersome to construct (since every preceding number needs to be constructed first) and every other operation requires linear time or worse. This makes them unsuitable for most of the more complex constructs included in the library, which is why typequux exclusively uses [dense numbers](https://simianquant.github.io/typequux/Dense+Numbers.html). A rich implementation of Peano numbers is provided nonetheless because it is an important primitive that may find utility in the code that you write. 
 
 The type constructers that are a part of the `Nat` trait are unlikely to be useful in practice. The companion object provided type constructors that implement common operations. Supported operations are:
 

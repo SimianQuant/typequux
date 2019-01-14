@@ -28,20 +28,20 @@ Currently, 2.11 and 2.12 binaries are supported.
 
 Currently supported primitives are:
 
-1. [Church encodings of booleans](https://harshad-deo.github.io/typequux/Church+Encoding+of+Booleans.html)
-2. [Peano numbers](https://harshad-deo.github.io/typequux/Peano+Numbers.html)
-3. [Dense numbers](https://harshad-deo.github.io/typequux/Dense+Numbers.html) (like peano numbers but **much** faster)
-4. [Type-Sets](https://harshad-deo.github.io/typequux/Type+Sets.html)
-5. [Type-Maps](https://harshad-deo.github.io/typequux/Type+Maps.html)
-6. [Natural Transformations](https://harshad-deo.github.io/typequux/Natural+Transformations.html)
-7. [Type Unions and Exclusions](https://harshad-deo.github.io/typequux/Type-Unions+and+Exclusions.html)
-8. [Singleton types for literals](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html)
-9. [Covariant heterogenous lists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html)
-10. [HList style operations on tuples](https://harshad-deo.github.io/typequux/Tuple+Ops.html)
-11. [Collections with statically known sizes](https://harshad-deo.github.io/typequux/Sized+Vectors.html)
-12. [Collections indexed by a string](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html), which are like associative maps with static guarantees
-13. [Records](https://harshad-deo.github.io/typequux/Records.html), which are like adhoc classes
-14. [Constraints](https://harshad-deo.github.io/typequux/Understanding+Constraints.html), that allow you to abstract over arity and structure
+1. [Church encodings of booleans](https://simianquant.github.io/typequux/Church+Encoding+of+Booleans.html)
+2. [Peano numbers](https://simianquant.github.io/typequux/Peano+Numbers.html)
+3. [Dense numbers](https://simianquant.github.io/typequux/Dense+Numbers.html) (like peano numbers but **much** faster)
+4. [Type-Sets](https://simianquant.github.io/typequux/Type+Sets.html)
+5. [Type-Maps](https://simianquant.github.io/typequux/Type+Maps.html)
+6. [Natural Transformations](https://simianquant.github.io/typequux/Natural+Transformations.html)
+7. [Type Unions and Exclusions](https://simianquant.github.io/typequux/Type-Unions+and+Exclusions.html)
+8. [Singleton types for literals](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html)
+9. [Covariant heterogenous lists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html)
+10. [HList style operations on tuples](https://simianquant.github.io/typequux/Tuple+Ops.html)
+11. [Collections with statically known sizes](https://simianquant.github.io/typequux/Sized+Vectors.html)
+12. [Collections indexed by a string](https://simianquant.github.io/typequux/String+Indexed+Collections.html), which are like associative maps with static guarantees
+13. [Records](https://simianquant.github.io/typequux/Records.html), which are like adhoc classes
+14. [Constraints](https://simianquant.github.io/typequux/Understanding+Constraints.html), that allow you to abstract over arity and structure
 
 ## Changelog
 

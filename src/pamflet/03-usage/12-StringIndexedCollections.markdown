@@ -5,7 +5,7 @@ String indexed collections are similar to immutable associative maps between str
 of the same type. They differ from standard collections like `Map` in that the presence or absence of a key can be 
 guarenteed at compile time. 
 
-String Indexed collections use a [TypeMap](https://harshad-deo.github.io/typequux/Type+Maps.html) to store the keys and their association
+String Indexed collections use a [TypeMap](https://simianquant.github.io/typequux/Type+Maps.html) to store the keys and their association
 and scala `Vectors` to store the values. The type signatures for StringIndexedCollections can be quite complicated and 
 are not terribly informative. For clarity, they are replaced below by `\**\`. Supported operations are:
 

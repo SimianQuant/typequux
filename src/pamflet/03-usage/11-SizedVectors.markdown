@@ -1,7 +1,7 @@
 Sized Vectors
 -------------
 
-SizedVectors are vectors with statically known sizes. They differ from [StringIndexedCollections](https://harshad-deo.github.io/typequux/String+Indexed+Collections.html)
+SizedVectors are vectors with statically known sizes. They differ from [StringIndexedCollections](https://simianquant.github.io/typequux/String+Indexed+Collections.html)
 in that they are sequentially indexed by an integer rather than by a string. Therefore, they are like tuples in which each element has the same type. 
 
 The indices are 0-based and indexation can begin on the left or the right. The type signatures for SizedVectors can be quite 

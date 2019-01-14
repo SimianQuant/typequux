@@ -1,7 +1,7 @@
 Dense Numbers
 -------------
 
-Many typelevel constructs like [heterogenous lists](https://harshad-deo.github.io/typequux/Covariant+Heterogenous+Lists.html) (and in this library, also [type sets](https://harshad-deo.github.io/typequux/Type+Sets.html), [type maps](https://harshad-deo.github.io/typequux/Type+Maps.html), [literal singleton types](https://harshad-deo.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. While [Peano numbers](https://harshad-deo.github.io/typequux/Peano+Numbers.html) are simple, their construction is too cumbersome and performance too poor for them to be suitable for most of the more complex constructs provided by the library.
+Many typelevel constructs like [heterogenous lists](https://simianquant.github.io/typequux/Covariant+Heterogenous+Lists.html) (and in this library, also [type sets](https://simianquant.github.io/typequux/Type+Sets.html), [type maps](https://simianquant.github.io/typequux/Type+Maps.html), [literal singleton types](https://simianquant.github.io/typequux/Singleton+Types+for+Literals.html) and other constructs derived from them) rely on an encoding of natural numbers at the type level. While [Peano numbers](https://simianquant.github.io/typequux/Peano+Numbers.html) are simple, their construction is too cumbersome and performance too poor for them to be suitable for most of the more complex constructs provided by the library.
 
 Functionally, dense numbers encode a numeric type in binary. A number is either 0 or a heterogenous list of digits. For non zero numbers, the `head` of the list is the least significant bit and the last element is always `1`. 
 
