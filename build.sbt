@@ -35,7 +35,7 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform)
     previewLaunchBrowser := false,
     publishMavenStyle := true,
     publishArtifact in Test := false,
-     publishTo := {
+    publishTo := {
       val nexus = "https://oss.sonatype.org/"
       if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
       else Some("releases" at nexus + "service/local/staging/deploy/maven2")
@@ -99,7 +99,7 @@ lazy val buildCoverage = taskKey[Unit]("Generate coverage report")
 lazy val Typequux = config("typequuxJVM")
 
 lazy val releaseCommand = Command.command("release") { state =>
-  "+typequuxJVM/publishSigned" :: "+typequuxJS/publishSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
+  "cleanAll" :: "+testAll" :: "+typequuxJVM/publishSigned" :: "+typequuxJS/publishSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
 }
 
 lazy val root = project
