@@ -20,7 +20,7 @@ scala:
 jdk:
   - oraclejdk8
 
-dist: precise
+dist: trusty
 
 script: 
   - sbt ++$TRAVIS_SCALA_VERSION testAll
