@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/SimianQuant/typequux.svg?branch=master)](https://travis-ci.org/SimianQuant/typequux)
 [![Build status](https://ci.appveyor.com/api/projects/status/kvi1jh1nh1l6k2u8?svg=true)](https://ci.appveyor.com/project/harshad-deo/typequux)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12)
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.15.svg)](https://www.scala-js.org)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.17.svg)](https://www.scala-js.org)
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a73e78adc99949b29a3ea55f0ee92a41)](https://www.codacy.com/app/subterranean-hominid/typequux?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=harshad-deo/typequux&amp;utm_campaign=Badge_Grade)
 [![Gitter](https://badges.gitter.im/harshad-deo/typequux.svg)](https://gitter.im/harshad-deo/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
