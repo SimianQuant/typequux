@@ -1,6 +1,6 @@
 object Settings {
   object versions {
-    val project: String = "0.8.0"
+    val project: String = "0.8.1-SNAPSHOT"
     val scala: String = "2.12.8"
     val scalaTest: String = "3.0.5"
   }
