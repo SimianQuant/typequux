@@ -48,6 +48,9 @@ Currently supported primitives are:
 ### 0.8.0
 1. Drop support for Scala Native
 
+### 0.8.1
+1. Add FalseConstraint
+
 ## License
 
 Copyright 2019 Harshad Deo
