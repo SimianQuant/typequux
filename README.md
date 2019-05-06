@@ -4,7 +4,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/7aspsw5t4f24xbbp?svg=true)](https://ci.appveyor.com/project/harshad-deo/typequux-8tp9g)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.17.svg)](https://www.scala-js.org)
-[![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/SimianQuant/typequux/badge.svg?branch=master)](https://coveralls.io/github/SimianQuant/typequux?branch=master)
 [![Scaladoc](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12) 
 [![Gitter](https://badges.gitter.im/SimianQuant/typequux.svg)](https://gitter.im/SimianQuant/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
