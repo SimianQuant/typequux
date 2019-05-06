@@ -18,8 +18,8 @@ To see what is possible, head on over to the [project site](https://simianquant.
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.8.0" // scala-jvm
-libraryDependencies += "com.simianquant" %%% "typequux" % "0.8.0" // scala-js/cross
+libraryDependencies += "com.simianquant" %% "typequux" % "0.8.1" // scala-jvm
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.8.1" // scala-js/cross
 ```
 
 Currently, 2.11 and 2.12 binaries are supported. 
