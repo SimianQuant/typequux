@@ -5,6 +5,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.17.svg)](https://www.scala-js.org)
 [![Coverage Status](https://coveralls.io/repos/github/harshad-deo/typequux/badge.svg?branch=master)](https://coveralls.io/github/harshad-deo/typequux?branch=master)
+[![Scaladoc](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12) 
 [![Gitter](https://badges.gitter.im/SimianQuant/typequux.svg)](https://gitter.im/SimianQuant/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Typelevel programming allows developers to encode several flavours of runtime invariants into the type system. Unfortunately, 
