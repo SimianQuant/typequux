@@ -1,5 +1,3 @@
-sudo: false
-
 cache:
   directories:
     - $HOME/.ivy2/cache
@@ -19,7 +17,7 @@ scala:
 jdk:
   - openjdk11
 
-dist: trusty
+dist: bionic
 
 script: 
   - sbt testAll
