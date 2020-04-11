@@ -49,7 +49,7 @@ object Contained {
 
     def processType(tp: Type) = tp match {
       case z: TypeRef => z.dealias
-      case _          => tp
+      case _ => tp
     }
 
     val tp1 = processType(implicitly[c.WeakTypeTag[A]].tpe)
@@ -57,7 +57,7 @@ object Contained {
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
       case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
-      case _             => Nil
+      case _ => Nil
     }
 
     val at = allTypes(tp2.typeArgs)
@@ -156,7 +156,7 @@ object SubType {
 
     def processType(tp: Type) = tp match {
       case z: TypeRef => z.dealias
-      case _          => tp
+      case _ => tp
     }
 
     val tp1 = processType(implicitly[c.WeakTypeTag[A]].tpe)
@@ -164,7 +164,7 @@ object SubType {
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
       case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
-      case _             => Nil
+      case _ => Nil
     }
 
     val at = allTypes(tp2.typeArgs)
@@ -255,7 +255,7 @@ object AllContained {
 
     def processType(tp: Type) = tp match {
       case z: TypeRef => z.dealias
-      case _          => tp
+      case _ => tp
     }
 
     val tp1 = processType(implicitly[c.WeakTypeTag[HL1]].tpe)
@@ -263,7 +263,7 @@ object AllContained {
 
     def allTypes(xs: List[Type]): List[Type] = xs match {
       case a :: b :: Nil => a :: allTypes(processType(b).typeArgs)
-      case _             => Nil
+      case _ => Nil
     }
 
     val at1 = allTypes(tp1.typeArgs)

@@ -1492,7 +1492,7 @@ object HList {
 
       def allTypes(xs: List[Type]): List[Type] = xs match {
         case a :: b :: Nil => a :: allTypes(b.typeArgs)
-        case _             => Nil
+        case _ => Nil
       }
       val lt = allTypes(tp.typeArgs)
       val lb = lub(lt)
