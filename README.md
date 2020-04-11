@@ -20,11 +20,11 @@ To see what is possible, head on over to the [project site](https://simianquant.
 To use, add the following line to your `build.sbt` file:
 
 ```scala
-libraryDependencies += "com.simianquant" %% "typequux" % "0.8.1" // scala-jvm
-libraryDependencies += "com.simianquant" %%% "typequux" % "0.8.1" // scala-js/cross
+libraryDependencies += "com.simianquant" %% "typequux" % "0.9.0" // scala-jvm
+libraryDependencies += "com.simianquant" %%% "typequux" % "0.9.0" // scala-js/cross
 ```
 
-Currently, 2.11 and 2.12 binaries are supported. 
+Binaries for 2.11 and 2.12 are available upto version 0.8.1. After version 0.9.0, only 2.13 binaries are available.
 
 Currently supported primitives are:
 
@@ -51,9 +51,12 @@ Currently supported primitives are:
 ### 0.8.1
 1. Add FalseConstraint
 
+### 0.9.0
+1. Add support for Scala 2.13
+
 ## License
 
-Copyright 2019 Harshad Deo
+Copyright 2020 Harshad Deo
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
