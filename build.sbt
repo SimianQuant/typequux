@@ -1,5 +1,7 @@
 import sbtcrossproject.{crossProject, CrossType}
 
+useGpg := true
+
 def commonSettings(nameStr: String) = Seq(
   name := nameStr,
   organization := "com.simianquant",
@@ -88,7 +90,7 @@ lazy val buildCoverage = taskKey[Unit]("Generate coverage report")
 lazy val Typequux = config("typequuxJVM")
 
 lazy val releaseCommand = Command.command("release") { state =>
-  "cleanAll" :: "+testAll" :: "+typequuxJVM/publishSigned" :: "+typequuxJS/publishSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
+  "cleanAll" :: "+testAll" :: "typequuxJVM/publishSigned" :: "typequuxJS/publishSigned" :: "sonatypeRelease" :: "ghpagesPushSite" :: state
 }
 
 lazy val root = project
