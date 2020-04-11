@@ -1,13 +1,13 @@
 # Adapted from https://github.com/sbt/sbt-native-packager/blob/master/appveyor.yml
 version: '{build}'
-os: Windows Server 2012
+os: Windows Server 2019
 
 #  To make the extended ascii characters work on Windows
 #  we need to set string encoding for jvm to utf-8 on windows
 environment:
   SBT_OPTS: -Dfile.encoding=UTF8
   JAVA_OPTS: -Dfile.encoding=UTF8
-  nodejs_version: "4.5.0"
+  nodejs_version: "12.14.1"
   JAVA_HOME: C:\Program Files\Java\jdk11
 
 install:
