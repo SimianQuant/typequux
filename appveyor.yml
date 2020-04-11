@@ -1,8 +1,6 @@
 # Adapted from https://github.com/sbt/sbt-native-packager/blob/master/appveyor.yml
 version: '{build}'
-image: 
-  - Visual Studio 2019
-  - macOS
+image: Visual Studio 2019
 
 
 #  To make the extended ascii characters work on Windows
