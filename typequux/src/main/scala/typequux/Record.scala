@@ -51,7 +51,8 @@ object Record {
     */
   final class NonEmptyRecord[MP <: DenseMap, +HL <: HList] private[typequux] (
       private[typequux] val backing: HL,
-      private[typequux] val keys: List[String])(implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
+      private[typequux] val keys: List[String]
+  )(implicit ev: ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, Any]])
       extends Record {
     override def hashCode: Int = asMap.##
 
@@ -121,8 +122,8 @@ object Record {
     * @since 0.1
     */
   implicit def rAddConstraintNil[N <: Dense, U](
-      implicit ev: ToMapConstraint[NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil], Map[String, Any]])
-    : SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] =
+      implicit ev: ToMapConstraint[NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil], Map[String, Any]]
+  ): SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] =
     new SIAddConstraint[N, RNil, U, NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil]] {
       override def apply(r: RNil, u: U, k: String) = {
         new NonEmptyRecord[EmptyDenseMap#Add[N, _0], U :+: HNil](u :+: HNil, k :: Nil)
@@ -144,8 +145,8 @@ object Record {
   implicit def rAddConstraintNonEmpty[N <: Dense, MP <: DenseMap, HL <: HList, U, L <: Dense](
       implicit ev0: LengthConstraint[HL, L],
       ev1: False =:= MP#Contains[N],
-      ev2: ToMapConstraint[NonEmptyRecord[MP#Add[N, L], U :+: HL], Map[String, Any]])
-    : SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] =
+      ev2: ToMapConstraint[NonEmptyRecord[MP#Add[N, L], U :+: HL], Map[String, Any]]
+  ): SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] =
     new SIAddConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP#Add[N, L], U :+: HL]] {
       override def apply(r: NonEmptyRecord[MP, HL], u: U, k: String) = {
         val hln = u :+: r.backing
@@ -171,7 +172,8 @@ object Record {
       ev1: MP#Get[N] <:< Dense,
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
-      ev4: AtConstraint[D, HL, A]): AtConstraint[N, NonEmptyRecord[MP, HL], A] =
+      ev4: AtConstraint[D, HL, A]
+  ): AtConstraint[N, NonEmptyRecord[MP, HL], A] =
     new AtConstraint[N, NonEmptyRecord[MP, HL], A] {
       override def apply(r: NonEmptyRecord[MP, HL]) = ev4(r.backing)
     }
@@ -195,7 +197,8 @@ object Record {
     * @since 0.1
     */
   implicit def rLengthConstraint[MP <: DenseMap, HL <: HList, L <: Dense](
-      implicit ev: LengthConstraint[HL, L]): LengthConstraint[NonEmptyRecord[MP, HL], L] =
+      implicit ev: LengthConstraint[HL, L]
+  ): LengthConstraint[NonEmptyRecord[MP, HL], L] =
     new LengthConstraint[NonEmptyRecord[MP, HL], L] {}
 
   /** Builds [[constraint.UpdatedConstraint]] for [[Record]]
@@ -218,8 +221,8 @@ object Record {
       ev2: LengthConstraint[HL, L],
       ev3: DenseDiff[L#Dec, MP#Get[N], D],
       ev4: UpdatedConstraint[D, HL, U, HR],
-      ev5: ToMapConstraint[NonEmptyRecord[MP, HR], Map[String, Any]])
-    : UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] =
+      ev5: ToMapConstraint[NonEmptyRecord[MP, HR], Map[String, Any]]
+  ): UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] =
     new UpdatedConstraint[N, NonEmptyRecord[MP, HL], U, NonEmptyRecord[MP, HR]] {
       override def apply(r: NonEmptyRecord[MP, HL], u: U) = {
         val newBacking = ev4(r.backing, u)
@@ -248,7 +251,8 @@ object Record {
     * @since 0.1
     */
   implicit def rToMapConstraint[MP <: DenseMap, HL <: HList, R](
-      implicit ev: ToListConstraint[HL, R]): ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] =
+      implicit ev: ToListConstraint[HL, R]
+  ): ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] =
     new ToMapConstraint[NonEmptyRecord[MP, HL], Map[String, R]] {
       override def apply(r: NonEmptyRecord[MP, HL]) = {
         val ls = ev(r.backing)

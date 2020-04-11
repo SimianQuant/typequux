@@ -6,12 +6,11 @@ def commonSettings(nameStr: String) = Seq(
   organizationHomepage := Some(url("https://simianquant.com/")),
   version := Settings.versions.project,
   scalaVersion := Settings.versions.scala,
-  crossScalaVersions := Settings.crossScalaVersions,
   incOptions := incOptions.value.withLogRecompileOnMacro(false),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value
   ),
-  scalacOptions in (Compile) ++= Settings.commonScalacOptions(scalaVersion.value),
+  scalacOptions in (Compile) ++= Settings.scalacOptions,
   scalacOptions in (Compile, doc) ++= Settings.scalacDocOptions
 )
 
@@ -51,9 +50,7 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform)
     description := "A hackable library for typelevel programming in Scala",
     licenses := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt")),
     homepage := Some(url("https://github.com/SimianQuant/typequux")),
-    pomIncludeRepository := { _ =>
-      false
-    },
+    pomIncludeRepository := { _ => false },
     publishTo := {
       val nexus = "https://oss.sonatype.org/"
       if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
@@ -66,9 +63,6 @@ lazy val typequux = crossProject(JVMPlatform, JSPlatform)
 
 lazy val typequuxJVM = typequux.jvm
 lazy val typequuxJS = typequux.js
-
-lazy val jvmJSTestSettings = Seq(
-  )
 
 lazy val typequuxtests = crossProject(JVMPlatform, JSPlatform)
   .in(file("typequuxtests"))
@@ -123,7 +117,8 @@ lazy val root = project
           )
           .value,
         commands += releaseCommand
-      ))
+      )
+    )
   )
   .enablePlugins(SiteScaladocPlugin, PamfletPlugin, GhpagesPlugin)
   .settings(

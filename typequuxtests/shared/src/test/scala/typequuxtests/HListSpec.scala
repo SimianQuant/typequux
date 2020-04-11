@@ -322,10 +322,10 @@ class HListSpec extends BaseSpec {
                                                                                                        6.262) :+: HNil
 
   val sz1z: List[Int :+: Boolean :+: HNil] = sz1.azipped
-  val sz2z: Vector[Int :+: Boolean :+: String :+: Double :+: HNil] = sz2.azipped
+  val sz2z: List[Int :+: Boolean :+: String :+: Double :+: HNil] = sz2.azipped
 
   val sz1f: List[(Boolean, Int)] = sz1.zipwith { case i :+: b :+: _ => (b, i) }
-  val sz2f: Vector[((Int, String), (Boolean, Double))] = sz2.zipwith {
+  val sz2f: List[((Int, String), (Boolean, Double))] = sz2.zipwith {
     case i :+: b :+: s :+: d :+: _ => ((i, s), (b, d))
   }
 

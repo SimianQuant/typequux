@@ -156,13 +156,15 @@ class LiteralHashSpec extends BaseSpec {
     assertTypeError { """forFloat(util.Random.nextFloat())""" }
 
     def negativeFloatTypeTester(x: LiteralHash[Float])(
-        implicit ev0: IsTrue[x.TypeHash === NegativeEncodedFloatTypeHash]) = x
+        implicit ev0: IsTrue[x.TypeHash === NegativeEncodedFloatTypeHash]
+    ) = x
     assertCompiles { """negativeFloatTypeTester(-5f)""" }
     assertCompiles { """negativeFloatTypeTester(-12f)""" }
     assertCompiles { """negativeFloatTypeTester(-42f)""" }
 
     def positiveFloatTypeTester(x: LiteralHash[Float])(
-        implicit ev0: IsTrue[x.TypeHash === PositiveEncodedFloatTypeHash]) = x
+        implicit ev0: IsTrue[x.TypeHash === PositiveEncodedFloatTypeHash]
+    ) = x
     assertCompiles { """positiveFloatTypeTester(0f)""" }
     assertCompiles { """positiveFloatTypeTester(12.33f)""" }
     assertCompiles { """positiveFloatTypeTester(130.311f)""" }
@@ -181,12 +183,14 @@ class LiteralHashSpec extends BaseSpec {
     assertTypeError { """forDouble(util.Random.nextDouble())""" }
 
     def negativeDoubleTypeTester(x: LiteralHash[Double])(
-        implicit ev0: IsTrue[x.TypeHash === NegativeEncodedDoubleTypeHash]) = x
+        implicit ev0: IsTrue[x.TypeHash === NegativeEncodedDoubleTypeHash]
+    ) = x
     assertCompiles { """negativeDoubleTypeTester(-12.42)""" }
     assertCompiles { """negativeDoubleTypeTester(-100.88)""" }
 
     def positiveDoubleTypeTester(x: LiteralHash[Double])(
-        implicit ev0: IsTrue[x.TypeHash === PositiveEncodedDoubleTypeHash]) = x
+        implicit ev0: IsTrue[x.TypeHash === PositiveEncodedDoubleTypeHash]
+    ) = x
     assertCompiles { """positiveDoubleTypeTester(0)""" }
     assertCompiles { """positiveDoubleTypeTester(12.4)""" }
 
@@ -285,12 +289,15 @@ class LiteralHashSpec extends BaseSpec {
 
   // now for the fun parts
 
-  def intAdditionTest(a: LiteralHash[Int], b: LiteralHash[Int])(implicit ev0: DenseRep[a.ValueHash + b.ValueHash],
-                                                                ev1: IsTrue[a.TypeHash === b.TypeHash]) =
+  def intAdditionTest(
+      a: LiteralHash[Int],
+      b: LiteralHash[Int]
+  )(implicit ev0: DenseRep[a.ValueHash + b.ValueHash], ev1: IsTrue[a.TypeHash === b.TypeHash]) =
     (a.value + b.value) == ev0.v
 
   def intMultiplicationTest(a: LiteralHash[Int], b: LiteralHash[Int])(
-      implicit ev0: DenseRep[a.ValueHash * b.ValueHash]) = (a.value * b.value) == ev0.v
+      implicit ev0: DenseRep[a.ValueHash * b.ValueHash]
+  ) = (a.value * b.value) == ev0.v
 
   it should "add ints correctly" in {
     assert(intAdditionTest(0, 2))

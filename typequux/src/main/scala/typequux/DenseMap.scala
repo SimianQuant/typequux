@@ -117,14 +117,16 @@ object DenseMap {
     */
   trait NonEmptyDenseMap[KT <: Dense, VT, L <: DenseMap, R <: DenseMap] extends DenseMap {
     override type Contains[K <: Dense] = K#Compare[KT]#Match[L#Contains[K], True, R#Contains[K], Bool]
-    override type Add[K <: Dense, V] = K#Compare[KT]#Match[NonEmptyDenseMap[KT, VT, L#Add[K, V], R],
-                                                           NonEmptyDenseMap[KT, V, L, R],
-                                                           NonEmptyDenseMap[KT, VT, L, R#Add[K, V]],
-                                                           DenseMap]
-    override type Remove[K <: Dense] = K#Compare[KT]#Match[NonEmptyDenseMap[KT, VT, L#Remove[K], R],
-                                                           L#Union[R],
-                                                           NonEmptyDenseMap[KT, VT, L, R#Remove[K]],
-                                                           DenseMap]
+    override type Add[K <: Dense, V] = K#Compare[KT]#Match[NonEmptyDenseMap[KT, VT, L#Add[K, V], R], NonEmptyDenseMap[
+      KT,
+      V,
+      L,
+      R
+    ], NonEmptyDenseMap[KT, VT, L, R#Add[K, V]], DenseMap]
+    override type Remove[K <: Dense] =
+      K#Compare[KT]#Match[NonEmptyDenseMap[KT, VT, L#Remove[K], R], L#Union[R], NonEmptyDenseMap[KT, VT, L, R#Remove[
+        K
+      ]], DenseMap]
     override type Get[K <: Dense] = K#Compare[KT]#Match[L#Get[K], VT, R#Get[K], Any]
     override type Union[X <: DenseMap] = FoldL[X, DenseMap, UnionFold]
     override type Keyset = DenseSet.NonEmptyDenseSet[KT, L#Keyset, R#Keyset]

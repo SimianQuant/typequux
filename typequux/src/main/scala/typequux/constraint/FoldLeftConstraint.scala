@@ -49,9 +49,7 @@ object FoldLeftConstraint {
     new FoldLeftConstraint[T, Z, C] {
       override def apply(t: T, z: Z, f: (Z, C) => Z) = {
         var res = z
-        ev(t) { c =>
-          res = f(res, c)
-        }
+        ev(t) { c => res = f(res, c) }
         res
       }
     }

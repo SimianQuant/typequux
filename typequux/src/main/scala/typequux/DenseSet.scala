@@ -111,10 +111,11 @@ object DenseSet {
     */
   trait NonEmptyDenseSet[V <: Dense, L <: DenseSet, R <: DenseSet] extends DenseSet {
     override type Contains[X <: Dense] = X#Compare[V]#Match[L#Contains[X], True, R#Contains[X], Bool]
-    override type Include[X <: Dense] = X#Compare[V]#Match[NonEmptyDenseSet[V, L#Include[X], R],
-                                                           NonEmptyDenseSet[V, L, R],
-                                                           NonEmptyDenseSet[V, L, R#Include[X]],
-                                                           DenseSet]
+    override type Include[X <: Dense] = X#Compare[V]#Match[NonEmptyDenseSet[V, L#Include[X], R], NonEmptyDenseSet[
+      V,
+      L,
+      R
+    ], NonEmptyDenseSet[V, L, R#Include[X]], DenseSet]
     override type Remove[X <: Dense] =
       X#Compare[V]#Match[NonEmptyDenseSet[V, L#Remove[X], R], L#Union[R], NonEmptyDenseSet[V, L, R#Remove[X]], DenseSet]
     override type Union[X <: DenseSet] = FoldL[X, DenseSet, UnionFold]
@@ -210,7 +211,8 @@ object DenseSet {
     implicit def nomEmptyToRep[V <: Dense, L <: DenseSet, R <: DenseSet](
         implicit ev0: Dense.DenseRep[V],
         ev1: DenseSetRep[L],
-        ev2: DenseSetRep[R]): DenseSetRep[NonEmptyDenseSet[V, L, R]] =
+        ev2: DenseSetRep[R]
+    ): DenseSetRep[NonEmptyDenseSet[V, L, R]] =
       new DenseSetRep[NonEmptyDenseSet[V, L, R]](ev1.rep ++ ev2.rep + ev0.v)
   }
 

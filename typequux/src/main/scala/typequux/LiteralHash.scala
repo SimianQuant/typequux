@@ -299,7 +299,8 @@ object LiteralHash {
     *
     */
   @SuppressWarnings(
-    Array("org.wartremover.warts.Any", "org.wartremover.warts.PublicInference", "org.wartremover.warts.Equals"))
+    Array("org.wartremover.warts.Any", "org.wartremover.warts.PublicInference", "org.wartremover.warts.Equals")
+  )
   private[LiteralHash] class LiteralHashBuilderImpl(val c: whitebox.Context) {
     import c.universe._
 
@@ -572,7 +573,8 @@ object LiteralHash {
 
     private[this] def fromBinary[T: c.WeakTypeTag](binRep: List[Boolean]): c.Tree = {
       binRep.foldLeft[Tree](tq"typequux.Dense.DNil")((acc, v) =>
-        if (v) tq"typequux.Dense.::[typequux.Dense.D1, $acc]" else tq"typequux.Dense.::[typequux.Dense.D0, $acc]")
+        if (v) tq"typequux.Dense.::[typequux.Dense.D1, $acc]" else tq"typequux.Dense.::[typequux.Dense.D0, $acc]"
+      )
     }
   }
 }

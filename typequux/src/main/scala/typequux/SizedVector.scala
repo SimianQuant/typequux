@@ -135,15 +135,6 @@ final class SizedVector[N <: Dense, +T] private (val backing: Vector[T]) {
     */
   def map[U](f: T => U): SizedVector[N, U] = new SizedVector[N, U](backing map f)
 
-  /** Parallel map operation
-    *
-    * @tparam U Element type of resultant collection
-    *
-    * @author Harshad Deo
-    * @since 0.6.2
-    */
-  def parmap[U](f: T => U): SizedVector[N, U] = new SizedVector[N, U](backing.par.map(f).toVector)
-
   /** Reverses this
     *
     * @author Harshad Deo

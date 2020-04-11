@@ -414,6 +414,7 @@ object NatDiff {
     * @since 0.1
     */
   implicit def natDiffSucc[MP <: Nat, SP <: Nat, D <: Nat](
-      implicit ev: NatDiff[MP, SP, D]): NatDiff[Succ[MP], Succ[SP], D] =
+      implicit ev: NatDiff[MP, SP, D]
+  ): NatDiff[Succ[MP], Succ[SP], D] =
     new NatDiff[Succ[MP], Succ[SP], D] {}
 }

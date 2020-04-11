@@ -163,7 +163,8 @@ class ArityIndexOps[Z](z: Z) {
     * @since 0.1
     */
   def indexMap[At, T, R](i: LiteralHash[Int], f: At => T)(
-      implicit ev: IndexMapConstraint[i.ValueHash, Z, At, T, R]): R = ev(z, f)
+      implicit ev: IndexMapConstraint[i.ValueHash, Z, At, T, R]
+  ): R = ev(z, f)
 
   /** Map the element at index i from the right
     *
@@ -176,7 +177,8 @@ class ArityIndexOps[Z](z: Z) {
     * @since 0.1
     */
   def indexMapRight[At, T, R](i: LiteralHash[Int], f: At => T)(
-      implicit ev: IndexMapRightConstraint[i.ValueHash, Z, At, T, R]): R = ev(z, f)
+      implicit ev: IndexMapRightConstraint[i.ValueHash, Z, At, T, R]
+  ): R = ev(z, f)
 
   /** Map the element at index i from the left and then "flatten" the result
     *
@@ -189,7 +191,8 @@ class ArityIndexOps[Z](z: Z) {
     * @since 0.1
     */
   def indexFlatMap[At, T, R](i: LiteralHash[Int], f: At => T)(
-      implicit ev: IndexFlatMapConstraint[i.ValueHash, Z, At, T, R]): R = ev(z, f)
+      implicit ev: IndexFlatMapConstraint[i.ValueHash, Z, At, T, R]
+  ): R = ev(z, f)
 
   /** Map the element at index i from the right and then "flatten" the result
     *
@@ -202,7 +205,8 @@ class ArityIndexOps[Z](z: Z) {
     * @since 0.1
     */
   def indexFlatMapRight[At, T, R](i: LiteralHash[Int], f: At => T)(
-      implicit ev: IndexFlatMapRightConstraint[i.ValueHash, Z, At, T, R]): R = ev(z, f)
+      implicit ev: IndexFlatMapRightConstraint[i.ValueHash, Z, At, T, R]
+  ): R = ev(z, f)
 
   /** Insert an element at index i from the left
     *

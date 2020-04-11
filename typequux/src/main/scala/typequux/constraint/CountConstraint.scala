@@ -47,9 +47,7 @@ object CountConstraint {
     new CountConstraint[T, C] {
       override def apply(t: T, f: C => Boolean) = {
         var res = 0
-        ev(t) { c =>
-          if (f(c)) res += 1
-        }
+        ev(t) { c => if (f(c)) res += 1 }
         res
       }
     }

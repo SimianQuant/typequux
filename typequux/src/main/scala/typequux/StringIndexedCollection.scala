@@ -48,9 +48,10 @@ object StringIndexedCollection {
     * @author Harshad Deo
     * @since 0.1
     */
-  final class NonEmptySI[MP <: DenseMap, +T] private[typequux] (private[typequux] val backing: Vector[T],
-                                                                private[typequux] val keys: Vector[String])
-      extends StringIndexedCollection[T] {
+  final class NonEmptySI[MP <: DenseMap, +T] private[typequux] (
+      private[typequux] val backing: Vector[T],
+      private[typequux] val keys: Vector[String]
+  ) extends StringIndexedCollection[T] {
     override def hashCode: Int = this.toMap.##
 
     @SuppressWarnings(Array("org.wartremover.warts.Equals", "org.wartremover.warts.Any"))
@@ -97,7 +98,7 @@ object StringIndexedCollection {
     * @since 0.1
     */
   implicit def siNIlAddConstraint[N <: Dense, U]
-    : SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] =
+      : SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] =
     new SIAddConstraint[N, SINil, U, NonEmptySI[EmptyDenseMap#Add[N, _0], U]] {
       override def apply(s: SINil, u: U, k: String) = {
         new NonEmptySI[EmptyDenseMap#Add[N, _0], U](Vector(u), Vector(k))
@@ -116,8 +117,8 @@ object StringIndexedCollection {
     * @since 0.1
     */
   implicit def buildNonEmptySIAddConstraint[N <: Dense, MP <: DenseMap, T, U >: T](
-      implicit ev0: False =:= MP#Contains[N])
-    : SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] =
+      implicit ev0: False =:= MP#Contains[N]
+  ): SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] =
     new SIAddConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP#Add[N, MP#Size], U]] {
       override def apply(s: NonEmptySI[MP, T], u: U, k: String) = {
         new NonEmptySI[MP#Add[N, MP#Size], U](s.backing :+ u, s.keys :+ k)
@@ -137,7 +138,8 @@ object StringIndexedCollection {
   implicit def buildSiAtConstraint[MP <: DenseMap, T, N <: Dense](
       implicit ev0: TrueConstraint[MP#Contains[N]],
       ev1: MP#Get[N] <:< Dense,
-      ev2: DenseIntRep[MP#Get[N]]): AtConstraint[N, NonEmptySI[MP, T], T] =
+      ev2: DenseIntRep[MP#Get[N]]
+  ): AtConstraint[N, NonEmptySI[MP, T], T] =
     new AtConstraint[N, NonEmptySI[MP, T], T] {
       override def apply(s: NonEmptySI[MP, T]) = s.backing(ev2.v)
     }
@@ -176,7 +178,8 @@ object StringIndexedCollection {
   implicit def buildSIUpdatedConstraint[N <: Dense, MP <: DenseMap, T, U >: T](
       implicit ev0: TrueConstraint[MP#Contains[N]],
       ev1: MP#Get[N] <:< Dense,
-      ev2: DenseIntRep[MP#Get[N]]): UpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] =
+      ev2: DenseIntRep[MP#Get[N]]
+  ): UpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] =
     new UpdatedConstraint[N, NonEmptySI[MP, T], U, NonEmptySI[MP, U]] {
       override def apply(s: NonEmptySI[MP, T], u: U) =
         new NonEmptySI[MP, U](s.backing.updated(ev2.v, u), s.keys)

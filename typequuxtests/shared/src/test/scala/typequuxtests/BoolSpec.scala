@@ -94,28 +94,34 @@ class BoolSpec extends BaseSpec {
 
   class AssociativityOr[A, B, C]
   implicit def toAssociativeOr[A <: Bool, B <: Bool, C <: Bool](
-      implicit ev: ||[A, ||[B, C]] =:= ||[||[A, B], C]): AssociativityOr[A, B, C] =
+      implicit ev: ||[A, ||[B, C]] =:= ||[||[A, B], C]
+  ): AssociativityOr[A, B, C] =
     new AssociativityOr[A, B, C]
 
   class AssociativityAnd[A, B, C]
   implicit def toAssociativeAnd[A <: Bool, B <: Bool, C <: Bool](
-      implicit ev: &&[A, &&[B, C]] =:= &&[&&[A, B], C]): AssociativityAnd[A, B, C] =
+      implicit ev: &&[A, &&[B, C]] =:= &&[&&[A, B], C]
+  ): AssociativityAnd[A, B, C] =
     new AssociativityAnd[A, B, C]
 
   class DistributivityAndOverOr[A, B, C]
   implicit def toDOOO[A <: Bool, B <: Bool, C <: Bool](
-      implicit ev: &&[A, ||[B, C]] =:= ||[&&[A, B], &&[A, C]]): DistributivityAndOverOr[A, B, C] =
+      implicit ev: &&[A, ||[B, C]] =:= ||[&&[A, B], &&[A, C]]
+  ): DistributivityAndOverOr[A, B, C] =
     new DistributivityAndOverOr[A, B, C]
 
   class DistributivityOrOverAnd[A, B, C]
   implicit def toDOOA[A <: Bool, B <: Bool, C <: Bool](
-      implicit ev: ||[A, &&[B, C]] =:= &&[||[A, B], ||[A, C]]): DistributivityOrOverAnd[A, B, C] =
+      implicit ev: ||[A, &&[B, C]] =:= &&[||[A, B], ||[A, C]]
+  ): DistributivityOrOverAnd[A, B, C] =
     new DistributivityOrOverAnd[A, B, C]
 
-  def ternaryLaws[A <: Bool, B <: Bool, C <: Bool](implicit ev0: AssociativityOr[A, B, C],
-                                                   ev1: AssociativityAnd[A, B, C],
-                                                   ev2: DistributivityAndOverOr[A, B, C],
-                                                   ev3: DistributivityOrOverAnd[A, B, C]): Boolean = true
+  def ternaryLaws[A <: Bool, B <: Bool, C <: Bool](
+      implicit ev0: AssociativityOr[A, B, C],
+      ev1: AssociativityAnd[A, B, C],
+      ev2: DistributivityAndOverOr[A, B, C],
+      ev3: DistributivityOrOverAnd[A, B, C]
+  ): Boolean = true
 
   it should "pass ternary laws " in {
     assertCompiles { """ternaryLaws[False, False, False]""" }
@@ -154,12 +160,14 @@ class BoolSpec extends BaseSpec {
   implicit def toDeMorgan2[A <: Bool, B <: Bool](implicit ev: ||[Not[A], Not[B]] =:= Not[A && B]): Demorgan2[A, B] =
     new Demorgan2[A, B]
 
-  def binaryLaws[A <: Bool, B <: Bool](implicit ev0: CommutativityOr[A, B],
-                                       ev1: CommutativityAnd[A, B],
-                                       ev2: Absorption1[A, B],
-                                       ev3: Absorption2[A, B],
-                                       ev4: DeMorgan1[A, B],
-                                       ev5: Demorgan2[A, B]): Boolean = true
+  def binaryLaws[A <: Bool, B <: Bool](
+      implicit ev0: CommutativityOr[A, B],
+      ev1: CommutativityAnd[A, B],
+      ev2: Absorption1[A, B],
+      ev3: Absorption2[A, B],
+      ev4: DeMorgan1[A, B],
+      ev5: Demorgan2[A, B]
+  ): Boolean = true
 
   it should "pass binary laws" in {
     assertCompiles { """binaryLaws[False, False]""" }
@@ -197,15 +205,17 @@ class BoolSpec extends BaseSpec {
   class DoubleNegation[A]
   implicit def toDoubleNegation[A <: Bool](implicit ev: Not[Not[A]] =:= A): DoubleNegation[A] = new DoubleNegation[A]
 
-  def unaryLaws[A <: Bool](implicit ev0: IdentityOr[A],
-                           ev1: IdentityAnd[A],
-                           ev2: AnnhilatorAnd[A],
-                           ev3: AnnhilatorOr[A],
-                           ev4: IdempotenceAnd[A],
-                           ev5: IdempotenceOr[A],
-                           ev6: ComplementAnd[A],
-                           ev7: ComplementOr[A],
-                           ev8: DoubleNegation[A]) = true
+  def unaryLaws[A <: Bool](
+      implicit ev0: IdentityOr[A],
+      ev1: IdentityAnd[A],
+      ev2: AnnhilatorAnd[A],
+      ev3: AnnhilatorOr[A],
+      ev4: IdempotenceAnd[A],
+      ev5: IdempotenceOr[A],
+      ev6: ComplementAnd[A],
+      ev7: ComplementOr[A],
+      ev8: DoubleNegation[A]
+  ) = true
 
   it should "pass unary laws" in {
     assertCompiles { """unaryLaws[True]""" }

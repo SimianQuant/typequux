@@ -160,7 +160,8 @@ class DenseSpec extends BaseSpec {
 
   class TotalOrderAntiSymmetry[A, B]
   implicit def toTOA[A <: Dense, B <: Dense](
-      implicit ev: IsTrue[&&[A <= B, B <= A] ->> ===[A, B]]): TotalOrderAntiSymmetry[A, B] =
+      implicit ev: IsTrue[&&[A <= B, B <= A] ->> ===[A, B]]
+  ): TotalOrderAntiSymmetry[A, B] =
     new TotalOrderAntiSymmetry[A, B]
 
   class TotalOrderTotality[A, B]
@@ -168,10 +169,12 @@ class DenseSpec extends BaseSpec {
     new TotalOrderTotality[A, B]
 
   // performance is considerable better, so can have more test cases
-  def binaryLaws[A <: Dense, B <: Dense](implicit ev0: AdditiveCommutativity[A, B],
-                                         ev1: MultiplicativeCommutativity[A, B],
-                                         ev2: TotalOrderAntiSymmetry[A, B],
-                                         ev3: TotalOrderTotality[A, B]) = true
+  def binaryLaws[A <: Dense, B <: Dense](
+      implicit ev0: AdditiveCommutativity[A, B],
+      ev1: MultiplicativeCommutativity[A, B],
+      ev2: TotalOrderAntiSymmetry[A, B],
+      ev3: TotalOrderTotality[A, B]
+  ) = true
 
   it should "pass binary laws" in {
     assertCompiles { """binaryLaws[_3, _9]""" }
@@ -280,28 +283,34 @@ class DenseSpec extends BaseSpec {
 
   class AdditiveAssociativity[A, B, C]
   implicit def toAA[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: +[A, +[B, C]] =:= +[+[A, B], C]): AdditiveAssociativity[A, B, C] =
+      implicit ev: +[A, +[B, C]] =:= +[+[A, B], C]
+  ): AdditiveAssociativity[A, B, C] =
     new AdditiveAssociativity[A, B, C]
 
   class MultiplicativeAssociativity[A, B, C]
   implicit def toMA[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: *[A, *[B, C]] =:= *[*[A, B], C]): MultiplicativeAssociativity[A, B, C] =
+      implicit ev: *[A, *[B, C]] =:= *[*[A, B], C]
+  ): MultiplicativeAssociativity[A, B, C] =
     new MultiplicativeAssociativity[A, B, C]
 
   class Distributivity[A, B, C]
   implicit def toDist[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: *[+[A, B], C] =:= +[*[A, C], *[B, C]]): Distributivity[A, B, C] =
+      implicit ev: *[+[A, B], C] =:= +[*[A, C], *[B, C]]
+  ): Distributivity[A, B, C] =
     new Distributivity[A, B, C]
 
   class TotalOrderTransitivity[A, B, C]
   implicit def toToTr[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: IsTrue[&&[A <= B, B <= C] ->> <=[A, C]]): TotalOrderTransitivity[A, B, C] =
+      implicit ev: IsTrue[&&[A <= B, B <= C] ->> <=[A, C]]
+  ): TotalOrderTransitivity[A, B, C] =
     new TotalOrderTransitivity[A, B, C]
 
-  def ternaryLaws[A <: Dense, B <: Dense, C <: Dense](implicit ev0: AdditiveAssociativity[A, B, C],
-                                                      ev1: MultiplicativeAssociativity[A, B, C],
-                                                      ev2: Distributivity[A, B, C],
-                                                      ev3: TotalOrderTransitivity[A, B, C]) = true
+  def ternaryLaws[A <: Dense, B <: Dense, C <: Dense](
+      implicit ev0: AdditiveAssociativity[A, B, C],
+      ev1: MultiplicativeAssociativity[A, B, C],
+      ev2: Distributivity[A, B, C],
+      ev3: TotalOrderTransitivity[A, B, C]
+  ) = true
 
   it should "pass ternary laws" in {
     assertCompiles { """ternaryLaws[_1, _3, _6]""" }
@@ -408,17 +417,20 @@ class DenseSpec extends BaseSpec {
 
   class ExponentCombine0[A, B, C]
   implicit def toExpCmb0[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: *[^[A, B], ^[A, C]] =:= ^[A, +[B, C]]): ExponentCombine0[A, B, C] =
+      implicit ev: *[^[A, B], ^[A, C]] =:= ^[A, +[B, C]]
+  ): ExponentCombine0[A, B, C] =
     new ExponentCombine0[A, B, C]
 
   class ExponentCombine1[A, B, C]
   implicit def toExpCmb1[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: ^[^[A, B], C] =:= ^[A, *[B, C]]): ExponentCombine1[A, B, C] =
+      implicit ev: ^[^[A, B], C] =:= ^[A, *[B, C]]
+  ): ExponentCombine1[A, B, C] =
     new ExponentCombine1[A, B, C]
 
   class ExponentCombine2[A, B, C]
   implicit def toExpCmb2[A <: Dense, B <: Dense, C <: Dense](
-      implicit ev: ^[*[A, B], C] =:= *[^[A, C], ^[B, C]]): ExponentCombine2[A, B, C] =
+      implicit ev: ^[*[A, B], C] =:= *[^[A, C], ^[B, C]]
+  ): ExponentCombine2[A, B, C] =
     new ExponentCombine2[A, B, C]
 
   def ternaryExpLaws[A <: Dense, B <: Dense, C <: Dense](
@@ -519,20 +531,23 @@ class DenseSpec extends BaseSpec {
 
   class RightShift[A]
   implicit def toRs[A <: Dense](
-      implicit ev: Xor[===[A, *[_2, A#ShiftR]], ===[A, *[_2, A#ShiftR] + _1]] =:= True): RightShift[A] =
+      implicit ev: Xor[===[A, *[_2, A#ShiftR]], ===[A, *[_2, A#ShiftR] + _1]] =:= True
+  ): RightShift[A] =
     new RightShift[A]
 
   class ExpOne[A]
   implicit def toExpOne[A <: Dense](implicit ev: ^[_1, A] =:= _1): ExpOne[A] = new ExpOne[A]
 
-  def unaryLaws[A <: Dense](implicit ev0: AdditiveIdentity[A],
-                            ev1: MultiplicativeIdentity[A],
-                            ev2: DecrementOfIncrement[A],
-                            ev3: RightShiftOfLeftShift[A],
-                            ev4: ExpZero[A],
-                            ev5: ExpIdentity[A],
-                            ev6: LeftShift[A],
-                            ev7: RightShift[A]) = true
+  def unaryLaws[A <: Dense](
+      implicit ev0: AdditiveIdentity[A],
+      ev1: MultiplicativeIdentity[A],
+      ev2: DecrementOfIncrement[A],
+      ev3: RightShiftOfLeftShift[A],
+      ev4: ExpZero[A],
+      ev5: ExpIdentity[A],
+      ev6: LeftShift[A],
+      ev7: RightShift[A]
+  ) = true
 
   it should "pass unary laws" in {
     assertCompiles { """unaryLaws[_0]""" }
@@ -561,29 +576,29 @@ class DenseSpec extends BaseSpec {
   }
 
   it should "evaluate to long correctly" in {
-    assert(toLong[_0] == 0l)
-    assert(toLong[_1] == 1l)
-    assert(toLong[_2] == 2l)
-    assert(toLong[_3] == 3l)
-    assert(toLong[_4] == 4l)
-    assert(toLong[_5] == 5l)
-    assert(toLong[_6] == 6l)
-    assert(toLong[_7] == 7l)
-    assert(toLong[_8] == 8l)
-    assert(toLong[_9] == 9l)
-    assert(toLong[_10] == 10l)
-    assert(toLong[_11] == 11l)
-    assert(toLong[_12] == 12l)
-    assert(toLong[_13] == 13l)
-    assert(toLong[_14] == 14l)
-    assert(toLong[_15] == 15l)
-    assert(toLong[_16] == 16l)
-    assert(toLong[_17] == 17l)
-    assert(toLong[_18] == 18l)
-    assert(toLong[_19] == 19l)
-    assert(toLong[_20] == 20l)
-    assert(toLong[_21] == 21l)
-    assert(toLong[_22] == 22l)
+    assert(toLong[_0] == 0L)
+    assert(toLong[_1] == 1L)
+    assert(toLong[_2] == 2L)
+    assert(toLong[_3] == 3L)
+    assert(toLong[_4] == 4L)
+    assert(toLong[_5] == 5L)
+    assert(toLong[_6] == 6L)
+    assert(toLong[_7] == 7L)
+    assert(toLong[_8] == 8L)
+    assert(toLong[_9] == 9L)
+    assert(toLong[_10] == 10L)
+    assert(toLong[_11] == 11L)
+    assert(toLong[_12] == 12L)
+    assert(toLong[_13] == 13L)
+    assert(toLong[_14] == 14L)
+    assert(toLong[_15] == 15L)
+    assert(toLong[_16] == 16L)
+    assert(toLong[_17] == 17L)
+    assert(toLong[_18] == 18L)
+    assert(toLong[_19] == 19L)
+    assert(toLong[_20] == 20L)
+    assert(toLong[_21] == 21L)
+    assert(toLong[_22] == 22L)
   }
 
   it should "evaluate to int correctly" in {

@@ -779,7 +779,9 @@ object DenseDiff {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def dsrN[M <: Dense, S <: Dense, DP <: Dense](implicit ev: DenseDiff[M#Dec, S#Dec, DP],
-                                                         ev1: TrueConstraint[>[S, _0]]): DenseDiff[M, S, DP] =
+  implicit def dsrN[M <: Dense, S <: Dense, DP <: Dense](
+      implicit ev: DenseDiff[M#Dec, S#Dec, DP],
+      ev1: TrueConstraint[>[S, _0]]
+  ): DenseDiff[M, S, DP] =
     new DenseDiff[M, S, DP] {}
 }

@@ -151,20 +151,24 @@ class NatSpec extends BaseSpec {
 
   class TotalOrderAntisymmetry[A, B]
   implicit def toTOA[A <: Nat, B <: Nat](
-      implicit ev: IsTrue[&&[A <= B, B <= A] ->> ===[A, B]]): TotalOrderAntisymmetry[A, B] =
+      implicit ev: IsTrue[&&[A <= B, B <= A] ->> ===[A, B]]
+  ): TotalOrderAntisymmetry[A, B] =
     new TotalOrderAntisymmetry[A, B]
 
   class TotalOrderTotality[A, B]
   implicit def toTotalOrderTotality[A <: Nat, B <: Nat](
-      implicit ev: IsTrue[||[A <= B, B <= A]]): TotalOrderTotality[A, B] =
+      implicit ev: IsTrue[||[A <= B, B <= A]]
+  ): TotalOrderTotality[A, B] =
     new TotalOrderTotality[A, B]
 
   // cant really test these for large numbers without blowing up the compiler
   // dense numbers should be used instead
-  def binaryLaws[A, B](implicit ev0: AdditiveCommutativity[A, B],
-                       ev1: MultiplicativeCommutativity[A, B],
-                       ev2: TotalOrderAntisymmetry[A, B],
-                       ev3: TotalOrderTotality[A, B]) = true
+  def binaryLaws[A, B](
+      implicit ev0: AdditiveCommutativity[A, B],
+      ev1: MultiplicativeCommutativity[A, B],
+      ev2: TotalOrderAntisymmetry[A, B],
+      ev3: TotalOrderTotality[A, B]
+  ) = true
 
   it should "pass binary tests" in {
     assertCompiles { """binaryLaws[_0, _0]""" }
@@ -184,28 +188,34 @@ class NatSpec extends BaseSpec {
 
   class AdditiveAssociativity[X, Y, Z]
   implicit def toAA[X <: Nat, Y <: Nat, Z <: Nat](
-      implicit ev: +[X, +[Y, Z]] =:= +[+[X, Y], Z]): AdditiveAssociativity[X, Y, Z] =
+      implicit ev: +[X, +[Y, Z]] =:= +[+[X, Y], Z]
+  ): AdditiveAssociativity[X, Y, Z] =
     new AdditiveAssociativity[X, Y, Z]
 
   class MultiplicativeAssociativity[X, Y, Z]
   implicit def toMA[X <: Nat, Y <: Nat, Z <: Nat](
-      implicit ev: *[X, *[Y, Z]] =:= *[*[X, Y], Z]): MultiplicativeAssociativity[X, Y, Z] =
+      implicit ev: *[X, *[Y, Z]] =:= *[*[X, Y], Z]
+  ): MultiplicativeAssociativity[X, Y, Z] =
     new MultiplicativeAssociativity[X, Y, Z]
 
   class Distributivity[X, Y, Z]
   implicit def toDist[X <: Nat, Y <: Nat, Z <: Nat](
-      implicit ev: *[+[X, Y], Z] =:= +[*[X, Z], *[Y, Z]]): Distributivity[X, Y, Z] =
+      implicit ev: *[+[X, Y], Z] =:= +[*[X, Z], *[Y, Z]]
+  ): Distributivity[X, Y, Z] =
     new Distributivity[X, Y, Z]
 
   class TotalOrderTransitivity[X, Y, Z]
   implicit def toToT[X <: Nat, Y <: Nat, Z <: Nat](
-      implicit ev: IsTrue[&&[X <= Y, Y <= Z] ->> <=[X, Z]]): TotalOrderTransitivity[X, Y, Z] =
+      implicit ev: IsTrue[&&[X <= Y, Y <= Z] ->> <=[X, Z]]
+  ): TotalOrderTransitivity[X, Y, Z] =
     new TotalOrderTransitivity[X, Y, Z]
 
-  def ternaryLaws[X <: Nat, Y <: Nat, Z <: Nat](implicit ev0: AdditiveAssociativity[X, Y, Z],
-                                                ev1: MultiplicativeAssociativity[X, Y, Z],
-                                                ev2: Distributivity[X, Y, Z],
-                                                ev3: TotalOrderTransitivity[X, Y, Z]) = true
+  def ternaryLaws[X <: Nat, Y <: Nat, Z <: Nat](
+      implicit ev0: AdditiveAssociativity[X, Y, Z],
+      ev1: MultiplicativeAssociativity[X, Y, Z],
+      ev2: Distributivity[X, Y, Z],
+      ev3: TotalOrderTransitivity[X, Y, Z]
+  ) = true
 
   it should "pass ternary tests" in {
     assertCompiles { """ternaryLaws[_0, _0, _0]""" }

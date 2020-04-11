@@ -120,8 +120,10 @@ object NotContained {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def ambiguousContains[A, H, T <: HList](implicit ev0: A =:= H,
-                                                   ev1: NotContained[A, T]): NotContained[A, H :+: T] =
+  implicit def ambiguousContains[A, H, T <: HList](
+      implicit ev0: A =:= H,
+      ev1: NotContained[A, T]
+  ): NotContained[A, H :+: T] =
     new NotContained[A, H :+: T]
 }
 
@@ -232,8 +234,10 @@ object NotSubType {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def ambiguousNotSubtype[A, H, T <: HList](implicit ev: A <:< H,
-                                                     ev1: NotSubType[A, T]): NotSubType[A, H :+: T] =
+  implicit def ambiguousNotSubtype[A, H, T <: HList](
+      implicit ev: A <:< H,
+      ev1: NotSubType[A, T]
+  ): NotSubType[A, H :+: T] =
     new NotSubType[A, H :+: T]
 }
 
@@ -265,11 +269,7 @@ object AllContained {
     val at1 = allTypes(tp1.typeArgs)
     val at2 = allTypes(tp2.typeArgs)
 
-    val res = at1 forall { zl =>
-      at2.exists { zr =>
-        zl =:= zr
-      }
-    }
+    val res = at1 forall { zl => at2.exists { zr => zl =:= zr } }
 
     if (res) {
       q"new typequux.AllContained[$tp1, $tp2]"

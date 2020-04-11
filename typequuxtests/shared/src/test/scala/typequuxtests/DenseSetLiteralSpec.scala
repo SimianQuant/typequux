@@ -28,7 +28,8 @@ class DenseSetLiteralSpec extends BaseSpec {
   def merge[DS1 <: DenseSet, DS2 <: DenseSet](a: Witness[DS1], b: Witness[DS2]) = new Witness[DS1#Union[DS2]]
   def size[D <: DenseSet](c: Witness[D])(implicit ev: DenseRep[D#Size]) = ev.v
   def checkContains[DS <: DenseSet, T](s: Witness[DS], x: typequux.LiteralHash[T])(
-      implicit ev: IsTrue[DS#Contains[x.ValueHash]]) = true
+      implicit ev: IsTrue[DS#Contains[x.ValueHash]]
+  ) = true
 
   it should "work with int witnesses" in {
 

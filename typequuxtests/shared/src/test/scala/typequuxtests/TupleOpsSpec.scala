@@ -106,61 +106,83 @@ class TupleOpsSpec extends BaseSpec {
 
     assert(p.indexFlatMap(0, (i: Int) => (i, i + 2)) == ((3, 5, true, "asdf", false, 'k', (), 13, 9.3)))
     assert(
-      p.indexFlatMap(2, (s: String) => (s, s(0), s.substring(1))) == ((3,
-                                                                       true,
-                                                                       "asdf",
-                                                                       'a',
-                                                                       "sdf",
-                                                                       false,
-                                                                       'k',
-                                                                       (),
-                                                                       13,
-                                                                       9.3)))
+      p.indexFlatMap(2, (s: String) => (s, s(0), s.substring(1))) == (
+        (
+          3,
+          true,
+          "asdf",
+          'a',
+          "sdf",
+          false,
+          'k',
+          (),
+          13,
+          9.3
+        )
+      )
+    )
     assert(
-      p.indexFlatMap(7, (d: Double) => (d, d + 2, d - 1.3)) == ((3, true, "asdf", false, 'k', (), 13, 9.3, 11.3, 8.0)))
+      p.indexFlatMap(7, (d: Double) => (d, d + 2, d - 1.3)) == ((3, true, "asdf", false, 'k', (), 13, 9.3, 11.3, 8.0))
+    )
     assert(
-      p.indexFlatMapRight(0, (d: Double) => (d - 1.3, d + 1.7)) == ((3, true, "asdf", false, 'k', (), 13, 8.0, 11.0)))
+      p.indexFlatMapRight(0, (d: Double) => (d - 1.3, d + 1.7)) == ((3, true, "asdf", false, 'k', (), 13, 8.0, 11.0))
+    )
     assert(p.indexFlatMapRight(4, (b: Boolean) => (!b, b)) == ((3, true, "asdf", true, false, 'k', (), 13, 9.3)))
 
     assert(p.insert(2, Some("one wants you")) == ((3, true, Some("one wants you"), "asdf", false, 'k', (), 13, 9.3)))
     assert(p.insert(6, None) == ((3, true, "asdf", false, 'k', (), None, 13, 9.3)))
     assert(p.insertRight(1, "pasta") == ((3, true, "asdf", false, 'k', (), 13, "pasta", 9.3)))
     assert(
-      p.insertRight(3, List("einstein", "nother")) == ((3,
-                                                        true,
-                                                        "asdf",
-                                                        false,
-                                                        'k',
-                                                        List("einstein", "nother"),
-                                                        (),
-                                                        13,
-                                                        9.3)))
+      p.insertRight(3, List("einstein", "nother")) == (
+        (
+          3,
+          true,
+          "asdf",
+          false,
+          'k',
+          List("einstein", "nother"),
+          (),
+          13,
+          9.3
+        )
+      )
+    )
 
     assert(
-      p.insertM(0, (Some("one wants you"), None)) == ((Some("one wants you"),
-                                                       None,
-                                                       3,
-                                                       true,
-                                                       "asdf",
-                                                       false,
-                                                       'k',
-                                                       (),
-                                                       13,
-                                                       9.3)))
+      p.insertM(0, (Some("one wants you"), None)) == (
+        (
+          Some("one wants you"),
+          None,
+          3,
+          true,
+          "asdf",
+          false,
+          'k',
+          (),
+          13,
+          9.3
+        )
+      )
+    )
     assert(p.insertM(3, ("pasta", "pizza")) == ((3, true, "asdf", "pasta", "pizza", false, 'k', (), 13, 9.3)))
     assert(p.insertMRight(1, ("scala", "java")) == ((3, true, "asdf", false, 'k', (), 13, "scala", "java", 9.3)))
     assert(
-      p.insertMRight(2, ("stannis", "robert", "renly")) == ((3,
-                                                             true,
-                                                             "asdf",
-                                                             false,
-                                                             'k',
-                                                             (),
-                                                             "stannis",
-                                                             "robert",
-                                                             "renly",
-                                                             13,
-                                                             9.3)))
+      p.insertMRight(2, ("stannis", "robert", "renly")) == (
+        (
+          3,
+          true,
+          "asdf",
+          false,
+          'k',
+          (),
+          "stannis",
+          "robert",
+          "renly",
+          13,
+          9.3
+        )
+      )
+    )
 
     assert(p.splitAt(3) == (((3, true, "asdf"), (false, 'k', (), 13, 9.3))))
     assert(p.splitAt(5) == (((3, true, "asdf", false, 'k'), ((), 13, 9.3))))
@@ -229,10 +251,10 @@ class TupleOpsSpec extends BaseSpec {
       (Vector(1, 2, 3), Vector(true, false), Vector("alpha", "beta", "charlie", "delta"), Vector(3.14, 2.718, 6.262))
 
     val tz1z: List[(Int, Boolean)] = tz1.azipped
-    val tz2z: Vector[(Int, Boolean, String, Double)] = tz2.azipped
+    val tz2z: List[(Int, Boolean, String, Double)] = tz2.azipped
 
     val tz1f: List[(Boolean, Int)] = tz1.zipwith { case (i, b)                             => (b, i) }
-    val tz2f: Vector[((Int, String), (Boolean, Double))] = tz2.zipwith { case (i, b, s, d) => ((i, s), (b, d)) }
+    val tz2f: List[((Int, String), (Boolean, Double))] = tz2.zipwith { case (i, b, s, d) => ((i, s), (b, d)) }
 
     assert(tz1z == List((1, true), (2, false)))
     assert(tz2z == Vector((1, true, "alpha", 3.14), (2, false, "beta", 2.718)))

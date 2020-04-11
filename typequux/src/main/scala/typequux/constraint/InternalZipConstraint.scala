@@ -20,7 +20,6 @@ package typequux.constraint
   * @tparam Z Type of the object on which the operation is applied
   * @tparam F Downconverted type of Z, for details, see [[DownTransformConstraint]]
   * @tparam T The element type of the resulting object
-  * @tparam V The type of the resulting object
   *
   * @author Harshad Deo
   * @since 0.1

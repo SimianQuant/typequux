@@ -80,7 +80,8 @@ object TupleOps {
     * @since 0.1
     */
   implicit def tuple2ArityZipOps[Z, F](z: Z)(
-      implicit ev: DownTransformConstraint[Z, F, Traversable]): ArityZipOps[Z, F] = new ArityZipOps[Z, F](z)
+      implicit ev: DownTransformConstraint[Z, F, Traversable]
+  ): ArityZipOps[Z, F] = new ArityZipOps[Z, F](z)
 
   /** Builder of [[constraint.LengthConstraint]] for tuples
     *
@@ -92,8 +93,10 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpLengthConstraint[Z, HL <: HList, L <: Dense](implicit ev0: Tuple2HListConverter[Z, HL],
-                                                              ev1: LengthConstraint[HL, L]): LengthConstraint[Z, L] =
+  implicit def tpLengthConstraint[Z, HL <: HList, L <: Dense](
+      implicit ev0: Tuple2HListConverter[Z, HL],
+      ev1: LengthConstraint[HL, L]
+  ): LengthConstraint[Z, L] =
     new LengthConstraint[Z, L] {}
 
   /** Builder of [[constraint.AppendConstraint]] for tuples
@@ -113,7 +116,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[A, HLA],
       ev1: Tuple2HListConverter[B, HLB],
       ev2: AppendConstraint[HLA, HLB, HLR],
-      ev3: HList2TupleConverter[R, HLR]): AppendConstraint[A, B, R] = new AppendConstraint[A, B, R] {
+      ev3: HList2TupleConverter[R, HLR]
+  ): AppendConstraint[A, B, R] = new AppendConstraint[A, B, R] {
     override def apply(a: A, b: B) = {
       val hla = ev0(a)
       val hlb = ev1(b)
@@ -139,7 +143,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[F, FIN],
       ev1: Tuple2HListConverter[IN, HIN],
       ev2: ApplyConstraint[FIN, HIN, HOUT],
-      ev3: HList2TupleConverter[OUT, HOUT]): ApplyConstraint[F, IN, OUT] = new ApplyConstraint[F, IN, OUT] {
+      ev3: HList2TupleConverter[OUT, HOUT]
+  ): ApplyConstraint[F, IN, OUT] = new ApplyConstraint[F, IN, OUT] {
     override def apply(f: F, in: IN) = {
       val fin = ev0(f)
       val hin = ev1(in)
@@ -159,8 +164,10 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpAtConstraint[N, T, HL <: HList, A](implicit ev0: Tuple2HListConverter[T, HL],
-                                                    ev1: AtConstraint[N, HL, A]): AtConstraint[N, T, A] =
+  implicit def tpAtConstraint[N, T, HL <: HList, A](
+      implicit ev0: Tuple2HListConverter[T, HL],
+      ev1: AtConstraint[N, HL, A]
+  ): AtConstraint[N, T, A] =
     new AtConstraint[N, T, A] {
       override def apply(t: T) = {
         val hl = ev0(t)
@@ -181,7 +188,8 @@ object TupleOps {
     */
   implicit def tpAtRightConstraint[N <: Dense, T, HL <: HList, A](
       implicit ev0: Tuple2HListConverter[T, HL],
-      ev1: AtRightConstraint[N, HL, A]): AtRightConstraint[N, T, A] =
+      ev1: AtRightConstraint[N, HL, A]
+  ): AtRightConstraint[N, T, A] =
     new AtRightConstraint[N, T, A] {
       override def apply(t: T) = {
         val hl = ev0(t)
@@ -200,8 +208,10 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpConsConstraint[T, HL <: HList, U, R](implicit ev0: Tuple2HListConverter[T, HL],
-                                                      ev1: HList2TupleConverter[R, U :+: HL]): ConsConstraint[T, U, R] =
+  implicit def tpConsConstraint[T, HL <: HList, U, R](
+      implicit ev0: Tuple2HListConverter[T, HL],
+      ev1: HList2TupleConverter[R, U :+: HL]
+  ): ConsConstraint[T, U, R] =
     new ConsConstraint[T, U, R] {
       override def apply(t: T, u: U) = {
         val hl = ev0(t)
@@ -224,7 +234,8 @@ object TupleOps {
   implicit def tpDownTransformConstraint[T, HLI <: HList, M[_], HLO <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HLI],
       ev1: DownTransformConstraint[HLI, HLO, M],
-      ev2: HList2TupleConverter[R, HLO]): DownTransformConstraint[T, R, M] = new DownTransformConstraint[T, R, M] {
+      ev2: HList2TupleConverter[R, HLO]
+  ): DownTransformConstraint[T, R, M] = new DownTransformConstraint[T, R, M] {
     override def apply(f: M ~> Id, t: T) = {
       val hl = ev0(t)
       val tr = ev1(f, hl)
@@ -247,7 +258,8 @@ object TupleOps {
   implicit def tpDropConstraint[N, T, HL <: HList, HLD <: HList, U](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: DropConstraint[N, HL, HLD],
-      ev2: HList2TupleConverter[U, HLD]): DropConstraint[N, T, U] = new DropConstraint[N, T, U] {
+      ev2: HList2TupleConverter[U, HLD]
+  ): DropConstraint[N, T, U] = new DropConstraint[N, T, U] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hld = ev1(hl)
@@ -270,7 +282,8 @@ object TupleOps {
   implicit def tpDropRightConstraint[N, T, HL <: HList, HLD <: HList, U](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: DropRightConstraint[N, HL, HLD],
-      ev2: HList2TupleConverter[U, HLD]): DropRightConstraint[N, T, U] = new DropRightConstraint[N, T, U] {
+      ev2: HList2TupleConverter[U, HLD]
+  ): DropRightConstraint[N, T, U] = new DropRightConstraint[N, T, U] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hld = ev1(hl)
@@ -295,7 +308,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[P, HP],
       ev1: ExternalUnzipConstraint[HP, HQ, HR],
       ev2: HList2TupleConverter[Q, HQ],
-      ev3: HList2TupleConverter[R, HR]): ExternalUnzipConstraint[P, Q, R] = new ExternalUnzipConstraint[P, Q, R] {
+      ev3: HList2TupleConverter[R, HR]
+  ): ExternalUnzipConstraint[P, Q, R] = new ExternalUnzipConstraint[P, Q, R] {
     override def apply(p: P) = {
       val hp = ev0(p)
       val (l, r) = ev1(hp)
@@ -320,7 +334,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[P, HLP],
       ev1: Tuple2HListConverter[Q, HLQ],
       ev2: ExternalZipConstraint[HLP, HLQ, HLR],
-      ev3: HList2TupleConverter[R, HLR]): ExternalZipConstraint[P, Q, R] = new ExternalZipConstraint[P, Q, R] {
+      ev3: HList2TupleConverter[R, HLR]
+  ): ExternalZipConstraint[P, Q, R] = new ExternalZipConstraint[P, Q, R] {
     override def apply(p: P, q: Q) = {
       val hlp = ev0(p)
       val hlq = ev1(q)
@@ -339,8 +354,10 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpForeachConstraint[INP, HL <: HList, C](implicit ev0: Tuple2HListConverter[INP, HL],
-                                                        ev1: ForeachConstraint[HL, C]): ForeachConstraint[INP, C] =
+  implicit def tpForeachConstraint[INP, HL <: HList, C](
+      implicit ev0: Tuple2HListConverter[INP, HL],
+      ev1: ForeachConstraint[HL, C]
+  ): ForeachConstraint[INP, C] =
     new ForeachConstraint[INP, C] {
       override def apply(t: INP)(f: C => Unit) = {
         val hl = ev0(t)
@@ -367,7 +384,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[Z, HL],
       ev1: Tuple2HListConverter[T, HLF],
       ev2: IndexFlatMapConstraint[N, HL, A, HLF, HLM],
-      ev3: HList2TupleConverter[R, HLM]): IndexFlatMapConstraint[N, Z, A, T, R] =
+      ev3: HList2TupleConverter[R, HLM]
+  ): IndexFlatMapConstraint[N, Z, A, T, R] =
     new IndexFlatMapConstraint[N, Z, A, T, R] {
       override def apply(z: Z, f: A => T) = {
         val hl = ev0(z)
@@ -395,7 +413,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[Z, HL],
       ev1: Tuple2HListConverter[T, HLF],
       ev2: IndexFlatMapRightConstraint[N, HL, A, HLF, HLM],
-      ev3: HList2TupleConverter[R, HLM]): IndexFlatMapRightConstraint[N, Z, A, T, R] =
+      ev3: HList2TupleConverter[R, HLM]
+  ): IndexFlatMapRightConstraint[N, Z, A, T, R] =
     new IndexFlatMapRightConstraint[N, Z, A, T, R] {
       override def apply(z: Z, f: A => T) = {
         val hl = ev0(z)
@@ -421,7 +440,8 @@ object TupleOps {
   implicit def tpIndexMapConstraint[N, Z, HL <: HList, A, T, HLM <: HList, R](
       implicit ev0: Tuple2HListConverter[Z, HL],
       ev1: IndexMapConstraint[N, HL, A, T, HLM],
-      ev2: HList2TupleConverter[R, HLM]): IndexMapConstraint[N, Z, A, T, R] = new IndexMapConstraint[N, Z, A, T, R] {
+      ev2: HList2TupleConverter[R, HLM]
+  ): IndexMapConstraint[N, Z, A, T, R] = new IndexMapConstraint[N, Z, A, T, R] {
     override def apply(z: Z, f: A => T) = {
       val hl = ev0(z)
       val hlm = ev1(hl, f)
@@ -446,7 +466,8 @@ object TupleOps {
   implicit def tpIndexMapRightConstraint[N, Z, HL <: HList, A, T, HLM <: HList, R](
       implicit ev0: Tuple2HListConverter[Z, HL],
       ev1: IndexMapRightConstraint[N, HL, A, T, HLM],
-      ev2: HList2TupleConverter[R, HLM]): IndexMapRightConstraint[N, Z, A, T, R] =
+      ev2: HList2TupleConverter[R, HLM]
+  ): IndexMapRightConstraint[N, Z, A, T, R] =
     new IndexMapRightConstraint[N, Z, A, T, R] {
       override def apply(z: Z, f: A => T) = {
         val hl = ev0(z)
@@ -471,7 +492,8 @@ object TupleOps {
   implicit def tpInsertConstraint[N, T, HL <: HList, A, HLA <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: InsertConstraint[N, HL, A, HLA],
-      ev2: HList2TupleConverter[R, HLA]): InsertConstraint[N, T, A, R] = new InsertConstraint[N, T, A, R] {
+      ev2: HList2TupleConverter[R, HLA]
+  ): InsertConstraint[N, T, A, R] = new InsertConstraint[N, T, A, R] {
     override def apply(t: T, a: A) = {
       val hl = ev0(t)
       val hla = ev1(hl, a)
@@ -495,7 +517,8 @@ object TupleOps {
   implicit def tpInsertRightConstraint[N, T, HL <: HList, A, HLA <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: InsertRightConstraint[N, HL, A, HLA],
-      ev2: HList2TupleConverter[R, HLA]): InsertRightConstraint[N, T, A, R] =
+      ev2: HList2TupleConverter[R, HLA]
+  ): InsertRightConstraint[N, T, A, R] =
     new InsertRightConstraint[N, T, A, R] {
       override def apply(t: T, a: A) = {
         val hl = ev0(t)
@@ -522,7 +545,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[Z, HL],
       ev1: Tuple2HListConverter[T, HLI],
       ev2: InsertMConstraint[N, HL, HLI, HLA],
-      ev3: HList2TupleConverter[R, HLA]): InsertMConstraint[N, Z, T, R] = new InsertMConstraint[N, Z, T, R] {
+      ev3: HList2TupleConverter[R, HLA]
+  ): InsertMConstraint[N, Z, T, R] = new InsertMConstraint[N, Z, T, R] {
     override def apply(z: Z, t: T) = {
       val hl = ev0(z)
       val hli = ev1(t)
@@ -549,7 +573,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[Z, HL],
       ev1: Tuple2HListConverter[T, HLI],
       ev2: InsertMRightConstraint[N, HL, HLI, HLA],
-      ev3: HList2TupleConverter[R, HLA]): InsertMRightConstraint[N, Z, T, R] = new InsertMRightConstraint[N, Z, T, R] {
+      ev3: HList2TupleConverter[R, HLA]
+  ): InsertMRightConstraint[N, Z, T, R] = new InsertMRightConstraint[N, Z, T, R] {
     override def apply(z: Z, t: T) = {
       val hl = ev0(z)
       val hli = ev1(t)
@@ -573,7 +598,8 @@ object TupleOps {
   implicit def tpTakeConstraint[N, T, HL <: HList, HLT <: HList, U](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: TakeConstraint[N, HL, HLT],
-      ev2: HList2TupleConverter[U, HLT]): TakeConstraint[N, T, U] = new TakeConstraint[N, T, U] {
+      ev2: HList2TupleConverter[U, HLT]
+  ): TakeConstraint[N, T, U] = new TakeConstraint[N, T, U] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hlt = ev1(hl)
@@ -596,7 +622,8 @@ object TupleOps {
   implicit def tpTakeRightConstraint[N, T, HL <: HList, HLT <: HList, U](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: TakeRightConstraint[N, HL, HLT],
-      ev2: HList2TupleConverter[U, HLT]): TakeRightConstraint[N, T, U] = new TakeRightConstraint[N, T, U] {
+      ev2: HList2TupleConverter[U, HLT]
+  ): TakeRightConstraint[N, T, U] = new TakeRightConstraint[N, T, U] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hlt = ev1(hl)
@@ -619,7 +646,8 @@ object TupleOps {
   implicit def tpRemoveConstraint[N, T, HL <: HList, HLR <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: RemoveConstraint[N, HL, HLR],
-      ev2: HList2TupleConverter[R, HLR]): RemoveConstraint[N, T, R] = new RemoveConstraint[N, T, R] {
+      ev2: HList2TupleConverter[R, HLR]
+  ): RemoveConstraint[N, T, R] = new RemoveConstraint[N, T, R] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hlr = ev1(hl)
@@ -642,7 +670,8 @@ object TupleOps {
   implicit def tpRemoveRightConstraint[N, T, HL <: HList, HLR <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: RemoveRightConstraint[N, HL, HLR],
-      ev2: HList2TupleConverter[R, HLR]): RemoveRightConstraint[N, T, R] = new RemoveRightConstraint[N, T, R] {
+      ev2: HList2TupleConverter[R, HLR]
+  ): RemoveRightConstraint[N, T, R] = new RemoveRightConstraint[N, T, R] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hlr = ev1(hl)
@@ -666,7 +695,8 @@ object TupleOps {
   implicit def tpUpdatedConstraint[N, T, HL <: HList, A, R, HLR <: HList](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: UpdatedConstraint[N, HL, A, HLR],
-      ev2: HList2TupleConverter[R, HLR]): UpdatedConstraint[N, T, A, R] = new UpdatedConstraint[N, T, A, R] {
+      ev2: HList2TupleConverter[R, HLR]
+  ): UpdatedConstraint[N, T, A, R] = new UpdatedConstraint[N, T, A, R] {
     override def apply(t: T, a: A) = {
       val hl = ev0(t)
       val hla = ev1(hl, a)
@@ -690,7 +720,8 @@ object TupleOps {
   implicit def tpUpdatedRightConstraint[N, T, HL <: HList, A, HLA <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: UpdatedRightConstraint[N, HL, A, HLA],
-      ev2: HList2TupleConverter[R, HLA]): UpdatedRightConstraint[N, T, A, R] = new UpdatedRightConstraint[N, T, A, R] {
+      ev2: HList2TupleConverter[R, HLA]
+  ): UpdatedRightConstraint[N, T, A, R] = new UpdatedRightConstraint[N, T, A, R] {
     override def apply(t: T, a: A) = {
       val hl = ev0(t)
       val hla = ev1(hl, a)
@@ -716,7 +747,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: SplitAtConstraint[N, HL, HLL, HLR],
       ev2: HList2TupleConverter[L, HLL],
-      ev3: HList2TupleConverter[R, HLR]): SplitAtConstraint[N, T, L, R] = new SplitAtConstraint[N, T, L, R] {
+      ev3: HList2TupleConverter[R, HLR]
+  ): SplitAtConstraint[N, T, L, R] = new SplitAtConstraint[N, T, L, R] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val (l, r) = ev1(hl)
@@ -742,7 +774,8 @@ object TupleOps {
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: SplitAtRightConstraint[N, HL, HLL, HLR],
       ev2: HList2TupleConverter[L, HLL],
-      ev3: HList2TupleConverter[R, HLR]): SplitAtRightConstraint[N, T, L, R] =
+      ev3: HList2TupleConverter[R, HLR]
+  ): SplitAtRightConstraint[N, T, L, R] =
     new SplitAtRightConstraint[N, T, L, R] {
       override def apply(t: T) = {
         val hl = ev0(t)
@@ -766,7 +799,8 @@ object TupleOps {
   implicit def tpInternalZipConstraint[Z, HLZ <: HList, F, HLF <: HList, T, V](
       implicit ev0: Tuple2HListConverter[Z, HLZ],
       ev1: HList2TupleConverter[F, HLF],
-      ev2: InternalZipConstraint[HLZ, HLF, T, V]): InternalZipConstraint[Z, F, T, V] =
+      ev2: InternalZipConstraint[HLZ, HLF, T, V]
+  ): InternalZipConstraint[Z, F, T, V] =
     new InternalZipConstraint[Z, F, T, V] {
       override def apply(z: Z, f: F => T) = {
         val hl = ev0(z)
@@ -789,7 +823,8 @@ object TupleOps {
   implicit def tpReverseConstraint[T, HL <: HList, HLR <: HList, R](
       implicit ev0: Tuple2HListConverter[T, HL],
       ev1: ReverseConstraint[HL, HLR],
-      ev2: HList2TupleConverter[R, HLR]): ReverseConstraint[T, R] = new ReverseConstraint[T, R] {
+      ev2: HList2TupleConverter[R, HLR]
+  ): ReverseConstraint[T, R] = new ReverseConstraint[T, R] {
     override def apply(t: T) = {
       val hl = ev0(t)
       val hlr = ev1(hl)
@@ -813,7 +848,8 @@ object TupleOps {
   implicit def tpTransformConstraint[I, HLI <: HList, M[_], N[_], HLO <: HList, O](
       implicit ev0: Tuple2HListConverter[I, HLI],
       ev1: TransformConstraint[HLI, HLO, M, N],
-      ev2: HList2TupleConverter[O, HLO]): TransformConstraint[I, O, M, N] = new TransformConstraint[I, O, M, N] {
+      ev2: HList2TupleConverter[O, HLO]
+  ): TransformConstraint[I, O, M, N] = new TransformConstraint[I, O, M, N] {
     override def apply(f: M ~> N, t: I) = {
       val hl = ev0(t)
       val tr = ev1(f, hl)
@@ -831,8 +867,10 @@ object TupleOps {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def tpToListConstraint[Z, HL, R](implicit ev0: Tuple2HListConverter[Z, HL],
-                                            ev1: ToListConstraint[HL, R]): ToListConstraint[Z, R] =
+  implicit def tpToListConstraint[Z, HL, R](
+      implicit ev0: Tuple2HListConverter[Z, HL],
+      ev1: ToListConstraint[HL, R]
+  ): ToListConstraint[Z, R] =
     new ToListConstraint[Z, R] {
       override def apply(z: Z): List[R] = ev1(ev0(z))
     }

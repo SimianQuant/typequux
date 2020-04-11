@@ -45,8 +45,10 @@ object ToListConstraint {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def buildToListConstraint[T, R](implicit ev0: LubConstraint[T, R],
-                                           ev1: ListBuilderConstraint[T, R]): ToListConstraint[T, R] =
+  implicit def buildToListConstraint[T, R](
+      implicit ev0: LubConstraint[T, R],
+      ev1: ListBuilderConstraint[T, R]
+  ): ToListConstraint[T, R] =
     new ToListConstraint[T, R] {
       override def apply(t: T) = ev1(t)
     }

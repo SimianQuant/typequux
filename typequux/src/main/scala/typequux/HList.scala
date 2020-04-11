@@ -10,12 +10,12 @@
   * Unless required by applicable law or agreed to in writing, software
   * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
+
   * limitations under the License.
   */
 package typequux
 
-import collection.generic.CanBuildFrom
+import collection.mutable
 import constraint._
 import Dense._
 import language.experimental.macros
@@ -85,20 +85,21 @@ object HList {
       private val tr2: TransformConstraint[THL, THL, Traversable, Traversable],
       private val tr3: DownTransformConstraint[THL, FHL, Traversable],
       private val evn: NotContained[M[_], Stream[_] :+: HNil],
-      private val evfa: ForeachConstraint[THL, Traversable[_]]) {
+      private val evfa: ForeachConstraint[THL, Traversable[_]]
+  ) {
 
     import Zipper._
 
     /** Executes the zip
       *
       * @tparam T Element type of the resultant collection
-      * @tparam V Full type of the resultant collection
+
       *
       * @author Harshad Deo
       * @since 0.1
       */
-    def apply[T, V](f: FHL => T, arg: PHL)(implicit cbf: CanBuildFrom[M[T], T, V]): V = {
-      val bld = cbf()
+    def apply[T, V](f: FHL => T, arg: PHL): List[T] = {
+      val bld = mutable.ListBuffer.empty[T]
       @annotation.tailrec
       def go(curr: THL): Unit = {
         val isEmpty = curr.exists((t: Traversable[_]) => t.isEmpty)
@@ -139,7 +140,8 @@ object HList {
         tr2: TransformConstraint[THL, THL, Traversable, Traversable],
         tr3: DownTransformConstraint[THL, X :+: Y :+: HNil, Traversable],
         ex: ForeachConstraint[THL, Traversable[_]],
-        evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL] =
+        evn: NotContained[M[_], Stream[_] :+: HNil]
+    ): StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL] =
       new StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL]
 
     /** Induction case for [[StrictZipper]]
@@ -160,7 +162,8 @@ object HList {
         tr2: TransformConstraint[THL, THL, Traversable, Traversable],
         tr3: DownTransformConstraint[THL, X :+: FTL, Traversable],
         ex: ForeachConstraint[THL, Traversable[_]],
-        evn: NotContained[M[_], Stream[_] :+: HNil]): StrictZipper[M[X] :+: TL, M, X :+: FTL, THL] =
+        evn: NotContained[M[_], Stream[_] :+: HNil]
+    ): StrictZipper[M[X] :+: TL, M, X :+: FTL, THL] =
       new StrictZipper[M[X] :+: TL, M, X :+: FTL, THL]
   }
 
@@ -176,7 +179,8 @@ object HList {
   class LazyZipper[PHL <: HList, FHL <: HList] private (
       implicit private val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
       private val tr1: DownTransformConstraint[PHL, FHL, Stream],
-      private val ex: ForeachConstraint[PHL, Stream[_]]) {
+      private val ex: ForeachConstraint[PHL, Stream[_]]
+  ) {
 
     import Zipper._
 
@@ -216,13 +220,10 @@ object HList {
       * @since 0.1
       */
     implicit def lazyZipper2[X, Y](
-        implicit tr0: TransformConstraint[Stream[X] :+: Stream[Y] :+: HNil,
-                                          Stream[X] :+: Stream[Y] :+: HNil,
-                                          Stream,
-                                          Stream],
+        implicit tr0: TransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[X] :+: Stream[Y] :+: HNil, Stream, Stream],
         tr1: DownTransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil, Stream],
-        ex: ForeachConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[_]])
-      : LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
+        ex: ForeachConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[_]]
+    ): LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
       new LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil]
 
     /** Induction case for [[LazyZipper]]
@@ -238,7 +239,8 @@ object HList {
         implicit ev: LazyZipper[TL, FTL],
         tr0: TransformConstraint[Stream[X] :+: TL, Stream[X] :+: TL, Stream, Stream],
         tr1: DownTransformConstraint[Stream[X] :+: TL, X :+: FTL, Stream],
-        ex: ForeachConstraint[Stream[X] :+: TL, Stream[_]]): LazyZipper[Stream[X] :+: TL, X :+: FTL] =
+        ex: ForeachConstraint[Stream[X] :+: TL, Stream[_]]
+    ): LazyZipper[Stream[X] :+: TL, X :+: FTL] =
       new LazyZipper[Stream[X] :+: TL, X :+: FTL]
   }
 
@@ -318,7 +320,8 @@ object HList {
       */
     implicit def toPIndexerN[N <: Dense, H, TL <: HList, Before <: HList, At, After <: HList](
         implicit ev0: TrueConstraint[>[N, _0]],
-        ev1: PIndexer[N#Dec, TL, Before, At, After]): PIndexer[N, H :+: TL, H :+: Before, At, After] =
+        ev1: PIndexer[N#Dec, TL, Before, At, After]
+    ): PIndexer[N, H :+: TL, H :+: Before, At, After] =
       new PIndexer[N, H :+: TL, H :+: Before, At, After] {
         override def apply(hl: H :+: TL) = {
           val (tlBefore, at, after) = ev1(hl.tail)
@@ -374,7 +377,8 @@ object HList {
       * @since 0.1
       */
     implicit def toTIndexerN[H, TL <: HList, Before <: HList, At, After <: HList](
-        implicit ev: TIndexer[TL, Before, At, After]): TIndexer[H :+: TL, H :+: Before, At, After] =
+        implicit ev: TIndexer[TL, Before, At, After]
+    ): TIndexer[H :+: TL, H :+: Before, At, After] =
       new TIndexer[H :+: TL, H :+: Before, At, After] {
         override def apply(hl: H :+: TL) = {
           val (tlBefore, at, after) = ev(hl.tail)
@@ -456,8 +460,9 @@ object HList {
       * @author Harshad Deo
       * @since 0.1
       */
-    def flatMap[B <: HList, R0 <: HList, R1 <: HList](f: At => B)(implicit ev0: AppendConstraint[B, After, R0],
-                                                                  ev1: AppendConstraint[Before, R0, R1]): R1 =
+    def flatMap[B <: HList, R0 <: HList, R1 <: HList](
+        f: At => B
+    )(implicit ev0: AppendConstraint[B, After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
       before :++: f(at) :++: after
 
     /** Insert a new element at the index
@@ -480,8 +485,9 @@ object HList {
       * @author Harshad Deo
       * @since 0.1
       */
-    def insertM[B <: HList, R0 <: HList, R1 <: HList](b: B)(implicit ev0: AppendConstraint[B, At :+: After, R0],
-                                                            ev1: AppendConstraint[Before, R0, R1]): R1 =
+    def insertM[B <: HList, R0 <: HList, R1 <: HList](
+        b: B
+    )(implicit ev0: AppendConstraint[B, At :+: After, R0], ev1: AppendConstraint[Before, R0, R1]): R1 =
       before :++: b :++: (at :+: after)
 
     /** Partition the HList at the index
@@ -512,7 +518,8 @@ object HList {
     * @since 0.1
     */
   implicit def toArityZipOps[B <: HList, F](b: B)(
-      implicit ev: DownTransformConstraint[B, F, Traversable]): ArityZipOps[B, F] = new ArityZipOps[B, F](b)
+      implicit ev: DownTransformConstraint[B, F, Traversable]
+  ): ArityZipOps[B, F] = new ArityZipOps[B, F](b)
 
   /** Marker trait for a type indexed on an hlist.
     *
@@ -544,7 +551,8 @@ object HList {
       * @since 0.1
       */
     implicit def tip2IndexedOps[S, HL <: HList, Before <: HList, After <: HList](tip: HList.Tip[S, HL])(
-        implicit ev: TIndexer[HL, Before, S, After]): IndexedOps[HL, Before, S, After] = new IndexedOps(tip.hl, ev)
+        implicit ev: TIndexer[HL, Before, S, After]
+    ): IndexedOps[HL, Before, S, After] = new IndexedOps(tip.hl, ev)
   }
 
   /** Base case [[constraint.LengthConstraint]] for HLists
@@ -566,7 +574,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsLengthConstraint[H, T <: HList, L <: Dense](
-      implicit ev: LengthConstraint[T, L]): LengthConstraint[H :+: T, L + _1] =
+      implicit ev: LengthConstraint[T, L]
+  ): LengthConstraint[H :+: T, L + _1] =
     new LengthConstraint[H :+: T, L + _1] {}
 
   /** Base case [[constraint.AppendConstraint]] for HLists
@@ -593,7 +602,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsAppendConstraint[H, T <: HList, B <: HList, R <: HList](
-      implicit ev: AppendConstraint[T, B, R]): AppendConstraint[H :+: T, B, H :+: R] =
+      implicit ev: AppendConstraint[T, B, R]
+  ): AppendConstraint[H :+: T, B, H :+: R] =
     new AppendConstraint[H :+: T, B, H :+: R] {
       override def apply(a: H :+: T, b: B) = a.head :+: ev(a.tail, b)
     }
@@ -624,7 +634,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsApplyConstraint[I, O, FTL <: HList, InTl <: HList, OutTl <: HList](
-      implicit ev: ApplyConstraint[FTL, InTl, OutTl]): ApplyConstraint[(I => O) :+: FTL, I :+: InTl, O :+: OutTl] =
+      implicit ev: ApplyConstraint[FTL, InTl, OutTl]
+  ): ApplyConstraint[(I => O) :+: FTL, I :+: InTl, O :+: OutTl] =
     new ApplyConstraint[(I => O) :+: FTL, I :+: InTl, O :+: OutTl] {
       override def apply(f: (I => O) :+: FTL, in: I :+: InTl): O :+: OutTl = f.head(in.head) :+: ev(f.tail, in.tail)
     }
@@ -659,7 +670,8 @@ object HList {
   implicit def hAtRightConstraint[L <: Dense, HL <: HList, N <: Dense, D, A](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
-      ev2: PIndexer[D, HL, _, A, _]): AtRightConstraint[N, HL, A] = new AtRightConstraint[N, HL, A] {
+      ev2: PIndexer[D, HL, _, A, _]
+  ): AtRightConstraint[N, HL, A] = new AtRightConstraint[N, HL, A] {
     override def apply(hl: HL) = ev2(hl)._2
   }
 
@@ -690,7 +702,8 @@ object HList {
     */
   implicit def hConsDownTransformConstraint[M[_], X, TL <: HList, TlOp <: HList, H](
       implicit ev0: DownTransformConstraint[TL, TlOp, M],
-      ev1: H => M[X]): DownTransformConstraint[H :+: TL, X :+: TlOp, M] =
+      ev1: H => M[X]
+  ): DownTransformConstraint[H :+: TL, X :+: TlOp, M] =
     new DownTransformConstraint[H :+: TL, X :+: TlOp, M] {
       override def apply(f: M ~> Id, hl: H :+: TL) = f(hl.head) :+: ev0(f, hl.tail)
     }
@@ -707,7 +720,8 @@ object HList {
     * @since 0.1
     */
   implicit def hDropConstraint[N, HL <: HList, At, After <: HList](
-      implicit ev: PIndexer[N, HL, _, At, After]): DropConstraint[N, HL, At :+: After] =
+      implicit ev: PIndexer[N, HL, _, At, After]
+  ): DropConstraint[N, HL, At :+: After] =
     new DropConstraint[N, HL, At :+: After] {
       override def apply(hl: HL) = {
         val (_, at, after) = ev(hl)
@@ -730,7 +744,8 @@ object HList {
   implicit def hDropRightConstraint[N, L <: Dense, D, HL <: HList, R <: HList](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N, D],
-      ev2: PIndexer[D, HL, R, _, _]): DropRightConstraint[N, HL, R] = new DropRightConstraint[N, HL, R] {
+      ev2: PIndexer[D, HL, R, _, _]
+  ): DropRightConstraint[N, HL, R] = new DropRightConstraint[N, HL, R] {
     override def apply(hl: HL) = ev2(hl)._1
   }
 
@@ -757,8 +772,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsExternalUnzipConstraint[H1, H2, T <: HList, TR1 <: HList, TR2 <: HList](
-      implicit unzipTail: ExternalUnzipConstraint[T, TR1, TR2])
-    : ExternalUnzipConstraint[(H1, H2) :+: T, H1 :+: TR1, H2 :+: TR2] =
+      implicit unzipTail: ExternalUnzipConstraint[T, TR1, TR2]
+  ): ExternalUnzipConstraint[(H1, H2) :+: T, H1 :+: TR1, H2 :+: TR2] =
     new ExternalUnzipConstraint[(H1, H2) :+: T, H1 :+: TR1, H2 :+: TR2] {
       override def apply(h: (H1, H2) :+: T) = {
         val (t1, t2) = unzipTail(h.tail)
@@ -790,7 +805,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsExternalZipConstraintNil0[HA, HB, TA <: HList, TB <: HList, TR <: HList](
-      implicit ev: ExternalZipConstraint[TA, TB, TR]): ExternalZipConstraint[HA :+: TA, HB :+: TB, (HA, HB) :+: TR] =
+      implicit ev: ExternalZipConstraint[TA, TB, TR]
+  ): ExternalZipConstraint[HA :+: TA, HB :+: TB, (HA, HB) :+: TR] =
     new ExternalZipConstraint[HA :+: TA, HB :+: TB, (HA, HB) :+: TR] {
       override def apply(a: HA :+: TA, b: HB :+: TB) = HCons((a.head, b.head), ev(a.tail, b.tail))
     }
@@ -849,8 +865,10 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hForeachConstraintN[C, H, TL <: HList](implicit ev0: ForeachConstraint[TL, C],
-                                                      ev1: H => C): ForeachConstraint[H :+: TL, C] =
+  implicit def hForeachConstraintN[C, H, TL <: HList](
+      implicit ev0: ForeachConstraint[TL, C],
+      ev1: H => C
+  ): ForeachConstraint[H :+: TL, C] =
     new ForeachConstraint[H :+: TL, C] {
       override def apply(hl: H :+: TL)(f: C => Unit) = {
         f(hl.head)
@@ -873,17 +891,20 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hIndexFlatMapConstraint[N,
-                                       HL <: HList,
-                                       At,
-                                       T <: HList,
-                                       R <: HList,
-                                       Before <: HList,
-                                       After <: HList,
-                                       R0 <: HList](
+  implicit def hIndexFlatMapConstraint[
+      N,
+      HL <: HList,
+      At,
+      T <: HList,
+      R <: HList,
+      Before <: HList,
+      After <: HList,
+      R0 <: HList
+  ](
       implicit ev0: PIndexer[N, HL, Before, At, After],
       ev1: AppendConstraint[T, After, R0],
-      ev2: AppendConstraint[Before, R0, R]): IndexFlatMapConstraint[N, HL, At, T, R] =
+      ev2: AppendConstraint[Before, R0, R]
+  ): IndexFlatMapConstraint[N, HL, At, T, R] =
     new IndexFlatMapConstraint[N, HL, At, T, R] {
       override def apply(hl: HL, f: At => T) = {
         val (before, at, after) = ev0(hl)
@@ -909,21 +930,24 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hIndexFlatMapRightConstraint[N <: Dense,
-                                            L <: Dense,
-                                            D,
-                                            HL <: HList,
-                                            At,
-                                            Before <: HList,
-                                            After <: HList,
-                                            T <: HList,
-                                            R0 <: HList,
-                                            R <: HList](
+  implicit def hIndexFlatMapRightConstraint[
+      N <: Dense,
+      L <: Dense,
+      D,
+      HL <: HList,
+      At,
+      Before <: HList,
+      After <: HList,
+      T <: HList,
+      R0 <: HList,
+      R <: HList
+  ](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, At, After],
       ev3: AppendConstraint[T, After, R0],
-      ev4: AppendConstraint[Before, R0, R]): IndexFlatMapRightConstraint[N, HL, At, T, R] =
+      ev4: AppendConstraint[Before, R0, R]
+  ): IndexFlatMapRightConstraint[N, HL, At, T, R] =
     new IndexFlatMapRightConstraint[N, HL, At, T, R] {
       override def apply(hl: HL, f: At => T): R = {
         val (before, at, after) = ev2(hl)
@@ -948,7 +972,8 @@ object HList {
     */
   implicit def hIndexMapConstraint[N, HL <: HList, A, Before <: HList, After <: HList, T, R <: HList](
       implicit ev0: PIndexer[N, HL, Before, A, After],
-      ev1: AppendConstraint[Before, T :+: After, R]): IndexMapConstraint[N, HL, A, T, R] =
+      ev1: AppendConstraint[Before, T :+: After, R]
+  ): IndexMapConstraint[N, HL, A, T, R] =
     new IndexMapConstraint[N, HL, A, T, R] {
       override def apply(hl: HL, f: A => T): R = {
         val (before, at, after) = ev0(hl)
@@ -971,19 +996,22 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hIndexMapRightConstraint[N <: Dense,
-                                        L <: Dense,
-                                        D,
-                                        HL <: HList,
-                                        At,
-                                        Before <: HList,
-                                        After <: HList,
-                                        T,
-                                        R <: HList](
+  implicit def hIndexMapRightConstraint[
+      N <: Dense,
+      L <: Dense,
+      D,
+      HL <: HList,
+      At,
+      Before <: HList,
+      After <: HList,
+      T,
+      R <: HList
+  ](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, At, After],
-      ev3: AppendConstraint[Before, T :+: After, R]): IndexMapRightConstraint[N, HL, At, T, R] =
+      ev3: AppendConstraint[Before, T :+: After, R]
+  ): IndexMapRightConstraint[N, HL, At, T, R] =
     new IndexMapRightConstraint[N, HL, At, T, R] {
       override def apply(hl: HL, f: At => T) = {
         val (before, at, after) = ev2(hl)
@@ -1007,7 +1035,8 @@ object HList {
     */
   implicit def hInsertConstraint[N, HL <: HList, Before <: HList, At, After <: HList, T, R <: HList](
       implicit ev0: PIndexer[N, HL, Before, At, After],
-      ev1: AppendConstraint[Before, T :+: At :+: After, R]): InsertConstraint[N, HL, T, R] =
+      ev1: AppendConstraint[Before, T :+: At :+: After, R]
+  ): InsertConstraint[N, HL, T, R] =
     new InsertConstraint[N, HL, T, R] {
       override def apply(hl: HL, t: T) = {
         val (before, at, after) = ev0(hl)
@@ -1031,19 +1060,22 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hInsertRightConstraint[N <: Dense,
-                                      L <: Dense,
-                                      D,
-                                      HL <: HList,
-                                      Before <: HList,
-                                      At,
-                                      After <: HList,
-                                      T,
-                                      R <: HList](
+  implicit def hInsertRightConstraint[
+      N <: Dense,
+      L <: Dense,
+      D,
+      HL <: HList,
+      Before <: HList,
+      At,
+      After <: HList,
+      T,
+      R <: HList
+  ](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, At, After],
-      ev3: AppendConstraint[Before, At :+: T :+: After, R]): InsertRightConstraint[N, HL, T, R] =
+      ev3: AppendConstraint[Before, At :+: T :+: After, R]
+  ): InsertRightConstraint[N, HL, T, R] =
     new InsertRightConstraint[N, HL, T, R] {
       override def apply(hl: HL, t: T) = {
         val (before, at, after) = ev2(hl)
@@ -1066,16 +1098,20 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hInserMConstraint[N,
-                                 HL <: HList,
-                                 Before <: HList,
-                                 At,
-                                 After <: HList,
-                                 T <: HList,
-                                 R0 <: HList,
-                                 R <: HList](implicit ev0: PIndexer[N, HL, Before, At, After],
-                                             ev1: AppendConstraint[T, At :+: After, R0],
-                                             ev2: AppendConstraint[Before, R0, R]): InsertMConstraint[N, HL, T, R] =
+  implicit def hInserMConstraint[
+      N,
+      HL <: HList,
+      Before <: HList,
+      At,
+      After <: HList,
+      T <: HList,
+      R0 <: HList,
+      R <: HList
+  ](
+      implicit ev0: PIndexer[N, HL, Before, At, After],
+      ev1: AppendConstraint[T, At :+: After, R0],
+      ev2: AppendConstraint[Before, R0, R]
+  ): InsertMConstraint[N, HL, T, R] =
     new InsertMConstraint[N, HL, T, R] {
       override def apply(hl: HL, t: T) = {
         val (before, at, after) = ev0(hl)
@@ -1101,21 +1137,24 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hInsertMRightConstraint[N <: Dense,
-                                       L <: Dense,
-                                       D,
-                                       HL <: HList,
-                                       Before <: HList,
-                                       At,
-                                       After <: HList,
-                                       T <: HList,
-                                       R0 <: HList,
-                                       R <: HList](
+  implicit def hInsertMRightConstraint[
+      N <: Dense,
+      L <: Dense,
+      D,
+      HL <: HList,
+      Before <: HList,
+      At,
+      After <: HList,
+      T <: HList,
+      R0 <: HList,
+      R <: HList
+  ](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, At, After],
       ev3: AppendConstraint[T, After, R0],
-      ev4: AppendConstraint[Before, At :+: R0, R]): InsertMRightConstraint[N, HL, T, R] =
+      ev4: AppendConstraint[Before, At :+: R0, R]
+  ): InsertMRightConstraint[N, HL, T, R] =
     new InsertMRightConstraint[N, HL, T, R] {
       override def apply(hl: HL, t: T) = {
         val (before, at, after) = ev2(hl)
@@ -1135,7 +1174,8 @@ object HList {
     * @since 0.1
     */
   implicit def hTakeConstraint[N, HL <: HList, R <: HList](
-      implicit ev: PIndexer[N, HL, R, _, _]): TakeConstraint[N, HL, R] =
+      implicit ev: PIndexer[N, HL, R, _, _]
+  ): TakeConstraint[N, HL, R] =
     new TakeConstraint[N, HL, R] {
       override def apply(hl: HL) = ev(hl)._1
     }
@@ -1157,7 +1197,8 @@ object HList {
   implicit def hTakeRightConstraint[N, L <: Dense, D, HL <: HList, At, After <: HList, R](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N, D],
-      ev2: PIndexer[D, HL, _, At, After]): TakeRightConstraint[N, HL, At :+: After] =
+      ev2: PIndexer[D, HL, _, At, After]
+  ): TakeRightConstraint[N, HL, At :+: After] =
     new TakeRightConstraint[N, HL, At :+: After] {
       override def apply(hl: HL) = {
         val (_, a, after) = ev2(hl)
@@ -1179,7 +1220,8 @@ object HList {
     */
   implicit def hRemoveConstraint[N, HL <: HList, Before <: HList, After <: HList, R <: HList](
       implicit ev0: PIndexer[N, HL, Before, _, After],
-      ev1: AppendConstraint[Before, After, R]): RemoveConstraint[N, HL, R] = new RemoveConstraint[N, HL, R] {
+      ev1: AppendConstraint[Before, After, R]
+  ): RemoveConstraint[N, HL, R] = new RemoveConstraint[N, HL, R] {
     override def apply(hl: HL) = {
       val (before, _, after) = ev0(hl)
       ev1(before, after)
@@ -1200,17 +1242,20 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hRemoveRightConstrint[N <: Dense,
-                                     L <: Dense,
-                                     D,
-                                     HL <: HList,
-                                     Before <: HList,
-                                     After <: HList,
-                                     R <: HList](
+  implicit def hRemoveRightConstrint[
+      N <: Dense,
+      L <: Dense,
+      D,
+      HL <: HList,
+      Before <: HList,
+      After <: HList,
+      R <: HList
+  ](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, _, After],
-      ev3: AppendConstraint[Before, After, R]): RemoveRightConstraint[N, HL, R] = new RemoveRightConstraint[N, HL, R] {
+      ev3: AppendConstraint[Before, After, R]
+  ): RemoveRightConstraint[N, HL, R] = new RemoveRightConstraint[N, HL, R] {
     override def apply(hl: HL) = {
       val (before, _, after) = ev2(hl)
       ev3(before, after)
@@ -1230,7 +1275,8 @@ object HList {
     * @since 0.1
     */
   implicit def hSplitAtConstraint[N, HL <: HList, Before <: HList, At, After <: HList](
-      implicit ev: PIndexer[N, HL, Before, At, After]): SplitAtConstraint[N, HL, Before, At :+: After] =
+      implicit ev: PIndexer[N, HL, Before, At, After]
+  ): SplitAtConstraint[N, HL, Before, At :+: After] =
     new SplitAtConstraint[N, HL, Before, At :+: After] {
       override def apply(hl: HL) = {
         val (before, at, after) = ev(hl)
@@ -1255,7 +1301,8 @@ object HList {
   implicit def hSplitAtRightConstraint[N, L <: Dense, D, HL <: HList, Before <: HList, At, After <: HList](
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N, D],
-      ev2: PIndexer[D, HL, Before, At, After]): SplitAtRightConstraint[N, HL, Before, At :+: After] =
+      ev2: PIndexer[D, HL, Before, At, After]
+  ): SplitAtRightConstraint[N, HL, Before, At :+: After] =
     new SplitAtRightConstraint[N, HL, Before, At :+: After] {
       override def apply(hl: HL) = {
         val (before, at, after) = ev2(hl)
@@ -1278,7 +1325,8 @@ object HList {
     */
   implicit def hUpdatedConstraint[N, HL <: HList, Before <: HList, _, After <: HList, A, R](
       implicit ev0: PIndexer[N, HL, Before, _, After],
-      ev1: AppendConstraint[Before, A :+: After, R]): UpdatedConstraint[N, HL, A, R] =
+      ev1: AppendConstraint[Before, A :+: After, R]
+  ): UpdatedConstraint[N, HL, A, R] =
     new UpdatedConstraint[N, HL, A, R] {
       override def apply(hl: HL, a: A) = {
         val (before, _, after) = ev0(hl)
@@ -1305,7 +1353,8 @@ object HList {
       implicit ev0: LengthConstraint[HL, L],
       ev1: DenseDiff[L, N + _1, D],
       ev2: PIndexer[D, HL, Before, _, After],
-      ev3: AppendConstraint[Before, A :+: After, R]): UpdatedRightConstraint[N, HL, A, R] =
+      ev3: AppendConstraint[Before, A :+: After, R]
+  ): UpdatedRightConstraint[N, HL, A, R] =
     new UpdatedRightConstraint[N, HL, A, R] {
       override def apply(hl: HL, a: A) = {
         val (before, _, after) = ev2(hl)
@@ -1327,10 +1376,10 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hStrictInternalZipConstraint[Z <: HList, F <: HList, M[_] <: Traversable[_], THL <: HList, T, V](
-      implicit ev0: StrictZipper[Z, M, F, THL],
-      ev1: CanBuildFrom[M[T], T, V]): InternalZipConstraint[Z, F, T, V] =
-    new InternalZipConstraint[Z, F, T, V] {
+  implicit def hStrictInternalZipConstraint[Z <: HList, F <: HList, M[_] <: Traversable[_], THL <: HList, T](
+      implicit ev0: StrictZipper[Z, M, F, THL]
+  ): InternalZipConstraint[Z, F, T, List[T]] =
+    new InternalZipConstraint[Z, F, T, List[T]] {
       override def apply(z: Z, f: F => T) = ev0(f, z)
     }
 
@@ -1345,7 +1394,8 @@ object HList {
     * @since 0.1
     */
   implicit def hLazyInternalZipConstraint[Z <: HList, F <: HList, T](
-      implicit ev: LazyZipper[Z, F]): InternalZipConstraint[Z, F, T, Stream[T]] =
+      implicit ev: LazyZipper[Z, F]
+  ): InternalZipConstraint[Z, F, T, Stream[T]] =
     new InternalZipConstraint[Z, F, T, Stream[T]] {
       override def apply(z: Z, f: F => T) = ev(f, z)
     }
@@ -1360,7 +1410,8 @@ object HList {
     * @since 0.1
     */
   implicit def hReverseConstraint[A <: HList, R <: HList](
-      implicit ev: HReverseResult[A, HNil, R]): ReverseConstraint[A, R] = new ReverseConstraint[A, R] {
+      implicit ev: HReverseResult[A, HNil, R]
+  ): ReverseConstraint[A, R] = new ReverseConstraint[A, R] {
     override def apply(a: A) = ev(a, HNil)
   }
 
@@ -1393,7 +1444,8 @@ object HList {
     * @since 0.1
     */
   implicit def hConsReverseAppendResult[H, T <: HList, CP <: HList, R <: HList](
-      implicit ev: HReverseResult[T, H :+: CP, R]): HReverseResult[H :+: T, CP, R] =
+      implicit ev: HReverseResult[T, H :+: CP, R]
+  ): HReverseResult[H :+: T, CP, R] =
     new HReverseResult[H :+: T, CP, R] {
       override def apply(a: H :+: T, c: CP) = ev(a.tail, a.head :+: c)
     }
@@ -1427,7 +1479,8 @@ object HList {
     */
   implicit def hConsTransformerConstraint[M[_], N[_], X, TL <: HList, TlOp <: HList, H](
       implicit ev0: TransformConstraint[TL, TlOp, M, N],
-      ev1: H => M[X]): TransformConstraint[H :+: TL, N[X] :+: TlOp, M, N] =
+      ev1: H => M[X]
+  ): TransformConstraint[H :+: TL, N[X] :+: TlOp, M, N] =
     new TransformConstraint[H :+: TL, N[X] :+: TlOp, M, N] {
       override def apply(f: M ~> N, hl: H :+: TL) = f(hl.head) :+: ev0(f, hl.tail)
     }
@@ -1485,7 +1538,8 @@ object HList {
     */
   implicit def hConsToListConsConstraint[H, TL <: HList, T](
       implicit ev0: H <:< T,
-      ev1: ListBuilderConstraint[TL, T]): ListBuilderConstraint[H :+: TL, T] =
+      ev1: ListBuilderConstraint[TL, T]
+  ): ListBuilderConstraint[H :+: TL, T] =
     new ListBuilderConstraint[H :+: TL, T] {
       override def apply(hl: H :+: TL): List[T] = hl.head :: ev1(hl.tail)
     }
