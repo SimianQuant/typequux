@@ -1,6 +1,9 @@
 # Adapted from https://github.com/sbt/sbt-native-packager/blob/master/appveyor.yml
 version: '{build}'
-os: Windows Server 2019
+image: 
+  - Visual Studio 2019
+  - macOS
+
 
 #  To make the extended ascii characters work on Windows
 #  we need to set string encoding for jvm to utf-8 on windows
