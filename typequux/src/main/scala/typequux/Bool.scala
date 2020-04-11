@@ -15,8 +15,6 @@
   */
 package typequux
 
-import language.higherKinds
-
 /** Church encodings of booleans.
   *
   * Can be understood as an alias for a type constructor that chooses between one of two alternative types. Is primarily

@@ -262,27 +262,27 @@ class TupleOpsSpec extends BaseSpec {
     assert(tz1f == List((true, 1), (false, 2)))
     assert(tz2f == Vector(((1, "alpha"), (true, 3.14)), ((2, "beta"), (false, 2.718))))
 
-    val fibs: Stream[BigInt] = {
-      def go(i: BigInt, j: BigInt): Stream[BigInt] = (i + j) #:: go(j, i + j)
+    val fibs: LazyList[BigInt] = {
+      def go(i: BigInt, j: BigInt): LazyList[BigInt] = (i + j) #:: go(j, i + j)
       BigInt(0) #:: BigInt(1) #:: go(0, 1)
     }
-    val nats: Stream[Int] = Stream.from(1)
-    val pows: Stream[Long] = {
-      def go(n: Int): Stream[Long] = (1L << n) #:: go(n + 1)
+    val nats: LazyList[Int] = LazyList.from(1)
+    val pows: LazyList[Long] = {
+      def go(n: Int): LazyList[Long] = (1L << n) #:: go(n + 1)
       go(1)
     }
 
     val sz1 = (fibs, nats)
     val sz2 = (fibs, nats, pows)
-    val sz3 = (fibs, nats, Stream.empty[String])
+    val sz3 = (fibs, nats, LazyList.empty[String])
 
-    val sz1z: Stream[(BigInt, Int)] = sz1.azipped
-    val sz2z: Stream[(BigInt, Int, Long)] = sz2.azipped
-    val sz3z: Stream[(BigInt, Int, String)] = sz3.azipped
+    val sz1z: LazyList[(BigInt, Int)] = sz1.azipped
+    val sz2z: LazyList[(BigInt, Int, Long)] = sz2.azipped
+    val sz3z: LazyList[(BigInt, Int, String)] = sz3.azipped
 
-    val sz1f: Stream[(Int, BigInt)] = sz1.zipwith { case (b, i)            => (i, b) }
-    val sz2f: Stream[(Int, (BigInt, Long))] = sz2.zipwith { case (b, i, l) => (i, (b, l)) }
-    val sz3f: Stream[(Int, BigInt, String)] = sz3.zipwith { case (b, i, s) => (i, b, s) }
+    val sz1f: LazyList[(Int, BigInt)] = sz1.zipwith { case (b, i)            => (i, b) }
+    val sz2f: LazyList[(Int, (BigInt, Long))] = sz2.zipwith { case (b, i, l) => (i, (b, l)) }
+    val sz3f: LazyList[(Int, BigInt, String)] = sz3.zipwith { case (b, i, s) => (i, b, s) }
 
     val res1 = (sz1z take 3).toList
     val res2 = (sz2z take 3).toList

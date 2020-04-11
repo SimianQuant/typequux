@@ -18,7 +18,6 @@ package typequux
 import Bool.{False, True}
 import Dense._
 import DenseSet.EmptyDenseSet
-import language.higherKinds
 
 /** Typelevel map in which the keys are [[Dense]] numbers. Implemented a binary tree.
   *

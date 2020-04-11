@@ -17,7 +17,7 @@ package typequux
 
 import constraint._
 import HList.:+:
-import language.{higherKinds, implicitConversions}
+import language.implicitConversions
 import Typequux.Id
 
 /** Provides scala collection-like operations on tuples.
@@ -80,7 +80,7 @@ object TupleOps {
     * @since 0.1
     */
   implicit def tuple2ArityZipOps[Z, F](z: Z)(
-      implicit ev: DownTransformConstraint[Z, F, Traversable]
+      implicit ev: DownTransformConstraint[Z, F, Iterable]
   ): ArityZipOps[Z, F] = new ArityZipOps[Z, F](z)
 
   /** Builder of [[constraint.LengthConstraint]] for tuples

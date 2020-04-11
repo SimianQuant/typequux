@@ -1,3 +1,5 @@
+os: linux
+
 cache:
   directories:
     - $HOME/.ivy2/cache

@@ -17,7 +17,6 @@ package typequux
 
 import Bool._
 import Dense._
-import language.higherKinds
 
 /** Typelevel set of [[Dense]] numbers, implemented as a binary tree
   *

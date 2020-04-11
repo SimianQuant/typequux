@@ -15,7 +15,6 @@
   */
 package typequux.constraint
 
-import language.higherKinds
 import typequux.Typequux.Id
 import typequux.~>
 

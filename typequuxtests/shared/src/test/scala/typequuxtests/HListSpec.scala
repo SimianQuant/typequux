@@ -329,27 +329,27 @@ class HListSpec extends BaseSpec {
     case i :+: b :+: s :+: d :+: _ => ((i, s), (b, d))
   }
 
-  val fibs: Stream[BigInt] =
+  val fibs: LazyList[BigInt] =
     BigInt(0) #:: BigInt(1) #:: fibs.zip(fibs.tail).map { n =>
       n._1 + n._2
     }
-  val nats: Stream[Int] = Stream.from(1)
-  val pows: Stream[Long] = {
-    def go(n: Int): Stream[Long] = (1L << n) #:: go(n + 1)
+  val nats: LazyList[Int] = LazyList.from(1)
+  val pows: LazyList[Long] = {
+    def go(n: Int): LazyList[Long] = (1L << n) #:: go(n + 1)
     go(1)
   }
 
   val fz1 = fibs :+: nats :+: HNil
   val fz2 = fibs :+: nats :+: pows :+: HNil
-  val fz3 = fibs :+: nats :+: Stream.empty[String] :+: HNil
+  val fz3 = fibs :+: nats :+: LazyList.empty[String] :+: HNil
 
-  val fz1z: Stream[BigInt :+: Int :+: HNil] = fz1.azipped
-  val fz2z: Stream[BigInt :+: Int :+: Long :+: HNil] = fz2.azipped
-  val fz3z: Stream[BigInt :+: Int :+: String :+: HNil] = fz3.azipped
+  val fz1z: LazyList[BigInt :+: Int :+: HNil] = fz1.azipped
+  val fz2z: LazyList[BigInt :+: Int :+: Long :+: HNil] = fz2.azipped
+  val fz3z: LazyList[BigInt :+: Int :+: String :+: HNil] = fz3.azipped
 
-  val fz1f: Stream[(Int, BigInt)] = fz1.zipwith { case b :+: i :+: _ => (i, b) }
-  val fz2f: Stream[(Int, (BigInt, Long))] = fz2.zipwith { case b :+: i :+: l :+: _ => (i, (b, l)) }
-  val fz3f: Stream[(Int, BigInt, String)] = fz3.zipwith { case b :+: i :+: s :+: _ => (i, b, s) }
+  val fz1f: LazyList[(Int, BigInt)] = fz1.zipwith { case b :+: i :+: _ => (i, b) }
+  val fz2f: LazyList[(Int, (BigInt, Long))] = fz2.zipwith { case b :+: i :+: l :+: _ => (i, (b, l)) }
+  val fz3f: LazyList[(Int, BigInt, String)] = fz3.zipwith { case b :+: i :+: s :+: _ => (i, b, s) }
 
   it should "zippped and zippedwith correctly" in {
     assert(sz1z == List(1 :+: true :+: HNil, 2 :+: false :+: HNil))

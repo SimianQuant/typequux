@@ -19,7 +19,6 @@ import annotation.tailrec
 import Comparison.{EQ, GT, LT}
 import constraint.TrueConstraint
 import Dense._
-import language.higherKinds
 import language.experimental.macros
 import reflect.macros.whitebox.Context
 

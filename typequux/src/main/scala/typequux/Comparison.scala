@@ -16,7 +16,6 @@
 package typequux
 
 import Bool.{False, True}
-import language.higherKinds
 
 /** Typelevel encoding of the result of a comparison
   *

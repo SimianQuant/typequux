@@ -15,8 +15,6 @@
   */
 package typequux
 
-import language.higherKinds
-
 /** Typeclass for typelevel and valuelevel fold
   *
   * @author Harshad Deo

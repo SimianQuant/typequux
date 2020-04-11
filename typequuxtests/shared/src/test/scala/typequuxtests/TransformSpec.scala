@@ -15,7 +15,6 @@
   */
 package typequuxtests
 
-import language.higherKinds
 import typequux.~>
 import typequux.Typequux.Id
 

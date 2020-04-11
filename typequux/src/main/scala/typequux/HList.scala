@@ -19,7 +19,7 @@ import collection.mutable
 import constraint._
 import Dense._
 import language.experimental.macros
-import language.{higherKinds, implicitConversions}
+import language.implicitConversions
 import reflect.macros.whitebox.Context
 import Typequux.Id
 
@@ -67,25 +67,25 @@ object HList {
   val :+: : HCons.type = HCons
   val HNil: HNil = new HNil
 
-  /** Arbitrary arity zipper in which the elements share common context that is a subtype of Traversable and
-    * has strict evaluation semantics (not a [[scala.collection.immutable.Stream]])
+  /** Arbitrary arity zipper in which the elements share common context that is a subtype of Iterable and
+    * has strict evaluation semantics (not a [[scala.collection.immutable.LazyList]])
     *
     * @tparam PHL Input HList
     * @tparam M  Common context of the types of the HList
     * @tparam FHL Downconverted type of PHL. For details, see [[constraint.DownTransformConstraint]]
-    * @tparam THL Result of applying a M ~> Traversable transformation on PHL
+    * @tparam THL Result of applying a M ~> Iterable transformation on PHL
     *
     * @group Implementation
     * @author Harshad Deo
     * @since 0.1
     */
-  class StrictZipper[PHL <: HList, M[_] <: Traversable[_], FHL <: HList, THL <: HList] private (
-      implicit private val tr0: TransformConstraint[PHL, THL, M, Traversable],
-      private val tr1: M ~> Traversable,
-      private val tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-      private val tr3: DownTransformConstraint[THL, FHL, Traversable],
-      private val evn: NotContained[M[_], Stream[_] :+: HNil],
-      private val evfa: ForeachConstraint[THL, Traversable[_]]
+  class StrictZipper[PHL <: HList, M[_] <: Iterable[_], FHL <: HList, THL <: HList] private (
+      implicit private val tr0: TransformConstraint[PHL, THL, M, Iterable],
+      private val tr1: M ~> Iterable,
+      private val tr2: TransformConstraint[THL, THL, Iterable, Iterable],
+      private val tr3: DownTransformConstraint[THL, FHL, Iterable],
+      private val evn: NotContained[M[_], LazyList[_] :+: HNil],
+      private val evfa: ForeachConstraint[THL, Iterable[_]]
   ) {
 
     import Zipper._
@@ -102,7 +102,7 @@ object HList {
       val bld = mutable.ListBuffer.empty[T]
       @annotation.tailrec
       def go(curr: THL): Unit = {
-        val isEmpty = curr.exists((t: Traversable[_]) => t.isEmpty)
+        val isEmpty = curr.exists((t: Iterable[_]) => t.isEmpty)
         if (!isEmpty) {
           val hd = curr down heads
           val tl = curr transform tails
@@ -129,18 +129,18 @@ object HList {
       * @tparam M Common context of the elements of the HList
       * @tparam X Context free type of the head
       * @tparam Y Context free type of the head of the tail
-      * @tparam THL Result of applying M ~> Traversable to M[X] :+: M[Y] :+: HNil
+      * @tparam THL Result of applying M ~> Iterable to M[X] :+: M[Y] :+: HNil
       *
       * @author Harshad Deo
       * @since 0.1
       */
-    implicit def strictZipper2[M[_] <: Traversable[_], X, Y, THL <: HList](
-        implicit tr0: TransformConstraint[M[X] :+: M[Y] :+: HNil, THL, M, Traversable],
-        tr1: M ~> Traversable,
-        tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-        tr3: DownTransformConstraint[THL, X :+: Y :+: HNil, Traversable],
-        ex: ForeachConstraint[THL, Traversable[_]],
-        evn: NotContained[M[_], Stream[_] :+: HNil]
+    implicit def strictZipper2[M[_] <: Iterable[_], X, Y, THL <: HList](
+        implicit tr0: TransformConstraint[M[X] :+: M[Y] :+: HNil, THL, M, Iterable],
+        tr1: M ~> Iterable,
+        tr2: TransformConstraint[THL, THL, Iterable, Iterable],
+        tr3: DownTransformConstraint[THL, X :+: Y :+: HNil, Iterable],
+        ex: ForeachConstraint[THL, Iterable[_]],
+        evn: NotContained[M[_], LazyList[_] :+: HNil]
     ): StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL] =
       new StrictZipper[M[X] :+: M[Y] :+: HNil, M, X :+: Y :+: HNil, THL]
 
@@ -150,24 +150,24 @@ object HList {
       * @tparam X Context free type of the head
       * @tparam TL Type of the tail of the input HList
       * @tparam FTL Downconverted type of the tail of the input HList. For details, see [[constraint.DownTransformConstraint]]
-      * @tparam THL Result of applying M ~> Traversable to M[X] :+: TL
+      * @tparam THL Result of applying M ~> Iterable to M[X] :+: TL
       *
       * @author Harshad Deo
       * @since 0.1
       */
-    implicit def strictZipperN[M[_] <: Traversable[_], X, TL <: HList, FTL <: HList, THL <: HList](
+    implicit def strictZipperN[M[_] <: Iterable[_], X, TL <: HList, FTL <: HList, THL <: HList](
         implicit ev: StrictZipper[TL, M, FTL, _],
-        tr0: TransformConstraint[M[X] :+: TL, THL, M, Traversable],
-        tr1: M ~> Traversable,
-        tr2: TransformConstraint[THL, THL, Traversable, Traversable],
-        tr3: DownTransformConstraint[THL, X :+: FTL, Traversable],
-        ex: ForeachConstraint[THL, Traversable[_]],
-        evn: NotContained[M[_], Stream[_] :+: HNil]
+        tr0: TransformConstraint[M[X] :+: TL, THL, M, Iterable],
+        tr1: M ~> Iterable,
+        tr2: TransformConstraint[THL, THL, Iterable, Iterable],
+        tr3: DownTransformConstraint[THL, X :+: FTL, Iterable],
+        ex: ForeachConstraint[THL, Iterable[_]],
+        evn: NotContained[M[_], LazyList[_] :+: HNil]
     ): StrictZipper[M[X] :+: TL, M, X :+: FTL, THL] =
       new StrictZipper[M[X] :+: TL, M, X :+: FTL, THL]
   }
 
-  /** Arbitrary arity zipper in which the common context for all the elements is [[scala.collection.immutable.Stream]]
+  /** Arbitrary arity zipper in which the common context for all the elements is [[scala.collection.immutable.LazyList]]
     *
     * @tparam PHL Input HList
     * @tparam FHL Downtransformed type of PHL. For details, see [[constraint.DownTransformConstraint]]
@@ -177,9 +177,9 @@ object HList {
     * @since 0.1
     */
   class LazyZipper[PHL <: HList, FHL <: HList] private (
-      implicit private val tr0: TransformConstraint[PHL, PHL, Stream, Stream],
-      private val tr1: DownTransformConstraint[PHL, FHL, Stream],
-      private val ex: ForeachConstraint[PHL, Stream[_]]
+      implicit private val tr0: TransformConstraint[PHL, PHL, LazyList, LazyList],
+      private val tr1: DownTransformConstraint[PHL, FHL, LazyList],
+      private val ex: ForeachConstraint[PHL, LazyList[_]]
   ) {
 
     import Zipper._
@@ -191,10 +191,10 @@ object HList {
       * @author Harshad Deo
       * @since 0.1
       */
-    def apply[T](f: FHL => T, arg: PHL): Stream[T] = {
-      val isEmpty = arg.exists((t: Stream[_]) => t.isEmpty)
+    def apply[T](f: FHL => T, arg: PHL): LazyList[T] = {
+      val isEmpty = arg.exists((t: LazyList[_]) => t.isEmpty)
       if (isEmpty) {
-        Stream.empty
+        LazyList.empty
       } else {
         val hd = arg down heads
         val tl = arg transform streamTails
@@ -220,11 +220,11 @@ object HList {
       * @since 0.1
       */
     implicit def lazyZipper2[X, Y](
-        implicit tr0: TransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[X] :+: Stream[Y] :+: HNil, Stream, Stream],
-        tr1: DownTransformConstraint[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil, Stream],
-        ex: ForeachConstraint[Stream[X] :+: Stream[Y] :+: HNil, Stream[_]]
-    ): LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil] =
-      new LazyZipper[Stream[X] :+: Stream[Y] :+: HNil, X :+: Y :+: HNil]
+        implicit tr0: TransformConstraint[LazyList[X] :+: LazyList[Y] :+: HNil, LazyList[X] :+: LazyList[Y] :+: HNil, LazyList, LazyList],
+        tr1: DownTransformConstraint[LazyList[X] :+: LazyList[Y] :+: HNil, X :+: Y :+: HNil, LazyList],
+        ex: ForeachConstraint[LazyList[X] :+: LazyList[Y] :+: HNil, LazyList[_]]
+    ): LazyZipper[LazyList[X] :+: LazyList[Y] :+: HNil, X :+: Y :+: HNil] =
+      new LazyZipper[LazyList[X] :+: LazyList[Y] :+: HNil, X :+: Y :+: HNil]
 
     /** Induction case for [[LazyZipper]]
       *
@@ -237,11 +237,11 @@ object HList {
       */
     implicit def lazyZipperN[X, TL <: HList, FTL <: HList](
         implicit ev: LazyZipper[TL, FTL],
-        tr0: TransformConstraint[Stream[X] :+: TL, Stream[X] :+: TL, Stream, Stream],
-        tr1: DownTransformConstraint[Stream[X] :+: TL, X :+: FTL, Stream],
-        ex: ForeachConstraint[Stream[X] :+: TL, Stream[_]]
-    ): LazyZipper[Stream[X] :+: TL, X :+: FTL] =
-      new LazyZipper[Stream[X] :+: TL, X :+: FTL]
+        tr0: TransformConstraint[LazyList[X] :+: TL, LazyList[X] :+: TL, LazyList, LazyList],
+        tr1: DownTransformConstraint[LazyList[X] :+: TL, X :+: FTL, LazyList],
+        ex: ForeachConstraint[LazyList[X] :+: TL, LazyList[_]]
+    ): LazyZipper[LazyList[X] :+: TL, X :+: FTL] =
+      new LazyZipper[LazyList[X] :+: TL, X :+: FTL]
   }
 
   /** Utility transformations used in zips
@@ -250,9 +250,9 @@ object HList {
     * @since 0.1
     */
   private[HList] object Zipper {
-    val heads = new (Traversable ~> Id) { def apply[V](s: Traversable[V]): V = s.head }
-    val tails = new (Traversable ~> Traversable) { def apply[V](s: Traversable[V]): Traversable[V] = s.tail }
-    val streamTails = new (Stream ~> Stream) { def apply[T](s: Stream[T]): Stream[T] = s.tail }
+    val heads = new (Iterable ~> Id) { def apply[V](s: Iterable[V]): V = s.head }
+    val tails = new (Iterable ~> Iterable) { def apply[V](s: Iterable[V]): Iterable[V] = s.tail }
+    val streamTails = new (LazyList ~> LazyList) { def apply[T](s: LazyList[T]): LazyList[T] = s.tail }
   }
 
   /** Factorizes a HList into sublists of elemets before, the element at, and the element after, as per some indexation
@@ -518,7 +518,7 @@ object HList {
     * @since 0.1
     */
   implicit def toArityZipOps[B <: HList, F](b: B)(
-      implicit ev: DownTransformConstraint[B, F, Traversable]
+      implicit ev: DownTransformConstraint[B, F, Iterable]
   ): ArityZipOps[B, F] = new ArityZipOps[B, F](b)
 
   /** Marker trait for a type indexed on an hlist.
@@ -1368,7 +1368,7 @@ object HList {
     * @tparam Z Type of the hlist to be internally zipped
     * @tparam F Down converted type of Z. For details, see [[constraint.DownTransformConstraint]]
     * @tparam M Common outer type constructor
-    * @tparam THL Type of the HList obtained by applying the natural transformation M ~> Traversable to Z
+    * @tparam THL Type of the HList obtained by applying the natural transformation M ~> Iterable to Z
     * @tparam T Element type of the resultant collection
     * @tparam V Type of the resultant collection
     *
@@ -1376,14 +1376,14 @@ object HList {
     * @author Harshad Deo
     * @since 0.1
     */
-  implicit def hStrictInternalZipConstraint[Z <: HList, F <: HList, M[_] <: Traversable[_], THL <: HList, T](
+  implicit def hStrictInternalZipConstraint[Z <: HList, F <: HList, M[_] <: Iterable[_], THL <: HList, T](
       implicit ev0: StrictZipper[Z, M, F, THL]
   ): InternalZipConstraint[Z, F, T, List[T]] =
     new InternalZipConstraint[Z, F, T, List[T]] {
       override def apply(z: Z, f: F => T) = ev0(f, z)
     }
 
-  /** Builder of [[constraint.InternalZipConstraint]] for HLists whose common outer type constructor is a Stream
+  /** Builder of [[constraint.InternalZipConstraint]] for HLists whose common outer type constructor is a LazyList
     *
     * @tparam Z Type of the HList being internally zipped
     * @tparam F Down converted type of Z. For details, see [[constraint.DownTransformConstraint]]
@@ -1395,8 +1395,8 @@ object HList {
     */
   implicit def hLazyInternalZipConstraint[Z <: HList, F <: HList, T](
       implicit ev: LazyZipper[Z, F]
-  ): InternalZipConstraint[Z, F, T, Stream[T]] =
-    new InternalZipConstraint[Z, F, T, Stream[T]] {
+  ): InternalZipConstraint[Z, F, T, LazyList[T]] =
+    new InternalZipConstraint[Z, F, T, LazyList[T]] {
       override def apply(z: Z, f: F => T) = ev(f, z)
     }
 

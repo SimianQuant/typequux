@@ -17,7 +17,6 @@ package typequux
 
 import constraint._
 import Dense.DenseIntRep
-import language.higherKinds
 import Typequux.Id
 
 /** Provides scala collection like operations on sequantially indexed arbitrary arity types, like [[HList]] and tuple

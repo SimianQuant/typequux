@@ -25,7 +25,7 @@ import constraint._
   * @author Harshad Deo
   * @since 0.1
   */
-class ArityZipOps[Z, F](z: Z)(implicit ev: DownTransformConstraint[Z, F, Traversable]) {
+class ArityZipOps[Z, F](z: Z)(implicit ev: DownTransformConstraint[Z, F, Iterable]) {
 
   /** Zip and apply a transformation on the result
     *
