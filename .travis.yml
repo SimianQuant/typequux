@@ -14,16 +14,15 @@ before_cache:
 language: scala
 
 scala:
-  - 2.11.11
-  - 2.12.8
+  - 2.13.1
 
 jdk:
-  - oraclejdk8
+  - openjdk11
 
 dist: trusty
 
 script: 
-  - sbt ++$TRAVIS_SCALA_VERSION testAll
+  - sbt testAll
   - sbt coverage buildCoverage
 
 after_success:
