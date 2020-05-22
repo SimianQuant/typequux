@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/SimianQuant/typequux.svg?branch=master)](https://travis-ci.org/SimianQuant/typequux)
 [![Build status](https://ci.appveyor.com/api/projects/status/7aspsw5t4f24xbbp?svg=true)](https://ci.appveyor.com/project/harshad-deo/typequux-8tp9g)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.12)
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.17.svg)](https://www.scala-js.org)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.simianquant/typequux_2.13)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.0.0.svg)](https://www.scala-js.org)
 [![Coverage Status](https://coveralls.io/repos/github/SimianQuant/typequux/badge.svg?branch=master)](https://coveralls.io/github/SimianQuant/typequux?branch=master)
-[![Scaladoc](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.12) 
+[![Scaladoc](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.13.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.simianquant/typequux_2.13) 
 [![Gitter](https://badges.gitter.im/SimianQuant/typequux.svg)](https://gitter.im/SimianQuant/typequux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Typelevel programming allows developers to encode several flavours of runtime invariants into the type system. Unfortunately, 
