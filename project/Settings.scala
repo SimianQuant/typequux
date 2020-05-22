@@ -6,8 +6,17 @@ object Settings {
   }
 
   val scalacOptions: Seq[String] = List(
-    "-Xlint:adapted-args,nullary-unit,inaccessible,nullary-override,infer-any,doc-detached,private-shadow," +
-      "type-parameter-shadow,poly-implicit-overload,option-implicit,delayedinit-select,package-object-classes,stars-align,constant",
+    "-Xlint:_",
+    "-Wdead-code",
+    "-Wextra-implicit",
+    "-Wnumeric-widen",
+    "-Woctal-literal",
+    "-Wunused:imports",
+    "-Wunused:patvars",
+    "-Wunused:privates",
+    "-Wunused:locals",
+    "-Wunused:explicits",
+    "-Wunused:implicits",
     "-Ywarn-unused:imports,patvars,privates,locals",
     "-opt:l:method",
     "-deprecation",
@@ -17,7 +26,8 @@ object Settings {
     "UTF-8",
     "-feature",
     "-Xlog-reflective-calls",
-    "-Ywarn-dead-code"
+    "-Ywarn-dead-code",
+    "-Ywarn-value-discard"
   )
 
   val scalacDocOptions = Seq(
