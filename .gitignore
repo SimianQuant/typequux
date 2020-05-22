@@ -203,3 +203,5 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 
+.bloop
+.metals
